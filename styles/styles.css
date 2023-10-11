@@ -92,7 +92,6 @@ nav {
 }
 
 .nav__logout {
-	vertical-align: top;
 	width: 100%;
 	box-sizing: border-box;
 	background-color: #667A8A;
@@ -103,7 +102,6 @@ nav {
 	font-weight: 600;
 	border-radius: 3.659px;
 	margin-top: auto;
-	height: 44px;
 }
 
 .nav__logout img {
