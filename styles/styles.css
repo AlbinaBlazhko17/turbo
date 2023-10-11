@@ -8,6 +8,29 @@ body {
 
 main {
 	background-color: #EFF2F4;
+	position: absolute;
+	top: 128px;
+	left: 250px;
+	padding-left: 40px;
+	padding-right: 34px;
+	display: flex;
+}
+
+h2 {
+	font-size: 21.039px;
+}
+
+nav {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	top: 0;
+	left: 0;
+	height: 95vh;
+	width: 253px;
+	padding: 30px 22px;
+	box-shadow: 0px 3.12501px 35.15638px 0px rgba(0, 0, 0, 0.08);
+	background-color: #fff;
 }
 
 .header {
@@ -37,27 +60,11 @@ main {
 	margin-right: 14.64px;
 }
 
-h2 {
-	font-size: 21.039px;
-}
-
-nav {
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	top: 0;
-	left: 0;
-	height: 95vh;
-	width: 253px;
-	padding: 30px 22px;
-	box-shadow: 0px 3.12501px 35.15638px 0px rgba(0, 0, 0, 0.08);
-	background-color: #fff;
-}
-
 .nav__arrow {
 	position: absolute;
 	top: 75px;
-	right: -37px;
+	right: 15px;
+	border: none;
 }
 
 .nav__list {
@@ -111,4 +118,19 @@ nav {
 .nav__logout p {
 	margin-block-start: 0;
     margin-block-end: 0;
+}
+
+.stats {
+	margin-top: 46px;
+}
+
+.stats__diagram img {
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.stats__header {
+	margin-left: 23px;
+	margin-top: 25px;
 }
