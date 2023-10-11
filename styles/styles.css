@@ -120,6 +120,10 @@ nav {
     margin-block-end: 0;
 }
 
+.dashboard section {
+	padding-left: 32px;
+}
+
 .stats {
 	margin-top: 46px;
 }
@@ -131,6 +135,24 @@ nav {
 }
 
 .stats__header {
-	margin-left: 23px;
 	margin-top: 25px;
+}
+
+.experts {
+	margin-top: 50px;
+}
+
+.experts__wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 20px;
+}
+
+.experts-item {
+	display: flex;
+	align-items: center;
+}
+
+.experts-item__descr {
+	margin-left: 15px;
 }
