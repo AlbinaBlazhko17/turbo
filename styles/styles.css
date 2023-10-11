@@ -3,6 +3,11 @@
 body {
 	margin: 0;
 	font-family: 'Epilogue', sans-serif;
+	color: #5D7285;
+}
+
+main {
+	background-color: #EFF2F4;
 }
 
 .header {
@@ -10,6 +15,7 @@ body {
 	justify-content: end;
 	align-items: center;
 	padding: 37px;
+	position: relative;
 }
 
 .header div:nth-child(1) {
@@ -18,6 +24,8 @@ body {
 
 .logo {
 	display: flex;
+	align-items: center;
+	margin-bottom: 44px;
 }
 
 .logo__wrapper {
@@ -26,4 +34,83 @@ body {
 	background-color: #2196F3;
 	border-radius: 7.318px;
 	padding: 4px;
+	margin-right: 14.64px;
+}
+
+h2 {
+	font-size: 21.039px;
+}
+
+nav {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	top: 0;
+	left: 0;
+	height: 95vh;
+	width: 253px;
+	padding: 30px 22px;
+	box-shadow: 0px 3.12501px 35.15638px 0px rgba(0, 0, 0, 0.08);
+	background-color: #fff;
+}
+
+.nav__arrow {
+	position: absolute;
+	top: 75px;
+	right: -37px;
+}
+
+.nav__list {
+	list-style-type: none;
+	margin-block-start: 0;
+    margin-block-end: 0;
+	padding-inline-start: 14px;
+}
+
+.nav__list-item {
+	width: 254px;
+	height: auto;
+	padding: 3px;
+	display: flex;
+	align-items: center;
+	font-weight: 400;
+	font-size: 14px;
+	margin-bottom: 15px;
+}
+
+.nav__list-item:last-child {
+	margin-bottom: 0;
+}
+
+.nav__list-item span {
+	margin-right: 15px;
+}
+
+.nav__list-item span img {
+	width: 30px;
+	height: 30px;
+}
+
+.nav__logout {
+	vertical-align: top;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: #667A8A;
+	display: flex;
+	align-items: center;
+	color: white;
+	padding: 7px 14px;
+	font-weight: 600;
+	border-radius: 3.659px;
+	margin-top: auto;
+	height: 44px;
+}
+
+.nav__logout img {
+	margin-right: 15px;
+}
+
+.nav__logout p {
+	margin-block-start: 0;
+    margin-block-end: 0;
 }
