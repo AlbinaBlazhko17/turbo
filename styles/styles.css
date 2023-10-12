@@ -168,24 +168,24 @@ section, aside {
 	margin-right: 42px;
 }
 
-.news {
+.aside {
 	margin-bottom: 50px;
 }
 
-.news-item {
+.aside-item {
 	display: flex;
 	align-items: center;
 	margin-bottom: 28px;
 }
 
-.news-item:last-child {
+.aside-item:last-child {
 	margin-bottom: 0;
 }
 
-.news-item img {
+.aside-item img {
 	margin-right: 38px;
 }
 
-/* .topics {
+.topics {
 
-} */
+}
