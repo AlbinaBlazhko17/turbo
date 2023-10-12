@@ -13,6 +13,7 @@ main {
 	padding: 40px 32px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-auto-rows: auto;
 	gap: 32px 20px;
 }
 
@@ -212,13 +213,19 @@ h3 {
 .stats {
 	grid-column: 1/4;
 	padding: 20px;
+	height: 417px;
+}
+
+.stats__diagram {
+	width: 90%;
+	height: 80%;
 }
 
 .stats__diagram img {
 	display: block;
 	margin: 0 auto;
 	width: 100%;
-	height: auto;
+	height: 100%;
 }
 
 .stats__header {
