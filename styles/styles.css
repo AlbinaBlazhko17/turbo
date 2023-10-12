@@ -141,6 +141,7 @@ nav {
 
 .experts {
 	margin-top: 50px;
+	padding: 24px 20px;
 }
 
 .experts__wrapper {
@@ -156,4 +157,8 @@ nav {
 
 .experts-item__descr {
 	margin-left: 15px;
+}
+
+.stats, .experts {
+	margin-right: 42px;
 }
