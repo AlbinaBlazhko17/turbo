@@ -177,6 +177,10 @@ section, aside {
     margin-block-end: 0;
 }
 
+.nav_closed + main {
+	left: 150px;
+}
+
 .dashboard section {
 	margin-right: 22px;
 }
