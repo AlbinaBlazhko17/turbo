@@ -127,7 +127,7 @@ section, aside {
 }
 
 .dashboard section {
-	padding-left: 32px;
+	margin-right: 22px;
 }
 
 .stats {
@@ -184,8 +184,4 @@ section, aside {
 
 .aside-item img {
 	margin-right: 38px;
-}
-
-.topics {
-
 }
