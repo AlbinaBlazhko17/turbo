@@ -140,6 +140,7 @@ section, aside {
 	font-weight: 400;
 	font-size: 14px;
 	margin-bottom: 15px;
+	font-family: Poppins;
 }
 
 .nav__list-item:last-child {
@@ -150,10 +151,21 @@ section, aside {
 	margin-left: 15px;
 }
 
-.nav__list-item img {
+.nav__list-item svg {
 	width: 30px;
 	height: 30px;
 }
+
+.nav__list-item:hover {
+	color: #0C7FDA;
+	background-color: #E9F5FE;
+	font-weight: 600;
+}
+
+.nav__list-item:hover svg {
+	fill: #0C7FDA;
+}
+
 
 .nav__logout {
 	width: 100%;
