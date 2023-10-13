@@ -7,12 +7,13 @@ body {
 }
 
 main {
+	width: calc(100% - 64px - 300px);
 	background-color: #EFF2F4;
 	position: absolute;
 	left: 300px;
 	padding: 40px 32px;
 	display: grid;
-	grid-template-columns: auto 1fr auto;
+	grid-template-columns: auto auto;
 	grid-auto-rows: auto;
 	gap: 32px 20px;
 }
@@ -35,6 +36,7 @@ h3 {
 }
 
 .header {
+	position: fixed;
 	display: flex;
 	justify-content: end;
 	align-items: center;
@@ -236,27 +238,33 @@ h3 {
 	margin-top: 25px;
 }
 
-.experts {
+.subgrid {
 	grid-column: 2/4;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr;
+	row-gap: 20px;
 }
 
 .aside {
+	max-width: 305px;
 	box-sizing: border-box;
 }
 
 .experts__wrapper {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 	margin-top: 20px;
 	gap: 20px;
 }
 
-.experts-item {
+.experts__item {
 	display: flex;
 	align-items: center;
 }
 
-.experts-item__descr {
+.experts__item-descr {
 	margin-left: 15px;
 }
 
@@ -287,4 +295,14 @@ h3 {
 
 .latest {
 	grid-column: 1/2;
+}
+
+.marquee {
+	display: flex;
+	justify-content: space-around;
+	grid-column: 1/4;
+}
+
+.slider {
+	grid-column: 1/4;
 }
