@@ -169,6 +169,11 @@ figure {
 	right: -35px;
 }
 
+.nav_closed .nav__arrow {
+	top: 80px;
+	transform: rotate(-180deg);
+}
+
 .nav__list {
 	list-style-type: none;
 	margin-block-start: 0;
@@ -268,9 +273,9 @@ figure {
 }
 
 .aside {
-
-	/* max-width: 305px; */
+	overflow: scroll;
 	box-sizing: border-box;
+	height: 450px;
 }
 
 .experts, .services {
