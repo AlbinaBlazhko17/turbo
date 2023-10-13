@@ -369,10 +369,17 @@ h3 {
 
 .marquee {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	grid-column: 1/4;
+	padding: 20px;
+}
+
+.marquee-item {
+	color: #333;
+	font-size: 16px;
 }
 
 .slider {
+	text-align: center;
 	grid-column: 1/4;
 }
