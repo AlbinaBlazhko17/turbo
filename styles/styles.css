@@ -106,15 +106,20 @@ figure {
 }
 
 .nav_closed {
-	width: 50px;
-	height: 93vh;
+	box-sizing: border-box;
+	width: 100px;
+	height: 100vh;
 	border-radius: 7.318px;
 	box-shadow: 0px 3.65918px 54.88764px 0px rgba(0, 0, 0, 0.15);
 }
 
 .nav_closed + main {
-	width: calc(100% - 64px - 90px);
-	left: 90px;
+	width: calc(100% - 64px - 100px);
+	left: 100px;
+}
+
+.nav_closed .logo {
+	justify-content: center;
 }
 
 .nav_closed .logo h2 {
@@ -130,7 +135,7 @@ figure {
 .nav_closed .nav__list img {
 	width: 30px;
 	height: 30px;
-	padding: 2px;
+	padding: 7px;
 }
 
 .nav_closed .nav__list {
@@ -139,11 +144,19 @@ figure {
 
 .nav_closed .nav__list-item {
 	width: auto;
-	padding: 7px;
+	padding: 0 7px;
 }
 
 .nav_closed .nav__list-item span {
 	display: none;
+}
+
+.nav_closed .nav__logout {
+	justify-content: center;
+}
+
+.nav_closed .nav__logout img {
+	margin-right: 0;
 }
 
 .nav_closed .nav__logout p {
@@ -152,10 +165,8 @@ figure {
 
 .nav__arrow {
 	position: absolute;
-	top: 100px;
-	right: -45px;
-	border: none;
-	background-color: transparent;
+	top: 95px;
+	right: -35px;
 }
 
 .nav__list {
@@ -167,7 +178,7 @@ figure {
 
 .nav__list-item {
 	width: 253px;
-	padding: 9 7px;
+	padding: 7px;
 	height: auto;
 	padding: 3px;
 	display: flex;
