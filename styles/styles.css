@@ -28,13 +28,13 @@ main section, aside {
 
 
 h1, h2 {
+	margin: 0;
 	color: #333;
 }
 
 
 h2 {
 	font-size: 24px;
-	margin: 0;
 	margin-bottom: 24px;
 }
 
@@ -246,7 +246,7 @@ h3 {
 	grid-column: 2/4;
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 1fr 1fr;
+	grid-template-rows: auto auto;
 	row-gap: 20px;
 }
 
@@ -264,7 +264,7 @@ h3 {
 	grid-template-columns: repeat(auto-fit, minmax(188px, 1fr));
 	margin-top: 20px;
 	column-gap: 4.5em;
-	row-gap: 2em;
+	row-gap: 1.8em;
 }
 
 .experts__item {
