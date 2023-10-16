@@ -212,6 +212,7 @@ figure {
 	color: #0C7FDA;
 	background-color: #E9F5FE;
 	font-weight: 600;
+	border-radius: 3.659px;
 }
 
 .nav__list-item:hover svg {
@@ -437,6 +438,9 @@ figure {
 	.nav_closed + main {
 		width: calc(100% - 50px - 100px);
 		left: 100px;
+	}
+	.nav__list-item {
+		width: 100%;
 	}
 
 	.latest {
