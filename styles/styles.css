@@ -288,7 +288,7 @@ figure {
 
 .experts__wrapper {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 	margin-top: 20px;
 	column-gap: 4.5em;
 	row-gap: 1.8em;
