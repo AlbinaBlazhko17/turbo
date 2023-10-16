@@ -411,3 +411,53 @@ figure {
 	text-align: center;
 	grid-column: 1/4;
 }
+
+@media screen and (max-width: 1025px) {
+	main {
+		width: calc(100% - 50px - 250px);
+		grid-template-columns: 200px 1fr 200px;
+		left: 250px;
+		padding: 30px 25px;
+	}
+
+	main section, aside {
+		padding: 18px 16px;
+	}
+
+	.nav {
+		box-sizing: border-box;
+		width: 250px;
+		height: 100vh;
+	}
+
+	.nav_closed {
+		width: 100px;
+	}
+
+	.nav_closed + main {
+		width: calc(100% - 50px - 100px);
+		left: 100px;
+	}
+
+	.latest {
+		height: 341px;
+	}
+
+	.subgrid {
+		grid-template-columns: 1fr 2fr;
+		grid-template-rows: auto auto;
+	}
+
+	.experts {
+		grid-column: 1/4;
+	}
+
+	.services {
+		width: 180%;
+		margin-left: -57%;
+	}
+
+	.services__wrapper {
+		gap: 4px;
+	}
+}
