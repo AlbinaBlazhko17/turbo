@@ -443,18 +443,10 @@ figure {
 		height: 341px;
 	}
 
-	.subgrid {
-		grid-template-columns: 1fr 2fr;
-		grid-template-rows: auto auto;
-	}
-
-	.experts {
-		grid-column: 1/4;
-	}
-
 	.services {
-		width: 180%;
-		margin-left: -57%;
+		box-sizing: border-box;
+		width: calc(100% + 200px + 20px);
+		margin-left: -220px;
 	}
 
 	.services__wrapper {
