@@ -351,6 +351,7 @@ figure {
 
 .latest {
 	grid-column: 1/2;
+	height: 530px;
 }
 
 .services__wrapper {
