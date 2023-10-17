@@ -9,10 +9,9 @@ body {
 main {
 	width: calc(100% - 64px - 300px);
 	background-color: #EFF2F4;
-	position: absolute;
-	top: 95px;
-	left: 300px;
 	padding: 40px 32px;
+	padding-top: 120px;
+	margin-left: 300px;
 	display: grid;
 	grid-template-columns: 305px 1fr 305px;
 	grid-auto-rows: auto;
@@ -63,6 +62,23 @@ figure {
 
 .header div:nth-child(1) {
 	margin-right: 22px;
+	padding: 3.75px;
+}
+
+.header div:nth-child(2) {
+	border-radius: 50%;
+	background-color: #BCDFFB;
+}
+
+.header__img {
+	box-sizing: border-box;
+	width: 45px;
+	height: 45px;
+}
+
+.header__img img {
+	width: 100%;
+	height: 100%;
 }
 
 .nav {
@@ -74,12 +90,12 @@ figure {
 	padding: 32px 20px;
 	background-color: #fff;
 	z-index: 3;
+	box-shadow: 0px 8px 24px 0px rgba(136, 136, 136, 0.25);
 }
 
 .nav_open {
-	height: 95vh;
+	height: 100vh;
 	width: fit-content;
-	box-shadow: 0px 3.12501px 35.15638px 0px rgba(0, 0, 0, 0.08);
 }
 
 .logo {
@@ -110,12 +126,11 @@ figure {
 	width: 100px;
 	height: 100vh;
 	border-radius: 7.318px;
-	box-shadow: 0px 3.65918px 54.88764px 0px rgba(0, 0, 0, 0.15);
 }
 
 .nav_closed + main {
 	width: calc(100% - 64px - 100px);
-	left: 100px;
+	margin-left: 100px;
 }
 
 .nav_closed .logo {
@@ -277,9 +292,14 @@ figure {
 }
 
 .aside {
-	overflow: scroll;
 	box-sizing: border-box;
 	height: 450px;
+}
+
+.aside__wrapper {
+	box-sizing: border-box;
+	height: 90%;
+	overflow: scroll;
 }
 
 .experts, .services {
@@ -312,7 +332,7 @@ figure {
 .experts__item-pos {
 	color: #000;
 	font-size: 12px;
-	margin: 5px 0;
+	margin: 2px 0;
 	font-weight: 400;
 }
 
@@ -352,6 +372,7 @@ figure {
 	font-weight: 400;
 	margin: 0;
 	margin-top: 10px;
+	line-height: 16px;
 }
 
 .latest {
@@ -421,8 +442,9 @@ figure {
 	main {
 		width: calc(100% - 50px - 250px);
 		grid-template-columns: 200px 1fr 200px;
-		left: 250px;
+		margin-left: 250px;
 		padding: 30px 25px;
+		padding-top: 120px;
 	}
 
 	main section, aside {
@@ -441,7 +463,7 @@ figure {
 
 	.nav_closed + main {
 		width: calc(100% - 50px - 100px);
-		left: 100px;
+		margin-left: 100px;
 	}
 	.nav__list-item {
 		width: 100%;
@@ -473,8 +495,9 @@ figure {
 
 	.nav_open + main {
 		width: calc(100% - 40px - 200px);
-		left: 200px;
+		margin-left: 200px;
 		padding: 25px 20px;
+		padding-top: 120px;
 	}
 
 	.stats__diagram {
@@ -508,7 +531,7 @@ figure {
 
 @media screen and (max-width: 570px) {
 	main {
-		padding: 15px 10px;
+		padding: 20px 10px;
 		grid-template-columns: 1fr 1fr;
 		gap: 20px 0;
 	}
@@ -536,15 +559,14 @@ figure {
 	.nav_open + main {
 		box-sizing: border-box;
 		width: 100%;
-		top: 70px;
-		left: 0;
+		padding-top: 80px;
 		z-index: -1;
 	}
 
 	.nav_closed + main {
 		width: calc(100% - 70px - 20px);
-		top: 70px;
-		left: 70px;
+		padding-top: 70px;
+		margin-left: 70px;
 		z-index: -1;
 	}
 
