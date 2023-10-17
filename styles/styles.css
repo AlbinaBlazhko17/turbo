@@ -277,9 +277,14 @@ figure {
 }
 
 .aside {
-	overflow: scroll;
 	box-sizing: border-box;
 	height: 450px;
+}
+
+.aside__wrapper {
+	box-sizing: border-box;
+	height: 90%;
+	overflow: scroll;
 }
 
 .experts, .services {
