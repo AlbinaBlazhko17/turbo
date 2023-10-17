@@ -7,20 +7,20 @@ import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 import rename from 'gulp-rename';
 
-const dist = './';
+const dist = './dist';
 
 gulp.task('copy-html', () => {
 	return gulp
-		.src('./index.html')
+		.src('./src/index.html')
 		.pipe(gulp.dest(dist))
 		.pipe(browsersync.stream());
 });
 
 gulp.task('copy-assets', () => {
-	gulp.src('./assets/**/*.*').pipe(gulp.dest(dist + '/assets/icons'));
+	gulp.src('./src/assets/*.*').pipe(gulp.dest(dist + '/assets'));
 
 	return gulp
-		.src('./assets/**/*.png')
+		.src('./src/assets/*.*')
 		.pipe(image())
 		.pipe(gulp.dest(dist + '/assets/'))
 		.pipe(browsersync.stream());
@@ -28,7 +28,7 @@ gulp.task('copy-assets', () => {
 
 gulp.task('build-css-min', () => {
 	return gulp
-		.src('./styles/styles.css')
+		.src('./src/css/styles.css')
 		.pipe(postcss(autoprefixer))
 		.pipe(cleanCSS())
 		.pipe(rename({ suffix: '.min', prefix: '' }))
@@ -38,31 +38,31 @@ gulp.task('build-css-min', () => {
 
 gulp.task('watch', () => {
 	browsersync.init({
-		server: './',
+		server: './dist',
 		browser: 'google chrome',
 		port: 3001,
 		notify: true,
 	});
 
 	gulp.watch('./src/index.html', gulp.parallel('copy-html'));
-	gulp.watch('./src/assets/**/*.*', gulp.parallel('copy-assets'));
+	gulp.watch('./src/assets/*.png', gulp.parallel('copy-assets'));
 	gulp.watch('./src/**/*.*', gulp.parallel('copy-assets'));
 
-	gulp.watch('./styles/styles.css', gulp.parallel('build-css-min'));
+	gulp.watch('./src/styles/styles.css', gulp.parallel('build-css-min'));
 });
 
 gulp.task('build', gulp.parallel('copy-html', 'copy-assets', 'build-css-min'));
 
 gulp.task('prod', () => {
 	gulp.src('./src/index.html').pipe(gulp.dest(dist));
-	gulp.src('./src/assets/**/*.png').pipe(gulp.dest(dist + '/assets'));
-	gulp.src('./src/assets/**/*.*').pipe(gulp.dest(dist + '/assets'));
+	gulp.src('./src/assets/*.png').pipe(gulp.dest(dist + '/assets/img'));
+	gulp.src('./src/assets/*.*').pipe(gulp.dest(dist + '/assets/icons'));
 
 	return gulp
-		.src('./scss/style.scss')
+		.src('./src/scss/style.scss')
 		.pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
 		.pipe(cleanCSS())
-		.pipe(gulp.dest('./styles'));
+		.pipe(gulp.dest('./src/styles'));
 });
 
 gulp.task('default', gulp.parallel('watch', 'build'));
