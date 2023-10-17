@@ -1,11 +1,12 @@
 .aside {
 	box-sizing: border-box;
 	height: 450px;
+	overflow: hidden;
 
 	&__wrapper {
 		box-sizing: border-box;
 		height: 90%;
-		overflow: scroll;
+		overflow-y: scroll;
 	}
 
 	&-item {
