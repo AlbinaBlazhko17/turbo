@@ -1,0 +1,22 @@
+.logo {
+	display: flex;
+	align-items: center;
+	margin-bottom: 44px;
+
+	&__wrapper {
+		width: 27px;
+		height: 27px;
+		background-color: #2196F3;
+		border-radius: 7.318px;
+		padding: 4px;
+		margin-right: 14px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__text {
+		margin: 0;
+		color: #5D7285;
+	}
+}
