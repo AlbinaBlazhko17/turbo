@@ -46,14 +46,14 @@
 			}
 
 			&:hover {
-				color: #0C7FDA;
-				background-color: #E9F5FE;
+				color: $blue;
+				background-color: $lighter-blue;
 				font-weight: 600;
 				border-radius: 3.659px;
 			}
 
 			&:hover svg {
-				fill: #0C7FDA;
+				fill: $blue;
 			}
 		}
 	}

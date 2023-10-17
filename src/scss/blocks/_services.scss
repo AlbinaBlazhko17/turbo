@@ -1,6 +1,6 @@
 .services {
 	&-item {
-		color: #333;
+		color: $grey;
 		display: flex;
 		align-items: center;
 		margin-bottom: 16px;
@@ -13,7 +13,7 @@
 			padding: 18px;
 			margin-right: 12px;
 			border-radius: 50%;
-			background-color: #E9F5FE;
+			background-color: $lighter-blue;
 			display: flex;
 			justify-content: center;
 			align-items: center;

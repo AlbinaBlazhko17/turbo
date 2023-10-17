@@ -6,7 +6,7 @@
 	&__wrapper {
 		width: 27px;
 		height: 27px;
-		background-color: #2196F3;
+		background-color: $light-blue;
 		border-radius: 7.318px;
 		padding: 4px;
 		margin-right: 14px;
@@ -17,6 +17,6 @@
 
 	&__text {
 		margin: 0;
-		color: #5D7285;
+		color: $light-grey;
 	}
 }
