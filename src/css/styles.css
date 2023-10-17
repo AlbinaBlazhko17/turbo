@@ -366,3 +366,8 @@ figure {
   color: #333;
   font-size: 16px;
 }
+
+.slider {
+  text-align: center;
+  grid-column: 1/4;
+}
