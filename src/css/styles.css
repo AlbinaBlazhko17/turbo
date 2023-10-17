@@ -45,6 +45,14 @@ figure {
   margin-inline-end: 0;
 }
 
+.subgrid {
+  grid-column: 2/4;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  row-gap: 20px;
+}
+
 .header {
   background: #FFF;
   width: 100%;
@@ -246,4 +254,41 @@ figure {
 }
 .stats__header {
   margin-top: 25px;
+}
+
+.aside {
+  box-sizing: border-box;
+  height: 450px;
+}
+.aside__wrapper {
+  box-sizing: border-box;
+  height: 90%;
+  overflow: scroll;
+}
+.aside-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.aside-item:last-child {
+  margin-bottom: 0;
+}
+.aside-item__header {
+  color: #333;
+  font-size: 16px;
+  margin: 0;
+}
+.aside-item img {
+  width: 56px;
+  height: 56px;
+  margin-right: 12px;
+  border-radius: 6.995px;
+}
+.aside-item__text {
+  color: #5D7285;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  margin-top: 10px;
+  line-height: 16px;
 }

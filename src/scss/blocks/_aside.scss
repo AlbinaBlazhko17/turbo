@@ -1,0 +1,42 @@
+.aside {
+	box-sizing: border-box;
+	height: 450px;
+
+	&__wrapper {
+		box-sizing: border-box;
+		height: 90%;
+		overflow: scroll;
+	}
+
+	&-item {
+		display: flex;
+		align-items: flex-start;
+		margin-bottom: 16px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&__header {
+			color: #333;
+			font-size: 16px;
+			margin: 0;
+		}
+
+		& img {
+			width: 56px;
+			height: 56px;
+			margin-right: 12px;
+			border-radius: 6.995px;
+		}
+
+		&__text {
+			color: #5D7285;
+			font-size: 12px;
+			font-weight: 400;
+			margin: 0;
+			margin-top: 10px;
+			line-height: 16px;
+		}
+	}
+}

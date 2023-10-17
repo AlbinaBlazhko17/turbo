@@ -48,9 +48,18 @@ figure {
     margin-inline-end: 0;
 }
 
+.subgrid {
+	grid-column: 2/4;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto auto;
+	row-gap: 20px;
+}
+
 @import './base/mixins.scss';
 
 @import './blocks/header';
 @import './blocks/nav';
 @import './blocks/logo';
 @import './blocks/stats';
+@import './blocks/aside';
