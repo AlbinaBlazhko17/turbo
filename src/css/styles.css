@@ -85,11 +85,124 @@ figure {
   background-color: #fff;
   z-index: 3;
   box-shadow: 0px 8px 24px 0px rgba(136, 136, 136, 0.25);
+  height: 100vh;
+}
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+.nav__list-item {
+  width: 253px;
+  padding: 7px;
+  height: auto;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 15px;
+  font-family: Poppins;
+}
+.nav__list-item:last-child {
+  margin-bottom: 0;
+}
+.nav__list-item span {
+  margin-left: 15px;
+}
+.nav__list-item svg {
+  width: 30px;
+  height: 30px;
+  padding: 7px;
+}
+.nav__list-item:hover {
+  color: #0C7FDA;
+  background-color: #E9F5FE;
+  font-weight: 600;
+  border-radius: 3.659px;
+}
+.nav__list-item:hover svg {
+  fill: #0C7FDA;
+}
+.nav__logout {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #667A8A;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 7px 14px;
+  font-weight: 600;
+  border-radius: 3.659px;
+  margin-top: auto;
+}
+.nav__logout img {
+  margin-right: 15px;
+}
+.nav__logout p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.nav__arrow {
+  position: absolute;
+  top: 95px;
+  right: -35px;
 }
 .nav_open {
-  height: 100vh;
   width: -moz-fit-content;
   width: fit-content;
+}
+.nav_closed {
+  box-sizing: border-box;
+  width: 100px;
+  border-radius: 7.318px;
+}
+.nav_closed + main {
+  width: calc(100% - 64px - 100px);
+  margin-left: 100px;
+}
+.nav_closed .logo {
+  justify-content: center;
+}
+.nav_closed .logo h2 {
+  display: none;
+}
+.nav_closed .logo__wrapper {
+  width: 34px;
+  height: 34px;
+  margin-right: 0;
+}
+.nav_closed .nav__list img {
+  width: 30px;
+  height: 30px;
+  padding: 7px;
+}
+.nav_closed .nav__list {
+  padding-inline-start: 0;
+}
+.nav_closed .nav__list-item {
+  width: auto;
+  padding: 0 7px;
+}
+.nav_closed .nav__list-item span {
+  display: none;
+}
+.nav_closed .nav__logout {
+  justify-content: center;
+}
+.nav_closed .nav__logout img {
+  margin-right: 0;
+}
+.nav_closed .nav__logout p {
+  display: none;
+}
+.nav_closed .nav__arrow {
+  top: 80px;
+  transform: rotate(-180deg);
 }
 
 .logo {

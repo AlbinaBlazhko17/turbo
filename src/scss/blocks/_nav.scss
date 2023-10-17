@@ -8,8 +8,146 @@
 	background-color: #fff;
 	z-index: 3;
 	box-shadow: 0px 8px 24px 0px rgba(136, 136, 136, 0.25);
+	height: 100vh;
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		list-style-type: none;
+		margin-block-start: 0;
+		margin-block-end: 0;
+		padding-inline-start: 0;
+	
+		&-item {
+			width: 253px;
+			padding: 7px;
+			height: auto;
+			padding: 3px;
+			display: flex;
+			align-items: center;
+			font-weight: 400;
+			font-size: 14px;
+			margin-bottom: 15px;
+			font-family: Poppins;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			& span {
+				margin-left: 15px;
+			}
+			
+			& svg {
+				width: 30px;
+				height: 30px;
+				padding: 7px;
+			}
+
+			&:hover {
+				color: #0C7FDA;
+				background-color: #E9F5FE;
+				font-weight: 600;
+				border-radius: 3.659px;
+			}
+
+			&:hover svg {
+				fill: #0C7FDA;
+			}
+		}
+	}
+
+	&__logout {
+		width: 100%;
+		box-sizing: border-box;
+		background-color: $lighter-grey;
+		display: flex;
+		align-items: center;
+		color: white;
+		padding: 7px 14px;
+		font-weight: 600;
+		border-radius: 3.659px;
+		margin-top: auto;
+
+		& img {
+			margin-right: 15px;
+		}
+
+		& p {
+			margin-block-start: 0;
+			margin-block-end: 0;
+		}
+	}
+
+	&__arrow {
+		position: absolute;
+		top: 95px;
+		right: -35px;
+	}
+
 	&_open {
-		height: 100vh;
 		width: fit-content;
+	}
+
+	&_closed {
+		box-sizing: border-box;
+		width: 100px;
+		border-radius: 7.318px;
+
+		& + main {
+			width: calc(100% - 64px - 100px);
+			margin-left: 100px;
+		}
+
+		& .logo {
+			justify-content: center;
+		}
+
+		& .logo h2 {
+			display: none;
+		}
+
+		& .logo__wrapper {
+			width: 34px;
+			height: 34px;
+			margin-right: 0;
+		}
+
+		& .nav__list img {
+			width: 30px;
+			height: 30px;
+			padding: 7px;
+		}
+
+		& .nav__list {
+			padding-inline-start: 0;
+		}
+
+		& .nav__list-item {
+			width: auto;
+			padding: 0 7px;
+		}
+
+		& .nav__list-item span {
+			display: none;
+		}
+
+		& .nav__logout {
+			justify-content: center;
+		}
+
+		& .nav__logout img {
+			margin-right: 0;
+		}
+
+		& .nav__logout p {
+			display: none;
+		}
+
+		& .nav__arrow {
+			top: 80px;
+			transform: rotate(-180deg);
+		}
 	}
 }
