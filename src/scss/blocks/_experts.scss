@@ -1,0 +1,38 @@
+.experts {
+	&__wrapper {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		margin-top: 20px;
+		column-gap: 4.5em;
+		row-gap: 1.8em;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+
+		&-descr {
+			margin-left: 15px;
+		}
+
+		&-name {
+			font-size: 16px;
+			color: $grey;
+			margin: 0;
+		}
+
+		&-pos {
+			color: #000;
+			font-size: 12px;
+			margin: 2px 0;
+			font-weight: 400;
+		}
+
+		&-exp {
+			color: $light-grey;
+			font-size: 10px;
+			font-weight: 400;
+			margin: 0;
+		}
+	}
+}
