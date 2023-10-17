@@ -1,0 +1,34 @@
+.services {
+	&-item {
+		color: #333;
+		display: flex;
+		align-items: center;
+		margin-bottom: 16px;
+
+		&:last-child{
+			margin-bottom: 0;
+		}
+
+		&__img {
+			padding: 18px;
+			margin-right: 12px;
+			border-radius: 50%;
+			background-color: #E9F5FE;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&__header {
+			font-size: 16px;
+		}
+
+		&__text {
+			font-size: 12px;
+			white-space: pre-line;
+			margin: 0;
+			margin-top: 8px;
+			line-height: 12px;
+		}
+	}
+}

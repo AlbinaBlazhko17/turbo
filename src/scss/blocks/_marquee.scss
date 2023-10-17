@@ -1,0 +1,12 @@
+.marquee {
+	display: flex;
+	justify-content: space-between;
+	grid-column: 1/4;
+	padding: 20px;
+	flex-wrap: wrap;
+
+	&-item {
+		color: #333;
+		font-size: 16px;
+	}
+}

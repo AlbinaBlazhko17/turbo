@@ -325,3 +325,44 @@ figure {
   font-weight: 400;
   margin: 0;
 }
+
+.services-item {
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.services-item:last-child {
+  margin-bottom: 0;
+}
+.services-item__img {
+  padding: 18px;
+  margin-right: 12px;
+  border-radius: 50%;
+  background-color: #E9F5FE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.services-item__header {
+  font-size: 16px;
+}
+.services-item__text {
+  font-size: 12px;
+  white-space: pre-line;
+  margin: 0;
+  margin-top: 8px;
+  line-height: 12px;
+}
+
+.marquee {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1/4;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+.marquee-item {
+  color: #333;
+  font-size: 16px;
+}
