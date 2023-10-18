@@ -534,4 +534,75 @@ figure {
 .slider {
   text-align: center;
   grid-column: 1/4;
+  padding: 32px 20px;
+}
+.slider__subheader {
+  color: #555C68;
+  font-size: 20px;
+  font-weight: 400;
+}
+.slider__carousel {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  padding-bottom: 50px;
+}
+.slider__carousel__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.slider__carousel-slide {
+  padding: 32px 60px;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #E9F5FE;
+  border-radius: 10px;
+  height: 100%;
+  box-sizing: border-box;
+}
+.slider__carousel-slide__img {
+  margin-bottom: 16px;
+}
+.slider__carousel-slide__name {
+  color: black;
+  font-size: 14px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+.slider__carousel-slide__role {
+  color: #8791A0;
+  font-size: 12px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.slider__carousel-slide__text {
+  color: #555C68;
+  font-size: 20px;
+  white-space: pre-line;
+  line-height: 30px;
+  margin-top: 20px;
+  letter-spacing: -0.22px;
+}
+.slider__carousel-slide__text::after {
+  content: url("../../assets/quotes_before.svg");
+  position: relative;
+  left: 30px;
+  top: 8px;
+}
+.slider__carousel-slide__text::before {
+  content: url("../../assets/quotes_after.svg");
+  position: relative;
+  left: -15px;
+  top: 2px;
+}
+.slider .swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  background-color: #D2D2D2;
+}
+.slider .swiper-pagination-bullet-active {
+  width: 20px;
+  height: 20px;
+  background-color: #101C26;
 }

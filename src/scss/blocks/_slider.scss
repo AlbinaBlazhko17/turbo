@@ -1,4 +1,83 @@
 .slider {
 	text-align: center;
 	grid-column: 1/4;
+	padding: 32px 20px;
+
+	&__subheader {
+		color: #555C68;
+		font-size: 20px;
+		font-weight: 400;
+	}
+
+	&__carousel {
+		margin-top: 80px;
+		display: flex;
+		justify-content: space-between;
+		overflow: hidden;
+		padding-bottom: 50px;
+		&__wrapper {
+			display: flex;
+			justify-content: space-between;
+		}
+
+
+		&-slide {
+			padding: 32px 60px;
+			width: fit-content;
+			background-color: $lighter-blue;
+			border-radius: 10px;
+			height: 100%;
+			box-sizing: border-box;
+			&__img {
+				margin-bottom: 16px;
+			}
+
+			&__name {
+				color: black;
+				font-size: 14px;
+				margin-bottom: 15px;
+				font-weight: 600;
+			}
+
+			&__role {
+				color: #8791A0;
+				font-size: 12px;
+				margin-bottom: 6px;
+				font-weight: 500;
+			}
+
+			&__text {
+				color: #555C68;
+				font-size: 20px;
+				white-space: pre-line;
+				line-height: 30px;
+				margin-top: 20px;
+				letter-spacing: -0.22px;
+				&::after {
+					content: url('../../assets/quotes_before.svg');
+					position: relative;
+					left: 30px;
+					top: 8px;
+				}
+
+				&::before {
+					content: url('../../assets/quotes_after.svg');
+					position: relative;
+					left: -15px;
+					top: 2px;
+				}
+			}
+		}
+	}
+
+	.swiper-pagination-bullet {
+		width: 16px;
+		height: 16px;
+		background-color: #D2D2D2;;
+		&-active {
+			width: 20px;
+			height: 20px;
+			background-color: #101C26;;
+		}
+	}
 }

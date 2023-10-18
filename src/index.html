@@ -4,6 +4,10 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Turbo</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+		/>
 		<link rel="stylesheet" href="css/styles.min.css">
 	</head>
 	<body>
@@ -363,8 +367,116 @@
 			</section>
 			<section class="slider">
 				<h2>Client’s kind Words</h2>
-				<h3>Business owners and managers lead by example. The values</h3>
+				<h3 class="slider__subheader">Business owners and managers lead by example. The values</h3>
+				<div class="slider__carousel">
+					<div class="slider__carousel__wrapper">
+						<div class="slider__carousel-slide swiper-slide">
+							<div class="slider__carousel-slide__img"><img src="./assets/first_feedbaack.svg" alt="first_feedback"></div>
+							<h4 class="slider__carousel-slide__name">Brooklyn Simmons</h4>
+							<h5 class="slider__carousel-slide__role">Co-Founder & Chief Executive Officer</h5>
+							<div class="slider__carousel-slide__stars"><img src="./assets/stars.png" alt="stars"></div>
+							<p class="slider__carousel-slide__text">Amet minim mollit non deserunt ullamco est
+								sit aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit. Amet
+								minim mollit non deserunt ullamco est sit
+								aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit.</p>
+						</div>
+	
+						<div class="slider__carousel-slide swiper-slide">
+							<div class="slider__carousel-slide__img"><img src="./assets/second__feedback.svg" alt="first_feedback"></div>
+							<h4 class="slider__carousel-slide__name">Brooklyn Simmons</h4>
+							<h5 class="slider__carousel-slide__role">Co-Founder & Chief Executive Officer</h5>
+							<div class="slider__carousel-slide__stars"><img src="./assets/stars.png" alt="stars"></div>
+							<p class="slider__carousel-slide__text">Amet minim mollit non deserunt ullamco est
+								sit aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit. Amet
+								minim mollit non deserunt ullamco est sit
+								aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit.</p>
+						</div>
+	
+						<div class="slider__carousel-slide  swiper-slide">
+							<div class="slider__carousel-slide__img"><img src="./assets/third__feedback.svg" alt="first_feedback"></div>
+							<h4 class="slider__carousel-slide__name">Brooklyn Simmons</h4>
+							<h5 class="slider__carousel-slide__role">Co-Founder & Chief Executive Officer</h5>
+							<div class="slider__carousel-slide__stars"><img src="./assets/stars.png" alt="stars"></div>
+							<p class="slider__carousel-slide__text">Amet minim mollit non deserunt ullamco est
+								sit aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit. Amet
+								minim mollit non deserunt ullamco est sit
+								aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit.</p>
+						</div>
+	
+						<div class="slider__carousel-slide  swiper-slide">
+							<div class="slider__carousel-slide__img"><img src="./assets/first_feedbaack.svg" alt="first_feedback"></div>
+							<h4 class="slider__carousel-slide__name">Brooklyn Simmons</h4>
+							<h5 class="slider__carousel-slide__role">Co-Founder & Chief Executive Officer</h5>
+							<div class="slider__carousel-slide__stars"><img src="./assets/stars.png" alt="stars"></div>
+							<p class="slider__carousel-slide__text">Amet minim mollit non deserunt ullamco est
+								sit aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit. Amet
+								minim mollit non deserunt ullamco est sit
+								aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit.</p>
+						</div>
+	
+						<div class="slider__carousel-slide  swiper-slide">
+							<div class="slider__carousel-slide__img"><img src="./assets/first_feedbaack.svg" alt="first_feedback"></div>
+							<h4 class="slider__carousel-slide__name">Brooklyn Simmons</h4>
+							<h5 class="slider__carousel-slide__role">Co-Founder & Chief Executive Officer</h5>
+							<div class="slider__carousel-slide__stars"><img src="./assets/stars.png" alt="stars"></div>
+							<p class="slider__carousel-slide__text">Amet minim mollit non deserunt ullamco est
+								sit aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit. Amet
+								minim mollit non deserunt ullamco est sit
+								aliqua dolor do amet sint. Velit officia
+								consequat duis enim velit mollit.</p>
+						</div>
+					</div>
+				</div>
+				<div class="slider__carousel-pagination"></div>
 			</section>
 		</main>
+		<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+		<script type="module">
+			 var feedbackSwiper = new Swiper('.slider__carousel', {
+    direction: 'horizontal',
+    slidesPerView: 'auto',
+    spaceBetween: 30,
+    centeredSlides: true,
+
+    wrapperClass: 'slider__carousel__wrapper',
+    slideClass: 'slider__carousel-slide',
+
+    pagination: {
+      el: '.slider__carousel-pagination',
+      clickable: true,
+    },
+
+    on: {
+      init: function () {
+        const activeSlide = document.querySelector(
+          '.slider__carousel-slide.swiper-slide-active'
+        );
+        activeSlide.style.boxShadow =
+          '0px 25px 32px 0px rgba(67, 67, 67, 0.14)';
+		  activeSlide.style.transform = 'scale(1.1)'; 
+      },
+      slideChange: function () {
+        const slides = document.querySelectorAll('.slider__carousel-slide');
+        slides.forEach((slide) => {
+          slide.style.boxShadow = 'none';
+		  slide.style.transform = 'scale(1)';
+        });
+        const activeSlide = slides[this.activeIndex];
+        activeSlide.style.boxShadow =
+          '0px 25px 32px 0px rgba(67, 67, 67, 0.14)';
+		activeSlide.style.transform = 'scale(1.1)'; 
+	 },
+    },
+  });
+		</script>
 	</body>
 </html>
