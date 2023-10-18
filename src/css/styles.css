@@ -542,11 +542,11 @@ figure {
   font-weight: 400;
 }
 .slider__carousel {
-  margin-top: 80px;
+  padding-top: 75px;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  padding-bottom: 50px;
+  padding-bottom: 60px;
 }
 .slider__carousel__wrapper {
   display: flex;
