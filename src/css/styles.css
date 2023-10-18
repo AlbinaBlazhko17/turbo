@@ -190,6 +190,14 @@ figure {
     grid-template-columns: 1fr;
   }
 }
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 .header {
   background: #FFF;
   width: 100%;
@@ -494,15 +502,33 @@ figure {
 }
 
 .marquee {
-  display: flex;
-  justify-content: space-between;
   grid-column: 1/4;
   padding: 20px;
-  flex-wrap: wrap;
+  white-space: nowrap;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+}
+.marquee__wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 250%;
+  animation-name: marquee;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: 50ms;
+}
+.marquee__content {
+  display: flex;
+  justify-content: space-between;
+  width: 400%;
 }
 .marquee-item {
+  white-space: nowrap;
   color: #333;
   font-size: 16px;
+  width: 100%;
 }
 
 .slider {
