@@ -55,17 +55,29 @@
 				margin-top: 20px;
 				letter-spacing: -0.22px;
 				&::after {
-					content: url('../../assets/quotes_before.svg');
+					content: '';
+					display: inline-block;
+					background: url('../../assets/quotes_before.svg') no-repeat;
+					background-size: contain;
+					background-position: center;
 					position: relative;
+					width: 30px;
+					height: 30px;
 					left: 30px;
 					top: 8px;
 				}
 
 				&::before {
-					content: url('../../assets/quotes_after.svg');
+					content: '';
+					display: inline-block;
+					background: url('../../assets/quotes_after.svg') no-repeat;
+					background-size: contain;
+					background-position: center;
 					position: relative;
 					left: -15px;
 					top: 2px;
+					width: 30px;
+					height: 30px;
 				}
 			}
 		}
