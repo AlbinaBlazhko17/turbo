@@ -1,8 +1,8 @@
 @media screen and (max-width: 1025px) {
 	main {
-		width: calc(100% - 50px - 250px);
+		width: calc(100% - 50px - 300px);
 		grid-template-columns: 200px 1fr 200px;
-		margin-left: 250px;
+		margin-left: 300px;
 		padding: 30px 25px;
 		padding-top: 120px;
 	}
@@ -18,9 +18,18 @@
 
 		&_closed {
 			width: 100px;
+		
 			& + main {
 				width: calc(100% - 50px - 100px);
 				margin-left: 100px;
+			}
+
+			& + main .services {
+				grid-column: 2/3;
+			}
+
+			& + main .latest {
+				height: 680px !important;
 			}
 		}
 
@@ -32,7 +41,7 @@
 	}
 
 	.latest {
-		height: 341px;
+		height: 345px;
 	}
 
 	.experts__wrapper {
@@ -41,9 +50,8 @@
 
 	.services {
 		box-sizing: border-box;
-		width: calc(100% + 200px + 20px);
-		margin-left: -220px;
-		
+		grid-column: 1/-1;
+		grid-row: 2/3;
 		&__wrapper {
 			gap: 4px;
 		}
