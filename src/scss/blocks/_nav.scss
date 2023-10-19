@@ -3,12 +3,15 @@
 	display: flex;
 	flex-direction: column;
 	top: 0;
+	bottom: 0;
 	left: 0;
 	padding: 32px 20px;
 	background-color: #fff;
 	z-index: 3;
 	box-shadow: 0px 8px 24px 0px rgba(136, 136, 136, 0.25);
-	height: 100vh;
+	box-sizing: border-box;
+	width: 100%;
+	transition: all 0.3s ease-in-out;
 
 	&__list {
 		display: flex;
@@ -18,7 +21,7 @@
 		margin-block-start: 0;
 		margin-block-end: 0;
 		padding-inline-start: 0;
-	
+
 		&-item {
 			width: 253px;
 			padding: 7px;
@@ -38,7 +41,7 @@
 			& span {
 				margin-left: 15px;
 			}
-			
+
 			& svg {
 				width: 30px;
 				height: 30px;
@@ -87,17 +90,17 @@
 	}
 
 	&_open {
-		width: fit-content;
+		max-width: $sidebar-width-open;
 	}
 
 	&_closed {
 		box-sizing: border-box;
-		width: 100px;
+		max-width: $sidebar-width-closed;
 		border-radius: 7.318px;
 
 		& + main {
-			width: calc(100% - 64px - 100px);
-			margin-left: 100px;
+			width: calc(100% - ($main-padding * 2) - $sidebar-width-closed);
+			margin-left: $sidebar-width-closed;
 		}
 
 		& .logo {
