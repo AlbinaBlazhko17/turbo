@@ -57,14 +57,7 @@ figure {
 	height: 100%;
 }
 
-.latest {
-	grid-column: 1/2;
-	grid-row: 1/3;
-	height: 615px !important;
-}
-
 @import './base/mixins.scss';
-@import './base/media.scss';
 @import './base/animations.scss';
 
 @import './blocks/header';
@@ -72,7 +65,15 @@ figure {
 @import './blocks/logo';
 @import './blocks/stats';
 @import './blocks/aside';
+
+.latest {
+	grid-column: 1/2;
+	grid-row: 1/3;
+	height: 615px;
+}
 @import './blocks/experts';
 @import './blocks/services';
 @import './blocks/marquee';
 @import './blocks/slider';
+
+@import './base/media.scss';

@@ -29,7 +29,7 @@
 			}
 
 			& + main .latest {
-				height: 680px !important;
+				height: 680px;
 			}
 		}
 
@@ -54,6 +54,12 @@
 		grid-row: 2/3;
 		&__wrapper {
 			gap: 4px;
+		}
+	}
+
+	.marquee {
+		&__wrapper {
+			width: 400%;
 		}
 	}
 }
