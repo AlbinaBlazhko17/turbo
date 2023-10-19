@@ -15,11 +15,11 @@
 		justify-content: space-between;
 		overflow: hidden;
 		padding-bottom: 60px;
+
 		&__wrapper {
 			display: flex;
 			justify-content: space-between;
 		}
-
 
 		&-slide {
 			padding: 32px 60px;
@@ -28,6 +28,7 @@
 			border-radius: 10px;
 			height: 100%;
 			box-sizing: border-box;
+
 			&__img {
 				margin-bottom: 16px;
 			}
