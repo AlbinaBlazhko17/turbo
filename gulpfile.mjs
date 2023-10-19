@@ -47,6 +47,13 @@ gulp.task('build-css-min', () => {
 		.pipe(browsersync.stream());
 });
 
+gulp.task('build-js', () => {
+	return gulp
+		.src('./src/js/script.js')
+		.pipe(gulp.dest(dist + '/js'))
+		.pipe(browsersync.stream());
+});
+
 gulp.task('watch', () => {
 	browsersync.init({
 		server: './dist',
@@ -61,17 +68,57 @@ gulp.task('watch', () => {
 	gulp.watch('./src/**/*.*', gulp.parallel('copy-assets'));
 	gulp.watch('./src/scss/**/*.scss', gulp.parallel('build-sass'));
 	gulp.watch('./src/css/styles.css', gulp.parallel('build-css-min'));
+	gulp.watch('./src/js/*.js', gulp.parallel('build-js'));
 });
 
 gulp.task(
 	'build',
-	gulp.parallel('copy-html', 'copy-assets', 'build-sass', 'build-css-min'),
+	gulp.parallel(
+		'copy-html',
+		'copy-assets',
+		'build-sass',
+		'build-css-min',
+		'build-js',
+	),
 );
 
 gulp.task('prod', () => {
 	gulp.src('./src/index.html').pipe(gulp.dest(dist));
 	gulp.src('./src/assets/*.png').pipe(gulp.dest(dist + '/assets'));
 	gulp.src('./src/assets/*.*').pipe(gulp.dest(dist + '/assets'));
+	gulp.src('./src/js/scipt.js')
+		.pipe(
+			webpack({
+				mode: 'production',
+				output: {
+					filename: 'script.js',
+				},
+				module: {
+					rules: [
+						{
+							test: /\.m?js$/,
+							exclude: /(node_modules|bower_components)/,
+							use: {
+								loader: 'babel-loader',
+								options: {
+									presets: [
+										[
+											'@babel/preset-env',
+											{
+												debug: false,
+												corejs: 3,
+												useBuiltIns: 'usage',
+											},
+										],
+									],
+								},
+							},
+						},
+					],
+				},
+			}),
+		)
+		.pipe(gulp.dest(dist + '/js'));
 
 	return gulp
 		.src('./src/scss/style.scss')
