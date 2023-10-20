@@ -514,6 +514,18 @@ figure {
     width: 250px;
     height: 100vh;
   }
+  .nav + main .subgrid {
+    grid-template-columns: 200px auto;
+  }
+  .nav + main .services {
+    grid-column: 2/3;
+  }
+  .nav + main .latest {
+    grid-row: 1/3;
+  }
+  .nav_open + main .latest {
+    max-height: 688px;
+  }
   .nav_closed {
     width: 100px;
   }
@@ -525,7 +537,7 @@ figure {
     grid-column: 2/3;
   }
   .nav_closed + main .latest {
-    height: 680px;
+    max-height: 620px;
     grid-row: 1/3;
   }
   .nav__list-item {
@@ -565,7 +577,7 @@ figure {
   .nav_open + main .aside {
     display: none;
   }
-  .nav_open + main .subgrid .experts {
+  .nav_open + main .subgrid .experts, .nav_open + main .subgrid .services {
     grid-column: 1/-1;
   }
   .nav_open + main .marquee__wrapper {
