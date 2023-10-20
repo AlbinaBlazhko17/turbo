@@ -37,11 +37,11 @@
 		}
 
 		&_closed {
-			width: 100px;
+			width: $sidebar-width-closed;
 		
 			& + main {
-				width: calc(100% - 50px - 100px);
-				margin-left: 100px;
+				width: calc(100% - 50px - $sidebar-width-closed);
+				margin-left: $sidebar-width-closed;
 			}
 
 			& + main .services {
