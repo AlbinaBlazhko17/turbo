@@ -270,7 +270,7 @@ figure {
 
 .aside {
   box-sizing: border-box;
-  height: 450px;
+  max-height: 450px;
   overflow: hidden;
 }
 .aside__wrapper {
@@ -309,7 +309,7 @@ figure {
 .latest {
   grid-column: 1/2;
   grid-row: 1/3;
-  height: 615px;
+  max-height: 540px;
 }
 
 .experts__wrapper {

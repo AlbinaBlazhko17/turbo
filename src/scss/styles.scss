@@ -69,7 +69,7 @@ figure {
 .latest {
 	grid-column: 1/2;
 	grid-row: 1/3;
-	height: 615px;
+	max-height: 540px;
 }
 @import './blocks/experts';
 @import './blocks/services';
