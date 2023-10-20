@@ -39,3 +39,16 @@ var feedbackSwiper = new Swiper('.slider__carousel', {
 		},
 	},
 });
+
+const navState = document.querySelector('.nav');
+const navArrow = document.querySelector('.nav__arrow');
+
+navArrow.addEventListener('click', () => {
+	if (navState.classList.contains('nav_closed')) {
+		navState.classList.remove('nav_closed');
+		navState.classList.add('nav_open');
+	} else {
+		navState.classList.remove('nav_open');
+		navState.classList.add('nav_closed');
+	}
+});
