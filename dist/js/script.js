@@ -42,6 +42,7 @@ var feedbackSwiper = new Swiper('.slider__carousel', {
 
 const navState = document.querySelector('.nav');
 const navArrow = document.querySelector('.nav__arrow');
+const navListItems = document.querySelectorAll('.nav__list-item');
 
 navArrow.addEventListener('click', () => {
 	if (navState.classList.contains('nav_closed')) {
@@ -51,4 +52,11 @@ navArrow.addEventListener('click', () => {
 		navState.classList.remove('nav_open');
 		navState.classList.add('nav_closed');
 	}
+});
+
+navListItems.forEach((item) => {
+	item.addEventListener('click', () => {
+		navState.classList.remove('nav_open');
+		navState.classList.add('nav_closed');
+	});
 });
