@@ -664,7 +664,7 @@ figure {
     padding: 32px 10px;
   }
   .nav_open {
-    width: 200px;
+    width: 90%;
   }
   .nav_open + main {
     box-sizing: border-box;
@@ -710,7 +710,10 @@ figure {
   }
   .experts__wrapper {
     justify-content: center;
-    grid-template-columns: 200px;
+    grid-template-columns: 1fr;
+  }
+  .experts__item {
+    justify-content: space-evenly;
   }
   .services {
     margin-left: 0;
@@ -731,8 +734,8 @@ figure {
     left: 10px;
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 400px) {
   .swiper-slide {
-    width: 200px !important;
+    width: 220px !important;
   }
 }
