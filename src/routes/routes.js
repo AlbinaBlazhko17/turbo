@@ -1,6 +1,10 @@
+import HomePage from '@components/Homepage/HomePage';
+
 const routesConfig = [
 	{
 		path: '/',
-		element: <Homepage />,
+		element: <HomePage />,
 	},
 ];
+
+export default routesConfig;
