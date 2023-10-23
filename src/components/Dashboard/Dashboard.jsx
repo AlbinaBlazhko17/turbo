@@ -1,9 +1,10 @@
 import Stats from '../Stats/Stats';
 import Aside from '../Aside/Aside';
+import Experts from '../Experts/Experts';
+import Services from '../Services/Services';
 import AsideImg from '@assets/img/aside_image.jpeg';
 
 import './dashboard.scss';
-import Experts from '../Experts/Experts';
 
 function Dashboard () {
 	const dataForNews = [
@@ -90,6 +91,7 @@ function Dashboard () {
 			<div className='subgrid'>
 				<Aside className='aside-latest' title='Latest topics' data={dataForLatest} />
 				<Experts />
+				<Services />
 			</div>
 		</main>
 	)
