@@ -1,0 +1,98 @@
+@import '../../scss/index.scss';
+
+.slider {
+	text-align: center;
+	grid-column: 1/4;
+	padding: 32px 20px;
+
+	&__subheader {
+		color: #555C68;
+		font-size: 20px;
+		font-weight: 400;
+	}
+
+	&__carousel {
+		padding-top: 75px;
+		display: flex;
+		justify-content: space-between;
+		overflow: hidden;
+		padding-bottom: 60px;
+
+		&__wrapper {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		&-slide {
+			padding: 32px 60px;
+			width: fit-content;
+			background-color: $lighter-blue;
+			border-radius: 10px;
+			height: 100%;
+			box-sizing: border-box;
+
+			&__img {
+				margin-bottom: 16px;
+			}
+
+			&__name {
+				color: black;
+				font-size: 14px;
+				margin-bottom: 15px;
+				font-weight: 600;
+			}
+
+			&__role {
+				color: #8791A0;
+				font-size: 12px;
+				margin-bottom: 6px;
+				font-weight: 500;
+			}
+
+			&__text {
+				color: #555C68;
+				font-size: 20px;
+				white-space: pre-line;
+				line-height: 30px;
+				margin-top: 20px;
+				letter-spacing: -0.22px;
+				&::after {
+					content: '';
+					display: inline-block;
+					background: url('../../assets/quotes_before.svg') no-repeat;
+					background-size: contain;
+					background-position: center;
+					position: relative;
+					width: 30px;
+					height: 30px;
+					left: 30px;
+					top: 8px;
+				}
+
+				&::before {
+					content: '';
+					display: inline-block;
+					background: url('../../assets/quotes_after.svg') no-repeat;
+					background-size: contain;
+					background-position: center;
+					position: relative;
+					left: -15px;
+					top: 2px;
+					width: 30px;
+					height: 30px;
+				}
+			}
+		}
+	}
+
+	.swiper-pagination-bullet {
+		width: 16px;
+		height: 16px;
+		background-color: #D2D2D2;;
+		&-active {
+			width: 20px;
+			height: 20px;
+			background-color: #101C26;;
+		}
+	}
+}
