@@ -5,6 +5,7 @@ import Services from '../Services/Services';
 import AsideImg from '@assets/img/aside_image.jpeg';
 
 import './dashboard.scss';
+import Marquee from '../Marquee/Marquee';
 
 function Dashboard () {
 	const dataForNews = [
@@ -93,6 +94,8 @@ function Dashboard () {
 				<Experts />
 				<Services />
 			</div>
+
+			<Marquee />
 		</main>
 	)
 }
