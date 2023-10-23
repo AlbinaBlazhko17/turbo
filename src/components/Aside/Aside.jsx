@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import './aside.scss';
 
-function Aside ({title, data}) {
+function Aside ({title, data, className}) {
 	return (
-		<aside className="aside">
+		<aside className={`aside ${className || ''}`}>
 			<h2>{title}</h2>
 			<div className="aside__wrapper">
 				{

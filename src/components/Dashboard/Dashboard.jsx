@@ -43,11 +43,52 @@ function Dashboard () {
 		}
 	];
 
+	const dataForLatest = [
+		{
+			img: AsideImg,
+			header: 'Will AI substitute real...',
+			text: 'It is a long established fact that a reader will be distracted by...'
+		},
+		{
+			img: AsideImg,
+			header: 'Will AI substitute real...',
+			text: 'It is a long established fact that a reader will be distracted by...'
+		},
+		{
+			img: AsideImg,
+			header: 'Will AI substitute real...',
+			text: 'It is a long established fact that a reader will be distracted by...'
+		},
+		{
+			img: AsideImg,
+			header: 'Will AI substitute real...',
+			text: 'It is a long established fact that a reader will be distracted by...'
+		},
+		{
+			img: AsideImg,
+			header: 'Will AI substitute real...',
+			text: 'It is a long established fact that a reader will be distracted by...'
+		},
+		{
+			img: AsideImg,
+			header: 'Will AI substitute real...',
+			text: 'It is a long established fact that a reader will be distracted by...'
+		},
+		{
+			img: AsideImg,
+			header: 'Will AI substitute real...',
+			text: 'It is a long established fact that a reader will be distracted by...'
+		}
+	];
+
 	return (
 		<main>
 			<h1>Dashboard</h1>
 			<Stats />
 			<Aside title='Top news' data={dataForNews} />
+			<div className='subgrid'>
+				<Aside className='aside-latest' title='Latest topics' data={dataForLatest} />
+			</div>
 		</main>
 	)
 }
