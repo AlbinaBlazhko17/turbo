@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "dirname": "^0.1.0",
+    "path": "^0.12.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.69.4",
+    "vite-plugin-svgr": "^4.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
