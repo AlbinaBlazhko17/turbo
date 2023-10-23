@@ -3,6 +3,7 @@ import Aside from '../Aside/Aside';
 import AsideImg from '@assets/img/aside_image.jpeg';
 
 import './dashboard.scss';
+import Experts from '../Experts/Experts';
 
 function Dashboard () {
 	const dataForNews = [
@@ -88,6 +89,7 @@ function Dashboard () {
 			<Aside title='Top news' data={dataForNews} />
 			<div className='subgrid'>
 				<Aside className='aside-latest' title='Latest topics' data={dataForLatest} />
+				<Experts />
 			</div>
 		</main>
 	)
