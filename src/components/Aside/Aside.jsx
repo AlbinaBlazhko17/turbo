@@ -32,6 +32,7 @@ Aside.propTypes = {
 			text: PropTypes.string.isRequired,
 		})
 	).isRequired,
+	className: PropTypes.string,
   };
 
 export default Aside;
