@@ -1,0 +1,32 @@
+.marquee {
+	grid-column: 1/4;
+	padding: 20px;
+	white-space: nowrap;
+	box-sizing: border-box;
+	width: 100%;
+	overflow: hidden;
+
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+		width: 250%;
+		animation-name: marquee;
+		animation-duration: 10s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-delay: 50ms;
+	}
+
+	&__content {
+		display: flex;
+		justify-content: space-between;
+		width: 400%;
+	}
+
+	&-item {
+		white-space: nowrap;
+		color: $grey;
+		font-size: 16px;
+		width: 100%;
+	}
+}
