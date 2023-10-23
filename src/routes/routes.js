@@ -1,9 +1,9 @@
-import HomePage from '@components/Homepage/HomePage';
+import Dashboard from '@components/Dashboard/Dashboard';
 
 const routesConfig = [
 	{
 		path: '/',
-		element: <HomePage />,
+		element: <Dashboard />,
 	},
 ];
 

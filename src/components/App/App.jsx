@@ -1,3 +1,4 @@
+import Dashboard from '../Dashboard/Dashboard';
 import Header from '../Header/Header';
 import NavBar from '../NavBar/NavBar';
 
@@ -8,6 +9,7 @@ function App() {
 		<>
 			<Header />
 			<NavBar />
+			<Dashboard />
 		</>
 	)
 }
