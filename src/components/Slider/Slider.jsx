@@ -1,4 +1,4 @@
-import { useEffect, useState , useRef } from 'react';
+import { useState } from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Pagination } from 'swiper/modules';
@@ -15,7 +15,6 @@ import './slider.scss';
 SwiperCore.use([Pagination]);
 
 function Slider () {
-	const [swiper, setSwiper] = useState(null);
 	const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
 	const handleSlideChange = (swiper) => {
@@ -64,7 +63,7 @@ function Slider () {
 					</SwiperSlide>
 
 					<SwiperSlide className='slider__carousel-slide'>
-							<div className="slider__carousel-slide__img"><img src={FirstFeedbackImg} alt="first_feedback"/></div>
+							<div className="slider__carousel-slide__img"><img src={SecondFeedbackImg} alt="first_feedback"/></div>
 							<h4 className="slider__carousel-slide__name">Brooklyn Simmons</h4>
 							<h5 className="slider__carousel-slide__role">Co-Founder & Chief Executive Officer</h5>
 							<div className="slider__carousel-slide__stars"><img src={Stars} alt="stars"/></div>
