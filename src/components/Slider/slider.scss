@@ -64,11 +64,11 @@
 					background: url('../../assets/icons/quotes_before.svg') no-repeat;
 					background-size: contain;
 					background-position: center;
-				
+					position: relative;
 					width: 30px;
 					height: 30px;
-					right: 30%;
-					bottom: 50px;
+					right: -3%;
+					bottom: -5px;
 				}
 
 				&::before {
@@ -77,9 +77,9 @@
 					background: url('../../assets/icons/quotes_after.svg') no-repeat;
 					background-size: contain;
 					background-position: center;
-				
-					left: 5%;
-					top: 50%;
+					position: relative;
+					left: -2%;
+					top: 2%;
 					width: 30px;
 					height: 30px;
 				}
