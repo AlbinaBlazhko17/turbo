@@ -24,6 +24,8 @@
 		padding-inline-start: 0;
 		margin-top: 50px;
 		&-item {
+			text-decoration: none;
+			color: $lighter-grey;
 			width: 253px;
 			padding: 7px;
 			height: auto;
@@ -93,7 +95,8 @@
 	.logo {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		text-decoration: none;
+		color: $lighter-grey;
 		&__wrapper {
 			width: 27px;
 			height: 27px;

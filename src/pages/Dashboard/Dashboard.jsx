@@ -1,12 +1,12 @@
-import Stats from '../Stats/Stats';
-import Aside from '../Aside/Aside';
-import Experts from '../Experts/Experts';
-import Services from '../Services/Services';
-import Slider from '../Slider/Slider';
+import Stats from '../../components/Stats/Stats';
+import Aside from '../../components/Aside/Aside';
+import Experts from '../../components/Experts/Experts';
+import Services from '../../components/Services/Services';
+import Marquee from '../../components/Marquee/Marquee';
+import Slider from '../../components/Slider/Slider';
 import AsideImg from '@assets/img/aside_image.jpeg';
 
 import './dashboard.scss';
-import Marquee from '../Marquee/Marquee';
 
 function Dashboard () {
 	const dataForNews = [

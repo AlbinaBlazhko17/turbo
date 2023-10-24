@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Logo from '@assets/icons/logo.svg';
 import Arrow from '@assets/icons/menu.svg';
 import Logout from '@assets/icons/logout.svg';
@@ -5,18 +6,18 @@ import './NavBar.scss';
 
 function NavBar () {
 	return (
-		<nav className="nav nav_closed">
-			<div className="logo">
+		<nav className="nav nav_open">
+			<Link to={'/'} className="logo">
 				<div className="logo__wrapper">
 					<img src={Logo} alt="logo"/>
 				</div>
 				<h2 className="logo__text">Turbo</h2>
-			</div>
+			</Link>
 			<div className="nav__arrow">
 				<img src={Arrow} alt="arrow"/>
 			</div>
 			<ul className="nav__list">
-				<li className="nav__list-item">
+				<Link to={'/'} className="nav__list-item">
 					<svg width="24" height="26" viewBox="0 0 24 26" fill="#5d7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Home">
 							<g id="Home">
@@ -25,8 +26,8 @@ function NavBar () {
 						</g>
 					</svg>
 					<span> Dashboard </span>
-				</li>
-				<li className="nav__list-item">
+				</Link>
+				<Link to={'/'} className="nav__list-item">
 					<svg width="26" height="26" viewBox="0 0 25 25" fill="#5d7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Edit-Square">
 							<g id="Edit-Square">
@@ -35,8 +36,8 @@ function NavBar () {
 						</g>
 					</svg>
 					<span>Posts </span>
-				</li>
-				<li className="nav__list-item">
+				</Link>
+				<Link className="nav__list-item">
 					<svg width="25" height="25" viewBox="0 0 25 25" fill="#5D7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Image">
 							<g id="Image">
@@ -45,8 +46,8 @@ function NavBar () {
 						</g>
 					</svg>
 					<span>Media </span>
-				</li>
-				<li className="nav__list-item">
+				</Link>
+				<Link className="nav__list-item">
 					<svg width="23" height="25" viewBox="0 0 23 25" fill="#5D7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Document">
 							<g id="Document">
@@ -55,8 +56,8 @@ function NavBar () {
 							</g>
 					</svg>
 					<span>Pages </span>
-				</li>
-				<li className="nav__list-item">
+				</Link>
+				<Link className="nav__list-item">
 					<svg width="25" height="25" viewBox="0 0 25 25" fill="#5D7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Chat">
 							<g id="Chat">
@@ -65,8 +66,8 @@ function NavBar () {
 						</g>
 					</svg>						
 					<span>Comments </span>
-				</li>
-				<li className="nav__list-item">
+				</Link>
+				<Link className="nav__list-item">
 					<svg width="25" height="26" viewBox="0 0 25 26" fill="#5D7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Category">
 							<g id="Category">
@@ -75,8 +76,8 @@ function NavBar () {
 						</g>
 					</svg>
 					<span>Appearance</span>
-				</li>
-				<li className="nav__list-item">
+				</Link>
+				<Link className="nav__list-item">
 					<svg width="23" height="25" viewBox="0 0 23 25" fill="#5D7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Bag">
 							<g id="Bag">
@@ -85,8 +86,8 @@ function NavBar () {
 						</g>
 					</svg>
 					<span>Plugins</span>
-				</li>
-				<li className="nav__list-item">
+				</Link>
+				<Link className="nav__list-item">
 					<svg width="28" height="20" viewBox="0 0 28 20" fill="#5D7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/3-User">
 							<g id="3-User">
@@ -95,8 +96,8 @@ function NavBar () {
 						</g>
 					</svg>
 					<span>Users </span>
-				</li>
-				<li className="nav__list-item">
+				</Link>
+				<Link className="nav__list-item">
 					<svg width="24" height="25" viewBox="0 0 24 25" fill="#5D7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Setting">
 							<g id="Setting">
@@ -105,8 +106,8 @@ function NavBar () {
 						</g>
 					</svg>						
 					<span>Settings </span>
-				</li>
-				<li className="nav__list-item">
+				</Link>
+				<Link className="nav__list-item">
 					<svg width="25" height="22" viewBox="0 0 25 22" fill="#5D7285" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Filter">
 							<g id="Filter">
@@ -115,7 +116,7 @@ function NavBar () {
 						</g>
 					</svg>
 					<span>Tools</span>
-				</li>
+				</Link>
 			</ul>
 			<div className="nav__logout">
 				<img src={Logout} alt="logout"/>
