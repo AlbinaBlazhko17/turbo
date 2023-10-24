@@ -17,19 +17,21 @@
 		justify-content: space-between;
 		overflow: hidden;
 		padding-bottom: 60px;
-
 		&__wrapper {
 			display: flex;
 			justify-content: space-between;
+			padding: 60px;
 		}
 
 		&-slide {
 			padding: 32px 60px;
-			width: fit-content;
+			width: 60%;
 			background-color: $lighter-blue;
 			border-radius: 10px;
 			height: 100%;
 			box-sizing: border-box;
+			box-shadow: none;
+			transform: scale(0.8) !important;
 
 			&__img {
 				margin-bottom: 16px;
@@ -59,7 +61,7 @@
 				&::after {
 					content: '';
 					display: inline-block;
-					background: url('../../assets/quotes_before.svg') no-repeat;
+					background: url('../../assets/icons/quotes_before.svg') no-repeat;
 					background-size: contain;
 					background-position: center;
 					position: relative;
@@ -72,7 +74,7 @@
 				&::before {
 					content: '';
 					display: inline-block;
-					background: url('../../assets/quotes_after.svg') no-repeat;
+					background: url('../../assets/icons/quotes_after.svg') no-repeat;
 					background-size: contain;
 					background-position: center;
 					position: relative;
@@ -85,14 +87,21 @@
 		}
 	}
 
-	.swiper-pagination-bullet {
-		width: 16px;
-		height: 16px;
-		background-color: #D2D2D2;;
-		&-active {
-			width: 20px;
-			height: 20px;
-			background-color: #101C26;;
+	.swiper-pagination {
+		&-bullet {
+			width: 16px;
+			height: 16px;
+			background-color: #D2D2D2;;
+			&-active {
+				width: 20px;
+				height: 20px;
+				background-color: #101C26;;
+			}
 		}
 	}
+}
+
+.swiper-slide-active {
+	transform: scale(1) !important;
+	box-shadow: 0px 18px 32px 0px rgba(67, 67, 67, 0.14);
 }
