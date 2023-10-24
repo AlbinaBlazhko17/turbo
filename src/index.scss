@@ -26,3 +26,14 @@ aside {
 	padding: 24px 20px;
 	box-shadow: 0px 8px 24px 0px rgba(136, 136, 136, 0.25);
 }
+
+h1,
+h2 {
+	margin: 0;
+	color: $grey;
+}
+
+h2 {
+	font-size: 24px;
+	margin-bottom: 24px;
+}
