@@ -1,5 +1,4 @@
-
-
+import ServiceCard from '../ServiceCard/ServiceCard';
 import './services.scss';
 
 function Services({ data }) {
@@ -9,13 +8,7 @@ function Services({ data }) {
 			<div className="services__wrapper">
 				{
 					data.length !== 0 && data.map((service) => (
-						<article key={data.id} className="services-item">
-							<div className="services-item__img"><img src={service.img} alt={service.header} /></div>
-							<div>
-								<h3 className="services-item__header">{service.header}</h3>
-								<p className="services-item__text">{service.text}</p>
-							</div>
-						</article>
+						<ServiceCard service={service} key={service.id} />
 					))
 				}
 			</div>
