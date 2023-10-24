@@ -9,7 +9,7 @@ function Aside ({title, data, className}) {
 			<div className="aside__wrapper">
 				{
 					data.length && data.map(el => (
-						<article key={el.key} className="aside-item">
+						<article key={el.id} className="aside-item">
 							<div><img src={el.img} alt="aside_image"/></div>
 							<div>
 								<h3 className="aside-item__header">{el.header}</h3>
