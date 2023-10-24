@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Pagination } from 'swiper/modules';
