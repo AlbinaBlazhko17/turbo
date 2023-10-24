@@ -21,8 +21,8 @@ function NavBar () {
 				<img src={Arrow} alt="arrow"/>
 			</div>
 			<ul className="nav__list">
-				<Link to={'/'} className="nav__list-item">
-					<svg width="24" height="26" viewBox="0 0 24 26" fill="#5d7285" xmlns="http://www.w3.org/2000/svg">
+				<Link to={'/'} className="nav__list-item" style={{backgroundColor: '#e9f5fe', fontWeight: '600', borderRadius: '3.659px', color: '#0c7fda'}}>
+					<svg width="24" height="26" viewBox="0 0 24 26" fill="#0c7fda" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconlyroutes/Bold/Home">
 							<g id="Home">
 								<path id="Vector" d="M8.73078 23.8561V20.1267C8.73078 19.1748 9.50817 18.403 10.4671 18.403H13.9726C14.4331 18.403 14.8748 18.5846 15.2004 18.9079C15.5261 19.2311 15.709 19.6696 15.709 20.1267V23.8561C15.7061 24.2519 15.8624 24.6325 16.1433 24.9133C16.4242 25.1942 16.8064 25.3522 17.2051 25.3522H19.5967C20.7137 25.3551 21.7859 24.9166 22.5767 24.1335C23.3676 23.3505 23.812 22.2872 23.812 21.1783V10.554C23.812 9.6583 23.4121 8.80867 22.72 8.23401L14.5842 1.78352C13.1689 0.652531 11.1412 0.689048 9.76823 1.87025L1.81809 8.23401C1.09328 8.79173 0.66008 9.64388 0.638672 10.554V21.1675C0.638672 23.4786 2.52594 25.3522 4.85399 25.3522H7.19099C8.01905 25.3522 8.69202 24.689 8.69802 23.8669L8.73078 23.8561Z"/>
@@ -122,10 +122,10 @@ function NavBar () {
 					<span>Tools</span>
 				</Link>
 			</ul>
-			<div className="nav__logout">
+			<Link to={'/'} className="nav__logout">
 				<img src={Logout} alt="logout"/>
 				<p>Logout</p>
-			</div>
+			</Link>
 		</nav>
 	)
 }
