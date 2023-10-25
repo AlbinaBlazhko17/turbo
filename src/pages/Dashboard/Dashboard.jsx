@@ -9,7 +9,8 @@ import dataForLatest from '@utils/dataForLatest';
 import dataForExperts from '@utils/dataForExperts';
 import dataForServices from '@utils/dataForServices';
 
-import './dashboard.scss';
+import style from './dashboard.module.scss';
+import styles from '../../components/Aside/aside.module.scss'
 
 function Dashboard () {
 
@@ -18,8 +19,8 @@ function Dashboard () {
 			<h1>Dashboard</h1>
 			<Stats />
 			<Aside title='Top news' data={dataForNews} />
-			<div className='subgrid'>
-				<Aside className='aside-latest' title='Latest topics' data={dataForLatest} />
+			<div className={style.subgrid}>
+				<Aside className={styles['aside-latest']} title='Latest topics' data={dataForLatest} />
 				<Experts data={dataForExperts} />
 				<Services data={dataForServices} />
 			</div>

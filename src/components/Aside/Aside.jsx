@@ -1,19 +1,21 @@
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
-import './aside.scss';
+import style from './aside.module.scss';
 
 function Aside ({title, data, className}) {
+	console.log(className)
 	return (
-		<aside className={`aside ${className || ''}`}>
+		<aside className={cn(style.aside, className)}>
 			<h2>{title}</h2>
-			<div className="aside__wrapper">
+			<div className={style.aside__wrapper}>
 				{
 					data.length && data.map(el => (
-						<article key={el.id} className="aside-item">
+						<article key={el.id} className={style['aside-item']}>
 							<div><img src={el.img} alt="aside_image"/></div>
 							<div>
-								<h3 className="aside-item__header">{el.header}</h3>
-								<p className="aside-item__text">{el.text}</p>
+								<h3 className={style['aside-item__header']}>{el.header}</h3>
+								<p className={style['aside-item__text']}>{el.text}</p>
 							</div>
 						</article>
 					))

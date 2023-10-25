@@ -20,12 +20,12 @@
 		&__wrapper {
 			display: flex;
 			justify-content: space-between;
-			padding: 60px;
+			padding: 60px !important;
 		}
 
 		&-slide {
 			padding: 32px 60px;
-			width: 60%;
+			width: 60% !important;
 			background-color: $lighter-blue;
 			border-radius: 10px;
 			height: 100%;
@@ -89,10 +89,14 @@
 
 	.swiper-pagination {
 		&-bullet {
+			display: inline-block;
 			width: 16px;
 			height: 16px;
-			background-color: #D2D2D2;;
+			background-color: #D2D2D2;
+			border-radius: 50%;
+			margin-right: 10px;
 			&-active {
+				display: inline-block;
 				width: 20px;
 				height: 20px;
 				background-color: #101C26;;

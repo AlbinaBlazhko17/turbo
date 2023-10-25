@@ -1,12 +1,12 @@
 import Diagram from '@assets/img/graph.png';
 
-import './stats.scss'
+import style from './stats.module.scss'
 
 function Stats () {
 	return (
-		<section className="stats">
+		<section className={style.stats}>
 			<h2>Statistics</h2>
-			<figure className="stats__diagram">
+			<figure className={style.stats__diagram}>
 				<img src={Diagram} alt="diagram"/>
 			</figure>
 		</section>

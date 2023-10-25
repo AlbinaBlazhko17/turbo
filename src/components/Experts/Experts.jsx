@@ -1,12 +1,13 @@
 import ExpertCard from '../ExpertCard/ExpertCard';
-import './experts.scss';
+
+import style from './experts.module.scss';
 
 function Experts ({ data }) {
 
 	return (
-		<section className="experts">
-			<h2 className="experts__header">Our experts</h2>
-			<div className="experts__wrapper">
+		<section className={style.experts}>
+			<h2 className={style.experts__header}>Our experts</h2>
+			<div className={style.experts__wrapper}>
 				{
 					data.length !== 0 && 
 					data.map(expert => (
