@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import IDataForAside from '@interfaces/IDataForAside';
 
 import style from './aside.module.scss';
 
-function Aside ({title, data, className}) {
-	console.log(className)
+function Aside ({title, data, className}: {title: string, data: IDataForAside[], className?: string}) {
 	return (
 		<aside className={cn(style.aside, className)}>
 			<h2>{title}</h2>
 			<div className={style.aside__wrapper}>
 				{
-					data.length && data.map(el => (
+					data.length !== 0 && data.map(el => (
 						<article key={el.id} className={style['aside-item']}>
 							<div><img src={el.img} alt="aside_image"/></div>
 							<div>

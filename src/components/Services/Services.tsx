@@ -1,7 +1,9 @@
 import ServiceCard from '../ServiceCard/ServiceCard';
+import IDataForServices from '@interfaces/IDataForServices';
+
 import style from './services.module.scss';
 
-function Services({ data }) {
+function Services({ data }: {data: IDataForServices[]}) {
 	return (
 		<section className={style.services}>
 			<h2 className={style.services__header}>Services</h2>

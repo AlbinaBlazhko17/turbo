@@ -1,6 +1,8 @@
+import IDataForExperts from '@interfaces/IDataForExperts';
+
 import style from '../Experts/experts.module.scss'
 
-function ExpertCard({ expert }) {
+function ExpertCard({ expert }: {expert: IDataForExperts}) {
 	return (
 		<article className={style.experts__item}>
 			<div><img src={expert.img} alt={expert.name}/></div>

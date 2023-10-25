@@ -1,6 +1,7 @@
+import IDataForSlider from '@/interfaces/IDataForSlider';
 import style from '../Slider/slider.module.scss';
 
-function SliderCard ({ slide }) {
+function SliderCard ({ slide }: { slide: IDataForSlider}) {
 	return (
 		<>
 			<div className={style['slider__carousel-slide__img']}><img src={slide.img} alt={slide.name}/></div>

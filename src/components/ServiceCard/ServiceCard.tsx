@@ -1,6 +1,7 @@
+import IDataForServices from '@interfaces/IDataForServices';
 import style from '../Services/services.module.scss';
 
-function ServiceCard ({ service }) {
+function ServiceCard ({ service }: {service: IDataForServices}) {
 	return (
 		<article className={style['services-item']}>
 			<div className={style['services-item__img']}><img src={service.img} alt={service.header} /></div>

@@ -1,8 +1,9 @@
 import Loop from '@assets/icons/loop.svg';
 import Team from '@assets/icons/team.svg';
 import Support from '@assets/icons/support.svg';
+import IDataForServices from '@interfaces/IDataForServices';
 
-const dataForServices = [
+const dataForServices: IDataForServices[] = [
 	{
 		id: 1,
 		img: Loop,

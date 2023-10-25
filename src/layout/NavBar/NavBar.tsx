@@ -8,7 +8,7 @@ import cn from 'classnames';
 import style from './NavBar.module.scss';
 
 function NavBar () {
-	const [isOpen , setIsOpen] = useState(false);
+	const [isOpen , setIsOpen] = useState<boolean>(false);
 
 	return (
 		<nav className={cn(style.nav, {

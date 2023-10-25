@@ -4,8 +4,9 @@ import Lina from '@assets/img/lina.png';
 import Carol from '@assets/img/carol.png';
 import Nick from '@assets/img/nick.png';
 import Ken from '@assets/img/Ken.png';
+import IDataForExperts from '@interfaces/IDataForExperts';
 
-const dataForExperts = [
+const dataForExperts: IDataForExperts[] = [
 	{
 		id: 1,
 		img: Nina,

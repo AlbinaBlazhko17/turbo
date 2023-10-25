@@ -1,6 +1,7 @@
 import AsideImg from '@assets/img/aside_image.jpeg';
+import IDataForAside from '@interfaces/IDataForAside';
 
-const dataForNews = [
+const dataForNews: IDataForAside[] = [
 	{
 		id: 1,
 		img: AsideImg,
