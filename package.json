@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "chart.js": "^4.4.0",
     "classnames": "^2.3.2",
     "dirname": "^0.1.0",
     "node-sass": "^9.0.0",
