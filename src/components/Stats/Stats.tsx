@@ -71,7 +71,9 @@ function Stats () {
 	return (
 		<section className={style.stats}>
 			<h2>Statistics</h2>
-			<canvas ref={chartRef} />
+			<div className={style.stats__diagram}>
+				<canvas ref={chartRef} />
+			</div>
 		</section>
 	)
 }
