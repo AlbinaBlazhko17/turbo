@@ -2,18 +2,29 @@
 
 .marquee {
 	grid-column: 1/4;
-	padding: 20px;
+	padding: 20px 40px;
 	white-space: nowrap;
 	box-sizing: border-box;
 	width: 100%;
 	overflow: hidden;
-
+	&__mask {
+		-webkit-mask: linear-gradient(
+			90deg,
+			transparent,
+			white 2%,
+			white 98%,
+			transparent
+		);
+		mask: linear-gradient(90deg, transparent, white 2%, white 98%, transparent);
+	}
 	&__wrapper {
+		margin: 0%;
+		list-style-type: none;
 		display: flex;
 		justify-content: space-between;
 		width: 250%;
 		animation-name: marquee;
-		animation-duration: 10s;
+		animation-duration: 20s;
 		animation-timing-function: linear;
 		animation-iteration-count: infinite;
 		animation-delay: 50ms;
@@ -26,6 +37,7 @@
 	}
 
 	&-item {
+		margin: 0;
 		white-space: nowrap;
 		color: $grey;
 		font-size: 16px;
