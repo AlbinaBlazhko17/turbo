@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import Logo from '@assets/icons/logo.svg';
 import Arrow from '@assets/icons/menu.svg';
 import Logout from '@assets/icons/logout.svg';
 import cn from 'classnames';
+import { ThemeContext } from '@theme/theme';
 
 import style from './NavBar.module.scss';
 
 function NavBar () {
 	const [isOpen , setIsOpen] = useState<boolean>(false);
+	const {theme} = useContext(ThemeContext);
 
 	return (
-		<nav className={cn(style.nav, {
+		<nav className={cn(style.nav, style[`${theme}`], {
 			[style['nav_open']]: isOpen === true,
 			[style['nav_closed']]: isOpen === false
 		})}>

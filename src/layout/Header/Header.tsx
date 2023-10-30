@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ThemeContext } from '@pages/App/App';
+import { ThemeContext } from '../../theme/theme';
 import ChatBlue from '@assets/icons/chat_blue.svg';
 import PersonPhoto from '@assets/img/person.png';
 import ReactSwitch from 'react-switch';
 import Sun from '@assets/icons/sun.svg';
 import Moon from '@assets/icons/moon.svg';
+import cn from 'classnames'
 
 import style from './header.module.scss';
 
@@ -13,7 +14,7 @@ function Header () {
 	const {theme, toggleTheme} = useContext(ThemeContext);
 
 	return (
-		<header className={style.header}>
+		<header className={cn(style.header, style[`${theme}`])}>
 			<div className={style.header__wrapper}>
 				<ReactSwitch
 					onChange={toggleTheme}

@@ -1,4 +1,5 @@
 import dataForMarquee from '@utils/dataForMarquee';
+
 import style from './marquee.module.scss';
 
 function Marquee () {

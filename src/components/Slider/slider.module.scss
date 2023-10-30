@@ -1,5 +1,32 @@
 @import '../../scss/index.scss';
 
+.dark {
+	.slider {
+		&__carousel {
+			&-slide {
+				background-color: $lighter-grey;
+
+				&__role {
+					color: $white;
+				}
+
+				&__text {
+					color: $white !important;
+				}
+			}
+		}
+	}
+
+	.swiper-pagination {
+		&-bullet {
+			background-color: $white;
+			&-active {
+				background-color: $light-blue !important;
+			}
+		}
+	}
+}
+
 .slider {
 	text-align: center;
 	grid-column: 1/4;
@@ -52,7 +79,7 @@
 			}
 
 			&__text {
-				color: #555C68;
+				color: #555C68 !important;
 				font-size: 20px;
 				white-space: pre-line;
 				line-height: 30px;

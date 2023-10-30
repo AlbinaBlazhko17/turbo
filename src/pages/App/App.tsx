@@ -1,11 +1,10 @@
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import { Routes, Route } from 'react-router';
 import routesConfig from '@routes/routes';
 import Layout from '@layout/Layout/Layout';
+import { ThemeContext } from '../../theme/theme';
 
 import './App.css'
-
-export const ThemeContext = createContext({theme: 'light', toggleTheme: () => {}});
 
 function App() {
 	const [theme, setTheme] = useState('light');
@@ -16,15 +15,17 @@ function App() {
 
 	return (
 		<ThemeContext.Provider value={{theme, toggleTheme}}>
-			<Routes>
-				<Route path='/' element={<Layout />}>
-					{routesConfig.map((route, i) => (
-						<Route key={i} {...route} />
-					))}
-				</Route>
-			</Routes>
+			<div className={`${theme}`}>
+				<Routes>
+					<Route path='/' element={<Layout />}>
+						{routesConfig.map((route, i) => (
+							<Route key={i} {...route} />
+						))}
+					</Route>
+				</Routes>
+			</div>
 		</ThemeContext.Provider>
 	)
 }
 
-export default App
+export default App;
