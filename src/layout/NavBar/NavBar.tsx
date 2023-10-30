@@ -3,14 +3,14 @@ import Logout from '@assets/icons/logout.svg';
 import Arrow from '@assets/icons/menu.svg';
 import { ThemeContext } from '@theme/theme';
 import cn from 'classnames';
-import { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import style from './NavBar.module.scss';
 
-function NavBar () {
-	const [isOpen , setIsOpen] = useState<boolean>(false);
+function NavBar ({isOpen, setIsOpen}: {isOpen: boolean, setIsOpen: (isOpen: boolean) => void}) {
 	const {theme} = useContext(ThemeContext);
+	const location = useLocation();
 
 	return (
 		<nav className={cn(style.nav, style[`${theme}`], {
@@ -27,7 +27,7 @@ function NavBar () {
 				<img src={Arrow} alt="arrow"/>
 			</div>
 			<ul className={style.nav__list}>
-				<NavLink to={'/'} className={style['nav__list-item']} >
+				<NavLink to={'/'} className={`${style['nav__list-item']} ${location.pathname === '/' ? style.active : ''}`}>
 					<svg width="24" height="26" viewBox="0 0 24 26" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconlyroutes/Bold/Home">
 							<g id="Home">
@@ -37,7 +37,7 @@ function NavBar () {
 					</svg>
 					<span> Dashboard </span>
 				</NavLink>
-				<NavLink to={'/posts'} className={style['nav__list-item']}>
+				<NavLink to={'/form'} className={`${style['nav__list-item']} ${location.pathname === '/form' ? style.active : ''}`}>
 					<svg width="26" height="26" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Edit-Square">
 							<g id="Edit-Square">
@@ -45,9 +45,9 @@ function NavBar () {
 							</g>
 						</g>
 					</svg>
-					<span>Posts </span>
+					<span>Form </span>
 				</NavLink>
-				<NavLink to={'/media'} className={style['nav__list-item']}>
+				<NavLink to={'/media'} className={`${style['nav__list-item']} ${location.pathname === '/media' ? style.active : ''}`}>
 					<svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Image">
 							<g id="Image">
@@ -57,7 +57,7 @@ function NavBar () {
 					</svg>
 					<span>Media </span>
 				</NavLink>
-				<NavLink to={'/pages'} className={style['nav__list-item']}>
+				<NavLink to={'/pages'} className={`${style['nav__list-item']} ${location.pathname === '/pages' ? style.active : ''}`}>
 					<svg width="23" height="25" viewBox="0 0 23 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Document">
 							<g id="Document">
@@ -67,7 +67,7 @@ function NavBar () {
 					</svg>
 					<span>Pages </span>
 				</NavLink>
-				<NavLink to={'Comments'} className={style['nav__list-item']}>
+				<NavLink to={'/comments'} className={`${style['nav__list-item']} ${location.pathname === '/comments' ? style.active : ''}`}>
 					<svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Chat">
 							<g id="Chat">
@@ -77,7 +77,7 @@ function NavBar () {
 					</svg>						
 					<span>Comments </span>
 				</NavLink>
-				<NavLink to={'/appearance'} className={style['nav__list-item']}>
+				<NavLink to={'/appearance'} className={`${style['nav__list-item']} ${location.pathname === '/appearance' ? style.active : ''}`}>
 					<svg width="25" height="26" viewBox="0 0 25 26" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Category">
 							<g id="Category">
@@ -87,7 +87,7 @@ function NavBar () {
 					</svg>
 					<span>Appearance</span>
 				</NavLink>
-				<NavLink to={'/plugins'} className={style['nav__list-item']}>
+				<NavLink to={'/plugins'} className={`${style['nav__list-item']} ${location.pathname === '/plugins' ? style.active : ''}`}>
 					<svg width="23" height="25" viewBox="0 0 23 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Bag">
 							<g id="Bag">
@@ -97,7 +97,7 @@ function NavBar () {
 					</svg>
 					<span>Plugins</span>
 				</NavLink>
-				<NavLink to={'/users'} className={style['nav__list-item']}>
+				<NavLink to={'/users'} className={`${style['nav__list-item']} ${location.pathname === '/users' ? style.active : ''}`}>
 					<svg width="28" height="20" viewBox="0 0 28 20" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/3-User">
 							<g id="3-User">
@@ -107,7 +107,7 @@ function NavBar () {
 					</svg>
 					<span>Users </span>
 				</NavLink>
-				<NavLink to={'/settings'} className={style['nav__list-item']}>
+				<NavLink to={'/settings'} className={`${style['nav__list-item']} ${location.pathname === '/settings' ? style.active : ''}`}>
 					<svg width="24" height="25" viewBox="0 0 24 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Setting">
 							<g id="Setting">
@@ -117,7 +117,7 @@ function NavBar () {
 					</svg>						
 					<span>Settings </span>
 				</NavLink>
-				<NavLink to={'/tools'} className={style['nav__list-item']}>
+				<NavLink to={'/tools'} className={`${style['nav__list-item']} ${location.pathname === '/tools' ? style.active : ''}`}>
 					<svg width="25" height="22" viewBox="0 0 25 22" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Filter">
 							<g id="Filter">

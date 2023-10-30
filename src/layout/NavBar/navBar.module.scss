@@ -1,7 +1,7 @@
-@import '../../scss/index.scss';
+@import '@scss/index.scss';
 
 .dark {
-	background: $grey;
+	background-color: $grey !important;
 	.nav__list-item {
 		span {
 			color: $white;
@@ -20,7 +20,13 @@
 			}
 		}
 	}
-
+	.active {
+		color: $black !important;
+		background-color: $lighter-grey !important;
+		svg {
+			fill: $black !important;
+		}
+	}
 	.logo__text {
 		color: $white;
 	}
@@ -39,6 +45,7 @@
 	box-sizing: border-box;
 	width: 100%;
 	transition: all 0.4s;
+	background-color: #fff;
 	&__list {
 		display: flex;
 		flex-direction: column;
@@ -149,11 +156,6 @@
 		box-sizing: border-box;
 		max-width: $sidebar-width-closed;
 		border-radius: 7.318px;
-
-		& + main {
-			width: calc(100% - ($main-padding * 2) - $sidebar-width-closed);
-			margin-left: $sidebar-width-closed;
-		}
 
 		& .logo {
 			justify-content: center;

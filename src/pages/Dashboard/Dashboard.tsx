@@ -16,17 +16,19 @@ function Dashboard () {
 
 	return (
 		<main>
-			<h1>Dashboard</h1>
-			<Stats />
-			<Aside title='Top news' data={dataForNews} />
-			<div className={style.subgrid}>
-				<Aside className={styles['aside-latest']} title='Latest topics' data={dataForLatest} />
-				<Experts data={dataForExperts} />
-				<Services data={dataForServices} />
-			</div>
+			<div className={style.dashboard}>
+				<h1>Dashboard</h1>
+				<Stats />
+				<Aside title='Top news' data={dataForNews} />
+				<div className={style.subgrid}>
+					<Aside className={styles['aside-latest']} title='Latest topics' data={dataForLatest} />
+					<Experts data={dataForExperts} />
+					<Services data={dataForServices} />
+				</div>
 
-			<Marquee />
-			<Slider />
+				<Marquee />
+				<Slider />
+			</div>
 		</main>
 	)
 }

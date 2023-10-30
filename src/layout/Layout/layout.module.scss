@@ -1,0 +1,15 @@
+@import '@scss/base/variables.scss';
+
+.container {
+	background-color: $white;
+
+	&_open {
+		width: calc(100% - ($main-padding * 2) - $sidebar-width-open);
+		margin-left: $sidebar-width-open;
+	}
+
+	&_closed {
+		width: calc(100% - ($main-padding * 2) - $sidebar-width-closed);
+		margin-left: $sidebar-width-closed;
+	}
+}

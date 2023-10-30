@@ -1,4 +1,4 @@
-@import '../../scss/index.scss';
+@import '@scss/index.scss';
 
 .dark {
 	background-color: $grey !important;
@@ -13,7 +13,7 @@
 	align-items: center;
 	padding: 20px 40px;
 	box-shadow: 0px 8px 24px 0px rgba(136, 136, 136, 0.25);
-	z-index: 2;
+	z-index: 1;
 	background-color: #fff;
 	&__wrapper {
 		min-width: 200px;

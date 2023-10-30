@@ -17,6 +17,7 @@ export default defineConfig({
 			'@utils': path.resolve(__dirname, './src/utils'),
 			'@interfaces': path.resolve(__dirname, './src/interfaces'),
 			'@theme': path.resolve(__dirname, './src/theme'),
+			'@scss': path.resolve(__dirname, './src/scss'),
 		},
 		extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
 	},

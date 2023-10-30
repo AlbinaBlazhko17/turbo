@@ -1,4 +1,4 @@
-@import './scss/index.scss';
+@import '@scss/index.scss';
 
 body {
 	margin: 0;
@@ -7,15 +7,10 @@ body {
 }
 
 main {
-	width: calc(100% - ($main-padding * 2) - $sidebar-width-open);
 	padding: 120px $main-padding 50px;
-	margin-left: $sidebar-width-open;
-	display: grid;
-	grid-template-columns: 305px 1fr 305px;
-	grid-auto-rows: auto;
-	gap: 32px 20px;
 	transition: all 0.4s;
 }
+
 
 .light {
 	& main {
