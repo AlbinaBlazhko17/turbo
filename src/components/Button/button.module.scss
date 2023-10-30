@@ -1,0 +1,28 @@
+@import '@scss/index.scss';
+
+.btn {
+	border-radius: 4px;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	margin: 0;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+
+	&_filled {
+		background-color: $light-blue;
+		color: $white;
+	}
+
+	&_outlined {
+		border: 1px solid $lighter-blue;
+		color: $black;
+		cursor: unset;
+	}
+}

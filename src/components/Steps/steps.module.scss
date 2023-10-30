@@ -1,0 +1,64 @@
+@import '@scss/index.scss';
+
+.steps {
+	margin-top: 30px;
+	display: flex;
+	justify-content: space-between;
+
+	&-item {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 36em;
+		&:not(:first-child):before {
+			position: absolute;
+			content: '';
+			background: $light-grey;
+			width: 100%;
+			height: 3px;
+			right: 43%;
+			top: 33%;
+			transform: translateY(-25%);
+		}
+		&__step {
+			width: 70px;
+			height: 70px;
+			display: flex;
+			position: relative;
+			background-color: $lighter-blue;
+			border-radius: 50%;
+			justify-content: center;
+			align-items: center;
+			color: $black !important;
+			border: 1px thin $grey;
+		}
+	}
+	.active {
+		.steps-item__step {
+			background: $light-blue;
+			color: $white;
+		}
+	}
+	.complete {
+		.steps-item__step {
+			background: #07c274;
+			color: $white;
+		}
+	}
+}
+
+.dark {
+	.steps {
+		&-item {
+			&::before {
+				background: $white;
+			}
+			&__step {
+				background-color: $lighter-blue;
+				color: $black !important;
+			}
+		}
+	}
+}
