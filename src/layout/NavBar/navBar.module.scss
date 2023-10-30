@@ -109,7 +109,11 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-		  }
+		}
+
+		&__text {
+			margin: 0;
+		}
 	}
 
 	&_open {
