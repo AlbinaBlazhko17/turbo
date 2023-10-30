@@ -7,9 +7,10 @@ import { ThemeContext } from '../../theme/theme';
 import './App.css'
 
 function App() {
-	const [theme, setTheme] = useState('light');
+	const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
 	const toggleTheme = () => {
+		localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
 		setTheme(theme === 'light' ? 'dark' : 'light');
 	}
 
