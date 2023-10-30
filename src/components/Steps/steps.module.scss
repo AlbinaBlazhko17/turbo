@@ -12,7 +12,7 @@
 		justify-content: center;
 		align-items: center;
 		width: 36em;
-		&:not(:first-child):before {
+		&:not(:first-child)::before {
 			position: absolute;
 			content: '';
 			background: $light-grey;
@@ -47,6 +47,10 @@
 			color: $white;
 		}
 	}
+}
+
+.complete:not(:first-child)::before, .active:not(:first-child)::before {
+	background: #07c274;
 }
 
 .dark {
