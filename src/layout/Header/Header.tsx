@@ -1,12 +1,12 @@
+import ChatBlue from '@assets/icons/chat_blue.svg';
+import Moon from '@assets/icons/moon.svg';
+import Sun from '@assets/icons/sun.svg';
+import PersonPhoto from '@assets/img/person.png';
+import cn from 'classnames';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ThemeContext } from '../../theme/theme';
-import ChatBlue from '@assets/icons/chat_blue.svg';
-import PersonPhoto from '@assets/img/person.png';
 import ReactSwitch from 'react-switch';
-import Sun from '@assets/icons/sun.svg';
-import Moon from '@assets/icons/moon.svg';
-import cn from 'classnames'
+import { ThemeContext } from '../../theme/theme';
 
 import style from './header.module.scss';
 

@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
 import Logo from '@assets/icons/logo.svg';
-import Arrow from '@assets/icons/menu.svg';
 import Logout from '@assets/icons/logout.svg';
-import cn from 'classnames';
+import Arrow from '@assets/icons/menu.svg';
 import { ThemeContext } from '@theme/theme';
+import cn from 'classnames';
+import { useContext, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 import style from './NavBar.module.scss';
 

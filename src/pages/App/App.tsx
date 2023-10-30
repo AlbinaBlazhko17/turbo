@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router';
 import routesConfig from '@routes/routes';
 import Layout from '@layout/Layout/Layout';
-import { ThemeContext } from '../../theme/theme';
+import { ThemeContext } from '@theme/theme';
 
 import './App.css'
 
