@@ -4,6 +4,7 @@ import { FormValues } from '../CustomForm/formik';
 import style from './customRadioInput.module.scss';
 
 function customRadioInput ({ formik, name, value }: {formik: FormikProps<FormValues>, name: string, value: string}) {
+	console.log(formik.values[name]);
 	return (
 		<input
 			className={style.radio}

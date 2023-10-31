@@ -1,12 +1,13 @@
+@import '@scss/index.scss';
+
 .radio {
+	margin: 0;
+	color: $light-blue;
 	width: 20px;
 	height: 20px;
-	// border: 2px solid #007BFF;
+	border: 2px solid $grey;
 	border-radius: 50%;
 	margin: 0;
 	margin-right: 10px;
 	margin-top: -3px;
-	&:checked {
-		color: red;
-	}
 }
