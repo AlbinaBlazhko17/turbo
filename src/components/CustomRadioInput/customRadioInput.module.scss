@@ -1,0 +1,12 @@
+.radio {
+	width: 20px;
+	height: 20px;
+	// border: 2px solid #007BFF;
+	border-radius: 50%;
+	margin: 0;
+	margin-right: 10px;
+	margin-top: -3px;
+	&:checked {
+		color: red;
+	}
+}

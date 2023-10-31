@@ -5,6 +5,9 @@
 	margin-bottom: 8px;
 	margin-top: 10px;
 	align-self: flex-start;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	&__dark {
 		color: $white;
 	}

@@ -4,6 +4,7 @@ import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomInput from '@/components/CustomInput/CustomInput';
 
 import style from '../customForm.module.scss';
+import CustomRadioInput from '@/components/CustomRadioInput/CustomRadioInput';
 
 function PersonalInfoForm ({formik}: {formik: FormikProps<IDataForPersonalnfoForm>}) {
 
@@ -32,33 +33,28 @@ function PersonalInfoForm ({formik}: {formik: FormikProps<IDataForPersonalnfoFor
 							<div className={style[`form-item__error`]}>{formik.errors.email}</div>)
 					}
 				</div>
-				<label>
-					<input
-						type="radio"
-						name="gender"
-						value="male"
-						id="male"
-						checked={formik.values.gender === 'male'}
-						onChange={formik.handleChange}
-						onBlur={formik.handleBlur}
-					/>
-					Male
-				</label>
-				<label>
-					<input
-						type="radio"
-						name="gender"
-						value="female"
-						id="female"
-						checked={formik.values.gender === 'female'}
-						onChange={formik.handleChange}
-						onBlur={formik.handleBlur}
-					/>
-					Female
-				</label>
-				{formik.touched.gender && formik.errors.gender && (
-					<div className={style[`form-item__error`]}>{formik.errors.gender}</div>
-				)}
+				<div className={style['form-item']}>
+					<CustomLabel label='gender'>Gender</CustomLabel>
+					<CustomLabel>
+						<CustomRadioInput
+							name="gender"
+							value="male"
+							formik={formik}
+						/>
+						Male
+					</CustomLabel>
+					<CustomLabel>
+						<CustomRadioInput
+							name="gender"
+							value="female"
+							formik={formik}
+						/>
+						Female
+					</CustomLabel>
+					{formik.touched.gender && formik.errors.gender && (
+						<div className={style[`form-item__error`]}>{formik.errors.gender}</div>
+					)}
+				</div>
 			</form>
 		</>
 	)
