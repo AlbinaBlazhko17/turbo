@@ -79,9 +79,11 @@ function FormPage () {
 				<Steps currentStep={+currentStep} setCurrentStep={setCurrentStep}/>
 				<section>
 					<CustomForm currentStep={+currentStep} formik={formik} />
+					<div className={style.buttons}>
+						<Button appearance={+currentStep === 1? 'outlined': 'filled'} className={style[`buttons_right`]} onClick={handlePrevStep}>Previous step</Button>
+						<Button appearance={+currentStep !== 4? 'filled': 'outlined' } onClick={handleNextStep}>{currentStep !== 4? 'Next step': 'Finish'}</Button>
+					</div>
 				</section>
-				<Button appearance={currentStep === 1? 'outlined': 'filled'} onClick={handlePrevStep}>Previous step</Button>
-				<Button appearance={currentStep !== 4? 'filled': 'outlined' } onClick={handleNextStep}>{currentStep !== 4? 'Next step': 'Finish'}</Button>
 			</div>
 		</main>
 	)
