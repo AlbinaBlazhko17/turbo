@@ -1,7 +1,10 @@
 import CustomInput from '@/components/CustomInput/CustomInput';
+import { FormikProps } from 'formik';
+import { IDataForAddressForm } from '@/interfaces/IDataForForms';
+
 import style from '../customForm.module.scss';
 
-function AddressForm () {
+function AddressForm ({formik}: {formik: FormikProps<IDataForAddressForm>}) {
 	return (
 		<form className={style.form}>
 			<h2>Address Details</h2>
