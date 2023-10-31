@@ -15,12 +15,12 @@ function Layout() {
 		<>
 			<Header />
 			<NavBar isOpen={isOpen} setIsOpen={setIsOpen} />
-			<div className={cn(style.container, style[`${theme}`], {
+			<main className={cn(style.container, style[`${theme}`], {
 				[style['container_open']]: isOpen === true,
 				[style['container_closed']]: isOpen === false,
 			})}>
 				<Outlet />
-			</div>
+			</main>
 		</>
   );
 }

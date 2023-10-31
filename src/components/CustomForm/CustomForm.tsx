@@ -4,6 +4,7 @@ import { IDataForAddressForm, IDataForPersonalnfoForm, IDataForPreferencesForm, 
 import AddressForm from './AddressForm/AddressForm';
 
 import style from './customForm.module.scss';
+import { FormValues } from './formik';
 
 function CustomForm ({formik, currentStep}: {formik: FormikProps<FormValues>, currentStep: number}) {
 

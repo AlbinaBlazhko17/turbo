@@ -51,6 +51,9 @@ function FormPage () {
 		validationSchema,
 		onSubmit: (values) => {
 			console.log('Form submitted with values:', values);
+			if (+currentStep < 4) {
+				setCurrentStep(+currentStep + 1);
+			}
 		},
 	});
 
@@ -60,32 +63,19 @@ function FormPage () {
 		}
 	}
 
-	const handleNextStep = () => {
-		if (+currentStep < 4) {
-			formik.handleSubmit();
-			if (formik.isValid) {
-				setCurrentStep(+currentStep + 1);
-			} else {
-				return;
-			}
-		}
-	}
-
 
 	return(
-		<main>
-			<div>
-				<h1>Form page</h1>
-				<Steps currentStep={+currentStep} setCurrentStep={setCurrentStep}/>
-				<section>
-					<CustomForm currentStep={+currentStep} formik={formik} />
-					<div className={style.buttons}>
-						<Button appearance={+currentStep === 1? 'outlined': 'filled'} className={style[`buttons_right`]} onClick={handlePrevStep}>Previous step</Button>
-						<Button appearance={+currentStep !== 4? 'filled': 'outlined' } onClick={handleNextStep}>{currentStep !== 4? 'Next step': 'Finish'}</Button>
-					</div>
-				</section>
-			</div>
-		</main>
+		<div className={style.wrapper}>
+			<h1>Form page</h1>
+			<Steps currentStep={+currentStep} setCurrentStep={setCurrentStep}/>
+			<section className={style.form__wrapper}>
+				<CustomForm currentStep={+currentStep} formik={formik} />
+				<div className={style.buttons}>
+					<Button appearance={+currentStep === 1? 'outlined': 'filled'} className={style[`buttons_right`]} onClick={handlePrevStep}>Previous step</Button>
+					<Button appearance={+currentStep !== 4? 'filled': 'outlined' } onClick={formik.handleSubmit}>{currentStep !== 4? 'Next step': 'Finish'}</Button>
+				</div>
+			</section>
+		</div>
 	)
 }
 
