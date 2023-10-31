@@ -2,6 +2,7 @@ import { FormikProps } from 'formik';
 import { IDataForPersonalnfoForm } from '@/interfaces/IDataForForms';
 import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomInput from '@/components/CustomInput/CustomInput';
+import cn from 'classnames';
 
 import style from '../customForm.module.scss';
 import CustomRadioInput from '@/components/CustomRadioInput/CustomRadioInput';
@@ -52,7 +53,7 @@ function PersonalInfoForm ({formik}: {formik: FormikProps<IDataForPersonalnfoFor
 						Female
 					</CustomLabel>
 					{formik.touched.gender && formik.errors.gender && (
-						<div className={style[`form-item__error`]}>{formik.errors.gender}</div>
+						<div className={cn(style[`form-item__error`], style.radio)}>{formik.errors.gender}</div>
 					)}
 				</div>
 			</form>

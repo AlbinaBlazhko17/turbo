@@ -3,21 +3,22 @@ import { FormikProps } from 'formik';
 import { IDataForAddressForm } from '@/interfaces/IDataForForms';
 
 import style from '../customForm.module.scss';
+import CustomLabel from '@/components/CustomLabel/CustomLabel';
 
 function AddressForm ({formik}: {formik: FormikProps<IDataForAddressForm>}) {
 	return (
 		<form className={style.form}>
 			<h2>Address Details</h2>
-			<label htmlFor="address" className={style.form__label}>Address (City, Street, Blok)</label>
-			{/* <CustomInput label="address" type="text" /> */}
-			<label htmlFor='country' className={style.form__label}>Country</label>
+			<CustomLabel label="address">Address (City, Street, Appartaments)</CustomLabel>
+			<CustomInput label="address" type="text" formik={formik} />
+			<CustomLabel label='country'>Country</CustomLabel>
 			<datalist id='country'>
 				<option value='USA' />
 				<option value='Canada' />
 				<option value='Mexico' />
 			</datalist>
-			<label htmlFor="zipCode">Postal Code</label>
-			<input id="zipCode" type="number" className={style.form__input} />
+			<CustomLabel label="zipCode">Postal Code</CustomLabel>
+			<CustomInput label="zipCode" type="number" formik={formik} />
 		</form>
 	)
 }
