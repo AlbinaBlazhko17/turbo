@@ -4,9 +4,11 @@
 	padding: 16px;
 	border-radius: 8px;
 	border: 1px solid #CCC;
+	margin-bottom: 20px;
 	&__dark {
 		background: $grey;
 		border: 1px solid #fff;
 		color: #fff;
+		font-size: 16px;
 	}
 }

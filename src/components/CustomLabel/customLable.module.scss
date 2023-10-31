@@ -1,0 +1,10 @@
+@import '@scss/index.scss';
+
+.label {
+	color: $black;
+	margin-bottom: 8px;
+	margin-top: 5px;
+	&__dark {
+		color: $white;
+	}
+}
