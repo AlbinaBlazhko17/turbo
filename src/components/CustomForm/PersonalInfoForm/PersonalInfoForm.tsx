@@ -15,21 +15,21 @@ function PersonalInfoForm ({formik}: {formik: FormikProps<IDataForPersonalnfoFor
 					<CustomLabel label="firstName">First name</CustomLabel>
 					<CustomInput formik={formik} label="firstName" type="text" />
 					{formik.touched.firstName && formik.errors.firstName && (
-						<div className={style.error}>{formik.errors.firstName}</div>
+						<div className={style[`form-item__error`]}>{formik.errors.firstName}</div>
 					)}
 				</div>
 				<div className={style['form-item']}>
 					<CustomLabel label="lastName">Last name</CustomLabel>
 					<CustomInput formik={formik} label="lastName" type="text" />
 					{formik.touched.lastName && formik.errors.lastName && (
-						<div className={style.error}>{formik.errors.lastName}</div>)
+						<div className={style[`form-item__error`]}>{formik.errors.lastName}</div>)
 					}
 				</div>
 				<div className={style['form-item']}>
 					<CustomLabel label="email">Email</CustomLabel>
 					<CustomInput formik={formik} label="email" type="email" />
 					{formik.touched.email && formik.errors.email && (
-							<div className={style.error}>{formik.errors.email}</div>)
+							<div className={style[`form-item__error`]}>{formik.errors.email}</div>)
 					}
 				</div>
 				<label>
@@ -57,7 +57,7 @@ function PersonalInfoForm ({formik}: {formik: FormikProps<IDataForPersonalnfoFor
 					Female
 				</label>
 				{formik.touched.gender && formik.errors.gender && (
-					<div className={style.error}>{formik.errors.gender}</div>
+					<div className={style[`form-item__error`]}>{formik.errors.gender}</div>
 				)}
 			</form>
 		</>

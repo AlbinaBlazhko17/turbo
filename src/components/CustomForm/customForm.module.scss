@@ -14,12 +14,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
-}
 
-.error {
-	position: absolute;
-	bottom: -5%;
-	left: 39%;
-	color: #EB5757;
+		&__error {
+			position: absolute;
+			bottom: -5%;
+			left: 39%;
+			color: #EB5757;
+		}
+	}
 }

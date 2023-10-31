@@ -12,7 +12,9 @@ function CustomInput({formik, label, type}: {formik: FormikProps<FormValues>, la
 		<input
 			id={`${label}`}
 			type={type}
-			className={cn(style.input, style[`input__${theme}`])}
+			className={cn(style.input, style[`input__${theme}`], {
+				[style[`input__error`]]: formik.touched[label] && formik.errors[label],
+			})}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
 			value={formik.values[label]}
