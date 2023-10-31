@@ -10,8 +10,8 @@ import style from './formPage.module.scss';
 
 function FormPage () {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
-	let initialValues = {};
-	let validationSchema = null;
+	let initialValues = initialValuesPersonalInfo;
+	let validationSchema = validationSchemaPersonalInfo;
 
 	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());
@@ -65,6 +65,8 @@ function FormPage () {
 			formik.handleSubmit();
 			if (formik.isValid) {
 				setCurrentStep(+currentStep + 1);
+			} else {
+				return;
 			}
 		}
 	}
