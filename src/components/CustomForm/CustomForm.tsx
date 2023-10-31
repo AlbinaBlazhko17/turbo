@@ -1,16 +1,9 @@
 import { FormikProps } from 'formik';
 import PersonalInfoForm from './PersonalInfoForm/PersonalInfoForm';
 import { IDataForAddressForm, IDataForPersonalnfoForm, IDataForPreferencesForm, IDataForSubmitForm } from '@interfaces/IDataForForms';
-import { useEffect } from 'react';
 import AddressForm from './AddressForm/AddressForm';
 
 import style from './customForm.module.scss';
-
-type FormValues =
-	| IDataForPersonalnfoForm
-	| IDataForAddressForm
-	| IDataForPreferencesForm
-	| IDataForSubmitForm;
 
 function CustomForm ({formik, currentStep}: {formik: FormikProps<FormValues>, currentStep: number}) {
 

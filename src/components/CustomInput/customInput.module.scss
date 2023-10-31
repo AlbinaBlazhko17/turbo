@@ -1,0 +1,12 @@
+@import '@scss/index.scss';
+
+.input {
+	padding: 16px;
+	border-radius: 8px;
+	border: 1px solid #CCC;
+	&__dark {
+		background: $grey;
+		border: 1px solid #fff;
+		color: #fff;
+	}
+}

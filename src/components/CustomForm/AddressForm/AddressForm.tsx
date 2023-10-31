@@ -1,3 +1,4 @@
+import CustomInput from '@/components/CustomInput/CustomInput';
 import style from '../customForm.module.scss';
 
 function AddressForm () {
@@ -5,7 +6,7 @@ function AddressForm () {
 		<form className={style.form}>
 			<h2>Address Details</h2>
 			<label htmlFor="address" className={style.form__label}>Address (City, Street, Blok)</label>
-			<input id="address" type="text" className={style.form__input} />
+			{/* <CustomInput label="address" type="text" /> */}
 			<label htmlFor='country' className={style.form__label}>Country</label>
 			<datalist id='country'>
 				<option value='USA' />
