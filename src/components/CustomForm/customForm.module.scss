@@ -3,8 +3,23 @@
 }
 
 .form {
-	padding: 30px 60px;
+	display: block;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	&-item {
+		position: relative;
+		padding: 0px 39%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.error {
+	position: absolute;
+	bottom: -5%;
+	left: 39%;
+	color: #EB5757;
 }

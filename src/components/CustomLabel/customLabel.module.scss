@@ -3,7 +3,8 @@
 .label {
 	color: $black;
 	margin-bottom: 8px;
-	margin-top: 5px;
+	margin-top: 10px;
+	align-self: flex-start;
 	&__dark {
 		color: $white;
 	}

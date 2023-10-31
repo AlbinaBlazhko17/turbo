@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { ThemeContext } from '@theme/theme';
 import { useContext } from 'react';
 
-import style from './customLable.module.scss';
+import style from './customLabel.module.scss';
 
 function CustomLabel({label, children}: {label: string, children: string}) {
 	const {theme} = useContext(ThemeContext);
