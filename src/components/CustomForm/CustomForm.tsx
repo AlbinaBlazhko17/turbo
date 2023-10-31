@@ -1,14 +1,27 @@
+import { FormikProps } from 'formik';
+import PersonalInfoForm from './PersonalInfoForm/PersonalInfoForm';
+import { IDataForAddressForm, IDataForPersonalnfoForm, IDataForPreferencesForm, IDataForSubmitForm } from '@interfaces/IDataForForms';
+import { useEffect } from 'react';
+import AddressForm from './AddressForm/AddressForm';
+
 import style from './customForm.module.scss';
 
-function CustomForm () {
-	const currentStep = localStorage.getItem('step') || 1;
+type FormValues =
+	| IDataForPersonalnfoForm
+	| IDataForAddressForm
+	| IDataForPreferencesForm
+	| IDataForSubmitForm;
 
-	return (
-		<form className={style.form}>
-			{
-			}
-		</form>
-	)
+function CustomForm ({formik, currentStep}: {formik: FormikProps<FormValues>, currentStep: number}) {
+
+	switch (+currentStep) {
+		case 1:
+			return <PersonalInfoForm formik={formik as FormikProps<IDataForPersonalnfoForm>} />;
+		case 2:
+			return <AddressForm formik={formik as FormikProps<IDataForAddressForm>} />;
+		default:
+			return null;
+	  }
 }
 
 export default CustomForm;

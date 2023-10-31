@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import dataForSteps from '@utils/dataForSteps';
 import { ThemeContext } from '@/theme/theme';
 import cn from 'classnames';
@@ -6,7 +6,7 @@ import { TiTick } from 'react-icons/ti';
 
 import style from './steps.module.scss';
 
-function Steps({currentStep, setCurrentStep}: {currentStep: number, setCurrentStep: () => void}) {
+function Steps({currentStep, setCurrentStep}: {currentStep: number, setCurrentStep: Dispatch<SetStateAction<string | number>>}) {
 	const { theme } = useContext(ThemeContext);
 	const [complete, setComplete] = useState(false);
 
