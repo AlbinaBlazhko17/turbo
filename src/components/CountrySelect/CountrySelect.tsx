@@ -12,6 +12,10 @@ const CountrySelect = ({formik}: {formik: FormikProps<IDataForAddressForm>}) => 
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
+	formik.setFieldValue('country', selectedCountry.label?.split(' ')[1]);
+  }, [selectedCountry]);
+
+  useEffect(() => {
 	fetch(
 		"https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
 	)
