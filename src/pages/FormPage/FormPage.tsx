@@ -15,33 +15,23 @@ function FormPage () {
 
 	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());
-		initialValues = (function () {
+		(function () {
 			switch (+currentStep) {
 				case 1:
-					return initialValuesPersonalInfo;
+					validationSchema = validationSchemaPersonalInfo;
+					initialValues = initialValuesPersonalInfo;
 				case 2:
-					return initialValuesAddress;
+					validationSchema = validationSchemaAddress;
+					initialValues = initialValuesAddress;
 				case 3:
-					return initialValuesPreferences;
+					validationSchema = validationSchemaPreferences;
+					initialValues = initialValuesPreferences;
 				case 4:
-					return initialValuesSubmit;
+					validationSchema = validationSchemaSubmit;
+					initialValues = initialValuesSubmit;
 				default:
-					return initialValuesPersonalInfo;
-			}
-		})();
-
-		validationSchema = (function () {
-			switch (+currentStep) {
-				case 1:
-					return validationSchemaPersonalInfo;
-				case 2:
-					return validationSchemaAddress;
-				case 3:
-					return validationSchemaPreferences;
-				case 4:
-					return validationSchemaSubmit;
-				default:
-					return validationSchemaPersonalInfo;
+					validationSchema = validationSchemaPersonalInfo;
+					initialValues = initialValuesPersonalInfo;
 			}
 		})();
 	}, [currentStep]);
