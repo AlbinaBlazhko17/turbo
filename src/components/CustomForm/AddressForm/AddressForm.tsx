@@ -15,7 +15,7 @@ function AddressForm ({formik}: {formik: FormikProps<IDataForAddressForm>}) {
 			<CustomLabel label='country'>Country</CustomLabel>
 			<CountrySelect formik={formik} />
 			<CustomLabel label="zipCode">Postal Code</CustomLabel>
-			<CustomInput label="zipCode" type="number" formik={formik} />
+			<CustomInput label="zipCode" type="tel" formik={formik} />
 		</form>
 	)
 }

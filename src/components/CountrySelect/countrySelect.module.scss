@@ -1,14 +1,14 @@
 @import '@scss/index.scss';
 
 .select {
-	& > div {
-		background: $grey;
-		border: 1px solid #fff;
-		border-radius: 8px;
-		margin-bottom: 20px;
-		padding: 10px;
-		& div {
-			color: $white;
-		}
-	}
+	// & > div {
+	// 	background: $grey;
+	// 	border: 1px solid #fff;
+	// 	border-radius: 8px;
+	// 	margin-bottom: 20px;
+	// 	padding: 10px;
+	// 	& div {
+	// 		color: $white;
+	// 	}
+	// }
 }
