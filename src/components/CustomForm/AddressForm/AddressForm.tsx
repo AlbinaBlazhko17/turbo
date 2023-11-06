@@ -19,8 +19,10 @@ function AddressForm({ formik }: { formik: FormikProps<IDataForAddressForm> }) {
 					<div className={style[`form-item__error`]}>{formik.errors.city}</div>
 				)}
 			</div>
-			<CustomLabel label='country'>Country</CustomLabel>
-			<CountrySelect formik={formik} />
+			<div className={style['form-item']}>
+				<CustomLabel label='country'>Country</CustomLabel>
+				<CountrySelect formik={formik} />
+			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label="zipCode">Postal Code</CustomLabel>
 				<CustomInput label="zipCode" type="tel" formik={formik} />
