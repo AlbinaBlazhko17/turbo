@@ -4,26 +4,28 @@ import { useContext, useEffect, useState } from "react";
 import Select from "react-select";
 import { ThemeContext } from "@theme/theme";
 
-import style from './countrySelect.module.scss';
+import style from './customSelect.module.scss';
 
-const CountrySelect = ({ formik }: { formik: FormikProps<IDataForAddressForm> }) => {
-	const [countries, setCountries] = useState([]);
-	const [selectedCountry, setSelectedCountry] = useState({});
+const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForAddressForm>, type: string }) => {
+	const [data, setData] = useState([]);
+	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
-		formik.setFieldValue('country', selectedCountry.label?.split(' ')[1]);
-	}, [selectedCountry]);
+		formik.setFieldValue('country', selectedData.label?.split(' ')[1]);
+	}, [selectedData]);
 
 	useEffect(() => {
-		fetch(
-			"https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				setCountries(data.countries);
-				setSelectedCountry(data.userSelectValue);
-			});
+		if (type === 'country') {
+			fetch(
+				"https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					setData(data.countries);
+					setSelectedData(data.userSelectValue);
+				});
+		}
 	}, []);
 
 	const customStyles = {
@@ -53,11 +55,11 @@ const CountrySelect = ({ formik }: { formik: FormikProps<IDataForAddressForm> })
 		<Select
 			styles={customStyles}
 			className={style.select}
-			options={countries}
-			value={selectedCountry}
-			onChange={(selectedOption) => setSelectedCountry(selectedOption)}
+			options={data}
+			value={selectedData}
+			onChange={(selectedOption) => setSelectedDataa(selectedOption)}
 		/>
 	);
 };
 
-export default CountrySelect;
+export default CustomSelect;

@@ -1,4 +1,4 @@
-import CountrySelect from "@components/CountrySelect/CountrySelect";
+import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import CustomInput from "@components/CustomInput/CustomInput";
 import CustomLabel from "@components/CustomLabel/CustomLabel";
 import { IDataForPreferencesForm } from "@interfaces/IDataForForms";
@@ -40,7 +40,7 @@ function PreferencesForm({ formik }: { formik: FormikProps<IDataForPreferencesFo
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label='country'>Language</CustomLabel>
-				<CountrySelect formik={formik} />
+				<CustomSelect formik={formik} type="language" />
 			</div>
 		</form>
 	);

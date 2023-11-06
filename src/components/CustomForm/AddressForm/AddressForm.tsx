@@ -2,7 +2,7 @@ import CustomInput from '@/components/CustomInput/CustomInput';
 import { FormikProps } from 'formik';
 import { IDataForAddressForm } from '@/interfaces/IDataForForms';
 import CustomLabel from '@/components/CustomLabel/CustomLabel';
-import CountrySelect from '@/components/CountrySelect/CountrySelect';
+import CustomSelect from '@/components/CustomSelect/CustomSelect';
 
 import style from '../customForm.module.scss';
 
@@ -21,7 +21,7 @@ function AddressForm({ formik }: { formik: FormikProps<IDataForAddressForm> }) {
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label='country'>Country</CustomLabel>
-				<CountrySelect formik={formik} />
+				<CustomSelect formik={formik} type='country' />
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label="zipCode">Postal Code</CustomLabel>
