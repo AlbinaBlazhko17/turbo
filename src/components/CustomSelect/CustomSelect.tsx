@@ -7,26 +7,39 @@ import { ThemeContext } from "@theme/theme";
 import style from './customSelect.module.scss';
 
 const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForAddressForm>, type: string }) => {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState();
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
-		formik.setFieldValue('country', selectedData.label?.split(' ')[1]);
+		type === 'country' ? formik.setFieldValue('country', selectedData.label?.split(' ')[1]) : formik.setFieldValue('language', selectedData.label);
 	}, [selectedData]);
 
 	useEffect(() => {
-		if (type === 'country') {
-			fetch(
-				"https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
-			)
-				.then((response) => response.json())
-				.then((data) => {
-					setData(data.countries);
-					setSelectedData(data.userSelectValue);
-				});
-		}
+		(async function () {
+			if (type === 'country') {
+				fetch(
+					"https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
+				)
+					.then((response) => response.json())
+					.then((data) => {
+						setData(data.countries);
+						setSelectedData(data.userSelectValue);
+					});
+			} else {
+				fetch(
+					"https://pkgstore.datahub.io/core/language-codes/language-codes_json/data/97607046542b532c395cf83df5185246/language-codes_json.json"
+				)
+					.then((response) => response.json())
+					.then((data) => {
+						setData(data.map((item: any) => ({ value: item.alpha2, label: item.English })));
+						setSelectedData(data);
+					})
+					.catch((err) => console.log(err));
+			}
+		})()
 	}, []);
+
 
 	const customStyles = {
 		option: (defaultStyles, state) => ({
@@ -53,11 +66,12 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForAddressFor
 
 	return (
 		<Select
+			isSearchable={true}
 			styles={customStyles}
 			className={style.select}
 			options={data}
 			value={selectedData}
-			onChange={(selectedOption) => setSelectedDataa(selectedOption)}
+			onChange={(selectedOption) => setSelectedData(selectedOption)}
 		/>
 	);
 };
