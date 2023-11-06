@@ -6,7 +6,7 @@ import { FormValues } from '../CustomForm/formik';
 
 import style from './customInput.module.scss';
 
-function CustomInput({formik, label, type}: {formik: FormikProps<FormValues>, label: string, type: string}) {
+function CustomInput({formik, label, type, value}: {formik: FormikProps<FormValues>, label: string, type: string, value?: string}) {
 	const {theme} = useContext(ThemeContext);
 	return (
 		<input

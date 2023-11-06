@@ -3,12 +3,12 @@ import * as Yup from 'yup';
 export const validationSchemaPersonalInfo = Yup.object().shape({
 	firstName: Yup.string()
 		.min(2, 'First name is too short!')
-		.max (20, 'First name is too long!')
-		.required ('First name is required!'),
+		.max(20, 'First name is too long!')
+		.required('First name is required!'),
 	lastName: Yup.string()
 		.min(2, 'Last name is too short!')
-		.max (20, 'Last name is too long!')
-		.required ('Last name is required!'),
+		.max(20, 'Last name is too long!')
+		.required('Last name is required!'),
 	email: Yup.string()
 		.email('Invalid email address')
 		.required('Email is required'),
@@ -18,16 +18,14 @@ export const validationSchemaPersonalInfo = Yup.object().shape({
 
 export const validationSchemaAddress = Yup.object().shape({
 	city: Yup.string()
-		.min(2, 'First name is too short!')
-		.max (20, 'First name is too long!')
-		.required ('First name is required!'),
+		.min(2, 'City is too short!')
+		.max(20, 'City is too long!')
+		.required('City is required!'),
 	country: Yup.string()
-		.min(5, 'First name is too short!')
-		.max (30, 'First name is too long!')
-		.required ('First name is required!'),
-	number: Yup.string()
-		.min(10, 'Telephone number must be at least 10 characters')
-		.required('Telephone number is required')
+		.required('Country is required!'),
+	zipCode: Yup.number()
+		.min(5, 'ZipCode must be at least 10 characters')
+		.required('ZipCode is required')
 });
 
 export const validationSchemaPreferences = Yup.object().shape({
