@@ -12,7 +12,7 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForAddressFor
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
-		type === 'country' ? formik.setFieldValue('country', selectedData.label?.split(' ')[1]) : formik.setFieldValue('language', selectedData.label);
+		type === 'country' ? formik.setFieldValue('country', selectedData.label?.split(' ')[1]) : formik.setFieldValue('language', selectedData);
 	}, [selectedData]);
 
 	useEffect(() => {
@@ -33,7 +33,8 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForAddressFor
 					.then((response) => response.json())
 					.then((data) => {
 						setData(data.map((item: any) => ({ value: item.alpha2, label: item.English })));
-						setSelectedData(data);
+						setSelectedData(data[0].English);
+						// console.log(data[0].English)
 					})
 					.catch((err) => console.log(err));
 			}

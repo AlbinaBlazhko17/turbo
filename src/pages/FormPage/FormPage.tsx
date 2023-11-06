@@ -55,8 +55,8 @@ function FormPage() {
 				initialValues={initialValues}
 				validationSchema={validation}
 				onSubmit={(values) => {
-					console.log('Initial values', initialValues);
-					console.log('Form submitted with values:', values);
+					// console.log('Initial values', ini);
+					// console.log('Form submitted with values:', values);
 					if (+currentStep < 4) {
 						setCurrentStep(+currentStep + 1);
 					}

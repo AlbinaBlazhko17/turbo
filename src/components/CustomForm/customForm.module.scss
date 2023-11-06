@@ -8,6 +8,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+
 	&-item {
 		padding: 0 2%;
 		position: relative;
@@ -15,14 +16,33 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+
 		&__error {
 			position: absolute;
 			left: 2%;
 			bottom: -2%;
 			color: #EB5757;
 		}
+
 		.radio {
 			bottom: -15%;
 		}
+
+		&__checkbox {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: start;
+			align-items: flex-start;
+			margin-bottom: 15px;
+		}
+	}
+}
+
+.rangeSlider {
+	&__footer {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
 	}
 }

@@ -1,5 +1,23 @@
 @import '@scss/index.scss';
 
+:root {
+	.range-slider {
+		background: linear-gradient(90deg, rgba(233, 245, 254, 1) 0%, rgba(33, 150, 243, 1) 76%, rgba(12, 127, 218, 1) 100%);
+	}
+
+	.range-slider .range-slider__range {
+		background: transparent;
+	}
+
+	.range-slider .range-slider__thumb[data-lower] {
+		width: 0;
+	}
+
+	.range-slider .range-slider__range {
+		border-radius: 6px;
+	}
+}
+
 
 body {
 	margin: 0;
@@ -18,11 +36,14 @@ main {
 	& main {
 		background-color: $white;
 
-		& section, aside {
+		& section,
+		aside {
 			background: white;
 		}
 
-		& h1, h2, h3 {
+		& h1,
+		h2,
+		h3 {
 			color: $grey;
 		}
 
@@ -39,13 +60,21 @@ main {
 
 .dark {
 	background-color: $grey;
+
 	& main {
 		background-color: $black;
-		& section, aside {
+
+		& section,
+		aside {
 			background: $grey;
 		}
 
-		& h1, h2, h3, h4, p, li {
+		& h1,
+		h2,
+		h3,
+		h4,
+		p,
+		li {
 			color: $white;
 		}
 	}
@@ -69,7 +98,7 @@ aside {
 h1,
 h2 {
 	margin: 0;
-	
+
 }
 
 h2 {

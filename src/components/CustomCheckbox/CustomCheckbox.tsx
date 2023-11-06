@@ -25,7 +25,6 @@ function CustomCheckbox({ formik, label }: { formik: FormikProps<FormValues>, la
 		}
 	};
 
-	console.log(formik.values)
 	return (
 		<input
 			id={`${label}`}
