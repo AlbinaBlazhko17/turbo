@@ -43,13 +43,18 @@ function PreferencesForm({ formik }: { formik: FormikProps<IDataForPreferencesFo
 				)}
 			</div>
 			<div className={style['form-item']}>
-				<CustomLabel label='country'>Language</CustomLabel>
-				<CustomSelect formik={formik} type="language" />
+				<CustomLabel label='language'>Language</CustomLabel>
+				<div className={style[`form-item__language`]}>
+					<CustomSelect formik={formik} type="languages" />
+				</div>
+				{!formik.isSubmitting && formik.errors.language && (
+					<div className={style[`form-item__error`]}>{formik.errors.language}</div>
+				)}
 			</div>
 			<div className={style['form-item']}>
-				<CustomLabel label='country'>Notification frequency</CustomLabel>
+				<CustomLabel label='notification'>Notification frequency</CustomLabel>
 				<RangeSlider
-					defaultValue={[0, +formik.values.rangeSlider || 100]}
+					defaultValue={[0, +formik.values.notificationFrequency || 100]}
 					min={0}
 					max={100}
 					step={1}
@@ -57,6 +62,8 @@ function PreferencesForm({ formik }: { formik: FormikProps<IDataForPreferencesFo
 					rangeSlideDisabled={true}
 					onInput={(e) => {
 						formik.setFieldValue('rangeSlider', e[1]);
+						console.log(formik)
+						formik.values.notificationFrequency = e[1];
 					}}
 				/>
 				<div className={style.rangeSlider__footer}>

@@ -35,7 +35,7 @@ export const validationSchemaPreferences = Yup.object().shape({
 		.required('Select at least one interest'),
 	language: Yup.string()
 		.required('Select preferred language'),
-	rangeSlider: Yup.number()
+	notificationFrequency: Yup.number()
 		.required('Select preferred notification range')
 });
 
