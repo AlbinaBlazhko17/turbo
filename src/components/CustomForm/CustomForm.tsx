@@ -7,6 +7,7 @@ import PreferencesForm from './PreferencesForm/PreferencesForm';
 import FinalForm from './FinalForm/FinalForm';
 
 import style from './customForm.module.scss';
+import ConfirmationPage from '../ConfirmationPage/ConfirmationPage';
 
 function CustomForm({ formik, currentStep }: { formik: FormikProps<FormValues>, currentStep: number }) {
 
@@ -19,6 +20,8 @@ function CustomForm({ formik, currentStep }: { formik: FormikProps<FormValues>, 
 			return <PreferencesForm formik={formik as FormikProps<IDataForPreferencesForm>} />;
 		case 4:
 			return <FinalForm formik={formik as FormikProps<IDataForSubmitForm>} />;
+		case 5:
+			return <ConfirmationPage />;
 		default:
 			return null;
 	}

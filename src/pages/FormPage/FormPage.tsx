@@ -55,9 +55,7 @@ function FormPage() {
 				initialValues={initialValues}
 				validationSchema={validation}
 				onSubmit={(values) => {
-					// console.log('Initial values', ini);
-					// console.log('Form submitted with values:', values);
-					if (+currentStep < 4) {
+					if (+currentStep < 5) {
 						setCurrentStep(+currentStep + 1);
 					}
 				}}
@@ -74,7 +72,7 @@ function FormPage() {
 								Previous step
 							</Button>
 							<Button
-								appearance={+currentStep !== 4 ? 'filled' : 'outlined'}
+								appearance={+currentStep !== 5 ? 'filled' : 'outlined'}
 								onClick={formik.handleSubmit}
 								type="submit"
 							>

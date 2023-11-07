@@ -62,7 +62,6 @@ function PreferencesForm({ formik }: { formik: FormikProps<IDataForPreferencesFo
 					rangeSlideDisabled={true}
 					onInput={(e) => {
 						formik.setFieldValue('rangeSlider', e[1]);
-						console.log(formik)
 						formik.values.notificationFrequency = e[1];
 					}}
 				/>
