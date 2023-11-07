@@ -6,8 +6,12 @@ import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
 import CustomInputImage from '@/components/CustomInputImage/CustomInputImage';
 
 import style from '../customForm.module.scss';
+import { useEffect } from 'react';
 
 function FinalForm({ formik }: { formik: FormikProps<IDataForSubmitForm> }) {
+	useEffect(() => {
+		console.log(formik)
+	})
 	return (
 		<form className={style.form}>
 			<h2>Finalize & Submit</h2>

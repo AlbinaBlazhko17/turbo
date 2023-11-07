@@ -9,7 +9,9 @@ function CustomCheckbox({ formik, label }: { formik: FormikProps<FormValues>, la
 	const [isChecked, setIsChecked] = useState(false);
 
 	useEffect(() => {
-		setIsChecked(formik.values.interests && formik.values.interests.includes(label));
+		label !== 'terms'
+			? setIsChecked(formik.values.interests && formik.values.interests.includes(label))
+			: setIsChecked(formik.values.terms);
 	}, [formik.values.interests, label]);
 
 	const handleCheckboxChange = () => {
@@ -33,8 +35,12 @@ function CustomCheckbox({ formik, label }: { formik: FormikProps<FormValues>, la
 				[style[`input__checkbox`]]
 			)}
 			onChange={(e) => {
-				handleCheckboxChange();
-				formik.handleChange(e);
+				if (label !== 'terms') {
+					handleCheckboxChange();
+					formik.handleChange(e);
+				} else {
+					formik.setFieldValue('terms', !formik.values.terms);
+				}
 			}}
 			onBlur={formik.handleBlur}
 			checked={isChecked}
