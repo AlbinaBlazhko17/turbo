@@ -2,9 +2,10 @@ import CustomCheckbox from '@/components/CustomCheckbox/CustomCheckbox';
 import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import { IDataForSubmitForm } from '@/interfaces/IDataForForms';
 import { FormikProps } from 'formik';
+import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
+import CustomInputImage from '@/components/CustomInputImage/CustomInputImage';
 
 import style from '../customForm.module.scss';
-import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
 
 function FinalForm({ formik }: { formik: FormikProps<IDataForSubmitForm> }) {
 	return (
@@ -16,6 +17,7 @@ function FinalForm({ formik }: { formik: FormikProps<IDataForSubmitForm> }) {
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label='comments'>Upload profile picture</CustomLabel>
+				<CustomInputImage formik={formik} label="profilePicture" />
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label='comments'>Terms & conditions</CustomLabel>

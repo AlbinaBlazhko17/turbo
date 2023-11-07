@@ -4,10 +4,10 @@ import { useContext, ReactNode } from 'react';
 
 import style from './customLabel.module.scss';
 
-function CustomLabel({label, children}: {label?: string, children: ReactNode}) {
-	const {theme} = useContext(ThemeContext);
+function CustomLabel({ label, children, className }: { label?: string, children: ReactNode, className?: string }) {
+	const { theme } = useContext(ThemeContext);
 	return (
-		<label htmlFor={label} className={cn(style.label, style[`label__${theme}`])}>{children}</label>
+		<label htmlFor={label} className={cn(style.label, style[`label__${theme}`], className)}>{children}</label>
 	)
 }
 
