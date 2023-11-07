@@ -12,6 +12,7 @@
 		justify-content: center;
 		align-items: center;
 		width: 36em;
+
 		&:not(:first-child)::before {
 			position: absolute;
 			content: '';
@@ -22,6 +23,7 @@
 			top: 33%;
 			transform: translateY(-25%);
 		}
+
 		&__step {
 			width: 70px;
 			height: 70px;
@@ -35,22 +37,25 @@
 			border: 1px thin $grey;
 		}
 	}
+
 	.active {
 		.steps-item__step {
 			background: $light-blue;
 			color: $white;
 		}
 	}
+
 	.complete {
 		.steps-item__step {
-			background: #07c274;
+			background: $green;
 			color: $white;
 		}
 	}
 }
 
-.complete:not(:first-child)::before, .active:not(:first-child)::before {
-	background: #07c274;
+.complete:not(:first-child)::before,
+.active:not(:first-child)::before {
+	background: $green;
 }
 
 .dark {
@@ -59,6 +64,7 @@
 			&::before {
 				background: $white;
 			}
+
 			&__step {
 				background-color: $lighter-blue;
 				color: $black !important;

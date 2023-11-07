@@ -63,22 +63,24 @@ function FormPage() {
 				{(formik) => (
 					<section className={style.form__wrapper}>
 						<CustomForm formik={formik} currentStep={+currentStep} />
-						<div className={style.buttons}>
-							<Button
-								appearance={+currentStep === 1 ? 'outlined' : 'filled'}
-								className={style[`buttons_right`]}
-								onClick={handlePrevStep}
-							>
-								Previous step
-							</Button>
-							<Button
-								appearance={+currentStep !== 5 ? 'filled' : 'outlined'}
-								onClick={formik.handleSubmit}
-								type="submit"
-							>
-								{currentStep !== 4 ? 'Next step' : 'Finish'}
-							</Button>
-						</div>
+						{+currentStep !== 5 &&
+							<div className={style.buttons}>
+								<Button
+									appearance={+currentStep === 1 ? 'outlined' : 'filled'}
+									className={style[`buttons_right`]}
+									onClick={handlePrevStep}
+								>
+									Previous step
+								</Button>
+								<Button
+									appearance={+currentStep !== 5 ? 'filled' : 'outlined'}
+									onClick={formik.handleSubmit}
+									type="submit"
+								>
+									{currentStep !== 4 ? 'Next step' : 'Finish'}
+								</Button>
+							</div>
+						}
 					</section>
 				)}
 			</Formik>
