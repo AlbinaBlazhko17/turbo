@@ -1,0 +1,17 @@
+@import '@scss/index.scss';
+
+.textarea {
+	width: 390px;
+	padding: 16px;
+	border-radius: 8px;
+	border: 1px solid #CCC;
+	font-size: 16px;
+	margin-bottom: 20px;
+	resize: none;
+
+	&__dark {
+		background: $grey;
+		border: 1px solid #fff;
+		color: #fff;
+	}
+}

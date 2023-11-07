@@ -4,6 +4,7 @@ import { IDataForSubmitForm } from '@/interfaces/IDataForForms';
 import { FormikProps } from 'formik';
 
 import style from '../customForm.module.scss';
+import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
 
 function FinalForm({ formik }: { formik: FormikProps<IDataForSubmitForm> }) {
 	return (
@@ -11,6 +12,7 @@ function FinalForm({ formik }: { formik: FormikProps<IDataForSubmitForm> }) {
 			<h2>Finalize & Submit</h2>
 			<div className={style['form-item']}>
 				<CustomLabel label='comments'>Additional comments</CustomLabel>
+				<CustomTextarea formik={formik} label="comments" />
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label='comments'>Upload profile picture</CustomLabel>
