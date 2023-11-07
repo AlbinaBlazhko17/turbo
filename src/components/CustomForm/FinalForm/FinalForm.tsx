@@ -6,12 +6,8 @@ import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
 import CustomInputImage from '@/components/CustomInputImage/CustomInputImage';
 
 import style from '../customForm.module.scss';
-import { useEffect } from 'react';
 
 function FinalForm({ formik }: { formik: FormikProps<IDataForSubmitForm> }) {
-	useEffect(() => {
-		console.log(formik)
-	})
 	return (
 		<form className={style.form}>
 			<h2>Finalize & Submit</h2>
@@ -22,13 +18,19 @@ function FinalForm({ formik }: { formik: FormikProps<IDataForSubmitForm> }) {
 			<div className={style['form-item']}>
 				<CustomLabel label='comments'>Upload profile picture</CustomLabel>
 				<CustomInputImage formik={formik} label="profilePicture" />
+				{!formik.isSubmitting && formik.errors.profilePicture && (
+					<div className={style[`form-item__error`]}>{formik.errors.profilePicture}</div>
+				)}
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label='comments'>Terms & conditions</CustomLabel>
-				<CustomLabel label="terms">
+				<CustomLabel label="terms" className={style['form-item__terms']}>
 					<CustomCheckbox formik={formik} label="terms" />
 					I accept the terms and conditions
 				</CustomLabel>
+				{!formik.isSubmitting && formik.errors.terms && (
+					<div className={style[`form-item__error`]}>{formik.errors.terms}</div>
+				)}
 			</div>
 		</form>
 	)
