@@ -11,7 +11,7 @@ function customRadioInput({ formik, name, value }: { formik: FormikProps<FormVal
 			name={name}
 			value={value}
 			id={value}
-			checked={formik.values && formik.values[name] === value}
+			checked={formik.values[name as keyof FormValues] === value}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
 		/>
