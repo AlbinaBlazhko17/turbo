@@ -13,13 +13,13 @@ function CustomForm({ formik, currentStep }: { formik: FormikProps<FormValues>, 
 
 	switch (+currentStep) {
 		case 1:
-			return <PersonalInfoForm formik={formik as FormikProps<IDataForPersonalnfoForm>} />;
+			return <PersonalInfoForm formik={formik} />;
 		case 2:
-			return <AddressForm formik={formik as FormikProps<IDataForAddressForm>} />;
+			return <AddressForm formik={formik} />;
 		case 3:
-			return <PreferencesForm formik={formik as FormikProps<IDataForPreferencesForm>} />;
+			return <PreferencesForm formik={formik} />;
 		case 4:
-			return <FinalForm formik={formik as FormikProps<IDataForSubmitForm>} />;
+			return <FinalForm formik={formik} />;
 		case 5:
 			return <ConfirmationPage />;
 		default:
