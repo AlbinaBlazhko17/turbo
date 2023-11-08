@@ -2,14 +2,17 @@ import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import CustomLabel from "@components/CustomLabel/CustomLabel";
 import { FormikProps } from "formik";
 import CustomCheckbox from "@/components/CustomCheckbox/CustomCheckbox";
+//@ts-ignore
 import RangeSlider from 'react-range-slider-input';
 import { FormValues } from "../formik";
+import { IDataForPreferencesForm } from "@/interfaces/IDataForForms";
 
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
 
 
 function PreferencesForm({ formik }: { formik: FormikProps<FormValues> }) {
+
 	return (
 		<form className={style.form}>
 			<h2>Preferences & Settings</h2>
@@ -46,8 +49,8 @@ function PreferencesForm({ formik }: { formik: FormikProps<FormValues> }) {
 				<div className={style[`form-item__language`]}>
 					<CustomSelect formik={formik} type="languages" />
 				</div>
-				{'language' in formik.touched && 'language' in formik.errors && !formik.isSubmitting && formik.errors.language && (
-					<div className={style[`form-item__error`]}>{formik.errors.language}</div>
+				{!formik.isSubmitting && (formik.errors as IDataForPreferencesForm).language && (
+					<div className={style[`form-item__error`]}>{(formik.errors as IDataForPreferencesForm).language}</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
@@ -60,7 +63,7 @@ function PreferencesForm({ formik }: { formik: FormikProps<FormValues> }) {
 					thumbsDisabled={[true, false]}
 					rangeSlideDisabled={true}
 					onInput={(e: Array<number>) => {
-						formik.setFieldValue('rangeSlider', e[1]);
+						formik.setFieldValue('notificationFrequency', e[1]);
 						'notificationFrequency' in formik.values && (formik.values.notificationFrequency = e[1]);
 					}}
 				/>

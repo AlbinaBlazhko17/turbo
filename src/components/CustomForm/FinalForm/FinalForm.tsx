@@ -1,9 +1,10 @@
 import CustomCheckbox from '@/components/CustomCheckbox/CustomCheckbox';
 import CustomLabel from '@/components/CustomLabel/CustomLabel';
-import { FormikProps } from 'formik';
+import { FormikErrors, FormikProps } from 'formik';
 import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
 import CustomInputImage from '@/components/CustomInputImage/CustomInputImage';
 import { FormValues } from '../formik';
+import { IDataForSubmitForm } from '@/interfaces/IDataForForms';
 
 import style from '../customForm.module.scss';
 
@@ -18,8 +19,8 @@ function FinalForm({ formik }: { formik: FormikProps<FormValues> }) {
 			<div className={style['form-item']}>
 				<CustomLabel label='comments'>Upload profile picture</CustomLabel>
 				<CustomInputImage formik={formik} label="profilePicture" />
-				{'profilePicture' in formik.values && 'profilePicture' in formik.errors && !formik.isSubmitting && formik.errors.profilePicture && (
-					<div className={style[`form-item__error`]}>{formik.errors.profilePicture}</div>
+				{(formik.errors as IDataForSubmitForm).profilePicture && (
+					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForSubmitForm>).profilePicture}</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
@@ -28,8 +29,8 @@ function FinalForm({ formik }: { formik: FormikProps<FormValues> }) {
 					<CustomCheckbox formik={formik} label="terms" />
 					I accept the terms and conditions
 				</CustomLabel>
-				{'terms' in formik.values && 'terms' in formik.errors && !formik.isSubmitting && formik.errors.terms && (
-					<div className={style[`form-item__error`]}>{formik.errors.terms}</div>
+				{!formik.isSubmitting && (formik.errors as IDataForSubmitForm).terms && (
+					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForSubmitForm>).terms}</div>
 				)}
 			</div>
 		</form>

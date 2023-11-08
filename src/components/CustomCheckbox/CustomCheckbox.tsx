@@ -2,18 +2,22 @@ import { FormikProps } from "formik";
 import { FormValues } from "../CustomForm/formik";
 import { useEffect, useState } from "react";
 import cn from 'classnames';
+import { IDataForPreferencesForm, IDataForSubmitForm } from "@/interfaces/IDataForForms";
 
 import style from '../CustomInput/customInput.module.scss';
-import { IDataForPreferencesForm, IDataForSubmitForm } from "@/interfaces/IDataForForms";
 
 function CustomCheckbox({ formik, label }: { formik: FormikProps<FormValues>, label: string }) {
 	const [isChecked, setIsChecked] = useState(false);
 
 	useEffect(() => {
-		label !== 'terms'
-			// @ts-ignore
-			? setIsChecked((formik.values as IDataForPreferencesForm).interests.includes(label))
-			: setIsChecked((formik.values as IDataForSubmitForm).terms);
+		if (label !== 'terms') {
+			if ((formik.values as IDataForPreferencesForm).interests !== undefined) {
+				//@ts-ignore
+				setIsChecked((formik.values as IDataForPreferencesForm).interests.includes(label));
+			}
+		} else {
+			setIsChecked((formik.values as IDataForSubmitForm).terms);
+		}
 	}, [(formik.values as IDataForPreferencesForm).interests, label]);
 
 	const handleCheckboxChange = () => {
