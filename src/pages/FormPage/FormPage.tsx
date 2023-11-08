@@ -13,7 +13,7 @@ import style from './formPage.module.scss';
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>();
-	const [initialValues, setInitialValues] = useState();
+	const [initialValues, setInitialValues] = useState<FormValues>();
 
 	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());
@@ -54,7 +54,7 @@ function FormPage() {
 			<h1>Form page</h1>
 			<Steps currentStep={+currentStep} setCurrentStep={setCurrentStep} />
 			<Formik
-				initialValues={initialValues}
+				initialValues={initialValues!}
 				validationSchema={validation}
 				onSubmit={(values) => {
 					if (+currentStep < 5) {

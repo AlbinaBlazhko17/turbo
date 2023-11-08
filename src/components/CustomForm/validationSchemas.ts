@@ -60,17 +60,3 @@ export const validationSchemaSubmit = Yup.object().shape({
 	terms: Yup.boolean()
 		.required('Terms and conditions is required')
 })
-// .test('fileType', 'Invalid file type', function (value) {
-// 	if (value instanceof File) {
-// 		return /^image\//.test(value.type);
-// 	} else {
-// 		return true;
-// 	}
-// })
-// .test('fileSize', 'File size is too large', function (value) {
-// 	if (value instanceof File) {
-// 		return value.size <= 1024000;
-// 	} else {
-// 		return true;
-// 	}
-// }),
