@@ -13,11 +13,11 @@ function CustomInput({ formik, label, type, value }: { formik: FormikProps<FormV
 			id={`${label}`}
 			type={type}
 			className={cn(style.input, style[`input__${theme}`], {
-				[style[`input__error`]]: formik.touched[label] && formik.errors[label],
+				[style[`input__error`]]: (formik.touched as { [key: string]: boolean })[label] && (formik.errors as { [key: string]: boolean })[label],
 			})}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
-			value={formik.values && formik.values[label]}
+			value={formik.values[label as keyof FormValues]}
 		/>
 	)
 }
