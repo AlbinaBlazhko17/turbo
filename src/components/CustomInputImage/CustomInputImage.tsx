@@ -6,16 +6,18 @@ import CustomLabel from "../CustomLabel/CustomLabel";
 import style from './customInputImage.module.scss';
 
 function CustomInputImage({ formik, label }: { formik: FormikProps<FormValues>, label: string }) {
-	const [file, setFile] = useState<File & { lastModifiedDate: Date }>();
-	const fileInputRef = useRef(null);
+	const [file, setFile] = useState<File | null>();
+	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	function handleFileInputClick() {
 		fileInputRef.current !== null && fileInputRef.current.click();
 	}
 
-	const changeHandler = (event) => {
-		setFile(event.target.files[0]);
-		formik.setFieldValue('profilePicture', event.target.files[0]);
+	const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files) {
+			setFile(event.target.files[0]);
+			formik.setFieldValue('profilePicture', event.target.files[0]);
+		}
 	};
 
 	return (
