@@ -1,17 +1,19 @@
-import { useEffect, useState, useRef } from 'react';
-import { Formik, useFormik } from 'formik';
-import { initialValuesPersonalInfo, initialValuesAddress, initialValuesPreferences, initialValuesSubmit } from '@/components/CustomForm/initialValues';
-import { validationSchemaPersonalInfo, validationSchemaAddress, validationSchemaPreferences, validationSchemaSubmit } from '@/components/CustomForm/validationSchemas';
+import { initialValuesAddress, initialValuesPersonalInfo, initialValuesPreferences, initialValuesSubmit } from '@/components/CustomForm/initialValues';
+import { validationSchemaAddress, validationSchemaPersonalInfo, validationSchemaPreferences, validationSchemaSubmit } from '@/components/CustomForm/validationSchemas';
+import Button from '@components/Button/Button';
 import CustomForm from '@components/CustomForm/CustomForm';
 import Steps from '@components/Steps/Steps';
-import Button from '@components/Button/Button';
+import { Formik } from 'formik';
+import { useEffect, useState } from 'react';
+import { FormValues } from '@/components/CustomForm/formik';
+import { ObjectSchema } from 'yup';
 
 import style from './formPage.module.scss';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
-	const [validation, setValidation] = useState(validationSchemaPersonalInfo);
-	const [initialValues, setInitialValues] = useState(initialValuesPersonalInfo);
+	const [validation, setValidation] = useState<ObjectSchema<FormValues>>();
+	const [initialValues, setInitialValues] = useState();
 
 	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());

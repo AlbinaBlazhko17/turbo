@@ -40,15 +40,37 @@ export const validationSchemaPreferences = Yup.object().shape({
 });
 
 export const validationSchemaSubmit = Yup.object().shape({
-	comment: Yup.string(),
-	profilePicture: Yup.mixed()
-		.required('Profile picture is required')
-		.test('fileSize', 'File size is too large', (value) => {
-			return value && value.size <= 1024000;
+	comment: Yup.string().notRequired(),
+	profilePicture: Yup.mixed<File>()
+		.test('fileType', 'Invalid file type', function (value) {
+			if (value instanceof File) {
+				return /^image\//.test(value.type);
+			} else {
+				return true;
+			}
 		})
-		.test('fileType', 'Invalid file type', (value) => {
-			return value && /^image\//.test(value.type);
-		}),
+		.test('fileSize', 'File size is too large', function (value) {
+			if (value instanceof File) {
+				return value.size <= 1024000;
+			} else {
+				return true;
+			}
+		})
+		.required('Profile picture is required'),
 	terms: Yup.boolean()
 		.required('Terms and conditions is required')
 })
+// .test('fileType', 'Invalid file type', function (value) {
+// 	if (value instanceof File) {
+// 		return /^image\//.test(value.type);
+// 	} else {
+// 		return true;
+// 	}
+// })
+// .test('fileSize', 'File size is too large', function (value) {
+// 	if (value instanceof File) {
+// 		return value.size <= 1024000;
+// 	} else {
+// 		return true;
+// 	}
+// }),
