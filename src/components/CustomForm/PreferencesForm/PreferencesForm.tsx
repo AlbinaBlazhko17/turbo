@@ -1,16 +1,15 @@
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
-import CustomInput from "@components/CustomInput/CustomInput";
 import CustomLabel from "@components/CustomLabel/CustomLabel";
-import { IDataForPreferencesForm } from "@interfaces/IDataForForms";
 import { FormikProps } from "formik";
 import CustomCheckbox from "@/components/CustomCheckbox/CustomCheckbox";
 import RangeSlider from 'react-range-slider-input';
+import { FormValues } from "../formik";
 
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
 
 
-function PreferencesForm({ formik }: { formik: FormikProps<IDataForPreferencesForm> }) {
+function PreferencesForm({ formik }: { formik: FormikProps<FormValues> }) {
 	return (
 		<form className={style.form}>
 			<h2>Preferences & Settings</h2>
@@ -18,27 +17,27 @@ function PreferencesForm({ formik }: { formik: FormikProps<IDataForPreferencesFo
 				<CustomLabel label="interests">Interests</CustomLabel>
 				<div className={style['form-item__checkbox']}>
 					<CustomLabel label="Reading">
-						<CustomCheckbox formik={formik} label="Reading" type="checkbox" />
+						<CustomCheckbox formik={formik} label="Reading" />
 						Reading
 					</CustomLabel>
 					<CustomLabel label="Music">
-						<CustomCheckbox formik={formik} label="Music" type="checkbox" />
+						<CustomCheckbox formik={formik} label="Music" />
 						Music
 					</CustomLabel>
 					<CustomLabel label="Sports">
-						<CustomCheckbox formik={formik} label="Sports" type="checkbox" />
+						<CustomCheckbox formik={formik} label="Sports" />
 						Sports
 					</CustomLabel>
 					<CustomLabel label="Gaming">
-						<CustomCheckbox formik={formik} label="Gaming" type="checkbox" />
+						<CustomCheckbox formik={formik} label="Gaming" />
 						Gaming
 					</CustomLabel>
 					<CustomLabel label="Travel">
-						<CustomCheckbox formik={formik} label="Travel" type="checkbox" />
+						<CustomCheckbox formik={formik} label="Travel" />
 						Travel
 					</CustomLabel>
 				</div>
-				{!formik.isSubmitting && formik.errors.interests && (
+				{'interests' in formik.touched && 'interests' in formik.errors && !formik.isSubmitting && formik.errors.interests && (
 					<div className={style[`form-item__error`]}>{formik.errors.interests}</div>
 				)}
 			</div>
@@ -47,22 +46,22 @@ function PreferencesForm({ formik }: { formik: FormikProps<IDataForPreferencesFo
 				<div className={style[`form-item__language`]}>
 					<CustomSelect formik={formik} type="languages" />
 				</div>
-				{!formik.isSubmitting && formik.errors.language && (
+				{'language' in formik.touched && 'language' in formik.errors && !formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>{formik.errors.language}</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label='notification'>Notification frequency</CustomLabel>
 				<RangeSlider
-					defaultValue={[0, +formik.values.notificationFrequency || 100]}
+					defaultValue={[0, 'notificationFrequency' in formik.values && +formik.values.notificationFrequency || 100]}
 					min={0}
 					max={100}
 					step={1}
 					thumbsDisabled={[true, false]}
 					rangeSlideDisabled={true}
-					onInput={(e) => {
+					onInput={(e: Array<number>) => {
 						formik.setFieldValue('rangeSlider', e[1]);
-						formik.values.notificationFrequency = e[1];
+						'notificationFrequency' in formik.values && (formik.values.notificationFrequency = e[1]);
 					}}
 				/>
 				<div className={style.rangeSlider__footer}>
