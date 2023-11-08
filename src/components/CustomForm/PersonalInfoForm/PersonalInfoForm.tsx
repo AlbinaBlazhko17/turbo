@@ -3,12 +3,11 @@ import { IDataForPersonalnfoForm } from '@/interfaces/IDataForForms';
 import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomInput from '@/components/CustomInput/CustomInput';
 import cn from 'classnames';
-
-import style from '../customForm.module.scss';
 import CustomRadioInput from '@/components/CustomRadioInput/CustomRadioInput';
 
-function PersonalInfoForm ({formik}: {formik: FormikProps<IDataForPersonalnfoForm>}) {
+import style from '../customForm.module.scss';
 
+function PersonalInfoForm({ formik }: { formik: FormikProps<IDataForPersonalnfoForm> }) {
 	return (
 		<>
 			<h2>Personal Information</h2>
@@ -31,7 +30,7 @@ function PersonalInfoForm ({formik}: {formik: FormikProps<IDataForPersonalnfoFor
 					<CustomLabel label="email">Email</CustomLabel>
 					<CustomInput formik={formik} label="email" type="email" />
 					{formik.touched.email && formik.errors.email && (
-							<div className={style[`form-item__error`]}>{formik.errors.email}</div>)
+						<div className={style[`form-item__error`]}>{formik.errors.email}</div>)
 					}
 				</div>
 				<div className={style['form-item']}>

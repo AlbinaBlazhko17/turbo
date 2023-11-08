@@ -12,8 +12,8 @@ import style from './formPage.module.scss';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
-	const [validation, setValidation] = useState<ObjectSchema<FormValues>>();
-	const [initialValues, setInitialValues] = useState<FormValues>();
+	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
+	const [initialValues, setInitialValues] = useState<FormValues>(initialValuesPersonalInfo);
 
 	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());

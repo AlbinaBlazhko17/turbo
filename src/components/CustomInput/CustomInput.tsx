@@ -17,7 +17,7 @@ function CustomInput({ formik, label, type, value }: { formik: FormikProps<FormV
 			})}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
-			value={formik.values[label]}
+			value={formik.values && formik.values[label]}
 		/>
 	)
 }

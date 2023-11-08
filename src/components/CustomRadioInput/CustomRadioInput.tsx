@@ -3,7 +3,7 @@ import { FormValues } from '../CustomForm/formik';
 
 import style from './customRadioInput.module.scss';
 
-function customRadioInput ({ formik, name, value }: {formik: FormikProps<FormValues>, name: string, value: string}) {
+function customRadioInput({ formik, name, value }: { formik: FormikProps<FormValues>, name: string, value: string }) {
 	return (
 		<input
 			className={style.radio}
@@ -11,7 +11,7 @@ function customRadioInput ({ formik, name, value }: {formik: FormikProps<FormVal
 			name={name}
 			value={value}
 			id={value}
-			checked={formik.values[name] === value}
+			checked={formik.values && formik.values[name] === value}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
 		/>
