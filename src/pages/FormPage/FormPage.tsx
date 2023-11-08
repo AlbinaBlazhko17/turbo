@@ -77,7 +77,7 @@ function FormPage() {
 								<Button
 									appearance={+currentStep !== 5 ? 'filled' : 'outlined'}
 									onClick={formik.handleSubmit}
-									type="submit"
+									type={'submit'}
 								>
 									{currentStep !== 4 ? 'Next step' : 'Finish'}
 								</Button>
