@@ -14,7 +14,7 @@ function CustomTextarea({ formik, label }: { formik: FormikProps<FormValues>, la
 			className={cn(style.textarea, style[`textarea__${theme}`])}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
-			value={formik.values[label]}
+			value={formik.values[label as keyof FormValues]}
 		/>
 	);
 }
