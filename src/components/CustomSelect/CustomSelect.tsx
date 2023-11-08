@@ -1,12 +1,12 @@
-import { IDataForAddressForm } from "@/interfaces/IDataForForms";
 import { FormikProps } from "formik";
 import { useContext, useEffect, useState } from "react";
 import Select from "react-select";
 import { ThemeContext } from "@theme/theme";
+import { FormValues } from "../CustomForm/formik";
 
 import style from './customSelect.module.scss';
 
-const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForAddressForm>, type: string }) => {
+const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type: string }) => {
 	const [data, setData] = useState();
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
