@@ -20,5 +20,5 @@ export interface IDataForPreferencesForm {
 export interface IDataForSubmitForm {
 	comment: string | null | undefined;
 	profilePicture: File | undefined;
-	terms: Required<boolean> | null | undefined;
+	terms: boolean;
 }

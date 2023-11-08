@@ -1,6 +1,5 @@
 import { FormikProps } from 'formik';
 import PersonalInfoForm from './PersonalInfoForm/PersonalInfoForm';
-import { IDataForAddressForm, IDataForPersonalnfoForm, IDataForPreferencesForm, IDataForSubmitForm } from '@interfaces/IDataForForms';
 import AddressForm from './AddressForm/AddressForm';
 import { FormValues } from './formik';
 import PreferencesForm from './PreferencesForm/PreferencesForm';
