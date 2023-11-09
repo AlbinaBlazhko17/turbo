@@ -5,6 +5,7 @@ import { ThemeContext } from "@theme/theme";
 import { FormValues } from "../CustomForm/formik";
 
 import style from './customSelect.module.scss';
+import { IDataForPreferencesForm } from "@/interfaces/IDataForForms";
 
 const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type: string }) => {
 	const [data, setData] = useState();
@@ -12,7 +13,7 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type:
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
-		type === 'country' ? formik.setFieldValue('country', selectedData.label?.split(' ')[1]) : formik.setFieldValue('language', selectedData.label);
+		type === 'country' ? formik.setFieldValue('country', selectedData) : formik.setFieldValue('language', selectedData);
 	}, [selectedData]);
 
 	useEffect(() => {
@@ -24,7 +25,8 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type:
 					.then((response) => response.json())
 					.then((data) => {
 						setData(data.countries);
-						setSelectedData(data.userSelectValue);
+						console.log(data.userSelectValue)
+						setSelectedData(formik.values['country' as keyof FormValues] || data.userSelectValue);
 					});
 			} else {
 				fetch(
@@ -32,13 +34,18 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type:
 				)
 					.then((response) => response.json())
 					.then((data) => {
-						setData(data.map((item: any) => ({ value: item.alpha2, label: item.English })));
-						setSelectedData(data[0].English);
+						setData(data.map((item: any) => ({ label: item.English, value: item.alpha2 })));
+						// console.log(formik.values['language' as keyof FormValues])
+						setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
 					})
 					.catch((err) => console.log(err));
 			}
 		})()
 	}, []);
+
+	// useEffect(() => {
+	// 	console.log(selectedData)
+	// })
 
 
 	const customStyles = {
