@@ -42,6 +42,10 @@ function FormPage() {
 		})();
 	}, [currentStep]);
 
+	useEffect(() => {
+
+	}, [])
+
 	const handlePrevStep = () => {
 		if (+currentStep > 1) {
 			setCurrentStep(+currentStep - 1);

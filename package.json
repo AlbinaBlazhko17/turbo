@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
     "chart.js": "^4.4.0",
     "classnames": "^2.3.2",
     "dirname": "^0.1.0",
@@ -26,6 +27,8 @@
     "react-router-dom": "^6.17.0",
     "react-select": "^5.7.7",
     "react-switch": "^7.0.0",
+    "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
     "sass": "^1.69.4",
     "swiper": "^10.3.1",
     "typescript": "^5.2.2",
