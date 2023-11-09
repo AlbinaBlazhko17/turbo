@@ -28,3 +28,5 @@ export interface IDataForSubmitForm {
 	profilePicture: File | null;
 	terms: boolean;
 }
+
+export interface IDataForForm extends IDataForPersonalnfoForm, IDataForAddressForm, IDataForPreferencesForm, IDataForSubmitForm { }

@@ -1,17 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialValuesPersonalInfo } from "@components/CustomForm/initialValues";
+import { allValues } from "@components/CustomForm/initialValues";
 
 export const formSlice = createSlice({
 	name: 'form',
 	initialState: {
-		initialValuesPersonalInfo
+		allValues
 	},
 	reducers: {
 		addItemToForm: (state, action) => {
 			return { ...state, ...action.payload };
 		},
 		removeItemFromForm: (state) => {
-			return { ...state, ...initialValuesPersonalInfo };
+			return { ...state, ...allValues }
 		},
 	}
 })

@@ -3,11 +3,11 @@ import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomInput from '@/components/CustomInput/CustomInput';
 import cn from 'classnames';
 import CustomRadioInput from '@/components/CustomRadioInput/CustomRadioInput';
-import { FormValues } from '../formik';
+import { IDataForForm } from '@interfaces/IDataForForms';
 
 import style from '../customForm.module.scss';
 
-function PersonalInfoForm({ formik }: { formik: FormikProps<FormValues> }) {
+function PersonalInfoForm({ formik }: { formik: FormikProps<IDataForForm> }) {
 	return (
 		<>
 			<h2>Personal Information</h2>

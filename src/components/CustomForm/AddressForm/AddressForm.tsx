@@ -4,10 +4,17 @@ import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomSelect from '@/components/CustomSelect/CustomSelect';
 import { FormValues } from '../formik';
 import { IDataForAddressForm } from '@/interfaces/IDataForForms';
+import { useEffect } from 'react';
 
 import style from '../customForm.module.scss';
 
 function AddressForm({ formik }: { formik: FormikProps<FormValues> }) {
+
+	useEffect(() => {
+		formik.setFieldTouched('city', false);
+		formik.setFieldTouched('zipCode', false);
+	}, []);
+
 	return (
 		<form className={style.form}>
 			<h2>Address Details</h2>

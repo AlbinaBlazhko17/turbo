@@ -1,22 +1,21 @@
-import { initialValuesAddress, initialValuesPersonalInfo, initialValuesPreferences, initialValuesSubmit } from '@/components/CustomForm/initialValues';
 import { validationSchemaAddress, validationSchemaPersonalInfo, validationSchemaPreferences, validationSchemaSubmit } from '@/components/CustomForm/validationSchemas';
 import Button from '@components/Button/Button';
 import CustomForm from '@components/CustomForm/CustomForm';
 import Steps from '@components/Steps/Steps';
-import { Formik } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import { useEffect, useState } from 'react';
 import { FormValues } from '@/components/CustomForm/formik';
 import { ObjectSchema } from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItemToForm } from '@/store/actions';
+import { RootState } from '@/store/types';
 
 import style from './formPage.module.scss';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
-	const [data, setData] = useState<FormValues>();
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
-	let initialValues = useSelector((state) => state.form);
+	let initialValues = useSelector((state: RootState) => state.form);
 	const formDispatcher = useDispatch();
 
 	useEffect(() => {
@@ -47,7 +46,6 @@ function FormPage() {
 		}
 	}
 
-
 	return (
 		<div className={style.wrapper}>
 			<h1>Form page</h1>
@@ -55,8 +53,7 @@ function FormPage() {
 			<Formik
 				initialValues={initialValues!}
 				validationSchema={validation}
-				onSubmit={(values) => {
-					console.log(values);
+				onSubmit={() => {
 					if (+currentStep < 5) {
 						setCurrentStep(+currentStep + 1);
 					}

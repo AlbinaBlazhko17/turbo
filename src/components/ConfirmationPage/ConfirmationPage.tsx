@@ -1,14 +1,21 @@
-import ConfirmIcon from '@assets/icons/confirm-icon.svg';
-import Button from '../Button/Button';
-import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
 import { removeItemFromForm } from '@/store/actions';
+import ConfirmIcon from '@assets/icons/confirm-icon.svg';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import Button from '../Button/Button';
+import { RootState } from '@/store/types';
 
 import style from './confirmationPage.module.scss';
 
 function ConfirmationPage() {
+	const values = useSelector((state: RootState) => state.form)
 	const navigator = useNavigate();
 	const formDisatcher = useDispatch();
+
+	useEffect(() => {
+		console.log(values);
+	})
 
 	function handleGoToHomePage() {
 		navigator('/');
