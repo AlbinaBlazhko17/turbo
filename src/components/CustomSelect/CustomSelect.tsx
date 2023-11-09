@@ -35,17 +35,12 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type:
 					.then((response) => response.json())
 					.then((data) => {
 						setData(data.map((item: any) => ({ label: item.English, value: item.alpha2 })));
-						// console.log(formik.values['language' as keyof FormValues])
 						setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
 					})
 					.catch((err) => console.log(err));
 			}
 		})()
 	}, []);
-
-	// useEffect(() => {
-	// 	console.log(selectedData)
-	// })
 
 
 	const customStyles = {
