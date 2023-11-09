@@ -22,10 +22,10 @@ export const validationSchemaAddress = Yup.object().shape({
 		.max(20, 'City is too long!')
 		.required('City is required!'),
 	country: Yup.object({
-		value: Yup.string(),
-		label: Yup.string()
+		value: Yup.string().required('Select country!'),
+		label: Yup.string().required()
 	})
-		.required('Country is required!'),
+		.required('Select country!'),
 	zipCode: Yup.number()
 		.min(5, 'ZipCode must be at least 10 characters')
 		.required('ZipCode is required')
@@ -37,8 +37,8 @@ export const validationSchemaPreferences = Yup.object().shape({
 		.min(1, 'Select at least one interest')
 		.required('Select at least one interest'),
 	language: Yup.object({
-		value: Yup.string(),
-		label: Yup.string()
+		value: Yup.string().required('Select preferred language'),
+		label: Yup.string().required()
 	})
 		.required('Select preferred language'),
 	notificationFrequency: Yup.number()

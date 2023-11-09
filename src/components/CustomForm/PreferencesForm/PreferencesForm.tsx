@@ -1,6 +1,6 @@
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import CustomLabel from "@components/CustomLabel/CustomLabel";
-import { FormikProps } from "formik";
+import { FormikErrors, FormikProps } from "formik";
 import CustomCheckbox from "@/components/CustomCheckbox/CustomCheckbox";
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
@@ -12,7 +12,6 @@ import style from '../customForm.module.scss';
 
 
 function PreferencesForm({ formik }: { formik: FormikProps<FormValues> }) {
-
 	return (
 		<form className={style.form}>
 			<h2>Preferences & Settings</h2>
@@ -50,7 +49,7 @@ function PreferencesForm({ formik }: { formik: FormikProps<FormValues> }) {
 					<CustomSelect formik={formik} type="languages" />
 				</div>
 				{!formik.isSubmitting && (formik.errors as IDataForPreferencesForm).language && (
-					<div className={style[`form-item__error`]}>{(formik.errors as IDataForPreferencesForm).language}</div>
+					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
@@ -71,6 +70,9 @@ function PreferencesForm({ formik }: { formik: FormikProps<FormValues> }) {
 					<p>Rarely</p>
 					<p>Often</p>
 				</div>
+				{!formik.isSubmitting && (formik.errors as IDataForPreferencesForm).notificationFrequency && (
+					<div className={style[`form-item__error`]}>{(formik.errors as IDataForPreferencesForm).notificationFrequency}</div>
+				)}
 			</div>
 		</form>
 	);

@@ -7,13 +7,19 @@ export interface IDataForPersonalnfoForm {
 
 export interface IDataForAddressForm {
 	city: string;
-	country: string;
+	country: {
+		value: string;
+		label: string;
+	};
 	zipCode: number;
 }
 
 export interface IDataForPreferencesForm {
 	interests: (string | undefined)[];
-	language: string;
+	language: {
+		value: string;
+		label: string;
+	};
 	notificationFrequency: number;
 }
 
