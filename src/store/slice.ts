@@ -10,8 +10,8 @@ export const formSlice = createSlice({
 		addItemToForm: (state, action) => {
 			return { ...state, ...action.payload };
 		},
-		removeItemFromForm: () => {
-			return;
+		removeItemFromForm: (state) => {
+			return { ...state, ...initialValuesPersonalInfo };
 		},
 	}
 })

@@ -13,7 +13,7 @@ function ConfirmationPage() {
 	function handleGoToHomePage() {
 		navigator('/');
 		localStorage.setItem('step', '1');
-		formDisatcher(removeItemFromForm);
+		formDisatcher(removeItemFromForm());
 	}
 	return (
 		<div className={style.confirmation}>
