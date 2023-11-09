@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { initialValuesPersonalInfo } from "@components/CustomForm/initialValues";
 
 export const formSlice = createSlice({
 	name: 'form',
-	initialState: {},
+	initialState: {
+		initialValuesPersonalInfo
+	},
 	reducers: {
 		addItemToForm: (state, action) => {
-			return { ...action.payload };
+			return { ...state, ...action.payload };
 		},
 		removeItemFromForm: () => {
 			return;

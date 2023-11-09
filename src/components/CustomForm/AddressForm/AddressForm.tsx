@@ -8,7 +8,6 @@ import { IDataForAddressForm } from '@/interfaces/IDataForForms';
 import style from '../customForm.module.scss';
 
 function AddressForm({ formik }: { formik: FormikProps<FormValues> }) {
-
 	return (
 		<form className={style.form}>
 			<h2>Address Details</h2>

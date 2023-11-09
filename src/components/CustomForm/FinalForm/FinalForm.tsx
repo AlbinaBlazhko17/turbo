@@ -7,8 +7,12 @@ import { FormValues } from '../formik';
 import { IDataForSubmitForm } from '@/interfaces/IDataForForms';
 
 import style from '../customForm.module.scss';
+import { useEffect } from 'react';
 
 function FinalForm({ formik }: { formik: FormikProps<FormValues> }) {
+	useEffect(() => {
+		console.log(formik)
+	})
 	return (
 		<form className={style.form}>
 			<h2>Finalize & Submit</h2>
@@ -29,7 +33,7 @@ function FinalForm({ formik }: { formik: FormikProps<FormValues> }) {
 					<CustomCheckbox formik={formik} label="terms" />
 					I accept the terms and conditions
 				</CustomLabel>
-				{!formik.isSubmitting && (formik.errors as IDataForSubmitForm).terms && (
+				{(formik.errors as IDataForSubmitForm).terms && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForSubmitForm>).terms}</div>
 				)}
 			</div>

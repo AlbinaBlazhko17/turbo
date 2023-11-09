@@ -7,13 +7,17 @@ import { Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { FormValues } from '@/components/CustomForm/formik';
 import { ObjectSchema } from 'yup';
+import { useSelector, useDispatch } from 'react-redux';
+import { addItemToForm } from '@/store/actions';
 
 import style from './formPage.module.scss';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
+	const [data, setData] = useState<FormValues>();
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
-	const [initialValues, setInitialValues] = useState<FormValues>(initialValuesPersonalInfo);
+	let initialValues = useSelector((state) => state.form);
+	const formDispatcher = useDispatch();
 
 	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());
@@ -21,30 +25,21 @@ function FormPage() {
 			switch (+currentStep) {
 				case 1:
 					setValidation(validationSchemaPersonalInfo);
-					setInitialValues(initialValuesPersonalInfo);
 					break;
 				case 2:
 					setValidation(validationSchemaAddress);
-					setInitialValues(initialValuesAddress);
 					break;
 				case 3:
 					setValidation(validationSchemaPreferences);
-					setInitialValues(initialValuesPreferences);
 					break;
 				case 4:
 					setValidation(validationSchemaSubmit);
-					setInitialValues(initialValuesSubmit);
 					break;
 				default:
 					setValidation(validationSchemaPersonalInfo);
-					setInitialValues(initialValuesPersonalInfo);
 			}
 		})();
 	}, [currentStep]);
-
-	useEffect(() => {
-
-	}, [])
 
 	const handlePrevStep = () => {
 		if (+currentStep > 1) {
@@ -61,6 +56,7 @@ function FormPage() {
 				initialValues={initialValues!}
 				validationSchema={validation}
 				onSubmit={(values) => {
+					console.log(values);
 					if (+currentStep < 5) {
 						setCurrentStep(+currentStep + 1);
 					}
@@ -80,7 +76,7 @@ function FormPage() {
 								</Button>
 								<Button
 									appearance={+currentStep !== 5 ? 'filled' : 'outlined'}
-									onClick={formik.handleSubmit}
+									onClick={() => { formik.handleSubmit(); formDispatcher(addItemToForm(formik.values)) }}
 									type={'submit'}
 								>
 									{currentStep !== 4 ? 'Next step' : 'Finish'}
@@ -90,7 +86,7 @@ function FormPage() {
 					</section>
 				)}
 			</Formik>
-		</div>
+		</div >
 	)
 }
 

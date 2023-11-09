@@ -45,6 +45,7 @@ function CustomCheckbox({ formik, label }: { formik: FormikProps<FormValues>, la
 					handleCheckboxChange();
 					formik.handleChange(e);
 				} else {
+					setIsChecked(!isChecked);
 					formik.setFieldValue('terms', !(formik.values as IDataForSubmitForm).terms);
 				}
 			}}

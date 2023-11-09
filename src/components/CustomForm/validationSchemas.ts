@@ -64,5 +64,6 @@ export const validationSchemaSubmit = Yup.object().shape({
 		})
 		.required('Profile picture is required'),
 	terms: Yup.boolean()
+		.test('is-true', 'You must accept the terms and conditions', (value) => value === true)
 		.required('Terms and conditions is required')
 })

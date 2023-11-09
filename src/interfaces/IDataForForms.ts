@@ -11,7 +11,7 @@ export interface IDataForAddressForm {
 		value: string;
 		label: string;
 	};
-	zipCode: number;
+	zipCode: number | null;
 }
 
 export interface IDataForPreferencesForm {
@@ -25,6 +25,6 @@ export interface IDataForPreferencesForm {
 
 export interface IDataForSubmitForm {
 	comment: string | null | undefined;
-	profilePicture: File | undefined;
+	profilePicture: File | null;
 	terms: boolean;
 }

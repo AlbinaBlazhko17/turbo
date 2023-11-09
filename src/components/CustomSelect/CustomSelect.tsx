@@ -25,7 +25,6 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type:
 					.then((response) => response.json())
 					.then((data) => {
 						setData(data.countries);
-						console.log(data.userSelectValue)
 						setSelectedData(formik.values['country' as keyof FormValues] || data.userSelectValue);
 					});
 			} else {

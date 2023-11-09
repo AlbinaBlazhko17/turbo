@@ -24,4 +24,4 @@ export const store = configureStore(
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-export const persister = persistStore(store);
+export const persistor = persistStore(store);
