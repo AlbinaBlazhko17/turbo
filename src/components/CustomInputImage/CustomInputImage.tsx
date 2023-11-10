@@ -7,7 +7,6 @@ import style from './customInputImage.module.scss';
 
 function CustomInputImage({ formik, label, setData }: { formik: FormikProps<IDataForForm>, label: string, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
-	console.log(formik)
 
 	useEffect(() => {
 		setData(formik.values);

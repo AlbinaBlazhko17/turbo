@@ -49,7 +49,6 @@ function FormPage() {
 	}
 
 	useEffect(() => {
-		// console.log(data);
 		formDispatcher(addItemToForm(data));
 	}, [data]);
 

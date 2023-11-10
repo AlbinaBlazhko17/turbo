@@ -8,7 +8,6 @@ import { IDataForForm, IDataForSubmitForm } from '@/interfaces/IDataForForms';
 import style from '../customForm.module.scss';
 
 function FinalForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
-	console.log(formik)
 	return (
 		<form className={style.form}>
 			<h2>Finalize & Submit</h2>
