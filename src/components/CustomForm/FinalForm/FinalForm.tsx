@@ -10,9 +10,7 @@ import style from '../customForm.module.scss';
 import { useEffect } from 'react';
 
 function FinalForm({ formik }: { formik: FormikProps<FormValues> }) {
-	useEffect(() => {
-		console.log(formik)
-	})
+
 	return (
 		<form className={style.form}>
 			<h2>Finalize & Submit</h2>

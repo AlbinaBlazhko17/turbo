@@ -6,10 +6,16 @@ export const formSlice = createSlice({
 	initialState: [allValues],
 	reducers: {
 		addItemToForm: (state, action) => {
-			return [...state, ...state.concat(action.payload)];
+			const updatedState = [...state];
+			const lastObject = updatedState[updatedState.length - 1];
+			if (lastObject) {
+				updatedState[updatedState.length - 1] = { ...lastObject, ...action.payload };
+			}
+
+			return updatedState;
 		},
 		removeItemFromForm: (state) => {
-			return [...state, ...state.concat(allValues)];
+			return [...state.concat(allValues)];
 		},
 	}
 })
