@@ -3,13 +3,11 @@ import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import { FormikErrors, FormikProps } from 'formik';
 import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
 import CustomInputImage from '@/components/CustomInputImage/CustomInputImage';
-import { FormValues } from '../formik';
-import { IDataForSubmitForm } from '@/interfaces/IDataForForms';
+import { IDataForForm, IDataForSubmitForm } from '@/interfaces/IDataForForms';
 
 import style from '../customForm.module.scss';
-import { useEffect } from 'react';
 
-function FinalForm({ formik }: { formik: FormikProps<FormValues> }) {
+function FinalForm({ formik }: { formik: FormikProps<IDataForForm> }) {
 
 	return (
 		<form className={style.form}>
@@ -21,7 +19,7 @@ function FinalForm({ formik }: { formik: FormikProps<FormValues> }) {
 			<div className={style['form-item']}>
 				<CustomLabel label='comments'>Upload profile picture</CustomLabel>
 				<CustomInputImage formik={formik} label="profilePicture" />
-				{(formik.errors as IDataForSubmitForm).profilePicture && (
+				{formik.errors.profilePicture && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForSubmitForm>).profilePicture}</div>
 				)}
 			</div>
@@ -31,7 +29,7 @@ function FinalForm({ formik }: { formik: FormikProps<FormValues> }) {
 					<CustomCheckbox formik={formik} label="terms" />
 					I accept the terms and conditions
 				</CustomLabel>
-				{(formik.errors as IDataForSubmitForm).terms && (
+				{formik.errors.terms && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForSubmitForm>).terms}</div>
 				)}
 			</div>

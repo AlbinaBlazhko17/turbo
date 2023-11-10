@@ -2,13 +2,12 @@ import CustomInput from '@/components/CustomInput/CustomInput';
 import { FormikErrors, FormikProps } from 'formik';
 import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomSelect from '@/components/CustomSelect/CustomSelect';
-import { FormValues } from '../formik';
-import { IDataForAddressForm } from '@/interfaces/IDataForForms';
+import { IDataForAddressForm, IDataForForm } from '@/interfaces/IDataForForms';
 import { useEffect } from 'react';
 
 import style from '../customForm.module.scss';
 
-function AddressForm({ formik }: { formik: FormikProps<FormValues> }) {
+function AddressForm({ formik }: { formik: FormikProps<IDataForForm> }) {
 
 	useEffect(() => {
 		formik.setFieldTouched('city', false);
@@ -33,7 +32,7 @@ function AddressForm({ formik }: { formik: FormikProps<FormValues> }) {
 				<CustomLabel label="zipCode">Postal Code</CustomLabel>
 				<CustomInput label="zipCode" type="tel" formik={formik} />
 				{!formik.isSubmitting && (formik.errors as FormikErrors<IDataForAddressForm>).zipCode && (
-					<div className={style[`form-item__error`]}>{(formik.errors as IDataForAddressForm).zipCode}</div>
+					<div className={style[`form-item__error`]}>{formik.errors.zipCode}</div>
 				)}
 			</div>
 		</form>

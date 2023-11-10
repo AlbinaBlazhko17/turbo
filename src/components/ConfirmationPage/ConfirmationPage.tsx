@@ -1,25 +1,24 @@
 import { removeItemFromForm } from '@/store/actions';
 import ConfirmIcon from '@assets/icons/confirm-icon.svg';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Button from '../Button/Button';
 import { RootState } from '@/store/types';
 
 import style from './confirmationPage.module.scss';
+import { allValues } from '../CustomForm/initialValues';
+import { FormikProps } from 'formik';
+import { IDataForForm } from '@/interfaces/IDataForForms';
 
-function ConfirmationPage() {
-	const values = useSelector((state: RootState) => state.form)
+function ConfirmationPage({ formik }: { formik: FormikProps<IDataForForm> }) {
 	const navigator = useNavigate();
 	const formDisatcher = useDispatch();
 
-	useEffect(() => {
-		console.log(values);
-	})
 
 	function handleGoToHomePage() {
 		navigator('/');
 		localStorage.setItem('step', '1');
+		formik.values = allValues;
 		formDisatcher(removeItemFromForm());
 	}
 	return (

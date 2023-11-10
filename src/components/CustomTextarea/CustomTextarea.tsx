@@ -3,10 +3,11 @@ import cn from 'classnames';
 import { FormikProps } from 'formik';
 import { useContext } from 'react';
 import { FormValues } from '../CustomForm/formik';
+import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './customTextarea.module.scss';
 
-function CustomTextarea({ formik, label }: { formik: FormikProps<FormValues>, label: string }) {
+function CustomTextarea({ formik, label }: { formik: FormikProps<IDataForForm>, label: string }) {
 	const { theme } = useContext(ThemeContext);
 	return (
 		<textarea

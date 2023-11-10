@@ -1,11 +1,11 @@
 import { FormikProps } from "formik";
-import { FormValues } from "../CustomForm/formik";
 import { useRef, useState } from "react";
 import CustomLabel from "../CustomLabel/CustomLabel";
+import { IDataForForm } from "@/interfaces/IDataForForms";
 
 import style from './customInputImage.module.scss';
 
-function CustomInputImage({ formik, label }: { formik: FormikProps<FormValues>, label: string }) {
+function CustomInputImage({ formik, label }: { formik: FormikProps<IDataForForm>, label: string }) {
 	const [file, setFile] = useState<File | null>();
 	const fileInputRef = useRef<HTMLInputElement>(null);
 

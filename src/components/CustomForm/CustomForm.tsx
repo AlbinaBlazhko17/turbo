@@ -8,7 +8,7 @@ import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './customForm.module.scss';
 
-function CustomForm({ formik, currentStep }: { formik: FormikProps<{ allValues: IDataForForm; }>, currentStep: number }) {
+function CustomForm({ formik, currentStep }: { formik: FormikProps<IDataForForm>, currentStep: number }) {
 
 	switch (+currentStep) {
 		case 1:
@@ -20,7 +20,7 @@ function CustomForm({ formik, currentStep }: { formik: FormikProps<{ allValues: 
 		case 4:
 			return <FinalForm formik={formik} />;
 		case 5:
-			return <ConfirmationPage />;
+			return <ConfirmationPage formik={formik} />;
 		default:
 			return null;
 	}

@@ -2,7 +2,7 @@ import { validationSchemaAddress, validationSchemaPersonalInfo, validationSchema
 import Button from '@components/Button/Button';
 import CustomForm from '@components/CustomForm/CustomForm';
 import Steps from '@components/Steps/Steps';
-import { Formik, FormikProps } from 'formik';
+import { Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { FormValues } from '@/components/CustomForm/formik';
 import { ObjectSchema } from 'yup';
@@ -11,7 +11,6 @@ import { addItemToForm } from '@/store/actions';
 import { RootState } from '@/store/types';
 
 import style from './formPage.module.scss';
-import { allValues } from '@/components/CustomForm/initialValues';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
@@ -52,7 +51,7 @@ function FormPage() {
 			<h1>Form page</h1>
 			<Steps currentStep={+currentStep} setCurrentStep={setCurrentStep} />
 			<Formik
-				initialValues={initialValues!}
+				initialValues={initialValues[initialValues.length - 1]!}
 				validationSchema={validation}
 				onSubmit={() => {
 					if (+currentStep < 5) {

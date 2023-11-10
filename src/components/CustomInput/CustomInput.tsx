@@ -3,10 +3,11 @@ import { FormikProps } from 'formik';
 import { useContext } from 'react';
 import cn from 'classnames';
 import { FormValues } from '../CustomForm/formik';
+import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './customInput.module.scss';
 
-function CustomInput({ formik, label, type }: { formik: FormikProps<FormValues>, label: string, type: string }) {
+function CustomInput({ formik, label, type }: { formik: FormikProps<IDataForForm>, label: string, type: string }) {
 	const { theme } = useContext(ThemeContext);
 	return (
 		<input

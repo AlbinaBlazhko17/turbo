@@ -1,13 +1,13 @@
 import { FormikProps } from "formik";
-import { useContext, useEffect, useState } from "react";
-import Select from "react-select";
+import { CSSProperties, useContext, useEffect, useState } from "react";
+import Select, { CSSObjectWithLabel, GroupBase, StylesConfig } from "react-select";
 import { ThemeContext } from "@theme/theme";
 import { FormValues } from "../CustomForm/formik";
+import { IDataForForm } from "@/interfaces/IDataForForms";
 
 import style from './customSelect.module.scss';
-import { IDataForPreferencesForm } from "@/interfaces/IDataForForms";
 
-const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type: string }) => {
+const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, type: string }) => {
 	const [data, setData] = useState();
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
@@ -42,15 +42,15 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type:
 	}, []);
 
 
-	const customStyles = {
-		option: (defaultStyles, state) => ({
+	const customStyles: StylesConfig<{}, true, GroupBase<{ value: string; label: string; }>> = {
+		option: (defaultStyles: CSSObjectWithLabel, state) => ({
 			...defaultStyles,
 			color: state.isFocused ? "#333" : state.isSelected ? '#333' : "#333",
 			backgroundColor: state.isFocused ? "#e9f5fe" : state.isSelected ? '#333' : "e9f5fe",
 			overflow: 'hidden',
 		}),
 
-		control: (defaultStyles) => ({
+		control: (defaultStyles: CSSObjectWithLabel) => ({
 			...defaultStyles,
 			backgroundColor: "transparent",
 			padding: "10px",
@@ -61,7 +61,7 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<FormValues>, type:
 			width: '434px',
 		}),
 
-		singleValue: (defaultStyles) => ({ ...defaultStyles, color: theme === 'dark' ? "white" : '#333' }),
+		singleValue: (defaultStyles: CSSObjectWithLabel) => ({ ...defaultStyles, color: theme === 'dark' ? "white" : '#333' }),
 	};
 
 
