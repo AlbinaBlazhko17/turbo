@@ -5,8 +5,12 @@ import { IDataForForm, IDataForPreferencesForm, IDataForSubmitForm } from "@/int
 
 import style from '../CustomInput/customInput.module.scss';
 
-function CustomCheckbox({ formik, label }: { formik: FormikProps<IDataForForm>, label: string }) {
+function CustomCheckbox({ formik, label, setData }: { formik: FormikProps<IDataForForm>, label: string, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
 	const [isChecked, setIsChecked] = useState(false);
+
+	useEffect(() => {
+		setData(formik.values);
+	}, [formik.values])
 
 	useEffect(() => {
 		if (label !== 'terms') {

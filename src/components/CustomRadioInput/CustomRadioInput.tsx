@@ -3,8 +3,14 @@ import { FormValues } from '../CustomForm/formik';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './customRadioInput.module.scss';
+import { useEffect } from 'react';
 
-function customRadioInput({ formik, name, value }: { formik: FormikProps<IDataForForm>, name: string, value: string }) {
+function customRadioInput({ formik, name, value, setData }: { formik: FormikProps<IDataForForm>, name: string, value: string, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+
+	useEffect(() => {
+		setData(formik.values);
+	}, [formik.values]);
+
 	return (
 		<input
 			className={style.radio}

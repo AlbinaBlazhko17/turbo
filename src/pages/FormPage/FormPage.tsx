@@ -9,6 +9,7 @@ import { ObjectSchema } from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItemToForm } from '@/store/actions';
 import { RootState } from '@/store/types';
+import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './formPage.module.scss';
 
@@ -16,6 +17,7 @@ function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
 	let initialValues = useSelector((state: RootState) => state.form);
+	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
 	const formDispatcher = useDispatch();
 
 	useEffect(() => {
@@ -46,6 +48,11 @@ function FormPage() {
 		}
 	}
 
+	useEffect(() => {
+		console.log(data);
+		formDispatcher(addItemToForm(data));
+	}, [data]);
+
 	return (
 		<div className={style.wrapper}>
 			<h1>Form page</h1>
@@ -61,7 +68,7 @@ function FormPage() {
 			>
 				{(formik) => (
 					<section className={style.form__wrapper}>
-						<CustomForm formik={formik} currentStep={+currentStep} />
+						<CustomForm formik={formik} currentStep={+currentStep} setData={setData} />
 						{+currentStep !== 5 &&
 							<div className={style.buttons}>
 								<Button

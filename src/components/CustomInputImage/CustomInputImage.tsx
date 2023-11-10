@@ -5,8 +5,7 @@ import { IDataForForm } from "@/interfaces/IDataForForms";
 
 import style from './customInputImage.module.scss';
 
-function CustomInputImage({ formik, label }: { formik: FormikProps<IDataForForm>, label: string }) {
-	const [file, setFile] = useState<File | null>();
+function CustomInputImage({ formik, label, setData }: { formik: FormikProps<IDataForForm>, label: string, setData: React.Dispatch<React.SetStateAction<IDataForForm | undefined>> }) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	function handleFileInputClick() {
@@ -15,8 +14,8 @@ function CustomInputImage({ formik, label }: { formik: FormikProps<IDataForForm>
 
 	const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files) {
-			setFile(event.target.files[0]);
 			formik.setFieldValue('profilePicture', event.target.files[0]);
+			setData(formik.values);
 		}
 	};
 
@@ -25,7 +24,7 @@ function CustomInputImage({ formik, label }: { formik: FormikProps<IDataForForm>
 			<div className={style.inputImage}>
 				<input type="file" id={label} ref={fileInputRef} className={style.inputImage__file} onChange={changeHandler} />
 				<input type="button" value="Choose file" className={style.inputImage__button} onClick={handleFileInputClick} />
-				<CustomLabel label='file' className={style.inputImage__label}>{!file ? 'No file chosen' : file.name}</CustomLabel>
+				<CustomLabel label='file' className={style.inputImage__label}>{!formik.values['profilePicture'] ? 'No file chosen' : formik.values['profilePicture'].name}</CustomLabel>
 			</div>
 		</>
 	)

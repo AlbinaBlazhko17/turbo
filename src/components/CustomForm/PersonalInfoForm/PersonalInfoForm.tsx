@@ -7,28 +7,28 @@ import { IDataForForm } from '@interfaces/IDataForForms';
 
 import style from '../customForm.module.scss';
 
-function PersonalInfoForm({ formik }: { formik: FormikProps<IDataForForm> }) {
+function PersonalInfoForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
 	return (
 		<>
 			<h2>Personal Information</h2>
 			<form className={style.form} onSubmit={formik.handleSubmit}>
 				<div className={style['form-item']}>
 					<CustomLabel label="firstName">First name</CustomLabel>
-					<CustomInput formik={formik} label="firstName" type="text" />
+					<CustomInput formik={formik} label="firstName" type="text" setData={setData} />
 					{'firstName' in formik.touched && 'firstName' in formik.errors && formik.touched.firstName && formik.errors.firstName && (
 						<div className={style[`form-item__error`]}>{formik.errors.firstName}</div>
 					)}
 				</div>
 				<div className={style['form-item']}>
 					<CustomLabel label="lastName">Last name</CustomLabel>
-					<CustomInput formik={formik} label="lastName" type="text" />
+					<CustomInput formik={formik} label="lastName" type="text" setData={setData} />
 					{'lastName' in formik.touched && 'lastName' in formik.errors && formik.touched.lastName && formik.errors.lastName && (
 						<div className={style[`form-item__error`]}>{formik.errors.lastName}</div>)
 					}
 				</div>
 				<div className={style['form-item']}>
 					<CustomLabel label="email">Email</CustomLabel>
-					<CustomInput formik={formik} label="email" type="email" />
+					<CustomInput formik={formik} label="email" type="email" setData={setData} />
 					{'email' in formik.touched && 'email' in formik.errors && formik.touched.email && formik.errors.email && (
 						<div className={style[`form-item__error`]}>{formik.errors.email}</div>)
 					}
@@ -40,6 +40,7 @@ function PersonalInfoForm({ formik }: { formik: FormikProps<IDataForForm> }) {
 							name="gender"
 							value="male"
 							formik={formik}
+							setData={setData}
 						/>
 						Male
 					</CustomLabel>
@@ -48,6 +49,7 @@ function PersonalInfoForm({ formik }: { formik: FormikProps<IDataForForm> }) {
 							name="gender"
 							value="female"
 							formik={formik}
+							setData={setData}
 						/>
 						Female
 					</CustomLabel>

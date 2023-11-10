@@ -7,13 +7,17 @@ import { IDataForForm } from "@/interfaces/IDataForForms";
 
 import style from './customSelect.module.scss';
 
-const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, type: string }) => {
-	const [data, setData] = useState();
+const CustomSelect = ({ formik, type, setData }: { formik: FormikProps<IDataForForm>, type: string, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) => {
+	const [dataSelect, setDataSelect] = useState();
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
-		type === 'country' ? formik.setFieldValue('country', selectedData) : formik.setFieldValue('language', selectedData);
+		if (type === 'country') {
+			formik.setFieldValue('country', selectedData);
+		} else {
+			formik.setFieldValue('language', selectedData);
+		}
 	}, [selectedData]);
 
 	useEffect(() => {
@@ -24,7 +28,7 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, typ
 				)
 					.then((response) => response.json())
 					.then((data) => {
-						setData(data.countries);
+						setDataSelect(data.countries);
 						setSelectedData(formik.values['country' as keyof FormValues] || data.userSelectValue);
 					});
 			} else {
@@ -33,7 +37,7 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, typ
 				)
 					.then((response) => response.json())
 					.then((data) => {
-						setData(data.map((item: any) => ({ label: item.English, value: item.alpha2 })));
+						setDataSelect(data.map((item: any) => ({ label: item.English, value: item.alpha2 })));
 						setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
 					})
 					.catch((err) => console.log(err));
@@ -71,9 +75,9 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, typ
 			isSearchable={true}
 			styles={customStyles}
 			className={style.select}
-			options={data}
+			options={dataSelect}
 			value={selectedData}
-			onChange={(selectedOption) => setSelectedData(selectedOption)}
+			onChange={(selectedOption) => { setSelectedData(selectedOption); }}
 		/>
 	);
 };

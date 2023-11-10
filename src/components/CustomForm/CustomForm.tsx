@@ -8,19 +8,19 @@ import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './customForm.module.scss';
 
-function CustomForm({ formik, currentStep }: { formik: FormikProps<IDataForForm>, currentStep: number }) {
+function CustomForm({ formik, currentStep, setData }: { formik: FormikProps<IDataForForm>, currentStep: number, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
 
 	switch (+currentStep) {
 		case 1:
-			return <PersonalInfoForm formik={formik} />;
+			return <PersonalInfoForm formik={formik} setData={setData} />;
 		case 2:
-			return <AddressForm formik={formik} />;
+			return <AddressForm formik={formik} setData={setData} />;
 		case 3:
-			return <PreferencesForm formik={formik} />;
+			return <PreferencesForm formik={formik} setData={setData} />;
 		case 4:
-			return <FinalForm formik={formik} />;
+			return <FinalForm formik={formik} setData={setData} />;
 		case 5:
-			return <ConfirmationPage formik={formik} />;
+			return <ConfirmationPage formik={formik} setData={setData} />;
 		default:
 			return null;
 	}

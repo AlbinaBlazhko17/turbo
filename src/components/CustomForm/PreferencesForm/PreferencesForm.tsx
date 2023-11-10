@@ -10,7 +10,7 @@ import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
 
 
-function PreferencesForm({ formik }: { formik: FormikProps<IDataForForm> }) {
+function PreferencesForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
 	return (
 		<form className={style.form}>
 			<h2>Preferences & Settings</h2>
@@ -18,23 +18,23 @@ function PreferencesForm({ formik }: { formik: FormikProps<IDataForForm> }) {
 				<CustomLabel label="interests">Interests</CustomLabel>
 				<div className={style['form-item__checkbox']}>
 					<CustomLabel label="Reading">
-						<CustomCheckbox formik={formik} label="Reading" />
+						<CustomCheckbox formik={formik} label="Reading" setData={setData} />
 						Reading
 					</CustomLabel>
 					<CustomLabel label="Music">
-						<CustomCheckbox formik={formik} label="Music" />
+						<CustomCheckbox formik={formik} label="Music" setData={setData} />
 						Music
 					</CustomLabel>
 					<CustomLabel label="Sports">
-						<CustomCheckbox formik={formik} label="Sports" />
+						<CustomCheckbox formik={formik} label="Sports" setData={setData} />
 						Sports
 					</CustomLabel>
 					<CustomLabel label="Gaming">
-						<CustomCheckbox formik={formik} label="Gaming" />
+						<CustomCheckbox formik={formik} label="Gaming" setData={setData} />
 						Gaming
 					</CustomLabel>
 					<CustomLabel label="Travel">
-						<CustomCheckbox formik={formik} label="Travel" />
+						<CustomCheckbox formik={formik} label="Travel" setData={setData} />
 						Travel
 					</CustomLabel>
 				</div>
@@ -45,7 +45,7 @@ function PreferencesForm({ formik }: { formik: FormikProps<IDataForForm> }) {
 			<div className={style['form-item']}>
 				<CustomLabel label='language'>Language</CustomLabel>
 				<div className={style[`form-item__language`]}>
-					<CustomSelect formik={formik} type="languages" />
+					<CustomSelect formik={formik} type="languages" setData={setData} />
 				</div>
 				{!formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}</div>
@@ -62,7 +62,7 @@ function PreferencesForm({ formik }: { formik: FormikProps<IDataForForm> }) {
 					rangeSlideDisabled={true}
 					onInput={(e: Array<number>) => {
 						formik.setFieldValue('notificationFrequency', e[1]);
-						'notificationFrequency' in formik.values && (formik.values.notificationFrequency = e[1]);
+						setData(formik.values);
 					}}
 				/>
 				<div className={style.rangeSlider__footer}>
