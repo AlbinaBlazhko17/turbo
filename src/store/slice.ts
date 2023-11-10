@@ -3,15 +3,13 @@ import { allValues } from "@components/CustomForm/initialValues";
 
 export const formSlice = createSlice({
 	name: 'form',
-	initialState: {
-		allValues
-	},
+	initialState: [allValues],
 	reducers: {
 		addItemToForm: (state, action) => {
-			return { ...state, ...action.payload };
+			return [...state, ...state.concat(action.payload)];
 		},
 		removeItemFromForm: (state) => {
-			return { ...state, ...allValues }
+			return [...state, ...state.concat(allValues)];
 		},
 	}
 })

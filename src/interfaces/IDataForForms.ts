@@ -1,3 +1,6 @@
+import { FormValues } from "@/components/CustomForm/formik";
+import { FormikErrors, FormikTouched } from "formik";
+
 export interface IDataForPersonalnfoForm {
 	firstName: string;
 	lastName: string;
@@ -30,3 +33,19 @@ export interface IDataForSubmitForm {
 }
 
 export interface IDataForForm extends IDataForPersonalnfoForm, IDataForAddressForm, IDataForPreferencesForm, IDataForSubmitForm { }
+
+export interface InputProps {
+	label: string
+	name: string
+	values: IDataForForm
+	validationSchema: FormValues,
+	placeholder?: string
+	errors?: FormikErrors<{
+		[field: string]: any
+	}>
+	touched?: FormikTouched<{
+		[field: string]: any
+	}>
+	autofocus?: boolean
+	disabled?: boolean
+}

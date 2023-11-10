@@ -7,7 +7,7 @@ import { IDataForForm } from '@interfaces/IDataForForms';
 
 import style from '../customForm.module.scss';
 
-function PersonalInfoForm({ formik }: { formik: FormikProps<IDataForForm> }) {
+function PersonalInfoForm({ formik }: { formik: FormikProps<{ allValues: IDataForForm; }> }) {
 	return (
 		<>
 			<h2>Personal Information</h2>

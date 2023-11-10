@@ -19,6 +19,10 @@ function FormPage() {
 	const formDispatcher = useDispatch();
 
 	useEffect(() => {
+		console.log(initialValues);
+	})
+
+	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());
 		(function () {
 			switch (+currentStep) {
@@ -51,7 +55,7 @@ function FormPage() {
 			<h1>Form page</h1>
 			<Steps currentStep={+currentStep} setCurrentStep={setCurrentStep} />
 			<Formik
-				initialValues={initialValues!}
+				initialValues={initialValues[initialValues.length - 1]!}
 				validationSchema={validation}
 				onSubmit={() => {
 					if (+currentStep < 5) {
