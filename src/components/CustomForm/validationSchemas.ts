@@ -47,21 +47,7 @@ export const validationSchemaPreferences = Yup.object().shape({
 
 export const validationSchemaSubmit = Yup.object().shape({
 	comment: Yup.string().notRequired(),
-	profilePicture: Yup.mixed<File>()
-		.test('fileType', 'Invalid file type', function (value) {
-			if (value instanceof File) {
-				return /^image\//.test(value.type);
-			} else {
-				return true;
-			}
-		})
-		.test('fileSize', 'File size is too large', function (value) {
-			if (value instanceof File) {
-				return value.size <= 1024000;
-			} else {
-				return true;
-			}
-		})
+	profilePicture: Yup.string()
 		.required('Profile picture is required'),
 	terms: Yup.boolean()
 		.test('is-true', 'You must accept the terms and conditions', (value) => value === true)

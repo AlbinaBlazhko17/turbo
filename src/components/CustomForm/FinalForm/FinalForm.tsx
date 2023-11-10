@@ -7,8 +7,8 @@ import { IDataForForm, IDataForSubmitForm } from '@/interfaces/IDataForForms';
 
 import style from '../customForm.module.scss';
 
-function FinalForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm | undefined>> }) {
-
+function FinalForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+	console.log(formik)
 	return (
 		<form className={style.form}>
 			<h2>Finalize & Submit</h2>
@@ -19,7 +19,7 @@ function FinalForm({ formik, setData }: { formik: FormikProps<IDataForForm>, set
 			<div className={style['form-item']}>
 				<CustomLabel label='comments'>Upload profile picture</CustomLabel>
 				<CustomInputImage formik={formik} label="profilePicture" setData={setData} />
-				{formik.errors.profilePicture && (
+				{formik.touched.profilePicture && formik.errors.profilePicture && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForSubmitForm>).profilePicture}</div>
 				)}
 			</div>
@@ -29,7 +29,7 @@ function FinalForm({ formik, setData }: { formik: FormikProps<IDataForForm>, set
 					<CustomCheckbox formik={formik} label="terms" setData={setData} />
 					I accept the terms and conditions
 				</CustomLabel>
-				{formik.errors.terms && (
+				{formik.touched.terms && formik.errors.terms && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForSubmitForm>).terms}</div>
 				)}
 			</div>
