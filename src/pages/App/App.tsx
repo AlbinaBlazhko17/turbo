@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router';
+import { RouterProvider } from 'react-router';
 import routesConfig from '@routes/routes';
-import Layout from '@layout/Layout/Layout';
 import { ThemeContext } from '@theme/theme';
 
 import './App.css'
@@ -15,15 +14,9 @@ function App() {
 	}
 
 	return (
-		<ThemeContext.Provider value={{theme, toggleTheme}}>
+		<ThemeContext.Provider value={{ theme, toggleTheme }}>
 			<div className={`${theme}`}>
-				<Routes>
-					<Route path='/' element={<Layout />}>
-						{routesConfig.map((route, i) => (
-							<Route key={i} {...route} />
-						))}
-					</Route>
-				</Routes>
+				<RouterProvider router={routesConfig} />
 			</div>
 		</ThemeContext.Provider>
 	)
