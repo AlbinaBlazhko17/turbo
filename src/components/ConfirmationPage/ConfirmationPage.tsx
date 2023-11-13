@@ -10,7 +10,7 @@ import { allValues } from '../CustomForm/initialValues';
 import { FormikProps } from 'formik';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 
-function ConfirmationPage({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm | undefined>> }) {
+function ConfirmationPage({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
 	const navigator = useNavigate();
 	const formDisatcher = useDispatch();
 
