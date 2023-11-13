@@ -27,7 +27,7 @@ function AddressForm({ formik, setData }: { formik: FormikProps<IDataForForm>, s
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label='country'>Country</CustomLabel>
-				<CustomSelect formik={formik} type='country' setData={setData} />
+				<CustomSelect formik={formik} type='country' />
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label="zipCode">Postal Code</CustomLabel>

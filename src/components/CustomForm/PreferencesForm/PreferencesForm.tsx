@@ -45,7 +45,7 @@ function PreferencesForm({ formik, setData }: { formik: FormikProps<IDataForForm
 			<div className={style['form-item']}>
 				<CustomLabel label='language'>Language</CustomLabel>
 				<div className={style[`form-item__language`]}>
-					<CustomSelect formik={formik} type="languages" setData={setData} />
+					<CustomSelect formik={formik} type="languages" />
 				</div>
 				{!formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}</div>
