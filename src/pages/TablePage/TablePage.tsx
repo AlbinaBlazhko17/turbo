@@ -30,7 +30,7 @@ function TablePage() {
 						<th className={style.table__header}>Comments</th>
 						<th className={style.table__header}>Image</th>
 					</tr>
-					{dataFromForms.length !== 0 && dataFromForms.slice(0, dataFromForms.length - 1).map((item, index) => (
+					{dataFromForms.length !== 0 ? dataFromForms.slice(0, dataFromForms.length - 1).map((item, index) => (
 						<tr key={index}>
 							<td className={style.table__descr}>{item.firstName}</td>
 							<td className={style.table__descr}>{item.lastName}</td>
@@ -45,7 +45,7 @@ function TablePage() {
 							<td className={style.table__descr}>{item.comments}</td>
 							<td className={style.table__descr}>{item.profilePicture}</td>
 						</tr>
-					))}
+					)) : <h3> No info! Please, fill the form</h3>}
 				</table>
 			</section>
 		</div>
