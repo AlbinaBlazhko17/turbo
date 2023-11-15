@@ -24,7 +24,7 @@ export const allValues: IDataForForm = {
 		label: ''
 	},
 	notificationFrequency: 0,
-	comment: '',
+	comments: '',
 	profilePicture: null,
 	terms: false
 }

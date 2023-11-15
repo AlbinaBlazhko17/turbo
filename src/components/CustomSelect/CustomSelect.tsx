@@ -12,14 +12,18 @@ const CustomSelect = ({ data, formik, type }: { data: { countries: { value: stri
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
-		formik.setFieldValue(type, selectedData);
+		if (type === 'country') {
+			formik.setFieldValue('country', selectedData);
+		} else {
+			formik.setFieldValue('language', selectedData);
+		}
 	}, [selectedData]);
 
 	useEffect(() => {
 		if (type === 'country' && 'userSelectValue' in data) {
 			setSelectedData(formik.values['country' as keyof FormValues] || data.userSelectValue);
 		} else {
-			setSelectedData(formik.values['language' as keyof FormValues]) || data[0];
+			setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
 		}
 	}, []);
 

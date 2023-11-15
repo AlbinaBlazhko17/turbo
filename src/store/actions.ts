@@ -1,3 +1,3 @@
 import { formSlice } from "./slice";
 
-export const { addItemToForm, removeItemFromForm } = formSlice.actions;
+export const { addItemToForm, removeItemFromForm, sortByProp } = formSlice.actions;

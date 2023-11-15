@@ -14,6 +14,21 @@
 		max-width: 100%;
 	}
 
+	&__filtration {
+		width: 400px;
+		display: flex;
+		align-items: center;
+		align-items: center;
+		margin-bottom: 20px;
+		text-align: center;
+		float: right;
+
+		&-item {
+			padding: 8px;
+			width: 100%;
+		}
+	}
+
 	&__header {
 		background-color: $lighter-blue;
 	}
