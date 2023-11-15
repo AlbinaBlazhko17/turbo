@@ -46,7 +46,7 @@ export const validationSchemaPreferences = Yup.object().shape({
 });
 
 export const validationSchemaSubmit = Yup.object().shape({
-	comment: Yup.string().notRequired(),
+	comments: Yup.string().notRequired(),
 	profilePicture: Yup.string()
 		.required('Profile picture is required'),
 	terms: Yup.boolean()
