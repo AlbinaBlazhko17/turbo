@@ -7,42 +7,20 @@ import { IDataForForm } from "@/interfaces/IDataForForms";
 
 import style from './customSelect.module.scss';
 
-const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, type: string }) => {
-	const [dataSelect, setDataSelect] = useState();
+const CustomSelect = ({ data, formik, type }: { data: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } } | { value: string, label: string }[], formik: FormikProps<IDataForForm>, type: string }) => {
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
-		if (type === 'country') {
-			formik.setFieldValue('country', selectedData);
-		} else {
-			formik.setFieldValue('language', selectedData);
-		}
+		formik.setFieldValue(type, selectedData);
 	}, [selectedData]);
 
 	useEffect(() => {
-		(async function () {
-			if (type === 'country') {
-				fetch(
-					"https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
-				)
-					.then((response) => response.json())
-					.then((data) => {
-						setDataSelect(data.countries);
-						setSelectedData(formik.values['country' as keyof FormValues] || data.userSelectValue);
-					});
-			} else {
-				fetch(
-					"https://pkgstore.datahub.io/core/language-codes/language-codes_json/data/97607046542b532c395cf83df5185246/language-codes_json.json"
-				)
-					.then((response) => response.json())
-					.then((data) => {
-						setDataSelect(data.map((item: any) => ({ label: item.English, value: item.alpha2 })));
-						setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
-					})
-					.catch((err) => console.log(err));
-			}
-		})()
+		if (type === 'country' && 'userSelectValue' in data) {
+			setSelectedData(formik.values['country' as keyof FormValues] || data.userSelectValue);
+		} else {
+			setSelectedData(formik.values['language' as keyof FormValues]) || data[0];
+		}
 	}, []);
 
 
@@ -75,7 +53,7 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, typ
 			isSearchable={true}
 			styles={customStyles}
 			className={style.select}
-			options={dataSelect}
+			options={type === 'country' ? data.countries : data}
 			value={selectedData}
 			onChange={(selectedOption) => setSelectedData(selectedOption)}
 		/>

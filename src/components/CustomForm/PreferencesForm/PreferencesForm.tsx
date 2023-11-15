@@ -3,14 +3,26 @@ import CustomLabel from "@components/CustomLabel/CustomLabel";
 import { FormikErrors, FormikProps } from "formik";
 import CustomCheckbox from "@/components/CustomCheckbox/CustomCheckbox";
 import { IDataForForm, IDataForPreferencesForm } from "@/interfaces/IDataForForms";
+import { useEffect, useState } from "react";
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
+import { dataForSelectLanguage } from "@/utils/dataForSelect";
 
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
 
 
 function PreferencesForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+	const [dataSelect, setDataSelect] = useState<{ value: string, label: string }[]>();
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await dataForSelectLanguage();
+			setDataSelect(data);
+		};
+		fetchData();
+	}, [])
+
 	return (
 		<form className={style.form}>
 			<h2>Preferences & Settings</h2>
@@ -45,7 +57,7 @@ function PreferencesForm({ formik, setData }: { formik: FormikProps<IDataForForm
 			<div className={style['form-item']}>
 				<CustomLabel label='language'>Language</CustomLabel>
 				<div className={style[`form-item__language`]}>
-					<CustomSelect formik={formik} type="languages" />
+					{dataSelect && <CustomSelect data={dataSelect} formik={formik} type="languages" />}
 				</div>
 				{!formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}</div>

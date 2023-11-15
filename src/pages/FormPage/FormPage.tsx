@@ -40,6 +40,7 @@ function FormPage() {
 					setValidation(validationSchemaPersonalInfo);
 			}
 		})();
+
 	}, [currentStep]);
 
 	const handlePrevStep = () => {

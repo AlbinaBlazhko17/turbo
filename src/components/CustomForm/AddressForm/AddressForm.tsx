@@ -3,15 +3,22 @@ import { FormikErrors, FormikProps } from 'formik';
 import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomSelect from '@/components/CustomSelect/CustomSelect';
 import { IDataForAddressForm, IDataForForm } from '@/interfaces/IDataForForms';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { dataForSelectCountry } from '@/utils/dataForSelect';
 
 import style from '../customForm.module.scss';
 
 function AddressForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+	const [dataSelect, setDataSelect] = useState<{ countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } }>();
 
 	useEffect(() => {
-		formik.setFieldTouched('city', false);
-		formik.setFieldTouched('zipCode', false);
+		const fetchData = async () => {
+			const data = await dataForSelectCountry();
+			setDataSelect(data);
+			formik.setFieldTouched('city', false);
+			formik.setFieldTouched('zipCode', false);
+		};
+		fetchData();
 	}, []);
 
 
@@ -27,7 +34,7 @@ function AddressForm({ formik, setData }: { formik: FormikProps<IDataForForm>, s
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label='country'>Country</CustomLabel>
-				<CustomSelect formik={formik} type='country' />
+				{dataSelect && <CustomSelect data={dataSelect} formik={formik} type='country' />}
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label="zipCode">Postal Code</CustomLabel>
