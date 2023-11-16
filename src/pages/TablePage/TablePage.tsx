@@ -29,7 +29,6 @@ function TablePage() {
 	const sortingOptions = [
 		{ value: 'firstName', label: 'First name' },
 		{ value: 'NotificationRange', label: 'Notification range' },
-		{ value: 'Country', label: 'Country name' },
 	]
 	const [selectedFilter, setSelectedFilter] = useState<{ value: string, label: string }>(filterOptions[0]);
 	const [selectedSort, setSelectedSort] = useState<{ value: string, label: string }>();
@@ -42,9 +41,6 @@ function TablePage() {
 				break;
 			case 'NotificationRange':
 				dispatcher(sortByProp('notificationFrequency'));
-				break;
-			case 'Country':
-				dispatcher(sortByProp('country'));
 				break;
 			default:
 				break;
@@ -60,31 +56,30 @@ function TablePage() {
 				dispatcher(filterByGender({ data: dataFromForms, type: 'female' }))
 				break;
 			case 'Reading':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'reading' }))
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'Reading' }))
 				break;
 			case 'Travel':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'travel' }))
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'Travel' }))
 				break;
 			case 'Sports':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'sports' }))
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'Sports' }))
 				break;
 			case 'Music':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'music' }))
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'Music' }))
 				break;
 			case 'Gaming':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'gaming' }))
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'Gaming' }))
 				break;
 		}
 	}, [selectedFilter])
 
 	useEffect(() => {
-		console.log("it Works!")
 		if (selectedFilter?.value === 'none') {
 			setData(dataFromForms);
 		} else {
 			setData(filteredData);
 		}
-	}, [selectedFilter, selectedSort])
+	}, [selectedFilter, selectedSort, dataFromForms, filteredData])
 
 	return (
 		<div className={cn(style.table, style[`${theme}`])}>
@@ -124,7 +119,7 @@ function TablePage() {
 						<th className={style.table__header}>Comments</th>
 						<th className={style.table__header}>Image</th>
 					</tr>
-					{data.length !== 0 && data[0].firstName !== '' ? data.map((item, index) => (
+					{data.length !== 0 ? data.map((item, index) => (
 						item.terms != false && (
 							<tr key={index}>
 								<td className={style.table__descr}>{item.firstName}</td>

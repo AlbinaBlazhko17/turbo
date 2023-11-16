@@ -10,13 +10,14 @@ export const filteringSlice = createSlice({
 			const updatedState = action.payload.data;
 			const payload = action.payload.type;
 
-			const filteredState = updatedState.filter((item) => item.gender !== payload)
+			const filteredState = updatedState.filter((item) => item.gender === payload)
 			return filteredState;
 		},
 		filterByInterest: (state, action: PayloadAction<{ data: IDataForForm[], type: string }>) => {
 			const updatedState = action.payload.data;
 			const payload = action.payload.type;
-			const filteredState = updatedState.filter((item) => item.interests.some((interest) => interest === payload))
+			//@ts-ignore
+			const filteredState = updatedState.filter((item) => item.interests.includes(payload));
 			return filteredState;
 		}
 	}
