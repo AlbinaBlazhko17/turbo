@@ -17,14 +17,24 @@ function TablePage() {
 	const [data, setData] = useState<IDataForForm[]>(dataFromForms);
 	const filterOptions = [
 		{ value: 'none', label: 'None' },
-		{ value: 'Male', label: 'Gender: Male' },
-		{ value: 'Female', label: 'Gender: Female' },
-		{ value: 'Reading', label: 'Interests: Reading' },
-		{ value: 'Travel', label: 'Interests: Travel' },
-		{ value: 'Sports', label: 'Interests: Sports' },
-		{ value: 'Music', label: 'Interests: Music' },
-		{ value: 'Gaming', label: 'Interests: Gaming' },
-	];
+		{
+			label: 'Gender',
+			options: [
+				{ value: 'Male', label: 'Male' },
+				{ value: 'Female', label: 'Female' },
+			],
+		},
+		{
+			label: 'Interests',
+			options: [
+				{ value: 'Reading', label: 'Reading' },
+				{ value: 'Travel', label: 'Travel' },
+				{ value: 'Sports', label: 'Sports' },
+				{ value: 'Music', label: 'Music' },
+				{ value: 'Gaming', label: 'Gaming' },
+			]
+		}
+	]
 
 	const sortingOptions = [
 		{ value: 'firstName', label: 'First name' },
@@ -90,6 +100,7 @@ function TablePage() {
 					<div className={style[`table__filtration-item`]}>
 						<h3>Filter by: </h3>
 						<Select
+							isSearchable={false}
 							options={filterOptions}
 							value={selectedFilter}
 							onChange={(selectedOption) => setSelectedFilter(selectedOption!)}
@@ -98,6 +109,7 @@ function TablePage() {
 					<div className={style[`table__filtration-item`]}>
 						<h3>Sort by: </h3>
 						<Select
+							isSearchable={false}
 							options={sortingOptions}
 							value={selectedSort}
 							onChange={(selectedOption) => setSelectedSort(selectedOption!)}
@@ -126,7 +138,7 @@ function TablePage() {
 								<td className={style.table__descr}>{item.lastName}</td>
 								<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.email}</td>
 								<td className={cn(style.table__descr, style.table__descr_center)}>{item.gender}</td>
-								<td className={style.table__descr}>{item.city}</td>
+								<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.city}</td>
 								<td className={style.table__descr}>{item.country.label}</td>
 								<td className={cn(style.table__descr, style.table__descr_center)}>{item.zipCode}</td>
 								<td className={style.table__descr}>{item.interests.map((interest, i) => (<li key={i}>{interest}</li>))}</td>
