@@ -7,8 +7,6 @@ import { IDataForForm } from "@/interfaces/IDataForForms";
 
 import style from './customSelect.module.scss';
 
-
-
 const CustomSelect = ({ data, formik, type }: { data: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } } | { value: string, label: string }[], formik: FormikProps<IDataForForm>, type: string }) => {
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);

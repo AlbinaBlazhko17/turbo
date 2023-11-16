@@ -5,12 +5,33 @@ import { useContext, useEffect, useState } from "react";
 import Select from 'react-select';
 import cn from 'classnames';
 import { sortByProp } from "@/store/actions";
+import { filterByGender, filterByInterest } from "@/store/actions";
+import { IDataForForm } from "@/interfaces/IDataForForms";
 
 import style from './tablePage.module.scss';
 
 function TablePage() {
+	const { theme } = useContext(ThemeContext);
 	const dataFromForms = useSelector((state: RootState) => state.form);
-	const [selectedFilter, setSelectedFilter] = useState<{ value: string, label: string }>();
+	const filteredData = useSelector((state: RootState) => state.filter);
+	const [data, setData] = useState<IDataForForm[]>(dataFromForms);
+	const filterOptions = [
+		{ value: 'none', label: 'None' },
+		{ value: 'Male', label: 'Gender: Male' },
+		{ value: 'Female', label: 'Gender: Female' },
+		{ value: 'Reading', label: 'Interests: Reading' },
+		{ value: 'Travel', label: 'Interests: Travel' },
+		{ value: 'Sports', label: 'Interests: Sports' },
+		{ value: 'Music', label: 'Interests: Music' },
+		{ value: 'Gaming', label: 'Interests: Gaming' },
+	];
+
+	const sortingOptions = [
+		{ value: 'firstName', label: 'First name' },
+		{ value: 'NotificationRange', label: 'Notification range' },
+		{ value: 'Country', label: 'Country name' },
+	]
+	const [selectedFilter, setSelectedFilter] = useState<{ value: string, label: string }>(filterOptions[0]);
 	const [selectedSort, setSelectedSort] = useState<{ value: string, label: string }>();
 	const dispatcher = useDispatch();
 
@@ -30,22 +51,40 @@ function TablePage() {
 		}
 	}, [selectedSort])
 
-	const filterOptions = [
-		{ value: 'Male', label: 'Gender: Male' },
-		{ value: 'Female', label: 'Gender: Female' },
-		{ value: 'Reading', label: 'Interests: Reading' },
-		{ value: 'Travel', label: 'Interests: Travel' },
-		{ value: 'Sports', label: 'Interests: Sports' },
-		{ value: 'Music', label: 'Interests: Music' },
-		{ value: 'Gaming', label: 'Interests: Gaming' },
-	];
+	useEffect(() => {
+		switch (selectedFilter?.value) {
+			case 'Male':
+				dispatcher(filterByGender({ data: dataFromForms, type: 'male' }))
+				break;
+			case 'Female':
+				dispatcher(filterByGender({ data: dataFromForms, type: 'female' }))
+				break;
+			case 'Reading':
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'reading' }))
+				break;
+			case 'Travel':
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'travel' }))
+				break;
+			case 'Sports':
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'sports' }))
+				break;
+			case 'Music':
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'music' }))
+				break;
+			case 'Gaming':
+				dispatcher(filterByInterest({ data: dataFromForms, type: 'gaming' }))
+				break;
+		}
+	}, [selectedFilter])
 
-	const sortingOptions = [
-		{ value: 'firstName', label: 'First name' },
-		{ value: 'NotificationRange', label: 'Notification range' },
-		{ value: 'Country', label: 'Country name' },
-	]
-	const { theme } = useContext(ThemeContext);
+	useEffect(() => {
+		console.log("it Works!")
+		if (selectedFilter?.value === 'none') {
+			setData(dataFromForms);
+		} else {
+			setData(filteredData);
+		}
+	}, [selectedFilter, selectedSort])
 
 	return (
 		<div className={cn(style.table, style[`${theme}`])}>
@@ -85,7 +124,7 @@ function TablePage() {
 						<th className={style.table__header}>Comments</th>
 						<th className={style.table__header}>Image</th>
 					</tr>
-					{dataFromForms.length !== 0 && dataFromForms[0].firstName !== '' ? dataFromForms.map((item, index) => (
+					{data.length !== 0 && data[0].firstName !== '' ? data.map((item, index) => (
 						item.terms != false && (
 							<tr key={index}>
 								<td className={style.table__descr}>{item.firstName}</td>

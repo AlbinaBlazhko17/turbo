@@ -26,10 +26,10 @@ export const formSlice = createSlice({
 				updatedState.sort((a, b) => {
 					if (action.payload in a && action.payload in b) {
 						if (a[payloadKey]! < b[payloadKey]!) {
-							return -1;
+							return 1;
 						}
 						if (a[payloadKey]! > b[payloadKey]!) {
-							return 1;
+							return -1;
 						}
 					}
 					return 0;
