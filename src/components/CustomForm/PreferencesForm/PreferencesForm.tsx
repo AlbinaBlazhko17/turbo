@@ -3,7 +3,7 @@ import CustomLabel from "@components/CustomLabel/CustomLabel";
 import { FormikErrors, FormikProps } from "formik";
 import CustomCheckbox from "@/components/CustomCheckbox/CustomCheckbox";
 import { IDataForForm, IDataForPreferencesForm } from "@/interfaces/IDataForForms";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
 import { dataForSelectLanguage } from "@/utils/dataForSelect";
@@ -22,6 +22,8 @@ function PreferencesForm({ formik, setData }: { formik: FormikProps<IDataForForm
 		};
 		fetchData();
 	}, [])
+
+	const memoizedDataSelect = useMemo(() => dataSelect, [dataSelect]);
 
 	return (
 		<form className={style.form}>
@@ -57,7 +59,7 @@ function PreferencesForm({ formik, setData }: { formik: FormikProps<IDataForForm
 			<div className={style['form-item']}>
 				<CustomLabel label='language'>Language</CustomLabel>
 				<div className={style[`form-item__language`]}>
-					{dataSelect && <CustomSelect data={dataSelect} formik={formik} type="languages" />}
+					{dataSelect && <CustomSelect data={memoizedDataSelect!} formik={formik} type="languages" />}
 				</div>
 				{!formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}</div>

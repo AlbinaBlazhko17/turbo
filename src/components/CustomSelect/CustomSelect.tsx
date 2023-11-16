@@ -1,11 +1,13 @@
 import { FormikProps } from "formik";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, memo } from "react";
 import Select, { CSSObjectWithLabel, GroupBase, StylesConfig } from "react-select";
 import { ThemeContext } from "@theme/theme";
 import { FormValues } from "../CustomForm/formik";
 import { IDataForForm } from "@/interfaces/IDataForForms";
 
 import style from './customSelect.module.scss';
+
+
 
 const CustomSelect = ({ data, formik, type }: { data: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } } | { value: string, label: string }[], formik: FormikProps<IDataForForm>, type: string }) => {
 	const [selectedData, setSelectedData] = useState({});
@@ -64,4 +66,4 @@ const CustomSelect = ({ data, formik, type }: { data: { countries: { value: stri
 	);
 };
 
-export default CustomSelect;
+export default memo(CustomSelect);
