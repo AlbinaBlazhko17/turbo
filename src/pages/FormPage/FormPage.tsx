@@ -3,7 +3,7 @@ import Button from '@components/Button/Button';
 import CustomForm from '@components/CustomForm/CustomForm';
 import Steps from '@components/Steps/Steps';
 import { Formik } from 'formik';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { FormValues } from '@/components/CustomForm/formik';
 import { ObjectSchema } from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,7 +12,7 @@ import { RootState } from '@/store/types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './formPage.module.scss';
-import { useLoaderData } from 'react-router-dom';
+import { Await, useLoaderData } from 'react-router-dom';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
@@ -21,8 +21,7 @@ function FormPage() {
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
 	const formDispatcher = useDispatch();
 
-	const loaderDataCountries = useLoaderData().countries;
-	const loaderDataLanguages = useLoaderData().languages;
+	const loaderData = useLoaderData();
 
 	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());
@@ -72,7 +71,13 @@ function FormPage() {
 			>
 				{(formik) => (
 					<section className={style.form__wrapper}>
-						<CustomForm formik={formik} currentStep={+currentStep} setData={setData} loaderDataCountries={loaderDataCountries} loaderDataLanguages={loaderDataLanguages} />
+						<Suspense fallback={<div>Loading...</div>}>
+							<Await
+								resolve={loaderData}
+							>
+								{(loaderData) => (<CustomForm formik={formik} currentStep={+currentStep} setData={setData} loaderDataCountries={loaderData.countries} loaderDataLanguages={loaderData.languages} />)}
+							</Await>
+						</Suspense>
 						{+currentStep !== 5 &&
 							<div className={style.buttons}>
 								<Button
