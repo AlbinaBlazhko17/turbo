@@ -41,8 +41,7 @@
 
 		&_nowrap {
 			max-width: 200px;
-			overflow: hidden;
-			text-overflow: ellipsis;
+			overflow: scroll;
 			white-space: nowrap;
 		}
 	}
