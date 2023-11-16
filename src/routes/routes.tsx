@@ -4,6 +4,7 @@ import Dashboard from '@pages/Dashboard/Dashboard';
 import Layout from '@/layout/Layout/Layout';
 import TablePage from '@/pages/TablePage/TablePage';
 import ErrorPage from '@/components/ErrorPage/ErrorPage';
+import { loader } from '@/utils/dataForSelect';
 
 const routesConfig = createBrowserRouter(
 	[
@@ -19,7 +20,7 @@ const routesConfig = createBrowserRouter(
 				{
 					path: "/form",
 					element: <FormPage />,
-					// loader: teamLoader,
+					loader,
 				},
 				{
 					path: 'table',

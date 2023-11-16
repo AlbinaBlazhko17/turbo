@@ -6,21 +6,16 @@ import { IDataForForm, IDataForPreferencesForm } from "@/interfaces/IDataForForm
 import { useEffect, useMemo, useState } from "react";
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
-import { dataForSelectLanguage } from "@/utils/dataForSelect";
 
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
 
 
-function PreferencesForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function PreferencesForm({ formik, setData, loaderDataLanguages }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>>, loaderDataLanguages: { value: string, label: string }[] }) {
 	const [dataSelect, setDataSelect] = useState<{ value: string, label: string }[]>();
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const data = await dataForSelectLanguage();
-			setDataSelect(data);
-		};
-		fetchData();
+		setDataSelect(loaderDataLanguages);
 	}, [])
 
 	const memoizedDataSelect = useMemo(() => dataSelect, [dataSelect]);

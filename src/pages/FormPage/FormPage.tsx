@@ -12,6 +12,7 @@ import { RootState } from '@/store/types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './formPage.module.scss';
+import { useLoaderData } from 'react-router-dom';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
@@ -19,6 +20,9 @@ function FormPage() {
 	let initialValues = useSelector((state: RootState) => state.form);
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
 	const formDispatcher = useDispatch();
+
+	const loaderDataCountries = useLoaderData().countries;
+	const loaderDataLanguages = useLoaderData().languages;
 
 	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());
@@ -68,7 +72,7 @@ function FormPage() {
 			>
 				{(formik) => (
 					<section className={style.form__wrapper}>
-						<CustomForm formik={formik} currentStep={+currentStep} setData={setData} />
+						<CustomForm formik={formik} currentStep={+currentStep} setData={setData} loaderDataCountries={loaderDataCountries} loaderDataLanguages={loaderDataLanguages} />
 						{+currentStep !== 5 &&
 							<div className={style.buttons}>
 								<Button

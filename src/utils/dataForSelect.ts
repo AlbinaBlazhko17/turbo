@@ -1,3 +1,5 @@
+import { defer } from "react-router";
+
 export const dataForSelectCountry = async () => {
 	try {
 		const response = await fetch('https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code');
@@ -21,4 +23,8 @@ export const dataForSelectLanguage = async () => {
 			throw new Error('Error in dataForSelectLanguage' + err.message);
 		}
 	}
+}
+
+export async function loader() {
+	return defer({ countries: await dataForSelectCountry(), languages: await dataForSelectLanguage() })
 }

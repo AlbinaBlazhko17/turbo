@@ -4,21 +4,16 @@ import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomSelect from '@/components/CustomSelect/CustomSelect';
 import { IDataForAddressForm, IDataForForm } from '@/interfaces/IDataForForms';
 import { useEffect, useMemo, useState } from 'react';
-import { dataForSelectCountry } from '@/utils/dataForSelect';
 
 import style from '../customForm.module.scss';
 
-function AddressForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function AddressForm({ formik, setData, loaderDataCountries }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>>, loaderDataCountries: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } } }) {
 	const [dataSelect, setDataSelect] = useState<{ countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } }>();
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const data = await dataForSelectCountry();
-			setDataSelect(data);
-			formik.setFieldTouched('city', false);
-			formik.setFieldTouched('zipCode', false);
-		};
-		fetchData();
+		setDataSelect(loaderDataCountries);
+		formik.setFieldTouched('city', false);
+		formik.setFieldTouched('zipCode', false);
 	}, []);
 
 	const memoizedDataSelect = useMemo(() => dataSelect, [dataSelect]);

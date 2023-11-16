@@ -8,15 +8,15 @@ import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './customForm.module.scss';
 
-function CustomForm({ formik, currentStep, setData }: { formik: FormikProps<IDataForForm>, currentStep: number, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function CustomForm({ formik, currentStep, setData, loaderDataCountries, loaderDataLanguages }: { formik: FormikProps<IDataForForm>, currentStep: number, setData: React.Dispatch<React.SetStateAction<IDataForForm>>, loaderDataCountries: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } }, loaderDataLanguages: { value: string, label: string }[] }) {
 
 	switch (+currentStep) {
 		case 1:
 			return <PersonalInfoForm formik={formik} setData={setData} />;
 		case 2:
-			return <AddressForm formik={formik} setData={setData} />;
+			return <AddressForm formik={formik} setData={setData} loaderDataCountries={loaderDataCountries} />;
 		case 3:
-			return <PreferencesForm formik={formik} setData={setData} />;
+			return <PreferencesForm formik={formik} setData={setData} loaderDataLanguages={loaderDataLanguages} />;
 		case 4:
 			return <FinalForm formik={formik} setData={setData} />;
 		case 5:
