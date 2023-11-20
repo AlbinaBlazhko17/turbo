@@ -4,10 +4,28 @@ import { FormikErrors, FormikProps } from 'formik';
 import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
 import CustomInputImage from '@/components/CustomInputImage/CustomInputImage';
 import { IDataForForm, IDataForSubmitForm } from '@/interfaces/IDataForForms';
+import { useEffect } from 'react';
 
 import style from '../customForm.module.scss';
 
 function FinalForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+
+	useEffect(() => {
+		if (formik.values.comments !== '') {
+			formik.touched.comments = true;
+			formik.touched.profilePicture = false;
+			formik.touched.terms = false;
+		} else if (formik.values.profilePicture !== '') {
+			formik.touched.comments = false;
+			formik.touched.profilePicture = true;
+			formik.touched.terms = false;
+		} else if (formik.values.terms) {
+			formik.touched.comments = false;
+			formik.touched.profilePicture = false;
+			formik.touched.terms = true;
+		}
+	}, [formik.values])
+
 	return (
 		<form className={style.form}>
 			<h2>Finalize & Submit</h2>
