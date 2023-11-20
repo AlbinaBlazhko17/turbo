@@ -57,7 +57,7 @@ function NavBar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (isOpen: bo
 					</svg>
 					<span>Media </span>
 				</NavLink>
-				<NavLink to={'/table'} className={`${style['nav__list-item']} ${location.pathname === '/pages' ? style.active : ''}`}>
+				<NavLink to={'/table'} className={`${style['nav__list-item']} ${location.pathname === '/table' ? style.active : ''}`}>
 					<svg width="23" height="25" viewBox="0 0 23 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Document">
 							<g id="Document">

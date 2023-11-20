@@ -7,6 +7,7 @@ import cn from 'classnames';
 import { sortByProp } from "@/store/actions";
 import { filterByGender, filterByInterest } from "@/store/actions";
 import { IDataForForm } from "@/interfaces/IDataForForms";
+import Button from "@/components/Button/Button";
 
 import style from './tablePage.module.scss';
 
@@ -15,6 +16,8 @@ function TablePage() {
 	const dataFromForms = useSelector((state: RootState) => state.form);
 	const filteredData = useSelector((state: RootState) => state.filter);
 	const [data, setData] = useState<IDataForForm[]>(dataFromForms);
+	const [sliceStep, setSliceStep] = useState<number>(11);
+
 	const filterOptions = [
 		{ value: 'none', label: 'None' },
 		{
@@ -91,6 +94,16 @@ function TablePage() {
 		}
 	}, [selectedFilter, selectedSort, dataFromForms, filteredData])
 
+
+	function handlePrev() {
+		setSliceStep(sliceStep - 10);
+	}
+
+	function handleNext() {
+		if (data.length > sliceStep) {
+			setSliceStep(sliceStep + 10);
+		}
+	}
 	return (
 		<div className={cn(style.table, style[`${theme}`])}>
 			<h1>Table Page</h1>
@@ -131,7 +144,7 @@ function TablePage() {
 						<th className={style.table__header}>Comments</th>
 						<th className={style.table__header}>Image</th>
 					</tr>
-					{data.length !== 0 ? data.map((item, index) => (
+					{data.length !== 0 ? data.slice(sliceStep - 9, sliceStep + 1).map((item, index) => (
 						item.terms != false && (
 							<tr key={index}>
 								<td className={style.table__descr}>{item.firstName}</td>
@@ -156,6 +169,14 @@ function TablePage() {
 						</tr>
 					)}
 				</table>
+				{
+					data.length > 12 ? (
+						<div className={style.table__pagination}>
+							<Button appearance={sliceStep === 11 ? 'outlined' : 'filled'} onClick={handlePrev}>Prev</Button>
+							<Button appearance={data.length < sliceStep ? 'outlined' : 'filled'} onClick={handleNext}>Next</Button>
+						</div>
+					) : null
+				}
 			</section>
 		</div>
 	)
