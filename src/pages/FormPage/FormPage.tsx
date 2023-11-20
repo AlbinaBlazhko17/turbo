@@ -10,9 +10,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItemToForm } from '@/store/actions';
 import { RootState } from '@/store/types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
+import { Await, useLoaderData } from 'react-router-dom';
 
 import style from './formPage.module.scss';
-import { Await, useLoaderData } from 'react-router-dom';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
@@ -61,7 +61,7 @@ function FormPage() {
 			<h1>Form page</h1>
 			<Steps currentStep={+currentStep} setCurrentStep={setCurrentStep} />
 			<Formik
-				initialValues={initialValues[initialValues.length - 1]!}
+				initialValues={{ ...initialValues[initialValues.length - 1]!, id: initialValues.length }}
 				validationSchema={validation}
 				onSubmit={() => {
 					if (+currentStep < 5) {

@@ -32,7 +32,9 @@ export interface IDataForSubmitForm {
 	terms: boolean;
 }
 
-export interface IDataForForm extends IDataForPersonalnfoForm, IDataForAddressForm, IDataForPreferencesForm, IDataForSubmitForm { }
+export interface IDataForForm extends IDataForPersonalnfoForm, IDataForAddressForm, IDataForPreferencesForm, IDataForSubmitForm {
+	id: number
+}
 
 export interface InputProps {
 	label: string

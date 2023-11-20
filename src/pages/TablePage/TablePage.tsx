@@ -16,7 +16,7 @@ function TablePage() {
 	const dataFromForms = useSelector((state: RootState) => state.form);
 	const filteredData = useSelector((state: RootState) => state.filter);
 	const [data, setData] = useState<IDataForForm[]>(dataFromForms);
-	const [sliceStep, setSliceStep] = useState<number>(11);
+	const [sliceStep, setSliceStep] = useState<number>(10);
 
 	const filterOptions = [
 		{ value: 'none', label: 'None' },
@@ -40,15 +40,19 @@ function TablePage() {
 	]
 
 	const sortingOptions = [
+		{ value: 'id', label: 'Id' },
 		{ value: 'firstName', label: 'First name' },
 		{ value: 'NotificationRange', label: 'Notification range' },
 	]
 	const [selectedFilter, setSelectedFilter] = useState<{ value: string, label: string }>(filterOptions[0]);
-	const [selectedSort, setSelectedSort] = useState<{ value: string, label: string }>();
+	const [selectedSort, setSelectedSort] = useState<{ value: string, label: string }>(sortingOptions[0]);
 	const dispatcher = useDispatch();
 
 	useEffect(() => {
 		switch (selectedSort?.value) {
+			case 'id':
+				dispatcher(sortByProp('id'));
+				break;
 			case 'firstName':
 				dispatcher(sortByProp('firstName'));
 				break;
@@ -94,6 +98,9 @@ function TablePage() {
 		}
 	}, [selectedFilter, selectedSort, dataFromForms, filteredData])
 
+	useEffect(() => {
+		setData(dataFromForms.filter((item) => item.terms !== false))
+	}, [dataFromForms]);
 
 	function handlePrev() {
 		setSliceStep(sliceStep - 10);
@@ -131,6 +138,7 @@ function TablePage() {
 				</div>
 				<table>
 					<tr>
+						<th className={style.table__header}>ID</th>
 						<th className={style.table__header}>First name</th>
 						<th className={style.table__header}>Last name</th>
 						<th className={style.table__header}>Email</th>
@@ -144,36 +152,36 @@ function TablePage() {
 						<th className={style.table__header}>Comments</th>
 						<th className={style.table__header}>Image</th>
 					</tr>
-					{data.length !== 0 ? data.slice(sliceStep - 9, sliceStep + 1).map((item, index) => (
-						item.terms != false && (
-							<tr key={index}>
-								<td className={style.table__descr}>{item.firstName}</td>
-								<td className={style.table__descr}>{item.lastName}</td>
-								<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.email}</td>
-								<td className={cn(style.table__descr, style.table__descr_center)}>{item.gender}</td>
-								<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.city}</td>
-								<td className={style.table__descr}>{item.country.label}</td>
-								<td className={cn(style.table__descr, style.table__descr_center)}>{item.zipCode}</td>
-								<td className={style.table__descr}>{item.interests.map((interest, i) => (<li key={i}>{interest}</li>))}</td>
-								<td className={style.table__descr}>{item.language.label}</td>
-								<td className={cn(style.table__descr, style.table__descr_center)}>{item.notificationFrequency}</td>
-								<td className={style.table__descr}>{item.comments}</td>
-								<td className={style.table__descr}>{item.profilePicture}</td>
-							</tr>
-						)
+					{data.length !== 0 ? data.slice(sliceStep - 10, sliceStep).map((item, index) => (
+						<tr key={index}>
+							<td className={cn(style.table__descr, style.table__descr_center)}>{item.id}</td>
+							<td className={style.table__descr}>{item.firstName}</td>
+							<td className={style.table__descr}>{item.lastName}</td>
+							<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.email}</td>
+							<td className={cn(style.table__descr, style.table__descr_center)}>{item.gender}</td>
+							<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.city}</td>
+							<td className={style.table__descr}>{item.country.label}</td>
+							<td className={cn(style.table__descr, style.table__descr_center)}>{item.zipCode}</td>
+							<td className={style.table__descr}>{item.interests.map((interest, i) => (<li key={i}>{interest}</li>))}</td>
+							<td className={style.table__descr}>{item.language.label}</td>
+							<td className={cn(style.table__descr, style.table__descr_center)}>{item.notificationFrequency}</td>
+							<td className={style.table__descr}>{item.comments}</td>
+							<td className={style.table__descr}>{item.profilePicture}</td>
+						</tr>
 					)) : (
 						<tr>
-							<td className={style.table__descr} colSpan={12}>
+							<td className={style.table__descr} colSpan={13}>
 								<h3 style={{ textAlign: 'center' }}> No info! Please, fill the form</h3>
 							</td>
 						</tr>
-					)}
+					)
+					}
 				</table>
 				{
-					data.length > 12 ? (
+					data.length > 10 ? (
 						<div className={style.table__pagination}>
-							<Button appearance={sliceStep === 11 ? 'outlined' : 'filled'} onClick={handlePrev}>Prev</Button>
-							<Button appearance={data.length < sliceStep ? 'outlined' : 'filled'} onClick={handleNext}>Next</Button>
+							<Button appearance={sliceStep === 10 ? 'outlined' : 'filled'} onClick={handlePrev}>Prev</Button>
+							<Button appearance={data.length - 1 < sliceStep ? 'outlined' : 'filled'} onClick={handleNext}>Next</Button>
 						</div>
 					) : null
 				}

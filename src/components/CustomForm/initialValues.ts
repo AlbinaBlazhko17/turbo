@@ -1,6 +1,7 @@
 import { IDataForPersonalnfoForm, IDataForForm } from "@/interfaces/IDataForForms"
 
 export const initialValuesPersonalInfo: IDataForPersonalnfoForm = {
+	id: 1,
 	firstName: '',
 	lastName: '',
 	email: '',
@@ -8,6 +9,7 @@ export const initialValuesPersonalInfo: IDataForPersonalnfoForm = {
 }
 
 export const allValues: IDataForForm = {
+	id: 1,
 	firstName: '',
 	lastName: '',
 	email: '',
