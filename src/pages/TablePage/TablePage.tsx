@@ -4,8 +4,7 @@ import { ThemeContext } from "@/theme/theme";
 import { useContext, useEffect, useState } from "react";
 import Select from 'react-select';
 import cn from 'classnames';
-import { sortByProp } from "@/store/actions";
-import { filterByGender, filterByInterest } from "@/store/actions";
+import { sortByProp, filterByInterest, filterByGender, returnDataAfterFiltering } from "@/store/actions";
 import { IDataForForm } from "@/interfaces/IDataForForms";
 import Button from "@/components/Button/Button";
 
@@ -13,8 +12,8 @@ import style from './tablePage.module.scss';
 
 function TablePage() {
 	const { theme } = useContext(ThemeContext);
-	const dataFromForms = useSelector((state: RootState) => state.form);
-	const filteredData = useSelector((state: RootState) => state.filter);
+	const dataFromForms = useSelector((state: RootState) => state.form.formData);
+	console.log(dataFromForms)
 	const [data, setData] = useState<IDataForForm[]>(dataFromForms);
 	const [sliceStep, setSliceStep] = useState<number>(10);
 
@@ -44,6 +43,7 @@ function TablePage() {
 		{ value: 'firstName', label: 'First name' },
 		{ value: 'NotificationRange', label: 'Notification range' },
 	]
+
 	const [selectedFilter, setSelectedFilter] = useState<{ value: string, label: string }>(filterOptions[0]);
 	const [selectedSort, setSelectedSort] = useState<{ value: string, label: string }>(sortingOptions[0]);
 	const dispatcher = useDispatch();
@@ -66,37 +66,40 @@ function TablePage() {
 
 	useEffect(() => {
 		switch (selectedFilter?.value) {
+			case 'none':
+				dispatcher(returnDataAfterFiltering())
+				break;
 			case 'Male':
-				dispatcher(filterByGender({ data: dataFromForms, type: 'male' }))
+				dispatcher(filterByGender('male'))
 				break;
 			case 'Female':
-				dispatcher(filterByGender({ data: dataFromForms, type: 'female' }))
+				dispatcher(filterByGender('female'))
 				break;
 			case 'Reading':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'Reading' }))
+				dispatcher(filterByInterest('Reading'))
 				break;
 			case 'Travel':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'Travel' }))
+				dispatcher(filterByInterest('Travel'))
 				break;
 			case 'Sports':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'Sports' }))
+				dispatcher(filterByInterest('Sports'))
 				break;
 			case 'Music':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'Music' }))
+				dispatcher(filterByInterest('Music'))
 				break;
 			case 'Gaming':
-				dispatcher(filterByInterest({ data: dataFromForms, type: 'Gaming' }))
+				dispatcher(filterByInterest('Gaming'))
 				break;
 		}
 	}, [selectedFilter])
 
-	useEffect(() => {
-		if (selectedFilter?.value === 'none') {
-			setData(dataFromForms);
-		} else {
-			setData(filteredData);
-		}
-	}, [selectedFilter, selectedSort, dataFromForms, filteredData])
+	// useEffect(() => {
+	// 	if (selectedFilter?.value === 'none') {
+	// 		setData(dataFromForms);
+	// 	} else {
+	// 		setData(filteredData);
+	// 	}
+	// }, [selectedFilter, selectedSort, dataFromForms, filteredData])
 
 	useEffect(() => {
 		setData(dataFromForms.filter((item) => item.terms !== false))

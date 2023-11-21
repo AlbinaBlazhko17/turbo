@@ -17,7 +17,7 @@ import style from './formPage.module.scss';
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
-	let initialValues = useSelector((state: RootState) => state.form);
+	let initialValues = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
 	const formDispatcher = useDispatch();
 
@@ -61,7 +61,7 @@ function FormPage() {
 			<h1>Form page</h1>
 			<Steps currentStep={+currentStep} setCurrentStep={setCurrentStep} />
 			<Formik
-				initialValues={{ ...initialValues[initialValues.length - 1]!, id: initialValues.length }}
+				initialValues={initialValues[initialValues.length - 1]!}
 				validationSchema={validation}
 				onSubmit={() => {
 					if (+currentStep < 5) {
