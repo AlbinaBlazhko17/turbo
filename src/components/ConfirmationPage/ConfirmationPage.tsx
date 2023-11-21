@@ -27,7 +27,12 @@ function ConfirmationPage({ formik, setData }: ConfirmationPageProps) {
 				<img src={ConfirmIcon} alt="tick" />
 			</div>
 			<h3 className={style.confirmation__text}>All forms completed successfuly!</h3>
-			<Button appearance='filled' className={style.confirmation__button} onClick={handleGoToHomePage}>Go to home page</Button>
+			<Button
+				appearance='filled'
+				className={style.confirmation__button}
+				onClick={handleGoToHomePage}>
+				Go to home page
+			</Button>
 		</div>
 	)
 }
