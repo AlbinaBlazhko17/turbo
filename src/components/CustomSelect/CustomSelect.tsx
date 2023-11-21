@@ -10,6 +10,8 @@ import style from './customSelect.module.scss';
 const CustomSelect = ({ data, formik, type }: { data: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } }, formik: FormikProps<IDataForForm>, type: string }) => {
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
+	const options = type === 'country' ? data.countries : data;
+
 	useEffect(() => {
 		if (type === 'country') {
 			formik.setFieldValue('country', selectedData);
@@ -56,10 +58,10 @@ const CustomSelect = ({ data, formik, type }: { data: { countries: { value: stri
 
 	return (
 		<Select
-			isSearchable={true}
+			isSearchable
 			styles={customStyles}
 			className={style.select}
-			options={type === 'country' ? data.countries : data}
+			options={options}
 			value={selectedData}
 			onChange={(selectedOption) => setSelectedData(!selectedOption ? data.userSelectValue : selectedOption)}
 		/>

@@ -6,7 +6,7 @@ import { TiTick } from 'react-icons/ti';
 
 import style from './steps.module.scss';
 
-function Steps({ currentStep, setCurrentStep }: { currentStep: number, setCurrentStep: Dispatch<SetStateAction<string | number>> }) {
+function Steps({ currentStep }: { currentStep: number }) {
 	const { theme } = useContext(ThemeContext);
 	let complete = false;
 

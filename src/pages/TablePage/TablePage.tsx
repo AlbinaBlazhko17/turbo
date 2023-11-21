@@ -44,7 +44,7 @@ function TablePage() {
 		{ value: EFormProps.notificationFrequency, label: 'Notification frequency' },
 	]
 
-	const [selectedFilter, setSelectedFilter] = useState<{ value: string, label: string }>(filterOptions[0]);
+	const [selectedFilter, setSelectedFilter] = useState<{ value: string, label: string }>(filterOptions[0] as { value: string, label: string });
 	const [selectedSort, setSelectedSort] = useState<{ value: string, label: string }>(sortingOptions[0]);
 	const dispatcher = useDispatch();
 
