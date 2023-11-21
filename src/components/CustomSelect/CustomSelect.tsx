@@ -1,16 +1,15 @@
-import { FormikProps } from "formik";
-import { useContext, useEffect, useState } from "react";
-import Select, { CSSObjectWithLabel, GroupBase, StylesConfig } from "react-select";
 import { ThemeContext } from "@theme/theme";
-import { FormValues } from "../CustomForm/formik";
-import { IDataForForm } from "@/interfaces/IDataForForms";
+import { memo, useContext, useEffect, useState } from "react";
+import Select, { CSSObjectWithLabel, GroupBase, StylesConfig } from "react-select";
+import { FormValues } from "../../customTypes/formik.types";
+import CustomSelectProps from "./CustomSelect.props";
 
 import style from './customSelect.module.scss';
 
-const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, type: string }) => {
-	const [dataSelect, setDataSelect] = useState();
+const CustomSelect = ({ data, formik, type }: CustomSelectProps) => {
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
+	const options = type === 'country' ? data.countries : data;
 
 	useEffect(() => {
 		if (type === 'country') {
@@ -21,28 +20,12 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, typ
 	}, [selectedData]);
 
 	useEffect(() => {
-		(async function () {
-			if (type === 'country') {
-				fetch(
-					"https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
-				)
-					.then((response) => response.json())
-					.then((data) => {
-						setDataSelect(data.countries);
-						setSelectedData(formik.values['country' as keyof FormValues] || data.userSelectValue);
-					});
-			} else {
-				fetch(
-					"https://pkgstore.datahub.io/core/language-codes/language-codes_json/data/97607046542b532c395cf83df5185246/language-codes_json.json"
-				)
-					.then((response) => response.json())
-					.then((data) => {
-						setDataSelect(data.map((item: any) => ({ label: item.English, value: item.alpha2 })));
-						setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
-					})
-					.catch((err) => console.log(err));
-			}
-		})()
+		if (type === 'country' && 'userSelectValue' in data) {
+			setSelectedData(formik.values.country.value !== '' ? formik.values.country : data.userSelectValue);
+		}
+		else {
+			setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
+		}
 	}, []);
 
 
@@ -65,6 +48,8 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, typ
 			width: '434px',
 		}),
 
+		input: (defaultStyles: CSSObjectWithLabel) => ({ ...defaultStyles, color: theme === 'dark' ? "white" : '#333' }),
+
 		singleValue: (defaultStyles: CSSObjectWithLabel) => ({ ...defaultStyles, color: theme === 'dark' ? "white" : '#333' }),
 	};
 
@@ -72,14 +57,14 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, typ
 
 	return (
 		<Select
-			isSearchable={true}
+			isSearchable
 			styles={customStyles}
 			className={style.select}
-			options={dataSelect}
+			options={options}
 			value={selectedData}
-			onChange={(selectedOption) => setSelectedData(selectedOption)}
+			onChange={(selectedOption) => setSelectedData(!selectedOption ? data.userSelectValue : selectedOption)}
 		/>
 	);
 };
 
-export default CustomSelect;
+export default memo(CustomSelect);

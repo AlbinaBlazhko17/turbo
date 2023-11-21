@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import form from './slice';
+import form from '../slice/slice';
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 

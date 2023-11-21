@@ -1,4 +1,4 @@
-import { FormValues } from "@/components/CustomForm/formik";
+import { FormValues } from "@/customTypes/formik.types";
 import { FormikErrors, FormikTouched } from "formik";
 
 export interface IDataForPersonalnfoForm {
@@ -27,12 +27,14 @@ export interface IDataForPreferencesForm {
 }
 
 export interface IDataForSubmitForm {
-	comment: string | null | undefined;
+	comments: string | null | undefined;
 	profilePicture: string | null;
 	terms: boolean;
 }
 
-export interface IDataForForm extends IDataForPersonalnfoForm, IDataForAddressForm, IDataForPreferencesForm, IDataForSubmitForm { }
+export interface IDataForForm extends IDataForPersonalnfoForm, IDataForAddressForm, IDataForPreferencesForm, IDataForSubmitForm {
+	id: number
+}
 
 export interface InputProps {
 	label: string

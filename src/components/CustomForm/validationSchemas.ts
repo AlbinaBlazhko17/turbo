@@ -19,7 +19,7 @@ export const validationSchemaPersonalInfo = Yup.object().shape({
 export const validationSchemaAddress = Yup.object().shape({
 	city: Yup.string()
 		.min(2, 'City is too short!')
-		.max(20, 'City is too long!')
+		.max(30, 'City is too long!')
 		.required('City is required!'),
 	country: Yup.object({
 		value: Yup.string().required('Select country!'),
@@ -46,7 +46,7 @@ export const validationSchemaPreferences = Yup.object().shape({
 });
 
 export const validationSchemaSubmit = Yup.object().shape({
-	comment: Yup.string().notRequired(),
+	comments: Yup.string().notRequired(),
 	profilePicture: Yup.string()
 		.required('Profile picture is required'),
 	terms: Yup.boolean()

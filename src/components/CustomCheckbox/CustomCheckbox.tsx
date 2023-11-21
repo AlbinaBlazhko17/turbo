@@ -1,11 +1,11 @@
-import { FormikProps } from "formik";
-import { useEffect, useState } from "react";
+import { IDataForPreferencesForm, IDataForSubmitForm } from "@/interfaces/IDataForForms";
 import cn from 'classnames';
-import { IDataForForm, IDataForPreferencesForm, IDataForSubmitForm } from "@/interfaces/IDataForForms";
+import { useEffect, useState } from "react";
+import CustomCheckboxProps from "./CustomCheckbox.props";
 
 import style from '../CustomInput/customInput.module.scss';
 
-function CustomCheckbox({ formik, label, setData }: { formik: FormikProps<IDataForForm>, label: string, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function CustomCheckbox({ formik, label, setData }: CustomCheckboxProps) {
 	const [isChecked, setIsChecked] = useState(false);
 
 	useEffect(() => {

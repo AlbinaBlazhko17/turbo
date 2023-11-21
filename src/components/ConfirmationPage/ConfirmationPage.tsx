@@ -1,16 +1,15 @@
-import { removeItemFromForm } from '@/store/actions';
+import { removeItemFromForm } from '@/store/actions/actions';
 import ConfirmIcon from '@assets/icons/confirm-icon.svg';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Button from '../Button/Button';
-import { RootState } from '@/store/types';
+import { allValues } from '../CustomForm/initialValues';
+import ConfirmationPageProps from './ConfirmationPage.props';
 
 import style from './confirmationPage.module.scss';
-import { allValues } from '../CustomForm/initialValues';
-import { FormikProps } from 'formik';
-import { IDataForForm } from '@/interfaces/IDataForForms';
 
-function ConfirmationPage({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+
+function ConfirmationPage({ formik, setData }: ConfirmationPageProps) {
 	const navigator = useNavigate();
 	const formDisatcher = useDispatch();
 
@@ -28,7 +27,12 @@ function ConfirmationPage({ formik, setData }: { formik: FormikProps<IDataForFor
 				<img src={ConfirmIcon} alt="tick" />
 			</div>
 			<h3 className={style.confirmation__text}>All forms completed successfuly!</h3>
-			<Button appearance='filled' className={style.confirmation__button} onClick={handleGoToHomePage}>Go to home page</Button>
+			<Button
+				appearance='filled'
+				className={style.confirmation__button}
+				onClick={handleGoToHomePage}>
+				Go to home page
+			</Button>
 		</div>
 	)
 }

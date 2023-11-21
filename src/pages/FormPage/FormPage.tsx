@@ -3,22 +3,25 @@ import Button from '@components/Button/Button';
 import CustomForm from '@components/CustomForm/CustomForm';
 import Steps from '@components/Steps/Steps';
 import { Formik } from 'formik';
-import { useEffect, useState } from 'react';
-import { FormValues } from '@/components/CustomForm/formik';
+import { Suspense, useEffect, useState } from 'react';
+import { FormValues } from '@/customTypes/formik.types';
 import { ObjectSchema } from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItemToForm } from '@/store/actions';
-import { RootState } from '@/store/types';
+import { addItemToForm } from '@/store/actions/actions';
+import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
+import { Await, useLoaderData } from 'react-router-dom';
 
 import style from './formPage.module.scss';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
-	let initialValues = useSelector((state: RootState) => state.form);
+	let initialValues = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
 	const formDispatcher = useDispatch();
+
+	const loaderData = useLoaderData();
 
 	useEffect(() => {
 		localStorage.setItem('step', currentStep.toString());
@@ -40,6 +43,7 @@ function FormPage() {
 					setValidation(validationSchemaPersonalInfo);
 			}
 		})();
+
 	}, [currentStep]);
 
 	const handlePrevStep = () => {
@@ -67,7 +71,13 @@ function FormPage() {
 			>
 				{(formik) => (
 					<section className={style.form__wrapper}>
-						<CustomForm formik={formik} currentStep={+currentStep} setData={setData} />
+						<Suspense fallback={<div>Loading...</div>}>
+							<Await
+								resolve={loaderData}
+							>
+								{(loaderData) => (<CustomForm formik={formik} currentStep={+currentStep} setData={setData} loaderDataCountries={loaderData.countries} loaderDataLanguages={loaderData.languages} />)}
+							</Await>
+						</Suspense>
 						{+currentStep !== 5 &&
 							<div className={style.buttons}>
 								<Button

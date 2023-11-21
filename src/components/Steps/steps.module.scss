@@ -55,7 +55,7 @@
 
 .complete:not(:first-child)::before,
 .active:not(:first-child)::before {
-	background: $green;
+	background: $green !important;
 }
 
 .dark {
