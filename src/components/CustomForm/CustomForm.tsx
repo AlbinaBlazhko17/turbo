@@ -1,14 +1,12 @@
-import { FormikProps } from 'formik';
-import PersonalInfoForm from './PersonalInfoForm/PersonalInfoForm';
-import AddressForm from './AddressForm/AddressForm';
-import PreferencesForm from './PreferencesForm/PreferencesForm';
-import FinalForm from './FinalForm/FinalForm';
 import ConfirmationPage from '../ConfirmationPage/ConfirmationPage';
-import { IDataForForm } from '@/interfaces/IDataForForms';
+import AddressForm from './AddressForm/AddressForm';
+import FinalForm from './FinalForm/FinalForm';
+import PersonalInfoForm from './PersonalInfoForm/PersonalInfoForm';
+import PreferencesForm from './PreferencesForm/PreferencesForm';
+import CustomFormProps from './customForm.props';
 
-import style from './customForm.module.scss';
 
-function CustomForm({ formik, currentStep, setData, loaderDataCountries, loaderDataLanguages }: { formik: FormikProps<IDataForForm>, currentStep: number, setData: React.Dispatch<React.SetStateAction<IDataForForm>>, loaderDataCountries: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } }, loaderDataLanguages: { value: string, label: string }[] }) {
+function CustomForm({ formik, currentStep, setData, loaderDataCountries, loaderDataLanguages }: CustomFormProps) {
 
 	switch (+currentStep) {
 		case 1:

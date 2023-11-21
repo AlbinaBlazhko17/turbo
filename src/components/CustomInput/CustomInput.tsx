@@ -1,13 +1,12 @@
 import { ThemeContext } from '@theme/theme';
-import { FormikProps } from 'formik';
 import { useContext, useEffect } from 'react';
 import cn from 'classnames';
 import { FormValues } from '../../customTypes/formik.types';
-import { IDataForForm } from '@/interfaces/IDataForForms';
+import CustomInputProps from './customInput.props';
 
 import style from './customInput.module.scss';
 
-function CustomInput({ formik, label, type, setData }: { formik: FormikProps<IDataForForm>, label: string, type: string, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function CustomInput({ formik, label, type, setData }: CustomInputProps) {
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {

@@ -1,15 +1,16 @@
 import CustomCheckbox from '@/components/CustomCheckbox/CustomCheckbox';
-import CustomLabel from '@/components/CustomLabel/CustomLabel';
-import { FormikErrors, FormikProps } from 'formik';
-import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
 import CustomInputImage from '@/components/CustomInputImage/CustomInputImage';
-import { IDataForForm, IDataForSubmitForm } from '@/interfaces/IDataForForms';
-import { useEffect } from 'react';
+import CustomLabel from '@/components/CustomLabel/CustomLabel';
+import CustomTextarea from '@/components/CustomTextarea/CustomTextarea';
 import { EFormProps } from '@/customTypes/form.types';
+import { IDataForSubmitForm } from '@/interfaces/IDataForForms';
+import IFieldProps from '@/interfaces/IFieldProps';
+import { FormikErrors } from 'formik';
+import { useEffect } from 'react';
 
 import style from '../customForm.module.scss';
 
-function FinalForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function FinalForm({ formik, setData }: IFieldProps) {
 
 	useEffect(() => {
 		if (formik.values.comments !== '') {

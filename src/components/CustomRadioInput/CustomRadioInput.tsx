@@ -1,11 +1,10 @@
-import { FormikProps } from 'formik';
-import { FormValues } from '../../customTypes/formik.types';
-import { IDataForForm } from '@/interfaces/IDataForForms';
+import { FormValues } from '@customTypes/formik.types';
+import { useEffect } from 'react';
+import CustomRadioInputProps from './CustomRadioInput.props';
 
 import style from './customRadioInput.module.scss';
-import { useEffect } from 'react';
 
-function customRadioInput({ formik, name, value, setData }: { formik: FormikProps<IDataForForm>, name: string, value: string, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function customRadioInput({ formik, name, value, setData }: CustomRadioInputProps) {
 
 	useEffect(() => {
 		setData(formik.values);

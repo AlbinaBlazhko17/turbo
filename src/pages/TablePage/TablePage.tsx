@@ -7,7 +7,7 @@ import cn from 'classnames';
 import { sortByProp, filterByInterest, filterByGender, returnDataAfterFiltering, sortByPropDesc } from "@/store/actions/actions";
 import { IDataForForm } from "@/interfaces/IDataForForms";
 import Button from "@/components/Button/Button";
-import { EFormProps, EGender, EInterests } from "@/customTypes/form.types";
+import { EFormProps, EGender, EInterests, SelectValue } from "@/customTypes/form.types";
 
 import style from './tablePage.module.scss';
 
@@ -44,8 +44,8 @@ function TablePage() {
 		{ value: EFormProps.notificationFrequency, label: 'Notification frequency' },
 	]
 
-	const [selectedFilter, setSelectedFilter] = useState<{ value: string, label: string }>(filterOptions[0] as { value: string, label: string });
-	const [selectedSort, setSelectedSort] = useState<{ value: string, label: string }>(sortingOptions[0]);
+	const [selectedFilter, setSelectedFilter] = useState<SelectValue>(filterOptions[0] as SelectValue);
+	const [selectedSort, setSelectedSort] = useState<SelectValue>(sortingOptions[0]);
 	const dispatcher = useDispatch();
 
 	useEffect(() => {

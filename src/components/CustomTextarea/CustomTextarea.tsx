@@ -1,13 +1,12 @@
 import { ThemeContext } from '@/theme/theme';
 import cn from 'classnames';
-import { FormikProps } from 'formik';
 import { useContext, useEffect } from 'react';
 import { FormValues } from '../../customTypes/formik.types';
-import { IDataForForm } from '@/interfaces/IDataForForms';
+import CustomTextareaProps from './CustomTextarea.props';
 
 import style from './customTextarea.module.scss';
 
-function CustomTextarea({ formik, label, setData }: { formik: FormikProps<IDataForForm>, label: string, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function CustomTextarea({ formik, label, setData }: CustomTextareaProps) {
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {

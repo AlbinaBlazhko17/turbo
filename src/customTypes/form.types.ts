@@ -32,3 +32,5 @@ export const enum EFormProps {
 	profilePicture = 'profilePicture',
 	terms = 'terms',
 }
+
+export type SelectValue = { value: string, label: string }

@@ -1,15 +1,16 @@
 import CustomInput from '@/components/CustomInput/CustomInput';
-import { FormikErrors, FormikProps } from 'formik';
 import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomSelect from '@/components/CustomSelect/CustomSelect';
-import { IDataForAddressForm, IDataForForm } from '@/interfaces/IDataForForms';
+import { EFormProps, SelectValue } from '@/customTypes/form.types';
+import { IDataForAddressForm } from '@/interfaces/IDataForForms';
+import { FormikErrors } from 'formik';
 import { useEffect, useMemo, useState } from 'react';
-import { EFormProps } from '@/customTypes/form.types';
+import AddressFormProps from './AddressForm.props';
 
 import style from '../customForm.module.scss';
 
-function AddressForm({ formik, setData, loaderDataCountries }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>>, loaderDataCountries: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } } }) {
-	const [dataSelect, setDataSelect] = useState<{ countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } }>();
+function AddressForm({ formik, setData, loaderDataCountries }: AddressFormProps) {
+	const [dataSelect, setDataSelect] = useState<{ countries: SelectValue[], userSelectValue: SelectValue }>();
 
 	useEffect(() => {
 		setDataSelect(loaderDataCountries);

@@ -1,14 +1,13 @@
-import { FormikProps } from 'formik';
-import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomInput from '@/components/CustomInput/CustomInput';
-import cn from 'classnames';
+import CustomLabel from '@/components/CustomLabel/CustomLabel';
 import CustomRadioInput from '@/components/CustomRadioInput/CustomRadioInput';
-import { IDataForForm } from '@interfaces/IDataForForms';
 import { EFormProps } from '@/customTypes/form.types';
+import IFieldProps from '@/interfaces/IFieldProps';
+import cn from 'classnames';
 
 import style from '../customForm.module.scss';
 
-function PersonalInfoForm({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function PersonalInfoForm({ formik, setData }: IFieldProps) {
 	return (
 		<>
 			<h2>Personal Information</h2>

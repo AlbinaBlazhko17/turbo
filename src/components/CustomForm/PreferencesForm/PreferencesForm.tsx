@@ -1,19 +1,20 @@
-import CustomSelect from "@/components/CustomSelect/CustomSelect";
-import CustomLabel from "@components/CustomLabel/CustomLabel";
-import { FormikErrors, FormikProps } from "formik";
 import CustomCheckbox from "@/components/CustomCheckbox/CustomCheckbox";
-import { IDataForForm, IDataForPreferencesForm } from "@/interfaces/IDataForForms";
+import CustomSelect from "@/components/CustomSelect/CustomSelect";
+import { EFormProps, EInterests, SelectValue } from '@/customTypes/form.types';
+import { IDataForPreferencesForm } from "@/interfaces/IDataForForms";
+import CustomLabel from "@components/CustomLabel/CustomLabel";
+import { FormikErrors } from "formik";
 import { useEffect, useMemo, useState } from "react";
-import { EFormProps, EInterests } from '@/customTypes/form.types';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
+import PreferencesFormProps from "./PreferencesForm.props";
 
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
 
 
-function PreferencesForm({ formik, setData, loaderDataLanguages }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>>, loaderDataLanguages: { value: string, label: string }[] }) {
-	const [dataSelect, setDataSelect] = useState<{ value: string, label: string }[]>();
+function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFormProps) {
+	const [dataSelect, setDataSelect] = useState<SelectValue[]>();
 
 	useEffect(() => {
 		setDataSelect(loaderDataLanguages);
@@ -55,7 +56,7 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: { formik: For
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.language}>Language</CustomLabel>
 				<div className={style[`form-item__language`]}>
-					{dataSelect && <CustomSelect data={memoizedDataSelect!} formik={formik} type={EFormProps.language} />}
+					{dataSelect && <CustomSelect data={memoizedDataSelect} formik={formik} type={EFormProps.language} />}
 				</div>
 				{!formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}</div>
