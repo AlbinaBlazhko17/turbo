@@ -1,5 +1,5 @@
 import { FormikProps } from 'formik';
-import { FormValues } from '../CustomForm/formik';
+import { FormValues } from '../../customTypes/formik.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './customRadioInput.module.scss';

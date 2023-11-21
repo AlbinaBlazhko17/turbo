@@ -1,4 +1,4 @@
-import { FormValues } from "@/components/CustomForm/formik";
+import { FormValues } from "@/customTypes/formik.types";
 import { FormikErrors, FormikTouched } from "formik";
 
 export interface IDataForPersonalnfoForm {

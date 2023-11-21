@@ -27,7 +27,7 @@ export const formSlice = createSlice({
 			return { formData: updatedState, previousFormData: updatedState };
 		},
 		removeItemFromForm: (state) => {
-			const updatedState = [...state.formData.concat(allValues)];
+			const updatedState = [...state.formData.concat({ ...allValues, id: state.formData.length + 1 })];
 			return { formData: updatedState, previousFormData: updatedState };
 		},
 		sortByProp: (state, action: PayloadAction<keyof IDataForForm>) => {
@@ -49,19 +49,38 @@ export const formSlice = createSlice({
 
 			return { formData: updatedState, previousFormData: state.previousFormData };
 		},
-		filterByGender: (state, action: PayloadAction<string>) => {
+		sortByPropDesc: (state, action: PayloadAction<keyof IDataForForm>) => {
 			const updatedState = [...state.formData];
+			const payloadKey = action.payload as keyof IDataForForm;
+			if (payloadKey) {
+				updatedState.sort((a, b) => {
+					if (payloadKey in a && payloadKey in b) {
+						if (a[payloadKey]! > b[payloadKey]!) {
+							return -1;
+						}
+						if (a[payloadKey]! < b[payloadKey]!) {
+							return 1;
+						}
+					}
+					return 0;
+				});
+			}
+
+			return { formData: updatedState, previousFormData: state.previousFormData };
+		},
+		filterByGender: (state, action: PayloadAction<string>) => {
+			const updatedState = [...state.previousFormData];
 			const payload = action.payload;
 
 			const filteredState = updatedState.filter((item) => item.gender === payload)
 			return { formData: filteredState.length !== 0 ? filteredState : [allValues], previousFormData: state.previousFormData };
 		},
 		filterByInterest: (state, action: PayloadAction<string>) => {
-			const updatedState = [...state.formData];
+			const updatedState = [...state.previousFormData];
 			const payload = action.payload;
 			//@ts-ignore
 			const filteredState = updatedState.filter((item) => item.interests.includes(payload));
-			return { formData: filteredState.length !== 0 ? filteredState : [allValues], previousFormData: [...state.previousFormData] };
+			return { formData: filteredState.length !== 0 ? filteredState : [allValues], previousFormData: state.previousFormData };
 		},
 		returnDataAfterFiltering: (state) => {
 			if (state.previousFormData.length !== 0) {

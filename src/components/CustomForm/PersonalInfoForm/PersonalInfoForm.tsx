@@ -4,6 +4,7 @@ import CustomInput from '@/components/CustomInput/CustomInput';
 import cn from 'classnames';
 import CustomRadioInput from '@/components/CustomRadioInput/CustomRadioInput';
 import { IDataForForm } from '@interfaces/IDataForForms';
+import { EFormProps } from '@/customTypes/form.types';
 
 import style from '../customForm.module.scss';
 
@@ -13,32 +14,32 @@ function PersonalInfoForm({ formik, setData }: { formik: FormikProps<IDataForFor
 			<h2>Personal Information</h2>
 			<form className={style.form} onSubmit={formik.handleSubmit}>
 				<div className={style['form-item']}>
-					<CustomLabel label="firstName">First name</CustomLabel>
-					<CustomInput formik={formik} label="firstName" type="text" setData={setData} />
-					{'firstName' in formik.touched && 'firstName' in formik.errors && formik.touched.firstName && formik.errors.firstName && (
+					<CustomLabel label={EFormProps.firstName}>First name</CustomLabel>
+					<CustomInput formik={formik} label={EFormProps.firstName} type="text" setData={setData} />
+					{EFormProps.firstName in formik.touched && EFormProps.firstName in formik.errors && formik.touched.firstName && formik.errors.firstName && (
 						<div className={style[`form-item__error`]}>{formik.errors.firstName}</div>
 					)}
 				</div>
 				<div className={style['form-item']}>
-					<CustomLabel label="lastName">Last name</CustomLabel>
-					<CustomInput formik={formik} label="lastName" type="text" setData={setData} />
-					{'lastName' in formik.touched && 'lastName' in formik.errors && formik.touched.lastName && formik.errors.lastName && (
+					<CustomLabel label={EFormProps.lastName}>Last name</CustomLabel>
+					<CustomInput formik={formik} label={EFormProps.lastName} type="text" setData={setData} />
+					{EFormProps.lastName in formik.touched && EFormProps.lastName in formik.errors && formik.touched.lastName && formik.errors.lastName && (
 						<div className={style[`form-item__error`]}>{formik.errors.lastName}</div>)
 					}
 				</div>
 				<div className={style['form-item']}>
-					<CustomLabel label="email">Email</CustomLabel>
-					<CustomInput formik={formik} label="email" type="email" setData={setData} />
-					{'email' in formik.touched && 'email' in formik.errors && formik.touched.email && formik.errors.email && (
+					<CustomLabel label={EFormProps.email}>Email</CustomLabel>
+					<CustomInput formik={formik} label={EFormProps.email} type="email" setData={setData} />
+					{EFormProps.email in formik.touched && EFormProps.email in formik.errors && formik.touched.email && formik.errors.email && (
 						<div className={style[`form-item__error`]}>{formik.errors.email}</div>)
 					}
 				</div>
 				<div className={style['form-item']}>
-					<CustomLabel label='gender'>Gender</CustomLabel>
+					<CustomLabel label={EFormProps.gender}>Gender</CustomLabel>
 					<CustomLabel>
 						<CustomRadioInput
-							name="gender"
-							value="male"
+							name={EFormProps.gender}
+							value='male'
 							formik={formik}
 							setData={setData}
 						/>
@@ -46,14 +47,14 @@ function PersonalInfoForm({ formik, setData }: { formik: FormikProps<IDataForFor
 					</CustomLabel>
 					<CustomLabel>
 						<CustomRadioInput
-							name="gender"
+							name={EFormProps.gender}
 							value="female"
 							formik={formik}
 							setData={setData}
 						/>
 						Female
 					</CustomLabel>
-					{'gender' in formik.touched && 'gender' in formik.errors && formik.touched.gender && formik.errors.gender && (
+					{EFormProps.gender in formik.touched && EFormProps.gender in formik.errors && formik.touched.gender && formik.errors.gender && (
 						<div className={cn(style[`form-item__error`], style[`form-item__radio`])}>{formik.errors.gender}</div>
 					)}
 				</div>

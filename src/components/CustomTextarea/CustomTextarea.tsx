@@ -2,7 +2,7 @@ import { ThemeContext } from '@/theme/theme';
 import cn from 'classnames';
 import { FormikProps } from 'formik';
 import { useContext, useEffect } from 'react';
-import { FormValues } from '../CustomForm/formik';
+import { FormValues } from '../../customTypes/formik.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from './customTextarea.module.scss';

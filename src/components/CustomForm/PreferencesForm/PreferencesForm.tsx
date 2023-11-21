@@ -4,6 +4,7 @@ import { FormikErrors, FormikProps } from "formik";
 import CustomCheckbox from "@/components/CustomCheckbox/CustomCheckbox";
 import { IDataForForm, IDataForPreferencesForm } from "@/interfaces/IDataForForms";
 import { useEffect, useMemo, useState } from "react";
+import { EFormProps, EInterests } from '@/customTypes/form.types';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
 
@@ -24,53 +25,53 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: { formik: For
 		<form className={style.form}>
 			<h2>Preferences & Settings</h2>
 			<div className={style['form-item']}>
-				<CustomLabel label="interests">Interests</CustomLabel>
+				<CustomLabel label={EFormProps.interestes}>Interests</CustomLabel>
 				<div className={style['form-item__checkbox']}>
-					<CustomLabel label="Reading">
-						<CustomCheckbox formik={formik} label="Reading" setData={setData} />
+					<CustomLabel label={EInterests.Reading}>
+						<CustomCheckbox formik={formik} label={EInterests.Reading} setData={setData} />
 						Reading
 					</CustomLabel>
-					<CustomLabel label="Music">
-						<CustomCheckbox formik={formik} label="Music" setData={setData} />
+					<CustomLabel label={EInterests.Music}>
+						<CustomCheckbox formik={formik} label={EInterests.Music} setData={setData} />
 						Music
 					</CustomLabel>
-					<CustomLabel label="Sports">
-						<CustomCheckbox formik={formik} label="Sports" setData={setData} />
+					<CustomLabel label={EInterests.Sports}>
+						<CustomCheckbox formik={formik} label={EInterests.Sports} setData={setData} />
 						Sports
 					</CustomLabel>
-					<CustomLabel label="Gaming">
-						<CustomCheckbox formik={formik} label="Gaming" setData={setData} />
+					<CustomLabel label={EInterests.Gaming}>
+						<CustomCheckbox formik={formik} label={EInterests.Gaming} setData={setData} />
 						Gaming
 					</CustomLabel>
-					<CustomLabel label="Travel">
-						<CustomCheckbox formik={formik} label="Travel" setData={setData} />
-						Travel
+					<CustomLabel label={EInterests.Traveling}>
+						<CustomCheckbox formik={formik} label={EInterests.Traveling} setData={setData} />
+						Traveling
 					</CustomLabel>
 				</div>
-				{'interests' in formik.touched && 'interests' in formik.errors && !formik.isSubmitting && formik.errors.interests && (
+				{EFormProps.interestes in formik.touched && EFormProps.interestes in formik.errors && !formik.isSubmitting && formik.errors.interests && (
 					<div className={style[`form-item__error`]}>{formik.errors.interests}</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
-				<CustomLabel label='language'>Language</CustomLabel>
+				<CustomLabel label={EFormProps.language}>Language</CustomLabel>
 				<div className={style[`form-item__language`]}>
-					{dataSelect && <CustomSelect data={memoizedDataSelect!} formik={formik} type="languages" />}
+					{dataSelect && <CustomSelect data={memoizedDataSelect!} formik={formik} type={EFormProps.language} />}
 				</div>
 				{!formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
-				<CustomLabel label='notification'>Notification frequency</CustomLabel>
+				<CustomLabel label={EFormProps.notificationFrequency}>Notification frequency</CustomLabel>
 				<RangeSlider
-					defaultValue={[0, 'notificationFrequency' in formik.values && +formik.values.notificationFrequency || 100]}
+					defaultValue={[0, EFormProps.notificationFrequency in formik.values && +formik.values.notificationFrequency || 100]}
 					min={0}
 					max={100}
 					step={1}
 					thumbsDisabled={[true, false]}
 					rangeSlideDisabled={true}
 					onInput={(e: Array<number>) => {
-						formik.setFieldValue('notificationFrequency', e[1]);
+						formik.setFieldValue(EFormProps.notificationFrequency, e[1]);
 						setData(formik.values);
 					}}
 				/>

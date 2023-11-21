@@ -1,19 +1,19 @@
-import { RootState } from "@/types/types";
+import { RootState } from "@/customTypes/store.types";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeContext } from "@/theme/theme";
 import { useContext, useEffect, useState } from "react";
 import Select from 'react-select';
 import cn from 'classnames';
-import { sortByProp, filterByInterest, filterByGender, returnDataAfterFiltering } from "@/store/actions/actions";
+import { sortByProp, filterByInterest, filterByGender, returnDataAfterFiltering, sortByPropDesc } from "@/store/actions/actions";
 import { IDataForForm } from "@/interfaces/IDataForForms";
 import Button from "@/components/Button/Button";
+import { EFormProps, EGender, EInterests } from "@/customTypes/form.types";
 
 import style from './tablePage.module.scss';
 
 function TablePage() {
 	const { theme } = useContext(ThemeContext);
 	const dataFromForms = useSelector((state: RootState) => state.form.formData);
-	console.log(dataFromForms)
 	const [data, setData] = useState<IDataForForm[]>(dataFromForms);
 	const [sliceStep, setSliceStep] = useState<number>(10);
 
@@ -22,26 +22,26 @@ function TablePage() {
 		{
 			label: 'Gender',
 			options: [
-				{ value: 'Male', label: 'Male' },
-				{ value: 'Female', label: 'Female' },
+				{ value: EGender.Male, label: EGender.Male },
+				{ value: EGender.Female, label: EGender.Female },
 			],
 		},
 		{
 			label: 'Interests',
 			options: [
-				{ value: 'Reading', label: 'Reading' },
-				{ value: 'Travel', label: 'Travel' },
-				{ value: 'Sports', label: 'Sports' },
-				{ value: 'Music', label: 'Music' },
-				{ value: 'Gaming', label: 'Gaming' },
+				{ value: EInterests.Reading, label: EInterests.Reading },
+				{ value: EInterests.Traveling, label: EInterests.Traveling },
+				{ value: EInterests.Sports, label: EInterests.Sports },
+				{ value: EInterests.Music, label: EInterests.Music },
+				{ value: EInterests.Gaming, label: EInterests.Gaming },
 			]
 		}
 	]
 
 	const sortingOptions = [
 		{ value: 'id', label: 'Id' },
-		{ value: 'firstName', label: 'First name' },
-		{ value: 'NotificationRange', label: 'Notification range' },
+		{ value: EFormProps.firstName, label: 'First name' },
+		{ value: EFormProps.notificationFrequency, label: 'Notification frequency' },
 	]
 
 	const [selectedFilter, setSelectedFilter] = useState<{ value: string, label: string }>(filterOptions[0]);
@@ -49,61 +49,57 @@ function TablePage() {
 	const dispatcher = useDispatch();
 
 	useEffect(() => {
-		switch (selectedSort?.value) {
-			case 'id':
-				dispatcher(sortByProp('id'));
-				break;
-			case 'firstName':
-				dispatcher(sortByProp('firstName'));
-				break;
-			case 'NotificationRange':
-				dispatcher(sortByProp('notificationFrequency'));
-				break;
-			default:
-				break;
-		}
-	}, [selectedSort])
-
-	useEffect(() => {
 		switch (selectedFilter?.value) {
 			case 'none':
 				dispatcher(returnDataAfterFiltering())
 				break;
-			case 'Male':
+			case EGender.Male:
 				dispatcher(filterByGender('male'))
 				break;
-			case 'Female':
+			case EGender.Female:
 				dispatcher(filterByGender('female'))
 				break;
-			case 'Reading':
-				dispatcher(filterByInterest('Reading'))
+			case EInterests.Reading:
+				dispatcher(filterByInterest(EInterests.Reading))
 				break;
-			case 'Travel':
-				dispatcher(filterByInterest('Travel'))
+			case EInterests.Traveling:
+				dispatcher(filterByInterest(EInterests.Traveling))
 				break;
-			case 'Sports':
-				dispatcher(filterByInterest('Sports'))
+			case EInterests.Sports:
+				dispatcher(filterByInterest(EInterests.Sports))
 				break;
-			case 'Music':
-				dispatcher(filterByInterest('Music'))
+			case EInterests.Music:
+				dispatcher(filterByInterest(EInterests.Music))
 				break;
-			case 'Gaming':
-				dispatcher(filterByInterest('Gaming'))
+			case EInterests.Gaming:
+				dispatcher(filterByInterest(EInterests.Gaming))
 				break;
 		}
-	}, [selectedFilter])
+	}, [selectedFilter, selectedSort])
 
-	// useEffect(() => {
-	// 	if (selectedFilter?.value === 'none') {
-	// 		setData(dataFromForms);
-	// 	} else {
-	// 		setData(filteredData);
-	// 	}
-	// }, [selectedFilter, selectedSort, dataFromForms, filteredData])
+	useEffect(() => {
+		switch (selectedSort?.value) {
+			case 'id':
+				dispatcher(sortByProp('id'));
+				break;
+			case EFormProps.firstName:
+				dispatcher(sortByProp(EFormProps.firstName));
+				break;
+			case EFormProps.notificationFrequency:
+				dispatcher(sortByPropDesc(EFormProps.notificationFrequency));
+				break;
+			default:
+				break;
+		}
+	}, [selectedSort, selectedFilter])
 
 	useEffect(() => {
 		setData(dataFromForms.filter((item) => item.terms !== false))
 	}, [dataFromForms]);
+
+	useEffect(() => {
+
+	}, [selectedFilter])
 
 	function handlePrev() {
 		setSliceStep(sliceStep - 10);

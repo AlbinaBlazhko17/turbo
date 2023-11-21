@@ -4,11 +4,11 @@ import CustomForm from '@components/CustomForm/CustomForm';
 import Steps from '@components/Steps/Steps';
 import { Formik } from 'formik';
 import { Suspense, useEffect, useState } from 'react';
-import { FormValues } from '@/components/CustomForm/formik';
+import { FormValues } from '@/customTypes/formik.types';
 import { ObjectSchema } from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItemToForm } from '@/store/actions/actions';
-import { RootState } from '@/types/types';
+import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 import { Await, useLoaderData } from 'react-router-dom';
 

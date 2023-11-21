@@ -19,6 +19,7 @@ export default defineConfig({
 			'@theme': path.resolve(__dirname, './src/theme'),
 			'@scss': path.resolve(__dirname, './src/scss'),
 			'@store': path.resolve(__dirname, './src/store'),
+			'@customTypes': path.resolve(__dirname, './src/customTypes'),
 		},
 		extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
 	},

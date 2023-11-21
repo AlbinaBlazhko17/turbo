@@ -2,15 +2,14 @@ import { FormikProps } from "formik";
 import { useContext, useEffect, useState, memo } from "react";
 import Select, { CSSObjectWithLabel, GroupBase, StylesConfig } from "react-select";
 import { ThemeContext } from "@theme/theme";
-import { FormValues } from "../CustomForm/formik";
+import { FormValues } from "../../customTypes/formik.types";
 import { IDataForForm } from "@/interfaces/IDataForForms";
 
 import style from './customSelect.module.scss';
 
-const CustomSelect = ({ data, formik, type }: { data: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } } | { value: string, label: string }[], formik: FormikProps<IDataForForm>, type: string }) => {
+const CustomSelect = ({ data, formik, type }: { data: { countries: { value: string, label: string }[], userSelectValue: { value: string, label: string } }, formik: FormikProps<IDataForForm>, type: string }) => {
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
-
 	useEffect(() => {
 		if (type === 'country') {
 			formik.setFieldValue('country', selectedData);
@@ -21,8 +20,9 @@ const CustomSelect = ({ data, formik, type }: { data: { countries: { value: stri
 
 	useEffect(() => {
 		if (type === 'country' && 'userSelectValue' in data) {
-			setSelectedData(formik.values['country' as keyof FormValues] || data.userSelectValue);
-		} else {
+			setSelectedData(formik.values.country.value !== '' ? formik.values.country : data.userSelectValue);
+		}
+		else {
 			setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
 		}
 	}, []);
@@ -47,6 +47,8 @@ const CustomSelect = ({ data, formik, type }: { data: { countries: { value: stri
 			width: '434px',
 		}),
 
+		input: (defaultStyles: CSSObjectWithLabel) => ({ ...defaultStyles, color: theme === 'dark' ? "white" : '#333' }),
+
 		singleValue: (defaultStyles: CSSObjectWithLabel) => ({ ...defaultStyles, color: theme === 'dark' ? "white" : '#333' }),
 	};
 
@@ -59,7 +61,7 @@ const CustomSelect = ({ data, formik, type }: { data: { countries: { value: stri
 			className={style.select}
 			options={type === 'country' ? data.countries : data}
 			value={selectedData}
-			onChange={(selectedOption) => setSelectedData(selectedOption)}
+			onChange={(selectedOption) => setSelectedData(!selectedOption ? data.userSelectValue : selectedOption)}
 		/>
 	);
 };
