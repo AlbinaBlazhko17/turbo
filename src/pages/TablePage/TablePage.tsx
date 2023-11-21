@@ -1,10 +1,10 @@
-import { RootState } from "@/store/types";
+import { RootState } from "@/types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeContext } from "@/theme/theme";
 import { useContext, useEffect, useState } from "react";
 import Select from 'react-select';
 import cn from 'classnames';
-import { sortByProp, filterByInterest, filterByGender, returnDataAfterFiltering } from "@/store/actions";
+import { sortByProp, filterByInterest, filterByGender, returnDataAfterFiltering } from "@/store/actions/actions";
 import { IDataForForm } from "@/interfaces/IDataForForms";
 import Button from "@/components/Button/Button";
 

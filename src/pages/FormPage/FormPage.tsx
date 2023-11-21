@@ -7,8 +7,8 @@ import { Suspense, useEffect, useState } from 'react';
 import { FormValues } from '@/components/CustomForm/formik';
 import { ObjectSchema } from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItemToForm } from '@/store/actions';
-import { RootState } from '@/store/types';
+import { addItemToForm } from '@/store/actions/actions';
+import { RootState } from '@/types/types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 import { Await, useLoaderData } from 'react-router-dom';
 

@@ -1,14 +1,14 @@
-import { removeItemFromForm } from '@/store/actions';
+import { removeItemFromForm } from '@/store/actions/actions';
 import ConfirmIcon from '@assets/icons/confirm-icon.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Button from '../Button/Button';
-import { RootState } from '@/store/types';
-
-import style from './confirmationPage.module.scss';
 import { allValues } from '../CustomForm/initialValues';
 import { FormikProps } from 'formik';
 import { IDataForForm } from '@/interfaces/IDataForForms';
+
+import style from './confirmationPage.module.scss';
+
 
 function ConfirmationPage({ formik, setData }: { formik: FormikProps<IDataForForm>, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
 	const navigator = useNavigate();
