@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 
 export const validationSchemaPersonalInfo = Yup.object().shape({
 	firstName: Yup.string()
@@ -48,7 +49,19 @@ export const validationSchemaPreferences = Yup.object().shape({
 export const validationSchemaSubmit = Yup.object().shape({
 	comments: Yup.string().notRequired(),
 	profilePicture: Yup.string()
-		.required('Profile picture is required'),
+		.required('Profile picture is required')
+		.test('is-image', 'Invalid file format, only image files are allowed', (value) => {
+			if (!value) return true;
+
+			const extension = value.split('.').pop().toLowerCase();
+			return imageExtensions.includes(extension);
+		})
+		.test('max-file-name-length', `File name exceeds ${10} characters`, (value) => {
+			if (!value) return true;
+
+			const fileName = value.split('.').shift();
+			return fileName.length <= 10;
+		}),
 	terms: Yup.boolean()
 		.test('is-true', 'You must accept the terms and conditions', (value) => value === true)
 		.required('Terms and conditions is required')
