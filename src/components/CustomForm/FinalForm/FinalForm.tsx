@@ -11,13 +11,12 @@ import { useEffect } from 'react';
 import style from '../customForm.module.scss';
 
 function FinalForm({ formik, setData }: IFieldProps) {
-
 	useEffect(() => {
 		if (formik.values.comments !== '') {
 			formik.touched.comments = true;
 			formik.touched.profilePicture = false;
 			formik.touched.terms = false;
-		} else if (formik.values.profilePicture !== '') {
+		} else if (formik.values.profilePicture !== null) {
 			formik.touched.comments = false;
 			formik.touched.profilePicture = true;
 			formik.touched.terms = false;
@@ -25,6 +24,10 @@ function FinalForm({ formik, setData }: IFieldProps) {
 			formik.touched.comments = false;
 			formik.touched.profilePicture = false;
 			formik.touched.terms = true;
+		} else {
+			formik.touched.comments = false;
+			formik.touched.profilePicture = false;
+			formik.touched.terms = false;
 		}
 	}, [formik.values])
 
