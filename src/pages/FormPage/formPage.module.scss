@@ -8,13 +8,16 @@
 }
 
 .form__wrapper {
+	display: flex;
+	flex-direction: column;
 	padding: 30px;
 	width: max-content;
 	align-self: center;
+	height: 570px;
 }
 
 .buttons {
-	margin-top: 10%;
+	margin-top: auto;
 	margin-left: 15%;
 
 	&_right {
