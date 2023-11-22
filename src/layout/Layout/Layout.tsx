@@ -1,28 +1,26 @@
-import { useContext, useState } from "react";
-import { Outlet } from "react-router";
-import Header from "../Header/Header";
-import NavBar from "../NavBar/NavBar";
+import { useContext } from 'react';
+import { Outlet } from 'react-router';
+import Header from '../Header/Header';
+import NavBar from '../NavBar/NavBar';
 import cn from 'classnames';
-import { ThemeContext } from "@theme/theme";
+import { ThemeContext } from '@theme/theme';
 
 import style from './layout.module.scss';
 
 function Layout() {
-	const [isOpen , setIsOpen] = useState<boolean>(false);
 	const { theme } = useContext(ThemeContext);
 
 	return (
 		<>
 			<Header />
-			<NavBar isOpen={isOpen} setIsOpen={setIsOpen} />
-			<main className={cn(style.container, style[`${theme}`], {
-				[style['container_open']]: isOpen === true,
-				[style['container_closed']]: isOpen === false,
-			})}>
-				<Outlet />
-			</main>
+			<div className={style.mainWrapper}>
+				<NavBar />
+				<main className={cn(style.container, style[`${theme}`])}>
+					<Outlet />
+				</main>
+			</div>
 		</>
-  );
+	);
 }
 
 export default Layout;
