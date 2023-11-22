@@ -25,7 +25,7 @@ export const enum EFormProps {
 	city = 'city',
 	country = 'country',
 	zipCode = 'zipCode',
-	interestes = 'interestes',
+	interests = 'interests',
 	language = 'language',
 	notificationFrequency = 'notificationFrequency',
 	comments = 'comments',
