@@ -7,7 +7,8 @@
 		padding-top: 120px;
 	}
 
-	main section, aside {
+	main section,
+	aside {
 		padding: 18px 16px;
 	}
 
@@ -15,10 +16,12 @@
 		box-sizing: border-box;
 		width: 250px;
 		height: 100vh;
-		& + main {
+
+		&+main {
 			& .subgrid {
 				grid-template-columns: 200px auto;
 			}
+
 			& .services {
 				grid-column: 2/3;
 			}
@@ -29,7 +32,7 @@
 		}
 
 		&_open {
-			& + main {
+			&+main {
 				& .latest {
 					max-height: 688px;
 				}
@@ -38,23 +41,23 @@
 
 		&_closed {
 			width: $sidebar-width-closed;
-		
-			& + main {
-				width: calc(100% - 50px - $sidebar-width-closed);
+
+			&+main {
+				width: calc(100% - $sidebar-width-closed);
 				margin-left: $sidebar-width-closed;
 			}
 
-			& + main .services {
+			&+main .services {
 				grid-column: 2/3;
 			}
 
-			& + main .latest {
+			&+main .latest {
 				max-height: 620px;
 				grid-row: 1/3;
 			}
 		}
 
-		&__list{
+		&__list {
 			&-item {
 				width: 100%;
 			}
@@ -73,6 +76,7 @@
 		box-sizing: border-box;
 		grid-column: 1/-1;
 		grid-row: 2/3;
+
 		&__wrapper {
 			gap: 4px;
 		}
@@ -90,8 +94,8 @@
 		&_open {
 			width: 200px;
 
-			& + main {
-				width: calc(100% - 40px - 200px);
+			&+main {
+				width: calc(100% - 200px);
 				grid-template-columns: 1fr;
 				margin-left: 200px;
 				padding: 25px 20px;
@@ -103,7 +107,9 @@
 				}
 
 				& .subgrid {
-					& .experts, & .services {
+
+					& .experts,
+					& .services {
 						grid-column: 1/-1;
 					}
 				}
@@ -118,10 +124,12 @@
 					&__carousel {
 						&-slide {
 							padding: 32px 20px;
+
 							&__text {
 								font-size: 14px;
 								line-height: 18px;
 								white-space: unset;
+
 								&::after {
 									width: 20px;
 									height: 20px;
@@ -149,15 +157,15 @@
 				white-space: nowrap;
 			}
 
-			& + main .latest {
+			&+main .latest {
 				height: 615px;
 			}
 
-			& + main .services {
+			&+main .services {
 				grid-column: 1/3;
 			}
 
-			& + main .swiper-slide {
+			&+main .swiper-slide {
 				width: 450px;
 			}
 		}
@@ -172,7 +180,8 @@
 		grid-template-columns: 200px auto;
 	}
 
-	.experts__header, .services__header {
+	.experts__header,
+	.services__header {
 		text-align: center;
 	}
 
@@ -206,11 +215,13 @@
 		&__carousel {
 			&-slide {
 				padding: 32px 30px;
+
 				&__text {
 					line-height: 20px;
 					font-size: 16px;
+
 					&::after {
-						
+
 						left: 10px;
 					}
 				}
@@ -235,7 +246,8 @@
 
 		&_open {
 			width: 90%;
-			& + main {
+
+			&+main {
 				box-sizing: border-box;
 				width: 100%;
 				margin-left: 0px;
@@ -247,7 +259,7 @@
 		&_closed {
 			width: 70px;
 
-			& + main {
+			&+main {
 				margin-left: 70px;
 				width: calc(100% - 20px - 70px);
 
@@ -260,7 +272,7 @@
 				top: 65px;
 				right: -20px;
 
-				&  img {
+				& img {
 					width: 50px;
 					height: 50px;
 				}
@@ -281,7 +293,8 @@
 		grid-column: 1/3;
 	}
 
-	.experts, .services {
+	.experts,
+	.services {
 		box-sizing: border-box;
 		padding: 15px;
 		width: 100%;
@@ -289,10 +302,12 @@
 
 	.experts {
 		grid-column: 1/3;
+
 		&__wrapper {
 			justify-content: center;
 			grid-template-columns: 1fr;
 		}
+
 		&__item {
 			justify-content: space-evenly;
 		}
@@ -316,8 +331,10 @@
 		&__carousel {
 			&-slide {
 				padding: 32px 20px;
+
 				&__text {
 					white-space: unset;
+
 					&::after {
 						left: 10px;
 					}

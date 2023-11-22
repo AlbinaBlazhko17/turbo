@@ -16,7 +16,7 @@ function Steps({ currentStep }: { currentStep: number }) {
 				dataForSteps.map((step, i) => (
 					<div key={i} className={`${style['steps-item']} ${currentStep === i + 1 && style.active} ${(i + 1 < currentStep || complete) && style.complete}`}>
 						<h2 className={style['steps-item__step']}>{(i + 1 < currentStep || complete) ? <TiTick size={24} /> : i + 1}</h2>
-						<h3>{step}</h3>
+						<h3 className={style['steps-item__type']}>{step}</h3>
 					</div>
 				))
 			}
