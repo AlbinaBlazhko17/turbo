@@ -2,13 +2,6 @@
 
 .container {
 	background-color: $white;
-	&_open {
-		width: calc(100% - $sidebar-width-open);
-		margin-left: $sidebar-width-open;
-	}
-
-	&_closed {
-		width: calc(100% - $sidebar-width-closed);
-		margin-left: $sidebar-width-closed;
-	}
+	width: calc(100% - $sidebar-width-closed);
+	margin-left: $sidebar-width-closed;
 }
