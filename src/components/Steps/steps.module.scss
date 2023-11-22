@@ -22,6 +22,7 @@
 			right: 43%;
 			top: 33%;
 			transform: translateY(-25%);
+			z-index: 1;
 		}
 
 		&__step {
@@ -35,6 +36,7 @@
 			align-items: center;
 			color: $black !important;
 			border: 1px thin $grey;
+			z-index: 3;
 		}
 	}
 
