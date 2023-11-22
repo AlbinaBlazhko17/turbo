@@ -10,15 +10,14 @@
 .form__wrapper {
 	padding: 30px;
 	width: max-content;
-	height: 55vh;
 	align-self: center;
 }
 
 .buttons {
-	position: absolute;
-	bottom: 5%;
-	left: 43%;
-	&_right{
+	margin-top: 10%;
+	margin-left: 15%;
+
+	&_right {
 		margin-right: 30px;
 	}
 }
