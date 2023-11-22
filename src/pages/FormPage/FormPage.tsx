@@ -46,6 +46,7 @@ function FormPage() {
 
 	}, [currentStep]);
 
+
 	const handlePrevStep = () => {
 		if (+currentStep > 1) {
 			setCurrentStep(+currentStep - 1);
@@ -88,7 +89,7 @@ function FormPage() {
 									Previous step
 								</Button>
 								<Button
-									appearance={+currentStep !== 5 ? 'filled' : 'outlined'}
+									appearance={+currentStep !== 5 && !Object.keys(formik.errors).length ? 'filled' : 'outlined'}
 									onClick={() => { formik.handleSubmit(); formDispatcher(addItemToForm(formik.values)) }}
 									type={'submit'}
 								>
