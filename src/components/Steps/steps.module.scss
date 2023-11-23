@@ -1,13 +1,14 @@
 @import '@scss/index.scss';
 
 .steps {
-	margin-top: 30px;
+	margin-top: 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
 	width: auto;
 	align-self: center;
 	box-sizing: border-box;
+	width: 40%;
 
 	&-item {
 		position: relative;
@@ -22,9 +23,9 @@
 			position: absolute;
 			content: '';
 			background: $light-grey;
-			width: 100%;
+			width: 15vw;
 			height: 3px;
-			right: 43%;
+			right: 30%;
 			top: 33%;
 			transform: translateY(-25%);
 			z-index: 1;
@@ -84,4 +85,60 @@
 			}
 		}
 	}
+}
+
+@media screen and (max-width: 2561px) {
+	.steps {
+		&-item {
+			&:not(:first-child)::before {
+				width: 10vw;
+				right: 45%;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.steps {
+		width: 55%;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.steps {
+		width: 65%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.steps {
+		width: 80%;
+
+		&-item {
+			&:not(:first-child)::before {
+				width: 13vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.steps {
+		width: 100%;
+
+		&-item {
+			&:not(:first-child)::before {
+				width: 18vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.steps {
+		h3 {
+			font-size: 0.8rem;
+		}
+	}
+
 }

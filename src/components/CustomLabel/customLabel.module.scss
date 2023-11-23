@@ -8,7 +8,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 	&__dark {
 		color: $white;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.label {
+		margin: 5px;
 	}
 }

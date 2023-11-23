@@ -3,7 +3,7 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
-	row-gap: 32px;
+	row-gap: 20px;
 	position: relative;
 }
 
@@ -12,7 +12,9 @@
 	flex-direction: column;
 	padding: 30px;
 	align-self: center;
-	height: 570px;
+	height: 600px;
+	width: 40%;
+	box-sizing: border-box;
 }
 
 .buttons {
@@ -21,5 +23,45 @@
 
 	&_right {
 		margin-right: 30px;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.form__wrapper {
+		width: 55%;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.form__wrapper {
+		width: 65%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.form__wrapper {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.form__wrapper {
+		width: 100%;
+	}
+
+	.buttons {
+		&_right {
+			margin-right: 20px;
+		}
+	}
+}
+
+@media screen and (max-width: 426px) {
+	.buttons {
+		margin-left: 0px;
+
+		&_right {
+			margin-right: 10px;
+		}
 	}
 }

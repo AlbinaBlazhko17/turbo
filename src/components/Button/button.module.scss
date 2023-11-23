@@ -27,3 +27,9 @@
 		cursor: unset;
 	}
 }
+
+@media screen and (max-width: 450px) {
+	.btn {
+		padding: 10px;
+	}
+}

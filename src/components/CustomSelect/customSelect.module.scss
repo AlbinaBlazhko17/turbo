@@ -1,14 +1,23 @@
 @import '@scss/index.scss';
 
 .select {
-	// & > div {
-	// 	background: $grey;
-	// 	border: 1px solid #fff;
-	// 	border-radius: 8px;
-	// 	margin-bottom: 20px;
-	// 	padding: 10px;
-	// 	& div {
-	// 		color: $white;
-	// 	}
-	// }
+	width: 100%;
+}
+
+@media screen and (max-width: 2561px) {
+	.select {
+		width: 104%;
+	}
+}
+
+@media screen and (max-width: 1441px) {
+	.select {
+		width: 108%;
+	}
+}
+
+@media screen and (max-width: 426px) {
+	.select {
+		width: 115%;
+	}
 }

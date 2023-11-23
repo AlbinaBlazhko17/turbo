@@ -55,9 +55,9 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.language}>Language</CustomLabel>
-				<div className={style[`form-item__language`]}>
-					{dataSelect && <CustomSelect data={memoizedDataSelect} formik={formik} type={EFormProps.language} />}
-				</div>
+				{/* <div className={style[`form-item__language`]}> */}
+				{dataSelect && <CustomSelect data={memoizedDataSelect} formik={formik} type={EFormProps.language} />}
+				{/* </div> */}
 				{!formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}</div>
 				)}

@@ -45,7 +45,8 @@ const CustomSelect = ({ data, formik, type }: CustomSelectProps) => {
 			borderRadius: "8px",
 			boxShadow: "none",
 			marginBottom: "20px",
-			width: '434px',
+			width: '100%',
+
 		}),
 
 		input: (defaultStyles: CSSObjectWithLabel) => ({ ...defaultStyles, color: theme === 'dark' ? "white" : '#333' }),
