@@ -3,13 +3,14 @@ import Logout from '@assets/icons/logout.svg';
 import Arrow from '@assets/icons/menu.svg';
 import { ThemeContext } from '@theme/theme';
 import cn from 'classnames';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import style from './NavBar.module.scss';
 
-function NavBar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (isOpen: boolean) => void }) {
+function NavBar() {
 	const { theme } = useContext(ThemeContext);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const location = useLocation();
 
 	return (

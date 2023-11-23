@@ -1,14 +1,20 @@
 @import '@scss/base/variables.scss';
 
+.mainWrapper {
+	display: flex;
+	position: relative;
+	height: 100vh;
+}
+
 .container {
 	background-color: $white;
-	&_open {
-		width: calc(100% - $sidebar-width-open);
-		margin-left: $sidebar-width-open;
-	}
+	overflow: auto;
+	flex-grow: 1;
+}
 
-	&_closed {
-		width: calc(100% - $sidebar-width-closed);
-		margin-left: $sidebar-width-closed;
+@media screen and (max-width: 535px) {
+	.container {
+		width: calc(100% - $sidebar-width-closed_mobile);
+		margin-left: $sidebar-width-closed_mobile;
 	}
 }

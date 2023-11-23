@@ -1,13 +1,12 @@
-import { useContext } from 'react';
-import Swiper from 'swiper';
-import {Swiper as SwiperSlider, SwiperSlide} from 'swiper/react';
-import SwiperCore from 'swiper';
-import { Pagination } from 'swiper/modules';
-import dataForSlider from '@utils/dataForSlider';
-import SliderCard from '../SliderCard/SliderCard';
 import IDataForSlider from '@interfaces/IDataForSlider';
-import cn from 'classnames';
 import { ThemeContext } from '@theme/theme';
+import dataForSlider from '@utils/dataForSlider';
+import cn from 'classnames';
+import { useContext } from 'react';
+import { default as Swiper, default as SwiperCore } from 'swiper';
+import { Pagination } from 'swiper/modules';
+import { SwiperSlide, Swiper as SwiperSlider } from 'swiper/react';
+import SliderCard from '../SliderCard/SliderCard';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -16,7 +15,7 @@ import style from './slider.module.scss';
 
 SwiperCore.use([Pagination]);
 
-function Slider () {
+function Slider() {
 	const { theme } = useContext(ThemeContext);
 
 	const handleSlideTransitionEnd = (swiper: Swiper) => {

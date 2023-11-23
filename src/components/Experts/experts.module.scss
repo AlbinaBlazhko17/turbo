@@ -38,3 +38,10 @@
 		}
 	}
 }
+
+@media screen and (max-width: 450px) {
+	.experts {
+		grid-column: 1/-1;
+	}
+
+}
