@@ -83,83 +83,85 @@ function TablePage() {
 						<Button appearance='filled' onClick={handleReset}>Remove filtering and sorting</Button>
 					</div>
 				</div>
-				<table>
-					<tr>
-						<th className={style.table__header}>ID</th>
-						<th
-							className={cn(style.table__header, style.table__header_sortable)}
-							onClick={() => handleSort(EFormProps.firstName)}
-						>
-							<div className={style.table__sorting}>First name
-								<span className={cn(style.table__sorting__arrow, {
-									[style.table__sorting__arrow_active]: sortedColumn === EFormProps.firstName && order
-								})}
-								>
-									<img src={SortArrow} alt="sort arrow" />
-								</span>
-							</div>
-						</th>
-						<th className={style.table__header}>Last name</th>
-						<th className={style.table__header}>Email</th>
-						<th className={style.table__header}>Gender</th>
-						<th className={style.table__header}>Address</th>
-						<th className={style.table__header}>Country</th>
-						<th className={style.table__header}>Postal code</th>
-						<th className={style.table__header}>Interests</th>
-						<th className={style.table__header}>Language</th>
-						<th
-							className={cn(style.table__header, style.table__header_sortable)}
-							onClick={() => handleSort(EFormProps.notificationFrequency)}>
-							<div className={style.table__sorting}>Notification frequency
-								<span className={cn(style.table__sorting__arrow, {
-									[style.table__sorting__arrow_active]: sortedColumn === EFormProps.notificationFrequency && order
-								})}
-								>
-									<img src={SortArrow} alt="sort arrow" />
-								</span>
-							</div>
-						</th>
-						<th className={style.table__header}>Comments</th>
-						<th className={style.table__header}>Image</th>
-						<th
-							className={cn(style.table__header, style.table__header_sortable)}
-							onClick={() => handleSort(EFormProps.date)}>
-							<div className={style.table__sorting}>Date
-								<span className={cn(style.table__sorting__arrow, {
-									[style.table__sorting__arrow_active]: sortedColumn === EFormProps.date && order
-								})}
-								>
-									<img src={SortArrow} alt="sort arrow" />
-								</span>
-							</div>
-						</th>
-					</tr>
-					{data.length !== 0 ? data.slice(sliceStep - 10, sliceStep).map((item, index) => (
-						<tr key={index}>
-							<td className={cn(style.table__descr, style.table__descr_center)}>{item.id}</td>
-							<td className={style.table__descr}>{item.firstName}</td>
-							<td className={style.table__descr}>{item.lastName}</td>
-							<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.email}</td>
-							<td className={cn(style.table__descr, style.table__descr_center)}>{item.gender}</td>
-							<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.city}</td>
-							<td className={style.table__descr}>{item.country.label}</td>
-							<td className={cn(style.table__descr, style.table__descr_center)}>{item.zipCode}</td>
-							<td className={style.table__descr}>{item.interests.map((interest, i) => (<li key={i}>{interest}</li>))}</td>
-							<td className={style.table__descr}>{item.language.label}</td>
-							<td className={cn(style.table__descr, style.table__descr_center)}>{item.notificationFrequency}</td>
-							<td className={style.table__descr}>{item.comments}</td>
-							<td className={style.table__descr}>{item.profilePicture}</td>
-							<td className={style.table__descr}>{item.date}</td>
-						</tr>
-					)) : (
+				<div className={style.table__overflow}>
+					<table>
 						<tr>
-							<td className={style.table__descr} colSpan={13}>
-								<h3 style={{ textAlign: 'center' }}> No info! Please, fill the form</h3>
-							</td>
+							<th className={style.table__header}>ID</th>
+							<th
+								className={cn(style.table__header, style.table__header_sortable)}
+								onClick={() => handleSort(EFormProps.firstName)}
+							>
+								<div className={style.table__sorting}>First name
+									<span className={cn(style.table__sorting__arrow, {
+										[style.table__sorting__arrow_active]: sortedColumn === EFormProps.firstName && order
+									})}
+									>
+										<img src={SortArrow} alt="sort arrow" />
+									</span>
+								</div>
+							</th>
+							<th className={style.table__header}>Last name</th>
+							<th className={style.table__header}>Email</th>
+							<th className={style.table__header}>Gender</th>
+							<th className={style.table__header}>Address</th>
+							<th className={style.table__header}>Country</th>
+							<th className={style.table__header}>Postal code</th>
+							<th className={style.table__header}>Interests</th>
+							<th className={style.table__header}>Language</th>
+							<th
+								className={cn(style.table__header, style.table__header_sortable)}
+								onClick={() => handleSort(EFormProps.notificationFrequency)}>
+								<div className={style.table__sorting}>Notification frequency
+									<span className={cn(style.table__sorting__arrow, {
+										[style.table__sorting__arrow_active]: sortedColumn === EFormProps.notificationFrequency && order
+									})}
+									>
+										<img src={SortArrow} alt="sort arrow" />
+									</span>
+								</div>
+							</th>
+							<th className={style.table__header}>Comments</th>
+							<th className={style.table__header}>Image</th>
+							<th
+								className={cn(style.table__header, style.table__header_sortable)}
+								onClick={() => handleSort(EFormProps.date)}>
+								<div className={style.table__sorting}>Date
+									<span className={cn(style.table__sorting__arrow, {
+										[style.table__sorting__arrow_active]: sortedColumn === EFormProps.date && order
+									})}
+									>
+										<img src={SortArrow} alt="sort arrow" />
+									</span>
+								</div>
+							</th>
 						</tr>
-					)
-					}
-				</table>
+						{data.length !== 0 ? data.slice(sliceStep - 10, sliceStep).map((item, index) => (
+							<tr key={index}>
+								<td className={cn(style.table__descr, style.table__descr_center)}>{item.id}</td>
+								<td className={style.table__descr}>{item.firstName}</td>
+								<td className={style.table__descr}>{item.lastName}</td>
+								<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.email}</td>
+								<td className={cn(style.table__descr, style.table__descr_center)}>{item.gender}</td>
+								<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.city}</td>
+								<td className={style.table__descr}>{item.country.label}</td>
+								<td className={cn(style.table__descr, style.table__descr_center)}>{item.zipCode}</td>
+								<td className={style.table__descr}>{item.interests.map((interest, i) => (<div key={i}>{interest}</div>))}</td>
+								<td className={style.table__descr}>{item.language.label}</td>
+								<td className={cn(style.table__descr, style.table__descr_center)}>{item.notificationFrequency}</td>
+								<td className={style.table__descr}>{item.comments}</td>
+								<td className={style.table__descr}>{item.profilePicture}</td>
+								<td className={style.table__descr}>{item.date}</td>
+							</tr>
+						)) : (
+							<tr>
+								<td className={style.table__descr} colSpan={13}>
+									<h3 style={{ textAlign: 'center' }}> No info! Please, fill the form</h3>
+								</td>
+							</tr>
+						)
+						}
+					</table>
+				</div>
 				{
 					data.length > 10 ? (
 						<div className={style.table__pagination}>

@@ -41,7 +41,7 @@ function DropDownMenu({ selectedItem, setSelectedItem, toggleDropdown }: { selec
 
 
 	return (
-		<div className={style['filtration-dropdown']} onClick={toggleDropdown}>
+		<div className={style['filtration-dropdown']}>
 			<ul>
 				{items.map((group, groupIndex) => (
 					<li key={groupIndex}>

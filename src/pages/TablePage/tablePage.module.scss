@@ -9,7 +9,6 @@
 		word-wrap: break-word;
 	}
 
-
 	&__wrapper {
 		display: flex;
 		flex-direction: column;
@@ -18,10 +17,15 @@
 		max-width: 100%;
 		height: 100%;
 		padding: 24px 50px;
+		overflow: hidden;
 	}
 
 	&__subheader {
 		align-self: flex-start;
+	}
+
+	&__overflow {
+		overflow-x: scroll;
 	}
 
 	&__arrow {
@@ -135,19 +139,46 @@
 		margin-top: 20px;
 		width: 200px;
 	}
+
+	@media screen and (max-width: 1441px) {
+		.table {
+			&__wrapper {
+				height: 100%;
+			}
+		}
+	}
+
+	@media screen and (max-width: 1120px) {
+		table {
+			width: 150%;
+		}
+
+		.table {
+			&__filtration {
+				&-filter {
+					margin-left: 0;
+				}
+
+			}
+		}
+
+		@media screen and (max-width: 800px) {
+			table {
+				width: 220%;
+			}
+		}
+
+		@media screen and (max-width: 680px) {
+			table {
+				width: 350%;
+			}
+		}
+	}
 }
 
 .dark {
 
 	td {
 		color: $white;
-	}
-}
-
-@media screen and (max-width: 1441px) {
-	.table {
-		&__wrapper {
-			height: 100%;
-		}
 	}
 }
