@@ -57,6 +57,7 @@ function DropDownMenu({ selectedItem, setSelectedItem, toggleDropdown }: { selec
 								>
 									{item}
 									<span className={cn(style.tick, {
+										//@ts-ignore
 										[style.tick_active]: selectedItem.includes(group.label === 'Gender' ? item.toLocaleLowerCase() : item)
 									})}><img src={TickIcon} alt="tick" /></span>
 								</li>

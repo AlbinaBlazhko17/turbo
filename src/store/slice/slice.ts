@@ -87,6 +87,7 @@ export const formSlice = createSlice({
 					if (filter === EGender.Female.toLocaleLowerCase() || filter === EGender.Male.toLocaleLowerCase()) {
 						return item.gender === filter;
 					} else {
+						//@ts-ignore
 						return [...item.interests].includes(filter)
 					}
 				})

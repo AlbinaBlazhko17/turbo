@@ -7,7 +7,7 @@ import { ThemeContext } from "@/theme/theme";
 import FiltrationIcon from '@assets/icons/filtration.svg';
 import SortArrow from '@assets/icons/sort-arrow.svg';
 import cn from 'classnames';
-import { useContext, useEffect, useState } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DropDownMenu from "@/components/DropDownMenu/DropDownMenu";
 
@@ -57,14 +57,13 @@ function TablePage() {
 		setOrder(true);
 		setSortedColumn(null);
 		setSelectedItem([]);
-		toggleDropdown();
+		setIsDropdownOpen(false);
 	}
 
 	useEffect(() => {
 		dispatcher(filterByProp(selectedItem));
 	}, [selectedItem])
 
-	// const flattenItems = items.reduce((acc, curr) => acc.concat(curr.items), []);
 
 	return (
 		<div className={cn(style.table, style[`${theme}`])}>
