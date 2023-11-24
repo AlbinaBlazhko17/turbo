@@ -1,4 +1,5 @@
 import Button from "@/components/Button/Button";
+import DropDownMenu from "@/components/DropDownMenu/DropDownMenu";
 import { EFormProps } from "@/customTypes/form.types";
 import { RootState } from "@/customTypes/store.types";
 import { IDataForForm } from "@/interfaces/IDataForForms";
@@ -7,9 +8,8 @@ import { ThemeContext } from "@/theme/theme";
 import FiltrationIcon from '@assets/icons/filtration.svg';
 import SortArrow from '@assets/icons/sort-arrow.svg';
 import cn from 'classnames';
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DropDownMenu from "@/components/DropDownMenu/DropDownMenu";
 
 import style from './tablePage.module.scss';
 
@@ -48,6 +48,7 @@ function TablePage() {
 			dispatcher(sortByProp(type as keyof IDataForForm));
 		}
 	}
+
 	const toggleDropdown = () => {
 		setIsDropdownOpen(!isDropdownOpen);
 	};
@@ -63,7 +64,6 @@ function TablePage() {
 	useEffect(() => {
 		dispatcher(filterByProp(selectedItem));
 	}, [selectedItem])
-
 
 	return (
 		<div className={cn(style.table, style[`${theme}`])}>

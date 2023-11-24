@@ -5,7 +5,6 @@ import { Dispatch, SetStateAction } from 'react';
 
 import style from './DropDownMenu.module.scss';
 
-
 function DropDownMenu({ selectedItem, setSelectedItem, toggleDropdown }: { selectedItem: string[], setSelectedItem: Dispatch<SetStateAction<string[]>>, toggleDropdown: () => void }) {
 
 	const items = [

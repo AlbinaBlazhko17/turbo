@@ -4,10 +4,6 @@ import { IDataForForm } from "@/interfaces/IDataForForms";
 import { PayloadAction } from '@reduxjs/toolkit';
 import { EGender } from "@/customTypes/form.types";
 
-interface FilterPayload {
-	filters: string[];
-	typeOfFilter: string;
-}
 interface FormState {
 	formData: IDataForForm[];
 	previousFormData: IDataForForm[];
