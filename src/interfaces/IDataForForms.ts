@@ -33,7 +33,8 @@ export interface IDataForSubmitForm {
 }
 
 export interface IDataForForm extends IDataForPersonalnfoForm, IDataForAddressForm, IDataForPreferencesForm, IDataForSubmitForm {
-	id: number
+	id: number,
+	date: Date
 }
 
 export interface InputProps {

@@ -16,17 +16,57 @@
 		align-items: center;
 		margin-top: 20px;
 		max-width: 100%;
-		height: 80vh;
+		height: 100%;
+		padding: 24px 50px;
+	}
+
+	&__subheader {
+		align-self: flex-start;
+	}
+
+	&__arrow {
+		display: block;
+		width: 20px;
+		height: 20px;
+		margin-left: 10px;
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	&__filtration {
-		width: 400px;
+		width: 100%;
 		display: flex;
-		align-items: center;
+		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 20px;
 		text-align: center;
-		float: right;
+
+		&-filter {
+			width: 30px;
+			height: 30px;
+			background-color: $light-blue;
+			border-radius: 8px;
+			padding: 5px;
+			margin-left: 49px;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+
+			img {
+				width: 100%;
+				height: 100%;
+			}
+
+			&:hover {
+				background-color: $blue;
+			}
+		}
+
+		&-reset {
+			align-self: flex-end;
+		}
 
 		&-item {
 			padding: 8px;
@@ -36,6 +76,36 @@
 
 	&__header {
 		background-color: $lighter-blue;
+
+		&_sortable {
+			cursor: pointer;
+
+			&:hover {
+				background-color: #5bb1f8;
+			}
+		}
+	}
+
+	&__sorting {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&__arrow {
+			width: 35px;
+			height: 20px;
+			transition: transform 0.3s ease-in-out;
+
+			img {
+				margin-bottom: -3px;
+				width: 100%;
+				height: 100%;
+			}
+
+			&_active {
+				transform: rotate(180deg);
+			}
+		}
 	}
 
 	&__descr {
@@ -71,5 +141,13 @@
 
 	td {
 		color: $white;
+	}
+}
+
+@media screen and (max-width: 1441px) {
+	.table {
+		&__wrapper {
+			height: 100%;
+		}
 	}
 }

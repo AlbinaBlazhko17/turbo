@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { allValues } from "@components/CustomForm/initialValues";
 import { IDataForForm } from "@/interfaces/IDataForForms";
 import { PayloadAction } from '@reduxjs/toolkit';
+import { EGender } from "@/customTypes/form.types";
 
+interface FilterPayload {
+	filters: string[];
+	typeOfFilter: string;
+}
 interface FormState {
 	formData: IDataForForm[];
 	previousFormData: IDataForForm[];
@@ -21,7 +26,7 @@ export const formSlice = createSlice({
 			const updatedState = [...state.formData];
 			const lastObject = updatedState[updatedState.length - 1];
 			if (lastObject) {
-				updatedState[updatedState.length - 1] = { ...lastObject, ...action.payload, id: updatedState.length };
+				updatedState[updatedState.length - 1] = { ...lastObject, ...action.payload, id: updatedState.length, date: new Date().toLocaleString() };
 			}
 
 			return { formData: updatedState, previousFormData: updatedState };
@@ -68,18 +73,24 @@ export const formSlice = createSlice({
 
 			return { formData: updatedState, previousFormData: state.previousFormData };
 		},
-		filterByGender: (state, action: PayloadAction<string>) => {
-			const updatedState = [...state.previousFormData];
+		filterByProp: (state, action) => {
 			const payload = action.payload;
+			// const type = action.payload.typeOfFilter;
+			const updatedState = payload.includes(EGender.Female.toLocaleLowerCase()) || payload.includes(EGender.Male.toLowerCase()) ? [...state.previousFormData] : [...state.formData];
 
-			const filteredState = updatedState.filter((item) => item.gender === payload)
-			return { formData: filteredState.length !== 0 ? filteredState : [allValues], previousFormData: state.previousFormData };
-		},
-		filterByInterest: (state, action: PayloadAction<string>) => {
-			const updatedState = [...state.previousFormData];
-			const payload = action.payload;
-			//@ts-ignore
-			const filteredState = updatedState.filter((item) => item.interests.includes(payload));
+			if (payload.length === 0) {
+				return { formData: [...state.previousFormData], previousFormData: state.previousFormData };
+			}
+			const filteredState = updatedState.filter((item) =>
+				//@ts-ignore
+				payload.every((filter) => {
+					if (filter === EGender.Female.toLocaleLowerCase() || filter === EGender.Male.toLocaleLowerCase()) {
+						return item.gender === filter;
+					} else {
+						return [...item.interests].includes(filter)
+					}
+				})
+			);
 			return { formData: filteredState.length !== 0 ? filteredState : [allValues], previousFormData: state.previousFormData };
 		},
 		returnDataAfterFiltering: (state) => {

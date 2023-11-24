@@ -38,6 +38,16 @@ main {
 }
 
 
+ul {
+	margin: 0;
+	padding: 0;
+
+	li {
+		list-style-type: none;
+	}
+
+}
+
 .light {
 	& main {
 		background-color: $white;
