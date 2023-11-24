@@ -70,7 +70,3 @@ function DropDownMenu({ selectedItem, setSelectedItem, toggleDropdown }: { selec
 }
 
 export default DropDownMenu;
-
-function dispatcher(arg0: { payload: string[]; type: "form/filterByProp"; }) {
-	throw new Error('Function not implemented.');
-}
