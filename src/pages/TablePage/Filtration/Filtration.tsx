@@ -6,6 +6,7 @@ import cn from 'classnames';
 import RangeSlider from 'react-range-slider-input';
 import Button from '@/components/Button/Button';
 import { setStateActionType } from '@/customTypes/react.types';
+import ISelectedItem from '@/interfaces/ISelectedItem';
 
 import 'react-range-slider-input/dist/style.css';
 import style from './filtration.module.scss';
@@ -16,10 +17,9 @@ function Filtration({
 	handleReset,
 	sliderRange,
 	setSliderRange,
-	setModalActive,
 }: {
-	selectedItem: string[];
-	setSelectedItem: setStateActionType<string[]>;
+	selectedItem: ISelectedItem;
+	setSelectedItem: setStateActionType<ISelectedItem>;
 	handleReset: () => void;
 	sliderRange: number[];
 	setSliderRange: setStateActionType<number[]>;
@@ -50,23 +50,46 @@ function Filtration({
 		rangeSliderChilds[1].style.left = `calc(${sliderThumbRight.slice(4, -1)} + -10px)`;
 	}, [sliderRange]);
 
-	function handleToggleFilter(item: string, label: string) {
-		const newItem = label === 'Gender' ? item.toLocaleLowerCase() : item;
-		if (label === 'Gender') {
+	function handleToggleFilterInterests(item: string) {
+		//@ts-ignore
+		if (selectedItem.interests.includes(item)) {
+			setSelectedItem((prevSelectedItem) => ({
+				...prevSelectedItem,
+				interests: prevSelectedItem.interests.filter((el) => el !== item),
+			}));
+		} else {
+			setSelectedItem((prevSelectedItem) => ({
+				...prevSelectedItem,
+				interests: [...prevSelectedItem.interests, item],
+			}));
+		}
+	}
+
+	function handleChangeGender(item: string) {
+		if (selectedItem.gender === '') {
+			setSelectedItem((prevSelectedItem) => ({ ...prevSelectedItem, gender: item.toLowerCase() }));
+		} else if (selectedItem.gender === item.toLowerCase()) {
+			setSelectedItem((prevSelectedItem) =>
+				// console.log(prevSelectedItem);
+				({ ...prevSelectedItem, gender: '' }),
+			);
+		} else {
 			setSelectedItem((prevSelectedItem) => {
-				if (newItem === EGender.Female.toLocaleLowerCase()) {
-					return prevSelectedItem.filter((el) => el !== EGender.Male.toLocaleLowerCase());
+				if (item.toLowerCase() === EGender.Female.toLocaleLowerCase()) {
+					if (prevSelectedItem.gender === EGender.Male.toLowerCase()) {
+						return { ...prevSelectedItem, gender: EGender.Female.toLowerCase() };
+					}
 				} else {
-					return prevSelectedItem.filter((el) => el !== EGender.Female.toLocaleLowerCase());
+					if (prevSelectedItem.gender === EGender.Female.toLowerCase()) {
+						return { ...prevSelectedItem, gender: EGender.Male.toLowerCase() };
+					}
 				}
 			});
 		}
-		//@ts-ignore
-		if (selectedItem.includes(newItem)) {
-			setSelectedItem((prevSelectedItem) => prevSelectedItem.filter((el) => el !== newItem));
-		} else {
-			setSelectedItem((prevSelectedItem) => [...prevSelectedItem, newItem]);
-		}
+	}
+
+	function handleChangeSlider(e: Array<number>) {
+		setSelectedItem((prevSelectedItem) => ({ ...prevSelectedItem, range: e as [number, number] }));
 	}
 
 	return (
@@ -74,26 +97,20 @@ function Filtration({
 			<ul>
 				{itemsGender.map((group, groupIndex) => (
 					<li key={groupIndex}>
-						<strong className={style['filtration__label']}>{group.label}</strong>
+						<strong className={style['filtration__label']}>Gender</strong>
 						<ul>
 							{group.items.map((item, itemIndex) => (
 								<li
-									onClick={() => handleToggleFilter(item, group.label)}
+									onClick={() => handleChangeGender(item)}
 									key={`${groupIndex}-${itemIndex}`}
 									//@ts-ignore
-									className={
-										group.label !== 'Interests'
-											? style['filtration-item']
-											: [style['filtration__interests-item']]
-									}
+									className={style['filtration-item']}
 								>
 									{item}
 									<span
 										className={cn(style.tick, {
 											//@ts-ignore
-											[style.tick_active]: selectedItem.includes(
-												group.label === 'Gender' ? item.toLocaleLowerCase() : item,
-											),
+											[style.tick_active]: selectedItem.gender === item.toLowerCase(),
 										})}
 									>
 										<img src={TickIcon} alt="tick" />
@@ -105,16 +122,17 @@ function Filtration({
 				))}
 				{itemsInterests.map((group, groupIndex) => (
 					<li key={groupIndex}>
-						<strong className={style['filtration__label']}>{group.label}</strong>
+						<strong className={style['filtration__label']}>Interests</strong>
 						<ul className={style.filtration__interests}>
 							{group.items.map((item, itemIndex) => (
 								<li
-									onClick={() => handleToggleFilter(item, group.label)}
+									onClick={() => handleToggleFilterInterests(item)}
 									key={`${groupIndex}-${itemIndex}`}
 									//@ts-ignore
 									className={cn(style['filtration__interests-item'], {
-										//@ts-ignore
-										[style['filtration__interests-item_active']]: selectedItem.includes(item),
+										[style['filtration__interests-item_active']]:
+											//@ts-ignore
+											selectedItem.interests.includes(item),
 									})}
 								>
 									{item}
@@ -128,10 +146,7 @@ function Filtration({
 				<strong className={style['filtration__label']}>Notification frequency</strong>
 				<RangeSlider
 					ref={sliderRef}
-					defaultValue={[
-						selectedItem.length === 0 ? 0 : sliderRange[0],
-						selectedItem.length === 0 ? 100 : sliderRange[1],
-					]}
+					defaultValue={[selectedItem.range[0], selectedItem.range[1]]}
 					min={0}
 					max={100}
 					step={1}
@@ -140,7 +155,7 @@ function Filtration({
 						setSliderRange(e);
 					}}
 					onThumbDragEnd={() => {
-						setModalActive(true);
+						handleChangeSlider(sliderRange);
 					}}
 				/>
 				<div className={style.filtration__rangeNumbers} ref={sliderNumbersRef}>

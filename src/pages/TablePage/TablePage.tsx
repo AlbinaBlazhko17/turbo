@@ -1,6 +1,6 @@
 import Button from '@/components/Button/Button';
-import DropDownMenu from '@/components/DropDownMenu/DropDownMenu';
-import { EFormProps, EGender, EInterests } from '@/customTypes/form.types';
+import ModalWindow from '@/components/ModalWindow/ModalWindow';
+import { EFormProps } from '@/customTypes/form.types';
 import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 import { filterByProp, returnDataAfterFiltering, sortByProp, sortByPropDesc } from '@/store/actions/actions';
@@ -10,11 +10,10 @@ import SortArrow from '@assets/icons/sort-arrow.svg';
 import cn from 'classnames';
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Filtration from './Filtration/Filtration';
+import ISelectedItem from '@/interfaces/ISelectedItem';
 
 import style from './tablePage.module.scss';
-import ModalWindow from '@/components/ModalWindow/ModalWindow';
-import Filtration from './Filtration/Filtration';
-import { set } from 'husky';
 
 function TablePage() {
 	const { theme } = useContext(ThemeContext);
@@ -23,10 +22,15 @@ function TablePage() {
 	const [sliceStep, setSliceStep] = useState<number>(10);
 	const [order, setOrder] = useState<boolean>(true);
 	const [sortedColumn, setSortedColumn] = useState<string | null>(null);
-	const [selectedItem, setSelectedItem] = useState<string[]>([]);
-	const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+	const selectedItemInitialState = {
+		interests: [],
+		gender: '',
+		range: [0, 100] as [number, number],
+	};
+	const [selectedItem, setSelectedItem] = useState<ISelectedItem>(selectedItemInitialState);
 	const [isModalActive, setModalActive] = useState(false);
 	const [sliderRange, setSliderRange] = useState<number[]>([0, 100]);
+	const dispatcher = useDispatch();
 
 	const handleModalOpen = () => {
 		setModalActive(true);
@@ -34,7 +38,6 @@ function TablePage() {
 	const handleModalClose = () => {
 		setModalActive(false);
 	};
-	const dispatcher = useDispatch();
 
 	useEffect(() => {
 		setData(dataFromForms.filter((item) => item.terms !== false));
@@ -61,20 +64,17 @@ function TablePage() {
 		}
 	}
 
-	const toggleDropdown = () => {
-		setIsDropdownOpen(!isDropdownOpen);
-	};
-
 	function handleReset() {
 		dispatcher(returnDataAfterFiltering());
 		setOrder(true);
 		setSortedColumn(null);
-		setSelectedItem([]);
-		setIsDropdownOpen(false);
+		setSelectedItem(selectedItemInitialState);
+		setModalActive(false);
 	}
 
 	useEffect(() => {
 		dispatcher(filterByProp(selectedItem));
+		console.log(selectedItem);
 	}, [selectedItem]);
 
 	return (

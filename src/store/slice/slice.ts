@@ -3,6 +3,7 @@ import { allValues } from '@components/CustomForm/initialValues';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { EGender } from '@/customTypes/form.types';
+import ISelectedItem from '@/interfaces/ISelectedItem';
 
 interface FormState {
 	formData: IDataForForm[];
@@ -13,6 +14,10 @@ const initialState: FormState = {
 	formData: [allValues],
 	previousFormData: [],
 };
+
+interface IFilterPayload extends ISelectedItem {
+	type: string;
+}
 
 export const formSlice = createSlice({
 	name: 'form',
@@ -85,31 +90,37 @@ export const formSlice = createSlice({
 				previousFormData: state.previousFormData,
 			};
 		},
-		filterByProp: (state, action) => {
+		filterByProp: (state, action: PayloadAction<ISelectedItem>) => {
 			const payload = action.payload;
-			// const type = action.payload.typeOfFilter;
-			const updatedState =
-				payload.includes(EGender.Female.toLocaleLowerCase()) || payload.includes(EGender.Male.toLowerCase())
-					? [...state.previousFormData]
-					: [...state.formData];
+			const updatedState = [...state.previousFormData];
+			let filteredState = [];
 
-			if (payload.length === 0) {
+			if (
+				payload.gender === '' &&
+				payload.interests.length === 0 &&
+				payload.range[0] === 0 &&
+				payload.range[1] === 100
+			) {
 				return {
 					formData: [...state.previousFormData],
 					previousFormData: state.previousFormData,
 				};
 			}
-			const filteredState = updatedState.filter((item) =>
-				//@ts-ignore
-				payload.every((filter) => {
-					if (filter === EGender.Female.toLocaleLowerCase() || filter === EGender.Male.toLocaleLowerCase()) {
-						return item.gender === filter;
-					} else {
-						//@ts-ignore
-						return [...item.interests].includes(filter);
-					}
-				}),
-			);
+
+			filteredState = updatedState.filter((item) => {
+				if (payload.gender !== '') {
+					return item.gender === payload.gender;
+				}
+				if (payload.interests.length !== 0) {
+					return payload.interests.every((interest) => item.interests.includes(interest));
+				}
+				if (payload.range[0] !== 0 || payload.range[1] !== 100) {
+					return (
+						item.notificationFrequency >= payload.range[0] && item.notificationFrequency <= payload.range[1]
+					);
+				}
+			});
+
 			return {
 				formData: filteredState.length !== 0 ? filteredState : [allValues],
 				previousFormData: state.previousFormData,
