@@ -28,9 +28,10 @@
 	&__label {
 		display: block;
 		margin-top: 10px;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 		color: $grey;
 		cursor: initial;
+
 	}
 
 	&-item {
@@ -53,8 +54,27 @@
 		}
 	}
 
+	&__slider {
+		position: relative;
+		padding: 15px;
+	}
+
+	&__rangeNumbers {
+		display: flex;
+		width: 100%;
+		&_left {
+			position: absolute;
+			// left: 22px;
+		}
+		&_right {
+			position: absolute;
+			// right: 15px;
+		}
+	}
+
 	&__reset {
 		width: 100%;
+		margin-top: 20px;
 		display: flex;
 		align-items: center;
 		justify-content: center;

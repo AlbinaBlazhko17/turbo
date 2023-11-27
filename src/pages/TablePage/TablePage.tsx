@@ -25,6 +25,7 @@ function TablePage() {
 	const [selectedItem, setSelectedItem] = useState<string[]>([]);
 	const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 	const [isModalActive, setModalActive] = useState(false);
+	const [sliderRange, setSliderRange] = useState<number[]>([0, 100]);
 
 	const handleModalOpen = () => {
 		setModalActive(true);
@@ -91,6 +92,8 @@ function TablePage() {
 									selectedItem={selectedItem}
 									setSelectedItem={setSelectedItem}
 									handleReset={handleReset}
+									sliderRange={sliderRange}
+									setSliderRange={setSliderRange}
 								/>
 							</ModalWindow>
 						)}
