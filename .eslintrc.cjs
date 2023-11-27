@@ -19,6 +19,7 @@ module.exports = {
 		'prettier/prettier': 'error',
 		'react/jsx-indent': [2, 'tab'],
 		'react/jsx-indent-props': [2, 'tab'],
+		'@typescript-eslint/ban-ts-comment': 'off',
 	},
 	plugins: ['@typescript-eslint', 'prettier'],
 };

@@ -15,16 +15,22 @@
 	user-select: none;
 	vertical-align: middle;
 	white-space: nowrap;
-
+	transition: all 0.3s ease-in-out;
 	&_filled {
 		background-color: $light-blue;
 		color: $white;
+		&:hover {
+			background-color: $blue;
+		}
 	}
 
 	&_outlined {
 		border: 1px solid $lighter-blue;
 		color: $black;
 		cursor: unset;
+		&:hover {
+			background-color: $lighter-blue;
+		}
 	}
 }
 

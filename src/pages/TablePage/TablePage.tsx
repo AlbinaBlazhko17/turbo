@@ -1,6 +1,6 @@
 import Button from '@/components/Button/Button';
 import DropDownMenu from '@/components/DropDownMenu/DropDownMenu';
-import { EFormProps } from '@/customTypes/form.types';
+import { EFormProps, EGender, EInterests } from '@/customTypes/form.types';
 import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 import { filterByProp, returnDataAfterFiltering, sortByProp, sortByPropDesc } from '@/store/actions/actions';
@@ -12,6 +12,8 @@ import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import style from './tablePage.module.scss';
+import ModalWindow from '@/components/ModalWindow/ModalWindow';
+import Filtration from './Filtration/Filtration';
 
 function TablePage() {
 	const { theme } = useContext(ThemeContext);
@@ -22,6 +24,14 @@ function TablePage() {
 	const [sortedColumn, setSortedColumn] = useState<string | null>(null);
 	const [selectedItem, setSelectedItem] = useState<string[]>([]);
 	const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+	const [isModalActive, setModalActive] = useState(false);
+
+	const handleModalOpen = () => {
+		setModalActive(true);
+	};
+	const handleModalClose = () => {
+		setModalActive(false);
+	};
 	const dispatcher = useDispatch();
 
 	useEffect(() => {
@@ -71,22 +81,26 @@ function TablePage() {
 			<section className={style.table__wrapper}>
 				<h2 className={style.table__subheader}>Users</h2>
 				<div className={style.table__filtration}>
-					<div className={style[`table__filtration-filter`]} onClick={toggleDropdown}>
+					<div className={style[`table__filtration-filter`]} onClick={handleModalOpen}>
 						<img src={FiltrationIcon} alt="filtration" />
 					</div>
 					<div>
-						{isDropdownOpen && (
+						{isModalActive && (
+							<ModalWindow title="Filters" onClose={handleModalClose}>
+								<Filtration
+									selectedItem={selectedItem}
+									setSelectedItem={setSelectedItem}
+									handleReset={handleReset}
+								/>
+							</ModalWindow>
+						)}
+						{/* {isDropdownOpen && (
 							<DropDownMenu
 								selectedItem={selectedItem}
 								setSelectedItem={setSelectedItem}
 								toggleDropdown={toggleDropdown}
 							/>
-						)}
-					</div>
-					<div className={style[`table__filtration-reset`]}>
-						<Button appearance="filled" onClick={handleReset}>
-							Remove filtering and sorting
-						</Button>
+						)} */}
 					</div>
 				</div>
 				<div className={style.table__overflow}>

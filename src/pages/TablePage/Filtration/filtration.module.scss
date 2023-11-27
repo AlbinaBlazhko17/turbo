@@ -1,0 +1,79 @@
+@import '@scss/index.scss';
+
+.filtration {
+	width: 500px;
+	background-color: $lighter-blue;
+	border-radius: 8px;
+	padding: 10px;
+	box-sizing: border-box;
+
+	&__interests {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		height: 100%;
+		&-item {
+			border: 2px solid $light-blue;
+			padding: 10px 20px;
+			border-radius: 10px;
+			margin-bottom: 10px;
+			transition: all 0.3s ease-in-out;
+			&:hover, &_active {
+				background-color: $light-blue;
+				color: $white;
+			}
+		}
+	}
+
+	&__label {
+		display: block;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color: $grey;
+		cursor: initial;
+	}
+
+	&-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 8px;
+		width: 100%;
+		box-sizing: border-box;
+		cursor: pointer;
+		transition: background-color 0.3s ease-in-out;
+		color: $grey !important;
+		span {
+			display: none;
+		}
+
+		&:hover {
+			background-color: rgb(89, 179, 235);
+			border-radius: 4px;
+		}
+	}
+
+	&__reset {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.tick {
+	transition: all 0.3s ease-in-out;
+	display: none;
+	width: 20px;
+	height: 20px;
+	margin-top: -3px;
+
+	img {
+		width: 100%;
+		height: 100%;
+	}
+
+	&_active {
+		display: block !important;
+	}
+}
