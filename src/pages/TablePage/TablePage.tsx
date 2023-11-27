@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './tablePage.module.scss';
 import ModalWindow from '@/components/ModalWindow/ModalWindow';
 import Filtration from './Filtration/Filtration';
+import { set } from 'husky';
 
 function TablePage() {
 	const { theme } = useContext(ThemeContext);
@@ -94,6 +95,7 @@ function TablePage() {
 									handleReset={handleReset}
 									sliderRange={sliderRange}
 									setSliderRange={setSliderRange}
+									setModalActive={setModalActive}
 								/>
 							</ModalWindow>
 						)}

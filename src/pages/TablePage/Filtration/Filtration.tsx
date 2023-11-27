@@ -1,6 +1,6 @@
 import { EGender, EInterests } from '@/customTypes/form.types';
 import TickIcon from '@assets/icons/tick.svg';
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import cn from 'classnames';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
@@ -16,14 +16,17 @@ function Filtration({
 	handleReset,
 	sliderRange,
 	setSliderRange,
+	setModalActive,
 }: {
 	selectedItem: string[];
 	setSelectedItem: setStateActionType<string[]>;
 	handleReset: () => void;
 	sliderRange: number[];
 	setSliderRange: setStateActionType<number[]>;
+	setModalActive: setStateActionType<boolean>;
 }) {
 	const sliderNumbersRef = useRef(null);
+	const sliderRef = useRef(null);
 	const itemsGender = [
 		{
 			label: 'Gender',
@@ -39,10 +42,12 @@ function Filtration({
 	];
 
 	useEffect(() => {
+		const sliderThumbLeft = sliderRef.current.thumb[0].current.style.left;
+		const sliderThumbRight = sliderRef.current.thumb[1].current.style.left;
 		const rangeSliderChilds = sliderNumbersRef.current.childNodes;
-		console.log(rangeSliderChilds[1].style.right);
-		rangeSliderChilds[0].style.left = `calc(${sliderRange[0]}% + 20px)`;
-		rangeSliderChilds[1].style.left = `calc(${sliderRange[1]}% - 30px)`;
+
+		rangeSliderChilds[0].style.left = `calc(${sliderThumbLeft.slice(4, -1)} + -5px)`;
+		rangeSliderChilds[1].style.left = `calc(${sliderThumbRight.slice(4, -1)} + -10px)`;
 	}, [sliderRange]);
 
 	function handleToggleFilter(item: string, label: string) {
@@ -122,6 +127,7 @@ function Filtration({
 			<div className={style.filtration__slider}>
 				<strong className={style['filtration__label']}>Notification frequency</strong>
 				<RangeSlider
+					ref={sliderRef}
 					defaultValue={[
 						selectedItem.length === 0 ? 0 : sliderRange[0],
 						selectedItem.length === 0 ? 100 : sliderRange[1],
@@ -132,7 +138,9 @@ function Filtration({
 					thumbsDisabled={[false, false]}
 					onInput={(e: Array<number>) => {
 						setSliderRange(e);
-						console.log('Drag!!!');
+					}}
+					onThumbDragEnd={() => {
+						setModalActive(true);
 					}}
 				/>
 				<div className={style.filtration__rangeNumbers} ref={sliderNumbersRef}>

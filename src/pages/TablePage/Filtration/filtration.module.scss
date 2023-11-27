@@ -56,19 +56,13 @@
 
 	&__slider {
 		position: relative;
-		padding: 15px;
 	}
 
 	&__rangeNumbers {
 		display: flex;
 		width: 100%;
-		&_left {
+		&_left, &_right {
 			position: absolute;
-			// left: 22px;
-		}
-		&_right {
-			position: absolute;
-			// right: 15px;
 		}
 	}
 
