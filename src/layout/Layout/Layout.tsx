@@ -1,9 +1,9 @@
-import { ThemeContext } from "@theme/theme";
+import { ThemeContext } from '@theme/theme';
 import cn from 'classnames';
-import { useContext } from "react";
-import { Outlet } from "react-router";
-import Header from "../Header/Header";
-import NavBar from "../NavBar/NavBar";
+import { useContext } from 'react';
+import { Outlet } from 'react-router';
+import Header from '../Header/Header';
+import NavBar from '../NavBar/NavBar';
 
 import style from './layout.module.scss';
 

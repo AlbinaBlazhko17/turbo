@@ -5,8 +5,15 @@ import { Dispatch, SetStateAction } from 'react';
 
 import style from './DropDownMenu.module.scss';
 
-function DropDownMenu({ selectedItem, setSelectedItem, toggleDropdown }: { selectedItem: string[], setSelectedItem: Dispatch<SetStateAction<string[]>>, toggleDropdown: () => void }) {
-
+function DropDownMenu({
+	selectedItem,
+	setSelectedItem,
+	toggleDropdown,
+}: {
+	selectedItem: string[];
+	setSelectedItem: Dispatch<SetStateAction<string[]>>;
+	toggleDropdown: () => void;
+}) {
 	const items = [
 		{
 			label: 'Gender',
@@ -21,24 +28,21 @@ function DropDownMenu({ selectedItem, setSelectedItem, toggleDropdown }: { selec
 	function handleToggleFilter(item: string, label: string) {
 		const newItem = label === 'Gender' ? item.toLocaleLowerCase() : item;
 		if (label === 'Gender') {
-			setSelectedItem(prevSelectedItem => {
+			setSelectedItem((prevSelectedItem) => {
 				if (newItem === EGender.Female.toLocaleLowerCase()) {
-					return prevSelectedItem.filter(el => el !== EGender.Male.toLocaleLowerCase());
+					return prevSelectedItem.filter((el) => el !== EGender.Male.toLocaleLowerCase());
 				} else {
-					return prevSelectedItem.filter(el => el !== EGender.Female.toLocaleLowerCase());
+					return prevSelectedItem.filter((el) => el !== EGender.Female.toLocaleLowerCase());
 				}
 			});
 		}
 		//@ts-ignore
 		if (selectedItem.includes(newItem)) {
-			setSelectedItem(prevSelectedItem =>
-				prevSelectedItem.filter(el => el !== newItem)
-			);
+			setSelectedItem((prevSelectedItem) => prevSelectedItem.filter((el) => el !== newItem));
 		} else {
-			setSelectedItem(prevSelectedItem => [...prevSelectedItem, newItem]);
+			setSelectedItem((prevSelectedItem) => [...prevSelectedItem, newItem]);
 		}
 	}
-
 
 	return (
 		<div className={style['filtration-dropdown']}>
@@ -55,10 +59,16 @@ function DropDownMenu({ selectedItem, setSelectedItem, toggleDropdown }: { selec
 									className={style['filtration-dropdown-item']}
 								>
 									{item}
-									<span className={cn(style.tick, {
-										//@ts-ignore
-										[style.tick_active]: selectedItem.includes(group.label === 'Gender' ? item.toLocaleLowerCase() : item)
-									})}><img src={TickIcon} alt="tick" /></span>
+									<span
+										className={cn(style.tick, {
+											//@ts-ignore
+											[style.tick_active]: selectedItem.includes(
+												group.label === 'Gender' ? item.toLocaleLowerCase() : item,
+											),
+										})}
+									>
+										<img src={TickIcon} alt="tick" />
+									</span>
 								</li>
 							))}
 						</ul>
@@ -66,7 +76,7 @@ function DropDownMenu({ selectedItem, setSelectedItem, toggleDropdown }: { selec
 				))}
 			</ul>
 		</div>
-	)
+	);
 }
 
 export default DropDownMenu;

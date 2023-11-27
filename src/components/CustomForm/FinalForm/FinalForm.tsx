@@ -29,7 +29,7 @@ function FinalForm({ formik, setData }: IFieldProps) {
 			formik.touched.profilePicture = false;
 			formik.touched.terms = false;
 		}
-	}, [formik.values])
+	}, [formik.values]);
 
 	return (
 		<form className={style.form}>
@@ -42,21 +42,25 @@ function FinalForm({ formik, setData }: IFieldProps) {
 				<CustomLabel label={EFormProps.profilePicture}>Upload profile picture</CustomLabel>
 				<CustomInputImage formik={formik} label={EFormProps.profilePicture} setData={setData} />
 				{formik.touched.profilePicture && formik.errors.profilePicture && (
-					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForSubmitForm>).profilePicture}</div>
+					<div className={style[`form-item__error`]}>
+						{(formik.errors as FormikErrors<IDataForSubmitForm>).profilePicture}
+					</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.terms}>Terms & conditions</CustomLabel>
 				<CustomLabel label="terms" className={style['form-item__terms']}>
-					<CustomCheckbox formik={formik} label={EFormProps.terms} setData={setData} />
-					I accept the terms and conditions
+					<CustomCheckbox formik={formik} label={EFormProps.terms} setData={setData} />I accept the terms and
+					conditions
 				</CustomLabel>
 				{formik.touched.terms && formik.errors.terms && (
-					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForSubmitForm>).terms}</div>
+					<div className={style[`form-item__error`]}>
+						{(formik.errors as FormikErrors<IDataForSubmitForm>).terms}
+					</div>
 				)}
 			</div>
 		</form>
-	)
+	);
 }
 
 export default FinalForm;

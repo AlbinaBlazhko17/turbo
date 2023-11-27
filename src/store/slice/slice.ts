@@ -1,8 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { allValues } from "@components/CustomForm/initialValues";
-import { IDataForForm } from "@/interfaces/IDataForForms";
+import { createSlice } from '@reduxjs/toolkit';
+import { allValues } from '@components/CustomForm/initialValues';
+import { IDataForForm } from '@/interfaces/IDataForForms';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { EGender } from "@/customTypes/form.types";
+import { EGender } from '@/customTypes/form.types';
 
 interface FormState {
 	formData: IDataForForm[];
@@ -22,13 +22,23 @@ export const formSlice = createSlice({
 			const updatedState = [...state.formData];
 			const lastObject = updatedState[updatedState.length - 1];
 			if (lastObject) {
-				updatedState[updatedState.length - 1] = { ...lastObject, ...action.payload, id: updatedState.length, date: new Date().toLocaleString() };
+				updatedState[updatedState.length - 1] = {
+					...lastObject,
+					...action.payload,
+					id: updatedState.length,
+					date: new Date().toLocaleString(),
+				};
 			}
 
 			return { formData: updatedState, previousFormData: updatedState };
 		},
 		removeItemFromForm: (state) => {
-			const updatedState = [...state.formData.concat({ ...allValues, id: state.formData.length + 1 })];
+			const updatedState = [
+				...state.formData.concat({
+					...allValues,
+					id: state.formData.length + 1,
+				}),
+			];
 			return { formData: updatedState, previousFormData: updatedState };
 		},
 		sortByProp: (state, action: PayloadAction<keyof IDataForForm>) => {
@@ -48,7 +58,10 @@ export const formSlice = createSlice({
 				});
 			}
 
-			return { formData: updatedState, previousFormData: state.previousFormData };
+			return {
+				formData: updatedState,
+				previousFormData: state.previousFormData,
+			};
 		},
 		sortByPropDesc: (state, action: PayloadAction<keyof IDataForForm>) => {
 			const updatedState = [...state.formData];
@@ -67,15 +80,24 @@ export const formSlice = createSlice({
 				});
 			}
 
-			return { formData: updatedState, previousFormData: state.previousFormData };
+			return {
+				formData: updatedState,
+				previousFormData: state.previousFormData,
+			};
 		},
 		filterByProp: (state, action) => {
 			const payload = action.payload;
 			// const type = action.payload.typeOfFilter;
-			const updatedState = payload.includes(EGender.Female.toLocaleLowerCase()) || payload.includes(EGender.Male.toLowerCase()) ? [...state.previousFormData] : [...state.formData];
+			const updatedState =
+				payload.includes(EGender.Female.toLocaleLowerCase()) || payload.includes(EGender.Male.toLowerCase())
+					? [...state.previousFormData]
+					: [...state.formData];
 
 			if (payload.length === 0) {
-				return { formData: [...state.previousFormData], previousFormData: state.previousFormData };
+				return {
+					formData: [...state.previousFormData],
+					previousFormData: state.previousFormData,
+				};
 			}
 			const filteredState = updatedState.filter((item) =>
 				//@ts-ignore
@@ -84,20 +106,29 @@ export const formSlice = createSlice({
 						return item.gender === filter;
 					} else {
 						//@ts-ignore
-						return [...item.interests].includes(filter)
+						return [...item.interests].includes(filter);
 					}
-				})
+				}),
 			);
-			return { formData: filteredState.length !== 0 ? filteredState : [allValues], previousFormData: state.previousFormData };
+			return {
+				formData: filteredState.length !== 0 ? filteredState : [allValues],
+				previousFormData: state.previousFormData,
+			};
 		},
 		returnDataAfterFiltering: (state) => {
 			if (state.previousFormData.length !== 0) {
-				return { formData: [...state.previousFormData], previousFormData: state.previousFormData };
+				return {
+					formData: [...state.previousFormData],
+					previousFormData: state.previousFormData,
+				};
 			} else {
-				return { formData: [...state.formData], previousFormData: [...state.formData] };
+				return {
+					formData: [...state.formData],
+					previousFormData: [...state.formData],
+				};
 			}
-		}
-	}
-})
+		},
+	},
+});
 
 export default formSlice.reducer;

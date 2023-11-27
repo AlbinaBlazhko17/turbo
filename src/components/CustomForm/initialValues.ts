@@ -1,4 +1,4 @@
-import { IDataForPersonalnfoForm, IDataForForm } from "@/interfaces/IDataForForms"
+import { IDataForPersonalnfoForm, IDataForForm } from '@/interfaces/IDataForForms';
 
 export const initialValuesPersonalInfo: IDataForPersonalnfoForm = {
 	id: 1,
@@ -6,7 +6,7 @@ export const initialValuesPersonalInfo: IDataForPersonalnfoForm = {
 	lastName: '',
 	email: '',
 	gender: '',
-}
+};
 
 export const allValues: IDataForForm = {
 	id: 1,
@@ -17,16 +17,16 @@ export const allValues: IDataForForm = {
 	city: '',
 	country: {
 		value: '',
-		label: ''
+		label: '',
 	},
 	zipCode: null,
 	interests: [],
 	language: {
 		value: '',
-		label: ''
+		label: '',
 	},
 	notificationFrequency: 0,
 	comments: '',
 	profilePicture: null,
-	terms: false
-}
+	terms: false,
+};

@@ -1,4 +1,9 @@
-import { validationSchemaAddress, validationSchemaPersonalInfo, validationSchemaPreferences, validationSchemaSubmit } from '@/components/CustomForm/validationSchemas';
+import {
+	validationSchemaAddress,
+	validationSchemaPersonalInfo,
+	validationSchemaPreferences,
+	validationSchemaSubmit,
+} from '@/components/CustomForm/validationSchemas';
 import Button from '@components/Button/Button';
 import CustomForm from '@components/CustomForm/CustomForm';
 import Steps from '@components/Steps/Steps';
@@ -17,7 +22,7 @@ import style from './formPage.module.scss';
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
-	let initialValues = useSelector((state: RootState) => state.form.formData);
+	const initialValues = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
 	const formDispatcher = useDispatch();
 
@@ -43,15 +48,13 @@ function FormPage() {
 					setValidation(validationSchemaPersonalInfo);
 			}
 		})();
-
 	}, [currentStep]);
-
 
 	const handlePrevStep = () => {
 		if (+currentStep > 1) {
 			setCurrentStep(+currentStep - 1);
 		}
-	}
+	};
 
 	useEffect(() => {
 		formDispatcher(addItemToForm(data));
@@ -73,13 +76,19 @@ function FormPage() {
 				{(formik) => (
 					<section className={style.form__wrapper}>
 						<Suspense fallback={<div>Loading...</div>}>
-							<Await
-								resolve={loaderData}
-							>
-								{(loaderData) => (<CustomForm formik={formik} currentStep={+currentStep} setData={setData} loaderDataCountries={loaderData.countries} loaderDataLanguages={loaderData.languages} />)}
+							<Await resolve={loaderData}>
+								{(loaderData) => (
+									<CustomForm
+										formik={formik}
+										currentStep={+currentStep}
+										setData={setData}
+										loaderDataCountries={loaderData.countries}
+										loaderDataLanguages={loaderData.languages}
+									/>
+								)}
 							</Await>
 						</Suspense>
-						{+currentStep !== 5 &&
+						{+currentStep !== 5 && (
 							<div className={style.buttons}>
 								<Button
 									appearance={+currentStep === 1 ? 'outlined' : 'filled'}
@@ -89,19 +98,24 @@ function FormPage() {
 									Previous step
 								</Button>
 								<Button
-									appearance={+currentStep !== 5 && !Object.keys(formik.errors).length ? 'filled' : 'outlined'}
-									onClick={() => { formik.handleSubmit(); formDispatcher(addItemToForm(formik.values)) }}
+									appearance={
+										+currentStep !== 5 && !Object.keys(formik.errors).length ? 'filled' : 'outlined'
+									}
+									onClick={() => {
+										formik.handleSubmit();
+										formDispatcher(addItemToForm(formik.values));
+									}}
 									type={'submit'}
 								>
 									{currentStep !== 4 ? 'Next step' : 'Finish'}
 								</Button>
 							</div>
-						}
+						)}
 					</section>
 				)}
 			</Formik>
-		</div >
-	)
+		</div>
+	);
 }
 
 export default FormPage;

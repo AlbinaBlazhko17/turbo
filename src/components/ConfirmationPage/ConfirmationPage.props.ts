@@ -1,4 +1,3 @@
-
 import IFieldProps from '@/interfaces/IFieldProps';
 
-export default interface ConfirmationPageProps extends IFieldProps { }
+export default type ConfirmationPageProps = IFieldProps

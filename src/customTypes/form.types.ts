@@ -34,4 +34,4 @@ export const enum EFormProps {
 	date = 'date',
 }
 
-export type SelectValue = { value: string, label: string }
+export type SelectValue = { value: string; label: string };

@@ -4,25 +4,26 @@ import IDataForAside from '@interfaces/IDataForAside';
 
 import style from './aside.module.scss';
 
-function Aside ({title, data, className}: {title: string, data: IDataForAside[], className?: string}) {
+function Aside({ title, data, className }: { title: string; data: IDataForAside[]; className?: string }) {
 	return (
 		<aside className={cn(style.aside, className)}>
 			<h2>{title}</h2>
 			<div className={style.aside__wrapper}>
-				{
-					data.length !== 0 && data.map(el => (
+				{data.length !== 0 &&
+					data.map((el) => (
 						<article key={el.id} className={style['aside-item']}>
-							<div><img src={el.img} alt="aside_image"/></div>
+							<div>
+								<img src={el.img} alt="aside_image" />
+							</div>
 							<div>
 								<h3 className={style['aside-item__header']}>{el.header}</h3>
 								<p className={style['aside-item__text']}>{el.text}</p>
 							</div>
 						</article>
-					))
-				}
+					))}
 			</div>
 		</aside>
-	)
+	);
 }
 
 Aside.propTypes = {
@@ -32,9 +33,9 @@ Aside.propTypes = {
 			key: PropTypes.string.isRequired,
 			header: PropTypes.string.isRequired,
 			text: PropTypes.string.isRequired,
-		})
+		}),
 	).isRequired,
 	className: PropTypes.string,
-  };
+};
 
 export default Aside;

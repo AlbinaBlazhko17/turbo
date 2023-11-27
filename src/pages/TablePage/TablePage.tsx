@@ -1,15 +1,15 @@
-import Button from "@/components/Button/Button";
-import DropDownMenu from "@/components/DropDownMenu/DropDownMenu";
-import { EFormProps } from "@/customTypes/form.types";
-import { RootState } from "@/customTypes/store.types";
-import { IDataForForm } from "@/interfaces/IDataForForms";
-import { filterByProp, returnDataAfterFiltering, sortByProp, sortByPropDesc } from "@/store/actions/actions";
-import { ThemeContext } from "@/theme/theme";
+import Button from '@/components/Button/Button';
+import DropDownMenu from '@/components/DropDownMenu/DropDownMenu';
+import { EFormProps } from '@/customTypes/form.types';
+import { RootState } from '@/customTypes/store.types';
+import { IDataForForm } from '@/interfaces/IDataForForms';
+import { filterByProp, returnDataAfterFiltering, sortByProp, sortByPropDesc } from '@/store/actions/actions';
+import { ThemeContext } from '@/theme/theme';
 import FiltrationIcon from '@assets/icons/filtration.svg';
 import SortArrow from '@assets/icons/sort-arrow.svg';
 import cn from 'classnames';
-import { useContext, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from './tablePage.module.scss';
 
@@ -25,7 +25,7 @@ function TablePage() {
 	const dispatcher = useDispatch();
 
 	useEffect(() => {
-		setData(dataFromForms.filter((item) => item.terms !== false))
+		setData(dataFromForms.filter((item) => item.terms !== false));
 	}, [dataFromForms]);
 
 	function handlePrev() {
@@ -63,7 +63,7 @@ function TablePage() {
 
 	useEffect(() => {
 		dispatcher(filterByProp(selectedItem));
-	}, [selectedItem])
+	}, [selectedItem]);
 
 	return (
 		<div className={cn(style.table, style[`${theme}`])}>
@@ -76,11 +76,17 @@ function TablePage() {
 					</div>
 					<div>
 						{isDropdownOpen && (
-							<DropDownMenu selectedItem={selectedItem} setSelectedItem={setSelectedItem} toggleDropdown={toggleDropdown} />
+							<DropDownMenu
+								selectedItem={selectedItem}
+								setSelectedItem={setSelectedItem}
+								toggleDropdown={toggleDropdown}
+							/>
 						)}
 					</div>
 					<div className={style[`table__filtration-reset`]}>
-						<Button appearance='filled' onClick={handleReset}>Remove filtering and sorting</Button>
+						<Button appearance="filled" onClick={handleReset}>
+							Remove filtering and sorting
+						</Button>
 					</div>
 				</div>
 				<div className={style.table__overflow}>
@@ -91,10 +97,13 @@ function TablePage() {
 								className={cn(style.table__header, style.table__header_sortable)}
 								onClick={() => handleSort(EFormProps.firstName)}
 							>
-								<div className={style.table__sorting}>First name
-									<span className={cn(style.table__sorting__arrow, {
-										[style.table__sorting__arrow_active]: sortedColumn === EFormProps.firstName && order
-									})}
+								<div className={style.table__sorting}>
+									First name
+									<span
+										className={cn(style.table__sorting__arrow, {
+											[style.table__sorting__arrow_active]:
+												sortedColumn === EFormProps.firstName && order,
+										})}
 									>
 										<img src={SortArrow} alt="sort arrow" />
 									</span>
@@ -110,11 +119,15 @@ function TablePage() {
 							<th className={style.table__header}>Language</th>
 							<th
 								className={cn(style.table__header, style.table__header_sortable)}
-								onClick={() => handleSort(EFormProps.notificationFrequency)}>
-								<div className={style.table__sorting}>Notification frequency
-									<span className={cn(style.table__sorting__arrow, {
-										[style.table__sorting__arrow_active]: sortedColumn === EFormProps.notificationFrequency && order
-									})}
+								onClick={() => handleSort(EFormProps.notificationFrequency)}
+							>
+								<div className={style.table__sorting}>
+									Notification frequency
+									<span
+										className={cn(style.table__sorting__arrow, {
+											[style.table__sorting__arrow_active]:
+												sortedColumn === EFormProps.notificationFrequency && order,
+										})}
 									>
 										<img src={SortArrow} alt="sort arrow" />
 									</span>
@@ -124,55 +137,70 @@ function TablePage() {
 							<th className={style.table__header}>Image</th>
 							<th
 								className={cn(style.table__header, style.table__header_sortable)}
-								onClick={() => handleSort(EFormProps.date)}>
-								<div className={style.table__sorting}>Date
-									<span className={cn(style.table__sorting__arrow, {
-										[style.table__sorting__arrow_active]: sortedColumn === EFormProps.date && order
-									})}
+								onClick={() => handleSort(EFormProps.date)}
+							>
+								<div className={style.table__sorting}>
+									Date
+									<span
+										className={cn(style.table__sorting__arrow, {
+											[style.table__sorting__arrow_active]:
+												sortedColumn === EFormProps.date && order,
+										})}
 									>
 										<img src={SortArrow} alt="sort arrow" />
 									</span>
 								</div>
 							</th>
 						</tr>
-						{data.length !== 0 ? data.slice(sliceStep - 10, sliceStep).map((item, index) => (
-							<tr key={index}>
-								<td className={cn(style.table__descr, style.table__descr_center)}>{item.id}</td>
-								<td className={style.table__descr}>{item.firstName}</td>
-								<td className={style.table__descr}>{item.lastName}</td>
-								<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.email}</td>
-								<td className={cn(style.table__descr, style.table__descr_center)}>{item.gender}</td>
-								<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.city}</td>
-								<td className={style.table__descr}>{item.country.label}</td>
-								<td className={cn(style.table__descr, style.table__descr_center)}>{item.zipCode}</td>
-								<td className={style.table__descr}>{item.interests.map((interest, i) => (<div key={i}>{interest}</div>))}</td>
-								<td className={style.table__descr}>{item.language.label}</td>
-								<td className={cn(style.table__descr, style.table__descr_center)}>{item.notificationFrequency}</td>
-								<td className={style.table__descr}>{item.comments}</td>
-								<td className={style.table__descr}>{item.profilePicture}</td>
-								<td className={style.table__descr}>{item.date}</td>
-							</tr>
-						)) : (
+						{data.length !== 0 ? (
+							data.slice(sliceStep - 10, sliceStep).map((item, index) => (
+								<tr key={index}>
+									<td className={cn(style.table__descr, style.table__descr_center)}>{item.id}</td>
+									<td className={style.table__descr}>{item.firstName}</td>
+									<td className={style.table__descr}>{item.lastName}</td>
+									<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.email}</td>
+									<td className={cn(style.table__descr, style.table__descr_center)}>{item.gender}</td>
+									<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.city}</td>
+									<td className={style.table__descr}>{item.country.label}</td>
+									<td className={cn(style.table__descr, style.table__descr_center)}>
+										{item.zipCode}
+									</td>
+									<td className={style.table__descr}>
+										{item.interests.map((interest, i) => (
+											<div key={i}>{interest}</div>
+										))}
+									</td>
+									<td className={style.table__descr}>{item.language.label}</td>
+									<td className={cn(style.table__descr, style.table__descr_center)}>
+										{item.notificationFrequency}
+									</td>
+									<td className={style.table__descr}>{item.comments}</td>
+									<td className={style.table__descr}>{item.profilePicture}</td>
+									<td className={style.table__descr}>{item.date}</td>
+								</tr>
+							))
+						) : (
 							<tr>
 								<td className={style.table__descr} colSpan={13}>
 									<h3 style={{ textAlign: 'center' }}> No info! Please, fill the form</h3>
 								</td>
 							</tr>
-						)
-						}
+						)}
 					</table>
 				</div>
-				{
-					data.length > 10 ? (
-						<div className={style.table__pagination}>
-							<Button appearance={sliceStep === 10 ? 'outlined' : 'filled'} onClick={handlePrev}>Prev</Button>
-							<Button appearance={data.length - 1 < sliceStep ? 'outlined' : 'filled'} onClick={handleNext}>Next</Button>
-						</div>
-					) : null
-				}
-			</section >
-		</div >
-	)
+				{data.length > 10 ? (
+					<div className={style.table__pagination}>
+						<Button appearance={sliceStep === 10 ? 'outlined' : 'filled'} onClick={handlePrev}>
+							Prev
+						</Button>
+						<Button appearance={data.length - 1 < sliceStep ? 'outlined' : 'filled'} onClick={handleNext}>
+							Next
+						</Button>
+					</div>
+				) : null}
+			</section>
+		</div>
+	);
 }
 
 export default TablePage;

@@ -1,24 +1,23 @@
-import CustomCheckbox from "@/components/CustomCheckbox/CustomCheckbox";
-import CustomSelect from "@/components/CustomSelect/CustomSelect";
+import CustomCheckbox from '@/components/CustomCheckbox/CustomCheckbox';
+import CustomSelect from '@/components/CustomSelect/CustomSelect';
 import { EFormProps, EInterests, SelectValue } from '@/customTypes/form.types';
-import { IDataForPreferencesForm } from "@/interfaces/IDataForForms";
-import CustomLabel from "@components/CustomLabel/CustomLabel";
-import { FormikErrors } from "formik";
-import { useEffect, useMemo, useState } from "react";
+import { IDataForPreferencesForm } from '@/interfaces/IDataForForms';
+import CustomLabel from '@components/CustomLabel/CustomLabel';
+import { FormikErrors } from 'formik';
+import { useEffect, useMemo, useState } from 'react';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
-import PreferencesFormProps from "./PreferencesForm.props";
+import PreferencesFormProps from './PreferencesForm.props';
 
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
-
 
 function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFormProps) {
 	const [dataSelect, setDataSelect] = useState<SelectValue[]>();
 
 	useEffect(() => {
 		setDataSelect(loaderDataLanguages);
-	}, [])
+	}, []);
 
 	const memoizedDataSelect = useMemo(() => dataSelect, [dataSelect]);
 
@@ -49,9 +48,12 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 						Traveling
 					</CustomLabel>
 				</div>
-				{EFormProps.interests in formik.touched && EFormProps.interests in formik.errors && !formik.isSubmitting && formik.errors.interests && (
-					<div className={style[`form-item__error`]}>{formik.errors.interests}</div>
-				)}
+				{EFormProps.interests in formik.touched &&
+					EFormProps.interests in formik.errors &&
+					!formik.isSubmitting &&
+					formik.errors.interests && (
+						<div className={style[`form-item__error`]}>{formik.errors.interests}</div>
+					)}
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.language}>Language</CustomLabel>
@@ -59,13 +61,19 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 				{dataSelect && <CustomSelect data={memoizedDataSelect} formik={formik} type={EFormProps.language} />}
 				{/* </div> */}
 				{!formik.isSubmitting && formik.errors.language && (
-					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}</div>
+					<div className={style[`form-item__error`]}>
+						{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}
+					</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.notificationFrequency}>Notification frequency</CustomLabel>
 				<RangeSlider
-					defaultValue={[0, EFormProps.notificationFrequency in formik.values && +formik.values.notificationFrequency || 100]}
+					defaultValue={[
+						0,
+						(EFormProps.notificationFrequency in formik.values && +formik.values.notificationFrequency) ||
+							100,
+					]}
 					min={0}
 					max={100}
 					step={1}
