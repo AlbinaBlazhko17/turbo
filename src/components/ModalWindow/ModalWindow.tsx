@@ -3,6 +3,7 @@ import type { MouseEventHandler } from 'react';
 import Portal from './Portal/Portal';
 import { createContainer } from '@utils/createContainer';
 import CloseButton from '@assets/icons/close_button.svg';
+import { setStateActionType } from '@/customTypes/react.types';
 
 import styles from './modalWindow.module.scss';
 
@@ -12,10 +13,12 @@ type Props = {
 	title: string;
 	onClose?: () => void;
 	children: React.ReactNode | React.ReactNode[];
+	isSliderInteracting: boolean;
+	setIsSliderInteracting: setStateActionType<boolean>;
 };
 
 function ModalWindow(props: Props) {
-	const { title, onClose, children } = props;
+	const { title, onClose, children, isSliderInteracting, setIsSliderInteracting } = props;
 
 	const rootRef = useRef<HTMLDivElement>(null);
 	const [isMounted, setMounted] = useState(false);
@@ -27,9 +30,10 @@ function ModalWindow(props: Props) {
 
 	useEffect(() => {
 		const handleWrapperClick = (event: MouseEvent) => {
+			console.log('click');
 			const { target } = event;
-
-			if (target instanceof Node && rootRef.current === target) {
+			setIsSliderInteracting(false);
+			if (target instanceof Node && rootRef.current === target && !isSliderInteracting) {
 				onClose?.();
 			}
 		};
@@ -38,7 +42,6 @@ function ModalWindow(props: Props) {
 				onClose?.();
 			}
 		};
-
 		window.addEventListener('click', handleWrapperClick);
 		window.addEventListener('keydown', handleEscapePress);
 
@@ -46,7 +49,7 @@ function ModalWindow(props: Props) {
 			window.removeEventListener('click', handleWrapperClick);
 			window.removeEventListener('keydown', handleEscapePress);
 		};
-	}, [onClose]);
+	}, [isSliderInteracting, onClose]);
 
 	const handleClose: MouseEventHandler<HTMLDivElement | HTMLButtonElement> = useCallback(() => {
 		onClose?.();

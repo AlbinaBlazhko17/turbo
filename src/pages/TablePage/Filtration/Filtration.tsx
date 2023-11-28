@@ -17,6 +17,7 @@ function Filtration({
 	handleReset,
 	sliderRange,
 	setSliderRange,
+	setIsSliderInteracting,
 }: {
 	selectedItem: ISelectedItem;
 	setSelectedItem: setStateActionType<ISelectedItem>;
@@ -24,6 +25,7 @@ function Filtration({
 	sliderRange: number[];
 	setSliderRange: setStateActionType<number[]>;
 	setModalActive: setStateActionType<boolean>;
+	setIsSliderInteracting: setStateActionType<boolean>;
 }) {
 	const sliderNumbersRef = useRef(null);
 	const sliderRef = useRef(null);
@@ -152,6 +154,7 @@ function Filtration({
 						setSliderRange(e);
 					}}
 					onThumbDragEnd={() => {
+						setIsSliderInteracting(true);
 						handleChangeSlider(sliderRange);
 					}}
 				/>

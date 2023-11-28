@@ -30,6 +30,7 @@ function TablePage() {
 	const [selectedItem, setSelectedItem] = useState<ISelectedItem>(selectedItemInitialState);
 	const [isModalActive, setModalActive] = useState(false);
 	const [sliderRange, setSliderRange] = useState<number[]>([0, 100]);
+	const [isSliderInteracting, setIsSliderInteracting] = useState(false);
 	const dispatcher = useDispatch();
 
 	const handleModalOpen = () => {
@@ -88,7 +89,12 @@ function TablePage() {
 					</div>
 					<div>
 						{isModalActive && (
-							<ModalWindow title="Filters" onClose={handleModalClose}>
+							<ModalWindow
+								title="Filters"
+								onClose={handleModalClose}
+								isSliderInteracting={isSliderInteracting}
+								setIsSliderInteracting={setIsSliderInteracting}
+							>
 								<Filtration
 									selectedItem={selectedItem}
 									setSelectedItem={setSelectedItem}
@@ -96,6 +102,7 @@ function TablePage() {
 									sliderRange={sliderRange}
 									setSliderRange={setSliderRange}
 									setModalActive={setModalActive}
+									setIsSliderInteracting={setIsSliderInteracting}
 								/>
 							</ModalWindow>
 						)}
