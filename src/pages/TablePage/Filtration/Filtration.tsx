@@ -42,9 +42,9 @@ function Filtration({
 	];
 
 	useEffect(() => {
-		const sliderThumbLeft = sliderRef.current.thumb[0].current.style.left;
-		const sliderThumbRight = sliderRef.current.thumb[1].current.style.left;
-		const rangeSliderChilds = sliderNumbersRef.current.childNodes;
+		const sliderThumbLeft = sliderRef.current?.thumb[0].current.style.left;
+		const sliderThumbRight = sliderRef.current?.thumb[1].current.style.left;
+		const rangeSliderChilds = sliderNumbersRef.current?.childNodes;
 
 		rangeSliderChilds[0].style.left = `calc(${sliderThumbLeft.slice(4, -1)} + -5px)`;
 		rangeSliderChilds[1].style.left = `calc(${sliderThumbRight.slice(4, -1)} + -10px)`;
