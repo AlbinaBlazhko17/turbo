@@ -100,7 +100,7 @@ export const formSlice = createSlice({
 				payload.range[1] === 100
 			) {
 				return {
-					formData: [...state.allFormData],
+					formData: [...state.sortingData],
 					allFormData: state.allFormData,
 					sortingData: state.sortingData,
 				};
