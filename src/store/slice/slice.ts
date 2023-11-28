@@ -107,7 +107,6 @@ export const formSlice = createSlice({
 			}
 
 			filteredState = updatedState.filter((item) => {
-				console.log('filtration');
 				const isGenderValid = payload.gender !== '';
 				const areInterestsValid = payload.interests.length !== 0;
 				const isRangeValid = payload.range[0] !== 0 || payload.range[1] !== 100;

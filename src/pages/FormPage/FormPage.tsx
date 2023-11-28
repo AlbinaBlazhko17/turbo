@@ -99,7 +99,11 @@ function FormPage() {
 								</Button>
 								<Button
 									appearance={
-										+currentStep !== 5 && !Object.keys(formik.errors).length ? 'filled' : 'outlined'
+										+currentStep !== 5 &&
+										Object.keys(formik.errors).length === 0 &&
+										Object.keys(formik.touched).length > 0
+											? 'filled'
+											: 'outlined'
 									}
 									onClick={() => {
 										formik.handleSubmit();
@@ -107,7 +111,7 @@ function FormPage() {
 									}}
 									type={'submit'}
 								>
-									{currentStep !== 4 ? 'Next step' : 'Finish'}
+									{+currentStep !== 4 ? 'Next step' : 'Finish'}
 								</Button>
 							</div>
 						)}

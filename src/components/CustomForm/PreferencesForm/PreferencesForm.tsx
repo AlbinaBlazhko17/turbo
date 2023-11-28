@@ -17,7 +17,6 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 	const rangeSliderRef = useRef(null);
 
 	useEffect(() => {
-		console.log(rangeSliderRef.current);
 		if (rangeSliderRef.current) {
 			rangeSliderRef.current.element.current.style.background =
 				'linear-gradient(90deg, rgba(233, 245, 254, 1) 0%, rgba(33, 150, 243, 1) 76%, rgba(12, 127, 218, 1) 100%)';
