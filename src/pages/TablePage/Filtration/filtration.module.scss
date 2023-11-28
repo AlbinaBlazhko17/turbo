@@ -1,7 +1,7 @@
 @import '@scss/index.scss';
 
 .filtration {
-	width: 500px;
+	width: 100%;
 	background-color: $lighter-blue;
 	border-radius: 8px;
 	padding: 10px;
@@ -13,6 +13,7 @@
 		flex-wrap: wrap;
 		height: 100%;
 		&-item {
+			margin-right: 5%;
 			border: 2px solid $light-blue;
 			padding: 10px 20px;
 			border-radius: 10px;
