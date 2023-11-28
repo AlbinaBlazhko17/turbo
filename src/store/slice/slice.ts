@@ -87,7 +87,7 @@ export const formSlice = createSlice({
 
 			return {
 				formData: updatedState,
-				previousFormData: state.previousFormData,
+				previousFormData: updatedState,
 			};
 		},
 		filterByProp: (state, action: PayloadAction<ISelectedItem>) => {
