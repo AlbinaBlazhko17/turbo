@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import type { MouseEventHandler } from 'react';
 import Portal from './Portal/Portal';
 import { createContainer } from '@utils/createContainer';
+import CloseButton from '@assets/icons/close_button.svg';
 
 import styles from './modalWindow.module.scss';
 
@@ -61,7 +62,7 @@ function ModalWindow(props: Props) {
 						onClick={handleClose}
 						data-testid="modal-close-button"
 					>
-						Х
+						<img src={CloseButton} alt="close" />
 					</button>
 					<p className={styles.title}>{title}</p>
 					{children}

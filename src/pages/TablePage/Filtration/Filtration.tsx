@@ -69,10 +69,7 @@ function Filtration({
 		if (selectedItem.gender === '') {
 			setSelectedItem((prevSelectedItem) => ({ ...prevSelectedItem, gender: item.toLowerCase() }));
 		} else if (selectedItem.gender === item.toLowerCase()) {
-			setSelectedItem((prevSelectedItem) =>
-				// console.log(prevSelectedItem);
-				({ ...prevSelectedItem, gender: '' }),
-			);
+			setSelectedItem((prevSelectedItem) => ({ ...prevSelectedItem, gender: '' }));
 		} else {
 			setSelectedItem((prevSelectedItem) => {
 				if (item.toLowerCase() === EGender.Female.toLocaleLowerCase()) {
