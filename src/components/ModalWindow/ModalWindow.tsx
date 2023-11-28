@@ -30,7 +30,6 @@ function ModalWindow(props: Props) {
 
 	useEffect(() => {
 		const handleWrapperClick = (event: MouseEvent) => {
-			console.log('click');
 			const { target } = event;
 			setIsSliderInteracting(false);
 			if (target instanceof Node && rootRef.current === target && !isSliderInteracting) {

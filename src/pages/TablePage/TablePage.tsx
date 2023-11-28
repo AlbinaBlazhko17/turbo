@@ -41,6 +41,10 @@ function TablePage() {
 	};
 
 	useEffect(() => {
+		dispatcher(sortByProp(EFormProps.date));
+	}, []);
+
+	useEffect(() => {
 		setData(dataFromForms.filter((item) => item.terms !== false));
 	}, [dataFromForms]);
 
@@ -75,7 +79,6 @@ function TablePage() {
 
 	useEffect(() => {
 		dispatcher(filterByProp(selectedItem));
-		console.log(selectedItem);
 	}, [selectedItem]);
 
 	return (
@@ -106,13 +109,6 @@ function TablePage() {
 								/>
 							</ModalWindow>
 						)}
-						{/* {isDropdownOpen && (
-							<DropDownMenu
-								selectedItem={selectedItem}
-								setSelectedItem={setSelectedItem}
-								toggleDropdown={toggleDropdown}
-							/>
-						)} */}
 					</div>
 				</div>
 				<div className={style.table__overflow}>
@@ -127,8 +123,10 @@ function TablePage() {
 									First name
 									<span
 										className={cn(style.table__sorting__arrow, {
-											[style.table__sorting__arrow_active]:
-												sortedColumn === EFormProps.firstName && order,
+											[style.table__sorting__arrow_up]:
+												sortedColumn === EFormProps.firstName && order === true,
+											[style.table__sorting__arrow_down]:
+												sortedColumn === EFormProps.firstName && order === false,
 										})}
 									>
 										<img src={SortArrow} alt="sort arrow" />
@@ -151,8 +149,10 @@ function TablePage() {
 									Notification frequency
 									<span
 										className={cn(style.table__sorting__arrow, {
-											[style.table__sorting__arrow_active]:
-												sortedColumn === EFormProps.notificationFrequency && order,
+											[style.table__sorting__arrow_up]:
+												sortedColumn === EFormProps.notificationFrequency && order === true,
+											[style.table__sorting__arrow_down]:
+												sortedColumn === EFormProps.notificationFrequency && order === false,
 										})}
 									>
 										<img src={SortArrow} alt="sort arrow" />
@@ -169,8 +169,10 @@ function TablePage() {
 									Date
 									<span
 										className={cn(style.table__sorting__arrow, {
-											[style.table__sorting__arrow_active]:
-												sortedColumn === EFormProps.date && order,
+											[style.table__sorting__arrow_up]:
+												sortedColumn === EFormProps.date && order === true,
+											[style.table__sorting__arrow_down]:
+												sortedColumn === EFormProps.date && order === false,
 										})}
 									>
 										<img src={SortArrow} alt="sort arrow" />

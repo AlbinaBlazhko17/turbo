@@ -1,23 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { allValues } from '@components/CustomForm/initialValues';
 import { IDataForForm } from '@/interfaces/IDataForForms';
-import { PayloadAction } from '@reduxjs/toolkit';
-import { EGender } from '@/customTypes/form.types';
 import ISelectedItem from '@/interfaces/ISelectedItem';
+import { allValues } from '@components/CustomForm/initialValues';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface FormState {
 	formData: IDataForForm[];
-	previousFormData: IDataForForm[];
+	allFormData: IDataForForm[];
+	sortingData: IDataForForm[];
 }
 
 const initialState: FormState = {
 	formData: [allValues],
-	previousFormData: [],
+	sortingData: [],
+	allFormData: [allValues],
 };
-
-interface IFilterPayload extends ISelectedItem {
-	type: string;
-}
 
 export const formSlice = createSlice({
 	name: 'form',
@@ -35,7 +31,7 @@ export const formSlice = createSlice({
 				};
 			}
 
-			return { formData: updatedState, previousFormData: updatedState };
+			return { formData: updatedState, sortingData: updatedState, allFormData: updatedState };
 		},
 		removeItemFromForm: (state) => {
 			const updatedState = [
@@ -44,7 +40,7 @@ export const formSlice = createSlice({
 					id: state.formData.length + 1,
 				}),
 			];
-			return { formData: updatedState, previousFormData: updatedState };
+			return { formData: updatedState, sortingData: updatedState, allFormData: updatedState };
 		},
 		sortByProp: (state, action: PayloadAction<keyof IDataForForm>) => {
 			const updatedState = [...state.formData];
@@ -65,7 +61,8 @@ export const formSlice = createSlice({
 
 			return {
 				formData: updatedState,
-				previousFormData: state.previousFormData,
+				sortingData: updatedState,
+				allFormData: state.allFormData,
 			};
 		},
 		sortByPropDesc: (state, action: PayloadAction<keyof IDataForForm>) => {
@@ -87,12 +84,13 @@ export const formSlice = createSlice({
 
 			return {
 				formData: updatedState,
-				previousFormData: updatedState,
+				sortingData: updatedState,
+				allFormData: state.allFormData,
 			};
 		},
 		filterByProp: (state, action: PayloadAction<ISelectedItem>) => {
 			const payload = action.payload;
-			const updatedState = [...state.previousFormData];
+			const updatedState = [...state.sortingData];
 			let filteredState = [];
 
 			if (
@@ -102,40 +100,52 @@ export const formSlice = createSlice({
 				payload.range[1] === 100
 			) {
 				return {
-					formData: [...state.previousFormData],
-					previousFormData: state.previousFormData,
+					formData: [...state.allFormData],
+					allFormData: state.allFormData,
+					sortingData: state.sortingData,
 				};
 			}
 
 			filteredState = updatedState.filter((item) => {
-				if (payload.gender !== '') {
-					return item.gender === payload.gender;
+				console.log('filtration');
+				const isGenderValid = payload.gender !== '';
+				const areInterestsValid = payload.interests.length !== 0;
+				const isRangeValid = payload.range[0] !== 0 || payload.range[1] !== 100;
+
+				if (isGenderValid || areInterestsValid || isRangeValid) {
+					const genderCondition = isGenderValid ? item.gender === payload.gender : true;
+					const interestsCondition = areInterestsValid
+						? payload.interests.every((interest) => item.interests.includes(interest))
+						: true;
+					const rangeCondition = isRangeValid
+						? item.notificationFrequency >= payload.range[0] &&
+						  item.notificationFrequency <= payload.range[1]
+						: true;
+
+					return genderCondition && interestsCondition && rangeCondition;
 				}
-				if (payload.interests.length !== 0) {
-					return payload.interests.every((interest) => item.interests.includes(interest));
-				}
-				if (payload.range[0] !== 0 || payload.range[1] !== 100) {
-					return (
-						item.notificationFrequency >= payload.range[0] && item.notificationFrequency <= payload.range[1]
-					);
-				}
+
+				return true;
 			});
 
 			return {
 				formData: filteredState.length !== 0 ? filteredState : [allValues],
-				previousFormData: state.previousFormData,
+				allFormData: state.allFormData,
+				sortingData: state.sortingData,
 			};
 		},
 		returnDataAfterFiltering: (state) => {
-			if (state.previousFormData.length !== 0) {
+			if (state.allFormData.length !== 0) {
 				return {
-					formData: [...state.previousFormData],
-					previousFormData: state.previousFormData,
+					formData: [...state.allFormData],
+					allFormData: state.allFormData,
+					sortingData: state.allFormData,
 				};
 			} else {
 				return {
 					formData: [...state.formData],
-					previousFormData: [...state.formData],
+					allFormData: [...state.allFormData],
+					sortingData: [...state.sortingData],
 				};
 			}
 		},

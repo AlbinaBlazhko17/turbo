@@ -89,8 +89,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-
 		&__arrow {
+			opacity: 0;
 			width: 35px;
 			height: 20px;
 			transition: transform 0.3s ease-in-out;
@@ -101,11 +101,15 @@
 				height: 100%;
 			}
 
-			&_active {
-				transform: rotate(180deg);
+			&_up, &_down {
+				animation: opacity 0.3s ease-in-out forwards;
 			}
+
+			&_down {
+				transform: rotate(180deg);
 		}
 	}
+}
 
 	&__descr {
 
