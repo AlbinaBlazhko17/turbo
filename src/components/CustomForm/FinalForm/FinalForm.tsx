@@ -26,9 +26,6 @@ function FinalForm({ formik, setData }: IFieldProps) {
 			formik.touched.terms = true;
 		} else {
 			formik.setTouched({});
-			// formik.touched.comments = false;
-			// formik.touched.profilePicture = false;
-			// formik.touched.terms = false;
 		}
 	}, [formik.values]);
 

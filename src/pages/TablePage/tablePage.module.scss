@@ -152,24 +152,39 @@
 			width: 150%;
 		}
 
-		.table {
-			&__filtration {
-				&-filter {
-					margin-left: 0;
-				}
-
-			}
-		}
-
 		@media screen and (max-width: 800px) {
 			table {
-				width: 220%;
+				width: 320%;
 			}
 		}
 
 		@media screen and (max-width: 680px) {
 			table {
-				width: 350%;
+				width: 500%;
+			}
+		}
+
+		@media screen and (max-width: 500px) {
+			table {
+				width: 640%;
+			}
+			.table {
+				&__filtration {
+					justify-content: center;
+					align-items: center;
+				}
+			}
+		}
+
+		@media screen and (max-width: 400px) {
+			table {
+				width: 850%;
+			}
+		}
+
+		@media screen and (max-width: 330px) {
+			table {
+				width: 1200%;
 			}
 		}
 	}
