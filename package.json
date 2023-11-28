@@ -20,6 +20,7 @@
     "downshift": "^8.2.3",
     "eslint-config-react-app": "^7.0.1",
     "formik": "^2.4.5",
+    "framer-motion": "^10.16.5",
     "husky": "^8.0.3",
     "node-sass": "^9.0.0",
     "path": "^0.12.7",

@@ -4,6 +4,7 @@ import Portal from './Portal/Portal';
 import { createContainer } from '@utils/createContainer';
 import CloseButton from '@assets/icons/close_button.svg';
 import { setStateActionType } from '@/customTypes/react.types';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import styles from './modalWindow.module.scss';
 
@@ -15,10 +16,11 @@ type Props = {
 	children: React.ReactNode | React.ReactNode[];
 	isSliderInteracting: boolean;
 	setIsSliderInteracting: setStateActionType<boolean>;
+	isModalActive: boolean;
 };
 
 function ModalWindow(props: Props) {
-	const { title, onClose, children, isSliderInteracting, setIsSliderInteracting } = props;
+	const { title, onClose, children, isSliderInteracting, setIsSliderInteracting, isModalActive } = props;
 
 	const rootRef = useRef<HTMLDivElement>(null);
 	const [isMounted, setMounted] = useState(false);
@@ -54,24 +56,51 @@ function ModalWindow(props: Props) {
 		onClose?.();
 	}, [onClose]);
 
-	return isMounted ? (
+	return (
 		<Portal id={MODAL_CONTAINER_ID}>
-			<div className={styles.wrap} ref={rootRef} data-testid="wrap">
-				<div className={styles.content}>
-					<button
-						type="button"
-						className={styles.closeButton}
-						onClick={handleClose}
-						data-testid="modal-close-button"
+			<AnimatePresence>
+				<div
+					className={styles.wrap}
+					ref={rootRef}
+					data-testid="wrap"
+					style={{ display: isModalActive ? 'flex' : 'none' }}
+				>
+					<motion.div
+						key={isModalActive ? 'modal' : 'no-modal'}
+						initial="initialState"
+						animate={isModalActive ? 'animateState' : 'initialState'}
+						transition={{
+							type: 'spring',
+							duration: 0.5,
+						}}
+						variants={{
+							initialState: {
+								opacity: 0.5,
+							},
+							animateState: {
+								opacity: 1,
+							},
+							exitState: {
+								opacity: 0.5,
+							},
+						}}
+						className={styles.content}
 					>
-						<img src={CloseButton} alt="close" />
-					</button>
-					<p className={styles.title}>{title}</p>
-					{children}
+						<button
+							type="button"
+							className={styles.closeButton}
+							onClick={handleClose}
+							data-testid="modal-close-button"
+						>
+							<img src={CloseButton} alt="close" />
+						</button>
+						<p className={styles.title}>{title}</p>
+						{children}
+					</motion.div>
 				</div>
-			</div>
+			</AnimatePresence>
 		</Portal>
-	) : null;
+	);
 }
 
 export default ModalWindow;

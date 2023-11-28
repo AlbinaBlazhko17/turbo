@@ -3,6 +3,7 @@ import ModalWindow from '@/components/ModalWindow/ModalWindow';
 import { EFormProps } from '@/customTypes/form.types';
 import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
+import ISelectedItem from '@/interfaces/ISelectedItem';
 import { filterByProp, returnDataAfterFiltering, sortByProp, sortByPropDesc } from '@/store/actions/actions';
 import { ThemeContext } from '@/theme/theme';
 import FiltrationIcon from '@assets/icons/filtration.svg';
@@ -11,7 +12,6 @@ import cn from 'classnames';
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Filtration from './Filtration/Filtration';
-import ISelectedItem from '@/interfaces/ISelectedItem';
 
 import style from './tablePage.module.scss';
 
@@ -90,26 +90,26 @@ function TablePage() {
 					<div className={style[`table__filtration-filter`]} onClick={handleModalOpen}>
 						<img src={FiltrationIcon} alt="filtration" />
 					</div>
-					<div>
-						{isModalActive && (
-							<ModalWindow
-								title="Filters"
-								onClose={handleModalClose}
-								isSliderInteracting={isSliderInteracting}
-								setIsSliderInteracting={setIsSliderInteracting}
-							>
-								<Filtration
-									selectedItem={selectedItem}
-									setSelectedItem={setSelectedItem}
-									handleReset={handleReset}
-									sliderRange={sliderRange}
-									setSliderRange={setSliderRange}
-									setModalActive={setModalActive}
-									setIsSliderInteracting={setIsSliderInteracting}
-								/>
-							</ModalWindow>
-						)}
-					</div>
+
+					{/* {isModalActive && ( */}
+					<ModalWindow
+						title="Filters"
+						onClose={handleModalClose}
+						isSliderInteracting={isSliderInteracting}
+						setIsSliderInteracting={setIsSliderInteracting}
+						isModalActive={isModalActive}
+					>
+						<Filtration
+							selectedItem={selectedItem}
+							setSelectedItem={setSelectedItem}
+							handleReset={handleReset}
+							sliderRange={sliderRange}
+							setSliderRange={setSliderRange}
+							setModalActive={setModalActive}
+							setIsSliderInteracting={setIsSliderInteracting}
+						/>
+					</ModalWindow>
+					{/* )} */}
 				</div>
 				<div className={style.table__overflow}>
 					<table>

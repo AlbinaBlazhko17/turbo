@@ -18,12 +18,14 @@ import { IDataForForm } from '@/interfaces/IDataForForms';
 import { Await, useLoaderData } from 'react-router-dom';
 
 import style from './formPage.module.scss';
+import { motion } from 'framer-motion';
 
 function FormPage() {
 	const [currentStep, setCurrentStep] = useState(localStorage.getItem('step') || 1);
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
 	const initialValues = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
+	const [click, setClick] = useState<'next' | 'prev' | undefined>(undefined);
 	const formDispatcher = useDispatch();
 
 	const loaderData = useLoaderData();
@@ -53,12 +55,15 @@ function FormPage() {
 	const handlePrevStep = () => {
 		if (+currentStep > 1) {
 			setCurrentStep(+currentStep - 1);
+			setClick('prev');
 		}
 	};
 
 	useEffect(() => {
 		formDispatcher(addItemToForm(data));
 	}, [data]);
+
+	console.log(click);
 
 	return (
 		<div className={style.wrapper}>
@@ -70,24 +75,48 @@ function FormPage() {
 				onSubmit={() => {
 					if (+currentStep < 5) {
 						setCurrentStep(+currentStep + 1);
+						setClick('next');
 					}
 				}}
 			>
 				{(formik) => (
 					<section className={style.form__wrapper}>
-						<Suspense fallback={<div>Loading...</div>}>
-							<Await resolve={loaderData}>
-								{(loaderData) => (
-									<CustomForm
-										formik={formik}
-										currentStep={+currentStep}
-										setData={setData}
-										loaderDataCountries={loaderData.countries}
-										loaderDataLanguages={loaderData.languages}
-									/>
-								)}
-							</Await>
-						</Suspense>
+						<motion.div
+							key={+currentStep}
+							initial="initialState"
+							animate="animateState"
+							transition={{
+								type: 'tween',
+								duration: 0.5,
+							}}
+							variants={{
+								initialState: {
+									opacity: 0,
+									x: click === 'next' ? '100%' : '-100%',
+								},
+								animateState: {
+									opacity: 1,
+									x: '0',
+								},
+								exitState: {
+									x: click === 'next' ? '-100%' : '100%',
+								},
+							}}
+						>
+							<Suspense fallback={<div>Loading...</div>}>
+								<Await resolve={loaderData}>
+									{(loaderData) => (
+										<CustomForm
+											formik={formik}
+											currentStep={+currentStep}
+											setData={setData}
+											loaderDataCountries={loaderData.countries}
+											loaderDataLanguages={loaderData.languages}
+										/>
+									)}
+								</Await>
+							</Suspense>
+						</motion.div>
 						{+currentStep !== 5 && (
 							<div className={style.buttons}>
 								<Button
