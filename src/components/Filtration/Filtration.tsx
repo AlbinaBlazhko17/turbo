@@ -98,6 +98,7 @@ function Filtration({
 				{itemsGender.map((group, groupIndex) => (
 					<li key={groupIndex}>
 						<strong className={style['filtration__label']}>Gender</strong>
+						<hr className={style.filtration__divider} />
 						<ul>
 							{group.items.map((item, itemIndex) => (
 								<li
@@ -123,6 +124,7 @@ function Filtration({
 				{itemsInterests.map((group, groupIndex) => (
 					<li key={groupIndex}>
 						<strong className={style['filtration__label']}>Interests</strong>
+						<hr className={style.filtration__divider} />
 						<ul className={style.filtration__interests}>
 							{group.items.map((item, itemIndex) => (
 								<li
@@ -144,6 +146,7 @@ function Filtration({
 			</ul>
 			<div className={style.filtration__slider}>
 				<strong className={style['filtration__label']}>Notification frequency</strong>
+				<hr className={style.filtration__divider} />
 				<RangeSlider
 					ref={sliderRef}
 					defaultValue={[selectedItem.range[0], selectedItem.range[1]]}
@@ -158,6 +161,7 @@ function Filtration({
 						setIsSliderInteracting(true);
 						handleChangeSlider(sliderRange);
 					}}
+					className={style.filtration__slider}
 				/>
 				<div className={style.filtration__rangeNumbers} ref={sliderNumbersRef}>
 					<p className={style.filtration__rangeNumbers_left}>{sliderRange[0]}</p>

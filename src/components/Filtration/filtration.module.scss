@@ -7,6 +7,15 @@
 	padding: 10px;
 	box-sizing: border-box;
 
+	&__divider {
+		width: 100%;
+		height: 2px;
+		background-color: $light-blue;
+		margin-bottom: 20px;
+		border: none;
+		border-radius: 20px;
+	}
+
 	&__interests {
 		display: flex;
 		justify-content: space-between;
@@ -28,8 +37,7 @@
 
 	&__label {
 		display: block;
-		margin-top: 10px;
-		margin-bottom: 20px;
+		margin: 10px 0;
 		color: $grey;
 		cursor: initial;
 
@@ -58,6 +66,7 @@
 
 	&__slider {
 		position: relative;
+		margin-top: 30px;
 	}
 
 	&__rangeNumbers {
