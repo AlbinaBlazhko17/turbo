@@ -128,11 +128,13 @@ function FormPage() {
 								</Button>
 								<Button
 									appearance={
-										+currentStep !== 5 &&
-										Object.keys(formik.errors).length === 0 &&
-										Object.keys(formik.touched).length > 0
+										+currentStep !== 4 && Object.keys(formik.errors).length === 0
 											? 'filled'
-											: 'outlined'
+											: +currentStep === 4 &&
+											    Object.keys(formik.errors).length === 0 &&
+											    Object.keys(formik.touched).length > 0
+											  ? 'filled'
+											  : 'outlined'
 									}
 									onClick={() => {
 										formik.handleSubmit();

@@ -55,6 +55,11 @@ const CustomSelect = ({ data, formik, type }: CustomSelectProps) => {
 			...defaultStyles,
 			color: theme === 'dark' ? 'white' : '#333',
 		}),
+		menu: (defaultStyles: CSSObjectWithLabel) => ({
+			...defaultStyles,
+			height: '14rem',
+			overflowY: 'auto',
+		}),
 	};
 
 	return (
