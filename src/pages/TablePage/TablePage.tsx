@@ -148,9 +148,9 @@ function TablePage() {
 									<span
 										className={cn(style.table__sorting__arrow, {
 											[style.table__sorting__arrow_up]:
-												sortedColumn === EFormProps.notificationFrequency && order === true,
-											[style.table__sorting__arrow_down]:
 												sortedColumn === EFormProps.notificationFrequency && order === false,
+											[style.table__sorting__arrow_down]:
+												sortedColumn === EFormProps.notificationFrequency && order === true,
 										})}
 									>
 										<img src={SortArrow} alt="sort arrow" />
@@ -168,9 +168,9 @@ function TablePage() {
 									<span
 										className={cn(style.table__sorting__arrow, {
 											[style.table__sorting__arrow_up]:
-												sortedColumn === EFormProps.date && order === true,
-											[style.table__sorting__arrow_down]:
 												sortedColumn === EFormProps.date && order === false,
+											[style.table__sorting__arrow_down]:
+												sortedColumn === EFormProps.date && order === true,
 										})}
 									>
 										<img src={SortArrow} alt="sort arrow" />
