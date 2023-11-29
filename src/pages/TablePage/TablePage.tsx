@@ -11,7 +11,7 @@ import SortArrow from '@assets/icons/sort-arrow.svg';
 import cn from 'classnames';
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Filtration from './Filtration/Filtration';
+import Filtration from '../../components/Filtration/Filtration';
 
 import style from './tablePage.module.scss';
 
