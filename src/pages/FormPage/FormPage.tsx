@@ -8,7 +8,7 @@ import Button from '@components/Button/Button';
 import CustomForm from '@components/CustomForm/CustomForm';
 import Steps from '@components/Steps/Steps';
 import { Formik } from 'formik';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { FormValues } from '@/customTypes/formik.types';
 import { ObjectSchema } from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,6 +26,7 @@ function FormPage() {
 	const initialValues = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
 	const [click, setClick] = useState<'next' | 'prev' | undefined>(undefined);
+	const formikRef = useRef(null);
 	const formDispatcher = useDispatch();
 
 	const loaderData = useLoaderData();
@@ -63,7 +64,38 @@ function FormPage() {
 		formDispatcher(addItemToForm(data));
 	}, [data]);
 
-	console.log(click);
+	console.log(formikRef.current);
+	function buttonAppearance() {
+		if (formikRef.current !== null) {
+			if (
+				+currentStep === 1 &&
+				!formikRef.current?.dirty &&
+				Object.keys(formikRef.current?.errors).length === 0 &&
+				Object.keys(formikRef.current?.touched).length === 0
+			) {
+				console.log('First if');
+				return 'outlined';
+			} else if (
+				+currentStep === 1 &&
+				// formikRef.current?.dirty &&
+				Object.keys(formikRef.current?.errors).length === 0
+			) {
+				console.log('Second if');
+				return 'filled';
+			} else if (+currentStep > 0 && Object.keys(formikRef.current?.errors).length === 0) {
+				console.log('Third if');
+				return 'filled';
+			} else if (
+				+currentStep === 4 &&
+				Object.keys(formikRef.current?.errors).length === 0 &&
+				Object.keys(formikRef.current?.touched).length > 0
+			) {
+				console.log('Fourth if');
+				return 'filled';
+			}
+		}
+		return 'outlined';
+	}
 
 	return (
 		<div className={style.wrapper}>
@@ -78,6 +110,7 @@ function FormPage() {
 						setClick('next');
 					}
 				}}
+				innerRef={formikRef}
 			>
 				{(formik) => (
 					<section className={style.form__wrapper}>
@@ -127,15 +160,7 @@ function FormPage() {
 									Previous step
 								</Button>
 								<Button
-									appearance={
-										+currentStep !== 4 && Object.keys(formik.errors).length === 0
-											? 'filled'
-											: +currentStep === 4 &&
-											    Object.keys(formik.errors).length === 0 &&
-											    Object.keys(formik.touched).length > 0
-											  ? 'filled'
-											  : 'outlined'
-									}
+									appearance={buttonAppearance()}
 									onClick={() => {
 										formik.handleSubmit();
 										formDispatcher(addItemToForm(formik.values));
