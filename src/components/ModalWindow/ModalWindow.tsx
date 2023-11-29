@@ -57,47 +57,46 @@ function ModalWindow(props: Props) {
 	}, [onClose]);
 
 	return (
-		<Portal id={MODAL_CONTAINER_ID}>
+		<Portal id={`modal-container-id`}>
 			<AnimatePresence>
-				<div
-					className={styles.wrap}
-					ref={rootRef}
-					data-testid="wrap"
-					style={{ display: isModalActive ? 'flex' : 'none' }}
-				>
+				{isModalActive && isMounted && (
 					<motion.div
-						key={isModalActive ? 'modal' : 'no-modal'}
-						initial="initialState"
-						animate={isModalActive ? 'animateState' : 'initialState'}
+						className={styles.wrap}
+						ref={rootRef}
+						data-testid="wrap"
 						transition={{
 							type: 'spring',
-							duration: 0.5,
+							duration: 0.3,
 						}}
-						variants={{
-							initialState: {
-								opacity: 0.5,
-							},
-							animateState: {
-								opacity: 1,
-							},
-							exitState: {
-								opacity: 0.5,
-							},
-						}}
-						className={styles.content}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
 					>
-						<button
-							type="button"
-							className={styles.closeButton}
-							onClick={handleClose}
-							data-testid="modal-close-button"
+						<motion.div
+							transition={{
+								type: 'spring',
+								duration: 0.3,
+								stiffness: 300,
+								damping: 30,
+							}}
+							initial={{ scale: 0 }}
+							animate={{ scale: 1 }}
+							exit={{ scale: 0 }}
+							className={styles.content}
 						>
-							<img src={CloseButton} alt="close" />
-						</button>
-						<p className={styles.title}>{title}</p>
-						{children}
+							<button
+								type="button"
+								className={styles.closeButton}
+								onClick={handleClose}
+								data-testid="modal-close-button"
+							>
+								<img src={CloseButton} alt="close" />
+							</button>
+							<p className={styles.title}>{title}</p>
+							{children}
+						</motion.div>
 					</motion.div>
-				</div>
+				)}
 			</AnimatePresence>
 		</Portal>
 	);

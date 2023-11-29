@@ -91,7 +91,6 @@ function TablePage() {
 						<img src={FiltrationIcon} alt="filtration" />
 					</div>
 
-					{/* {isModalActive && ( */}
 					<ModalWindow
 						title="Filters"
 						onClose={handleModalClose}
@@ -109,7 +108,6 @@ function TablePage() {
 							setIsSliderInteracting={setIsSliderInteracting}
 						/>
 					</ModalWindow>
-					{/* )} */}
 				</div>
 				<div className={style.table__overflow}>
 					<table>
