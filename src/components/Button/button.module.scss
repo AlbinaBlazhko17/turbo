@@ -25,11 +25,13 @@
 	}
 
 	&_outlined {
-		border: 1px solid $lighter-blue;
+		border: 2px solid $light-blue;
 		color: $black;
 		cursor: unset;
+		background-color: $lighter-blue;
 		&:hover {
-			background-color: $lighter-blue;
+			background-color: $blue;
+			color: $white;
 		}
 	}
 }

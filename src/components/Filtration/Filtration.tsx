@@ -18,6 +18,7 @@ function Filtration({
 	sliderRange,
 	setSliderRange,
 	setIsSliderInteracting,
+	setModalActive,
 }: {
 	selectedItem: ISelectedItem;
 	setSelectedItem: setStateActionType<ISelectedItem>;
@@ -164,8 +165,11 @@ function Filtration({
 				</div>
 			</div>
 			<div className={style[`filtration__reset`]}>
-				<Button appearance="filled" onClick={handleReset}>
+				<Button appearance="outlined" onClick={handleReset}>
 					Remove all filters
+				</Button>
+				<Button appearance="filled" onClick={() => setModalActive(false)}>
+					Show results
 				</Button>
 			</div>
 		</div>
