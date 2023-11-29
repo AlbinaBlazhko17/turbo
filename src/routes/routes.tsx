@@ -22,7 +22,7 @@ const routesConfig = createBrowserRouter([
 				loader,
 			},
 			{
-				path: 'table',
+				path: '/users',
 				element: <TablePage />,
 			},
 		],

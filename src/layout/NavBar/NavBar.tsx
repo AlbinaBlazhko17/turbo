@@ -79,8 +79,8 @@ function NavBar() {
 					<span>Media </span>
 				</NavLink>
 				<NavLink
-					to={'/table'}
-					className={`${style['nav__list-item']} ${location.pathname === '/table' ? style.active : ''}`}
+					to={'/users'}
+					className={`${style['nav__list-item']} ${location.pathname === '/users' ? style.active : ''}`}
 				>
 					<svg width="23" height="25" viewBox="0 0 23 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Document">
@@ -94,7 +94,7 @@ function NavBar() {
 					</svg>
 					<span>Table </span>
 				</NavLink>
-				<NavLink
+				{/* <NavLink
 					to={'/comments'}
 					className={`${style['nav__list-item']} ${location.pathname === '/comments' ? style.active : ''}`}
 				>
@@ -109,8 +109,8 @@ function NavBar() {
 						</g>
 					</svg>
 					<span>Comments </span>
-				</NavLink>
-				<NavLink
+				</NavLink> */}
+				{/* <NavLink
 					to={'/appearance'}
 					className={`${style['nav__list-item']} ${location.pathname === '/appearance' ? style.active : ''}`}
 				>
@@ -125,8 +125,8 @@ function NavBar() {
 						</g>
 					</svg>
 					<span>Appearance</span>
-				</NavLink>
-				<NavLink
+				</NavLink> */}
+				{/* <NavLink
 					to={'/plugins'}
 					className={`${style['nav__list-item']} ${location.pathname === '/plugins' ? style.active : ''}`}
 				>
@@ -141,10 +141,10 @@ function NavBar() {
 						</g>
 					</svg>
 					<span>Plugins</span>
-				</NavLink>
+				</NavLink> */}
 				<NavLink
-					to={'/users'}
-					className={`${style['nav__list-item']} ${location.pathname === '/users' ? style.active : ''}`}
+					to={'/account'}
+					className={`${style['nav__list-item']} ${location.pathname === '/account' ? style.active : ''}`}
 				>
 					<svg width="28" height="20" viewBox="0 0 28 20" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/3-User">
@@ -158,7 +158,7 @@ function NavBar() {
 					</svg>
 					<span>Users </span>
 				</NavLink>
-				<NavLink
+				{/* <NavLink
 					to={'/settings'}
 					className={`${style['nav__list-item']} ${location.pathname === '/settings' ? style.active : ''}`}
 				>
@@ -173,8 +173,8 @@ function NavBar() {
 						</g>
 					</svg>
 					<span>Settings </span>
-				</NavLink>
-				<NavLink
+				</NavLink> */}
+				{/* <NavLink
 					to={'/tools'}
 					className={`${style['nav__list-item']} ${location.pathname === '/tools' ? style.active : ''}`}
 				>
@@ -189,7 +189,7 @@ function NavBar() {
 						</g>
 					</svg>
 					<span>Tools</span>
-				</NavLink>
+				</NavLink> */}
 			</ul>
 			<Link to={'/'} className={style.nav__logout}>
 				<img src={Logout} alt="logout" />
