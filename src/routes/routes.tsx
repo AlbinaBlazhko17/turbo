@@ -1,10 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
-import FormPage from '@pages/FormPage/FormPage';
-import Dashboard from '@pages/Dashboard/Dashboard';
-import Layout from '@/layout/Layout/Layout';
-import TablePage from '@/pages/TablePage/TablePage';
 import ErrorPage from '@/components/ErrorPage/ErrorPage';
+import Layout from '@/layout/Layout/Layout';
+import GalleryPage from '@/pages/GalleryPage/GalleryPage';
+import TablePage from '@/pages/TablePage/TablePage';
 import { loader } from '@/utils/dataForSelect';
+import Dashboard from '@pages/Dashboard/Dashboard';
+import FormPage from '@pages/FormPage/FormPage';
+import { createBrowserRouter } from 'react-router-dom';
 
 const routesConfig = createBrowserRouter([
 	{
@@ -24,6 +25,10 @@ const routesConfig = createBrowserRouter([
 			{
 				path: '/users',
 				element: <TablePage />,
+			},
+			{
+				path: '/gallery',
+				element: <GalleryPage />,
 			},
 		],
 	},
