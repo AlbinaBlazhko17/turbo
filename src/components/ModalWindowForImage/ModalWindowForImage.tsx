@@ -30,6 +30,7 @@ function ModalWindowForImage({
 	const [currentImage, setCurrentImage] = useState<IDataForPhotos | null>(null);
 	const [click, setClick] = useState<'next' | 'prev' | undefined>(undefined);
 	const rootRef = useRef<HTMLDivElement>(null);
+	const smallGalleryRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		if (photos) {
@@ -85,6 +86,10 @@ function ModalWindowForImage({
 	}
 
 	function handleImageClick(index: number) {
+		smallGalleryRef.current?.scrollTo({
+			left: index * 100,
+			behavior: 'smooth',
+		});
 		setCounter(index);
 		const image = flatImages.find((item) => item.counter === index);
 		setCurrentImage(image || null);
@@ -169,7 +174,7 @@ function ModalWindowForImage({
 								<img src={ArrowIcon} alt="arrow" />
 							</button>
 						</motion.div>
-						<div className={style['gallery-modal__strip']}>
+						<div className={style['gallery-modal__strip']} ref={smallGalleryRef}>
 							<div className={style['gallery-modal__strip__wrapper']}>
 								{flatImages.map((item) => (
 									<div
