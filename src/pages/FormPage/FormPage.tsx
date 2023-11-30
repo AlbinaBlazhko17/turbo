@@ -125,7 +125,7 @@ function FormPage() {
 							variants={{
 								initialState: {
 									opacity: 0,
-									x: click === 'next' ? '100%' : '-100%',
+									x: click === 'next' ? '100%' : typeof click === 'undefined' ? '0%' : '-100%',
 								},
 								animateState: {
 									opacity: 1,
