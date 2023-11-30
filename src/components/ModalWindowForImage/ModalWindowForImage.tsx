@@ -122,6 +122,21 @@ function ModalWindowForImage({
 							<img src={ArrowIcon} alt="arrow" />
 						</button>
 					</motion.div>
+					<div className={style['gallery-modal__strip']}>
+						<div className={style['gallery-modal__strip__wrapper']}>
+							{flatImages.map((item) => (
+								<div
+									key={item.id}
+									className={cn(
+										style['gallery-modal__strip__item'],
+										counter === item.counter && style['gallery-modal__strip__item_active'],
+									)}
+								>
+									<img src={item.url} alt={item.title} />
+								</div>
+							))}
+						</div>
+					</div>
 				</motion.div>
 			)}
 		</Portal>
