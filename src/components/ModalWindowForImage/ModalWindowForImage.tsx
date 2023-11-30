@@ -1,7 +1,7 @@
 import { createContainer } from '@/utils/createContainer';
 import { useState, useEffect, MouseEventHandler, useCallback, useRef } from 'react';
 import Portal from '../Portal/Portal';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import CloseButton from '@assets/icons/close_button_white.svg';
 import cn from 'classnames';
 import ArrowIcon from '@assets/icons/sort-arrow.svg';
@@ -28,6 +28,7 @@ function ModalWindowForImage({
 	const [isMounted, setMounted] = useState(false);
 	const [flatImages, setFlatImages] = useState<IDataForPhotos[]>([]);
 	const [currentImage, setCurrentImage] = useState<IDataForPhotos | null>(null);
+	const [click, setClick] = useState<'next' | 'prev' | undefined>(undefined);
 	const rootRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -68,6 +69,7 @@ function ModalWindowForImage({
 	function handleNextImage() {
 		if (counter - 1 >= 0) {
 			const nextImage = flatImages.find((item) => item.counter === counter - 1);
+			setClick('prev');
 			setCounter(counter - 1);
 			setCurrentImage(nextImage || null);
 		}
@@ -76,9 +78,16 @@ function ModalWindowForImage({
 	function handlePrevImage() {
 		if (counter + 1 < flatImages.length) {
 			const prevImage = flatImages.find((item) => item.counter === counter + 1);
+			setClick('next');
 			setCounter(counter + 1);
 			setCurrentImage(prevImage || null);
 		}
+	}
+
+	function handleImageClick(index: number) {
+		setCounter(index);
+		const image = flatImages.find((item) => item.counter === index);
+		setCurrentImage(image || null);
 	}
 
 	const handleClose: MouseEventHandler<HTMLDivElement | HTMLButtonElement> = useCallback(() => {
@@ -86,59 +95,99 @@ function ModalWindowForImage({
 	}, [onClose]);
 	return (
 		<Portal id={'image'}>
-			{isModalActive && isMounted && (
-				<motion.div ref={rootRef} className={style['gallery-modal']}>
-					<button
-						type="button"
-						className={cn(style['gallery-modal__button'], style['gallery-modal__button_close'])}
-						onClick={handleClose}
-						data-testid="modal-close-button"
+			<AnimatePresence>
+				{isModalActive && isMounted && (
+					<motion.div
+						ref={rootRef}
+						className={style['gallery-modal']}
+						transition={{
+							type: 'spring',
+							duration: 0.3,
+							stiffness: 300,
+							damping: 30,
+						}}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
 					>
-						<img src={CloseButton} alt="close" />
-					</button>
-					<motion.div className={style['gallery-modal__content']}>
 						<button
-							className={cn(
-								style['gallery-modal__button'],
-								style['gallery-modal__button__arrow'],
-								style['gallery-modal__button__arrow_prev'],
-							)}
-							onClick={handleNextImage}
+							type="button"
+							className={cn(style['gallery-modal__button'], style['gallery-modal__button_close'])}
+							onClick={handleClose}
+							data-testid="modal-close-button"
 						>
-							<img src={ArrowIcon} alt="arrow" />
+							<img src={CloseButton} alt="close" />
 						</button>
+						<motion.div className={style['gallery-modal__content']}>
+							<button
+								className={cn(
+									style['gallery-modal__button'],
+									style['gallery-modal__button__arrow'],
+									style['gallery-modal__button__arrow_prev'],
+								)}
+								onClick={handleNextImage}
+							>
+								<img src={ArrowIcon} alt="arrow" />
+							</button>
 
-						<div className={style['gallery-modal__img']}>
-							<motion.img src={currentImage?.url} alt={currentImage?.title} />
+							<div className={style['gallery-modal__img']}>
+								<motion.img
+									src={currentImage?.url}
+									alt={currentImage?.title}
+									key={counter}
+									initial="initialState"
+									animate="animateState"
+									transition={{
+										type: 'tween',
+										duration: 0.5,
+									}}
+									variants={{
+										initialState: {
+											opacity: 0,
+											x:
+												click === 'next'
+													? '100%'
+													: typeof click === 'undefined'
+													  ? '0%'
+													  : '-100%',
+										},
+										animateState: {
+											opacity: 1,
+											x: '0',
+										},
+									}}
+								/>
+							</div>
+							<button
+								className={cn(
+									style['gallery-modal__button'],
+									style['gallery-modal__button__arrow'],
+									style['gallery-modal__button__arrow_next'],
+								)}
+								onClick={handlePrevImage}
+							>
+								<img src={ArrowIcon} alt="arrow" />
+							</button>
+						</motion.div>
+						<div className={style['gallery-modal__strip']}>
+							<div className={style['gallery-modal__strip__wrapper']}>
+								{flatImages.map((item) => (
+									<div
+										key={item.id}
+										className={cn(
+											style['gallery-modal__strip__item'],
+											counter === item.counter && style['gallery-modal__strip__item_active'],
+										)}
+										onClick={() => handleImageClick(item.counter)}
+									>
+										<img src={item.url} alt={item.title} />
+									</div>
+								))}
+							</div>
 						</div>
-						<button
-							className={cn(
-								style['gallery-modal__button'],
-								style['gallery-modal__button__arrow'],
-								style['gallery-modal__button__arrow_next'],
-							)}
-							onClick={handlePrevImage}
-						>
-							<img src={ArrowIcon} alt="arrow" />
-						</button>
 					</motion.div>
-					<div className={style['gallery-modal__strip']}>
-						<div className={style['gallery-modal__strip__wrapper']}>
-							{flatImages.map((item) => (
-								<div
-									key={item.id}
-									className={cn(
-										style['gallery-modal__strip__item'],
-										counter === item.counter && style['gallery-modal__strip__item_active'],
-									)}
-								>
-									<img src={item.url} alt={item.title} />
-								</div>
-							))}
-						</div>
-					</div>
-				</motion.div>
-			)}
+				)}
+			</AnimatePresence>
 		</Portal>
 	);
 }
