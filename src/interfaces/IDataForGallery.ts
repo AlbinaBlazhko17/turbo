@@ -13,4 +13,5 @@ export interface IDataForPhotos {
 	title: string;
 	id: number;
 	description: string;
+	counter: number;
 }

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import type { MouseEventHandler } from 'react';
-import Portal from './Portal/Portal';
+import Portal from '../Portal/Portal';
 import { createContainer } from '@utils/createContainer';
 import CloseButton from '@assets/icons/close_button.svg';
 import { setStateActionType } from '@/customTypes/react.types';

@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { getAllPhotos } from '@/utils/dataForGallery';
 import { IDataForPhotos } from '@/interfaces/IDataForGallery';
-
+import ModalWindowForImage from '@/components/ModalWindowForImage/ModalWindowForImage';
 import cn from 'classnames';
 
 import style from './galleryPage.module.scss';
 
 function GalleryPage() {
 	const [photos, setPhotos] = useState<IDataForPhotos[][] | null>([]);
-	const [limit, setLimit] = useState(20);
-	const [offset, setOffset] = useState(0);
+	const [limit, setLimit] = useState<number>(20);
+	const [offset, setOffset] = useState<number>(0);
+	const [modalActive, setModalActive] = useState<boolean>(false);
+	const [counter, setCounter] = useState<number>(0);
 
 	useEffect(() => {
 		(async () => {
@@ -29,7 +31,6 @@ function GalleryPage() {
 	}, [limit]);
 
 	const getImageClasses = (index: number) => {
-		console.log(index % 5);
 		switch (index % 5) {
 			case 0:
 				return style.gallery__img_first_half_row;
@@ -46,7 +47,15 @@ function GalleryPage() {
 		}
 	};
 
-	console.log(photos);
+	function handleClickOnImage(index: number) {
+		setCounter(index);
+		setModalActive(true);
+	}
+
+	function handleModalClose() {
+		setModalActive(false);
+	}
+
 	return (
 		<>
 			<h2>Gallery Page</h2>
@@ -56,7 +65,11 @@ function GalleryPage() {
 						photos.map((photos, index) => (
 							<div key={index} className={style.gallery__wrapper}>
 								{photos.map((photo, i) => (
-									<div key={photo.id} className={cn(style.gallery__img, getImageClasses(i))}>
+									<div
+										key={photo.id}
+										className={cn(style.gallery__img, getImageClasses(i))}
+										onClick={() => handleClickOnImage(photo.counter)}
+									>
 										<img src={photo.url} alt={photo.title} />
 									</div>
 								))}
@@ -64,6 +77,13 @@ function GalleryPage() {
 						))}
 				</div>
 			</section>
+			<ModalWindowForImage
+				counter={counter}
+				setCounter={setCounter}
+				photos={photos}
+				onClose={handleModalClose}
+				isModalActive={modalActive}
+			/>
 		</>
 	);
 }

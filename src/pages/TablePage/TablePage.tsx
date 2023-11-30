@@ -90,7 +90,6 @@ function TablePage() {
 					<div className={style[`table__filtration-filter`]} onClick={handleModalOpen}>
 						<img src={FiltrationIcon} alt="filtration" />
 					</div>
-
 					<ModalWindow
 						title="Filters"
 						onClose={handleModalClose}
