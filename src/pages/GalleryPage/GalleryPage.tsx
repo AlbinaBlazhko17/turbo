@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
-import { getAllPhotos } from '@/utils/dataForGallery';
-import { IDataForPhotos } from '@/interfaces/IDataForGallery';
-import ModalWindowForImage from '@/components/ModalWindowForImage/ModalWindowForImage';
-import cn from 'classnames';
-import SpinnerIcon from '@assets/icons/spinner.svg';
 import Button from '@/components/Button/Button';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ModalWindowForImage from '@/components/ModalWindowForImage/ModalWindowForImage';
+import { IDataForPhotos } from '@/interfaces/IDataForGallery';
+import { getAllPhotos } from '@/utils/dataForGallery';
 import ArrowIcon from '@assets/icons/sort-arrow.svg';
+import SpinnerIcon from '@assets/icons/spinner.svg';
+import cn from 'classnames';
+import { useEffect, useRef, useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import style from './galleryPage.module.scss';
 
@@ -16,6 +16,32 @@ function GalleryPage() {
 	const [modalActive, setModalActive] = useState<boolean>(false);
 	const [counter, setCounter] = useState<number>(0);
 	const [loading, setLoading] = useState<boolean>(true);
+	const arrowRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const main = document.querySelector('main');
+		const arrow = document.querySelector(`.${style.gallery__arrow}`);
+		console.log(arrow);
+		function handleArrowOpacity() {
+			if (main) {
+				if (main.scrollTop > 500) {
+					arrow.style.opacity = `${main.scrollTop / 1000}`;
+				} else {
+					arrow.style.opacity = `0`;
+				}
+			}
+		}
+
+		if (main) {
+			main.addEventListener('scroll', handleArrowOpacity);
+		}
+
+		return () => {
+			if (main) {
+				main.removeEventListener('scroll', handleArrowOpacity);
+			}
+		};
+	}, []);
 
 	useEffect(() => {
 		(async () => {
@@ -110,7 +136,7 @@ function GalleryPage() {
 				onClose={handleModalClose}
 				isModalActive={modalActive}
 			/>
-			<div className={style.gallery__arrow} onClick={goToTop}>
+			<div className={style.gallery__arrow} onClick={goToTop} ref={arrowRef}>
 				<img src={ArrowIcon} alt="arrow" />
 			</div>
 		</div>
