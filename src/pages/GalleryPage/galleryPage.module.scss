@@ -1,8 +1,21 @@
+@import '@scss/index.scss';
+
 .gallery {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	&__subheader {
+		margin-bottom: 20px;
+	}
+	&__spinner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 50%;
+		animation: rotateSpinner 1s linear infinite;
+	}
+
 	&__wrapper {
 		display: grid;
 		grid-template-columns: 23% 50% 23%;
@@ -52,5 +65,11 @@
 			grid-column: 3 / span 1;
 			grid-row: 2 / span 1;
 		}
+	}
+
+	&__button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }

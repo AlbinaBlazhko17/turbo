@@ -3,25 +3,28 @@ import { getAllPhotos } from '@/utils/dataForGallery';
 import { IDataForPhotos } from '@/interfaces/IDataForGallery';
 import ModalWindowForImage from '@/components/ModalWindowForImage/ModalWindowForImage';
 import cn from 'classnames';
+import SpinnerIcon from '@assets/icons/spinner.svg';
 
 import style from './galleryPage.module.scss';
+import Button from '@/components/Button/Button';
 
 function GalleryPage() {
 	const [photos, setPhotos] = useState<IDataForPhotos[][] | null>([]);
 	const [limit, setLimit] = useState<number>(20);
-	const [offset, setOffset] = useState<number>(0);
 	const [modalActive, setModalActive] = useState<boolean>(false);
 	const [counter, setCounter] = useState<number>(0);
+	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
 		(async () => {
 			try {
-				const data = await getAllPhotos(offset, limit);
+				const data = await getAllPhotos(0, limit);
 				const dataAfterTransform = [];
 				if (data) {
 					for (let i = 0; i < data.length; i += 5) {
 						dataAfterTransform.push(data.slice(i, i + 5));
 					}
+					setLoading(false);
 				}
 				setPhotos(dataAfterTransform);
 			} catch (err) {
@@ -56,9 +59,17 @@ function GalleryPage() {
 		setModalActive(false);
 	}
 
+	if (loading) {
+		return (
+			<div className={style.gallery__spinner}>
+				<img src={SpinnerIcon} alt="spinner" />
+			</div>
+		);
+	}
+
 	return (
 		<>
-			<h2>Gallery Page</h2>
+			<h1 className={style.gallery__subheader}>Gallery Page</h1>
 			<section>
 				<div className={style.gallery}>
 					{photos &&
@@ -75,6 +86,11 @@ function GalleryPage() {
 								))}
 							</div>
 						))}
+				</div>
+				<div className={style.gallery__button}>
+					<Button appearance="filled" onClick={() => setLimit(limit + 20)}>
+						Load more
+					</Button>
 				</div>
 			</section>
 			<ModalWindowForImage
