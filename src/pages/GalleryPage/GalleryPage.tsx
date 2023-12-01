@@ -21,7 +21,6 @@ function GalleryPage() {
 	useEffect(() => {
 		const main = document.querySelector('main');
 		const arrow = document.querySelector(`.${style.gallery__arrow}`);
-		console.log(arrow);
 		function handleArrowOpacity() {
 			if (main) {
 				if (main.scrollTop > 500) {
