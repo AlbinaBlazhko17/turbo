@@ -206,7 +206,7 @@ function TablePage() {
 							))
 						) : (
 							<tr>
-								<td className={style.table__descr} colSpan={13}>
+								<td className={style.table__descr} colSpan={14}>
 									<h3 style={{ textAlign: 'center' }}> No info! Please, fill the form</h3>
 								</td>
 							</tr>
