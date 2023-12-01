@@ -88,9 +88,11 @@ function GalleryPage() {
 
 	if (loading) {
 		return (
-			<div className={style.gallery__spinner}>
-				<img src={SpinnerIcon} alt="spinner" />
-			</div>
+			<section className={style.gallery__spinner}>
+				<div className={style.gallery__spinner__wrapper}>
+					<img src={SpinnerIcon} alt="spinner" />
+				</div>
+			</section>
 		);
 	}
 
@@ -103,7 +105,7 @@ function GalleryPage() {
 	}
 
 	return (
-		<div>
+		<>
 			<h1 className={style.gallery__subheader}>Gallery Page</h1>
 			<section>
 				<div className={style.gallery}>
@@ -138,7 +140,7 @@ function GalleryPage() {
 			<div className={style.gallery__arrow} onClick={goToTop} ref={arrowRef}>
 				<img src={ArrowIcon} alt="arrow" />
 			</div>
-		</div>
+		</>
 	);
 }
 
