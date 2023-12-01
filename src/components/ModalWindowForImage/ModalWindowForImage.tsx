@@ -62,6 +62,7 @@ function ModalWindowForImage({
 		window.addEventListener('keydown', handleEscapePress);
 
 		return () => {
+			setClick(undefined);
 			window.removeEventListener('click', handleWrapperClick);
 			window.removeEventListener('keydown', handleEscapePress);
 		};

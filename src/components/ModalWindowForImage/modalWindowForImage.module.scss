@@ -52,7 +52,7 @@
 		overflow-x: scroll;
 		overflow-y: hidden;
 		&__wrapper {
-			width: 300%;
+			width: 170%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -126,7 +126,7 @@
 		}
 		&__strip {
 			&__wrapper {
-				width: 450%;
+				width: 250%;
 			}
 		}
 	}
@@ -137,7 +137,7 @@
 		}
 		&__strip {
 			&__wrapper {
-				width: 550%;
+				width: 350%;
 			}
 		}
 	}
@@ -145,7 +145,7 @@
 	@media screen and (max-width: 768px) {
 		&__strip {
 			&__wrapper {
-				width: 750%;
+				width: 450%;
 			}
 		}
 
@@ -169,7 +169,7 @@
 		}
 		&__strip {
 			&__wrapper {
-				width: 950%;
+				width: 550%;
 			}
 
 			&__item {
@@ -197,7 +197,7 @@
 	@media screen and (max-width: 375px) {
 		&__strip {
 			&__wrapper {
-				width: 1500%;
+				width: 650%;
 			}
 		}
 	}
