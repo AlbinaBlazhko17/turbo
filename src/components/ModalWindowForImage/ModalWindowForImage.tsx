@@ -67,7 +67,8 @@ function ModalWindowForImage({
 		};
 	}, [onClose]);
 
-	function handleNextImage() {
+	function handleNextImage(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+		e.stopPropagation();
 		if (counter - 1 >= 0) {
 			const nextImage = flatImages.find((item) => item.counter === counter - 1);
 			setClick('prev');
@@ -76,7 +77,8 @@ function ModalWindowForImage({
 		}
 	}
 
-	function handlePrevImage() {
+	function handlePrevImage(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+		e.stopPropagation();
 		if (counter + 1 < flatImages.length) {
 			const prevImage = flatImages.find((item) => item.counter === counter + 1);
 			setClick('next');
@@ -95,9 +97,14 @@ function ModalWindowForImage({
 		setCurrentImage(image || null);
 	}
 
+	function handlePreventPropagation(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+		e.stopPropagation();
+	}
+
 	const handleClose: MouseEventHandler<HTMLDivElement | HTMLButtonElement> = useCallback(() => {
 		onClose?.();
 	}, [onClose]);
+
 	return (
 		<Portal id={'image'}>
 			<AnimatePresence>
@@ -115,15 +122,15 @@ function ModalWindowForImage({
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 					>
-						<button
+						{/* <button
 							type="button"
 							className={cn(style['gallery-modal__button'], style['gallery-modal__button_close'])}
 							onClick={handleClose}
 							data-testid="modal-close-button"
 						>
 							<img src={CloseButton} alt="close" />
-						</button>
-						<motion.div className={style['gallery-modal__content']}>
+						</button> */}
+						<motion.div className={style['gallery-modal__content']} onClick={handleClose}>
 							<button
 								className={cn(
 									style['gallery-modal__button'],
@@ -135,7 +142,7 @@ function ModalWindowForImage({
 								<img src={ArrowIcon} alt="arrow" />
 							</button>
 
-							<div className={style['gallery-modal__img']}>
+							<div className={style['gallery-modal__img']} onClick={handlePreventPropagation}>
 								<motion.img
 									src={currentImage?.url}
 									alt={currentImage?.title}
