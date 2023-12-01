@@ -4,9 +4,10 @@ import { IDataForPhotos } from '@/interfaces/IDataForGallery';
 import ModalWindowForImage from '@/components/ModalWindowForImage/ModalWindowForImage';
 import cn from 'classnames';
 import SpinnerIcon from '@assets/icons/spinner.svg';
+import Button from '@/components/Button/Button';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import style from './galleryPage.module.scss';
-import Button from '@/components/Button/Button';
 
 function GalleryPage() {
 	const [photos, setPhotos] = useState<IDataForPhotos[][] | null>([]);
@@ -81,7 +82,7 @@ function GalleryPage() {
 										className={cn(style.gallery__img, getImageClasses(i))}
 										onClick={() => handleClickOnImage(photo.counter)}
 									>
-										<img src={photo.url} alt={photo.title} />
+										<LazyLoadImage src={photo.url} alt={photo.title} />
 									</div>
 								))}
 							</div>
