@@ -71,3 +71,14 @@
 		}
 	}
 }
+
+@media screen and (max-width: 375px) {
+	.buttons {
+		flex-direction: column;
+
+		&_right {
+			margin-bottom: 20px;
+			margin-right: 0px;
+		}
+	}
+}
