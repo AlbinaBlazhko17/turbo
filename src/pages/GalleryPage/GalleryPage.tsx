@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getAllPhotos } from '@/utils/dataForGallery';
 import { IDataForPhotos } from '@/interfaces/IDataForGallery';
 import ModalWindowForImage from '@/components/ModalWindowForImage/ModalWindowForImage';
@@ -6,6 +6,7 @@ import cn from 'classnames';
 import SpinnerIcon from '@assets/icons/spinner.svg';
 import Button from '@/components/Button/Button';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ArrowIcon from '@assets/icons/sort-arrow.svg';
 
 import style from './galleryPage.module.scss';
 
@@ -68,8 +69,16 @@ function GalleryPage() {
 		);
 	}
 
+	function goToTop() {
+		const main = document.querySelector('main');
+		main?.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+	}
+
 	return (
-		<>
+		<div>
 			<h1 className={style.gallery__subheader}>Gallery Page</h1>
 			<section>
 				<div className={style.gallery}>
@@ -101,7 +110,10 @@ function GalleryPage() {
 				onClose={handleModalClose}
 				isModalActive={modalActive}
 			/>
-		</>
+			<div className={style.gallery__arrow} onClick={goToTop}>
+				<img src={ArrowIcon} alt="arrow" />
+			</div>
+		</div>
 	);
 }
 
