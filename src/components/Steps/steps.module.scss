@@ -1,9 +1,14 @@
 @import '@scss/index.scss';
 
 .steps {
-	margin-top: 30px;
+	margin-top: 10px;
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-start;
+	width: auto;
+	align-self: center;
+	box-sizing: border-box;
+	width: 40%;
 
 	&-item {
 		position: relative;
@@ -11,22 +16,24 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 36em;
+		width: 7rem;
+		text-align: center;
 
 		&:not(:first-child)::before {
 			position: absolute;
 			content: '';
 			background: $light-grey;
-			width: 100%;
+			width: 15vw;
 			height: 3px;
-			right: 43%;
+			right: 30%;
 			top: 33%;
 			transform: translateY(-25%);
+			z-index: 1;
 		}
 
 		&__step {
-			width: 70px;
-			height: 70px;
+			width: 2em;
+			height: 2em;
 			display: flex;
 			position: relative;
 			background-color: $lighter-blue;
@@ -35,6 +42,13 @@
 			align-items: center;
 			color: $black !important;
 			border: 1px thin $grey;
+			z-index: 3;
+			margin-bottom: 5%;
+			font-size: 1.5rem;
+		}
+
+		&__type {
+			font-size: 1rem;
 		}
 	}
 
@@ -71,4 +85,60 @@
 			}
 		}
 	}
+}
+
+@media screen and (max-width: 2561px) {
+	.steps {
+		&-item {
+			&:not(:first-child)::before {
+				width: 10vw;
+				right: 45%;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.steps {
+		width: 55%;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.steps {
+		width: 65%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.steps {
+		width: 80%;
+
+		&-item {
+			&:not(:first-child)::before {
+				width: 13vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.steps {
+		width: 100%;
+
+		&-item {
+			&:not(:first-child)::before {
+				width: 18vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.steps {
+		h3 {
+			font-size: 0.8rem;
+		}
+	}
+
 }

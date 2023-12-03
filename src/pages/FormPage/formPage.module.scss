@@ -3,22 +3,71 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
-	row-gap: 32px;
+	row-gap: 20px;
 	position: relative;
 }
 
 .form__wrapper {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 	padding: 30px;
-	width: max-content;
-	height: 55vh;
 	align-self: center;
+	height: 700px;
+	width: 40%;
+	box-sizing: border-box;
 }
 
 .buttons {
-	position: absolute;
-	bottom: 5%;
-	left: 43%;
-	&_right{
+	width: 100%;
+	margin-top: auto;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 50px;
+	box-sizing: border-box;
+
+	&_right {
 		margin-right: 30px;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.form__wrapper {
+		width: 55%;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.form__wrapper {
+		width: 65%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.form__wrapper {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.form__wrapper {
+		width: 100%;
+	}
+
+	.buttons {
+		&_right {
+			margin-right: 20px;
+		}
+	}
+}
+
+@media screen and (max-width: 426px) {
+	.buttons {
+		margin-left: 0px;
+		padding: 0;
+
+		&_right {
+			margin-right: 10px;
+		}
 	}
 }

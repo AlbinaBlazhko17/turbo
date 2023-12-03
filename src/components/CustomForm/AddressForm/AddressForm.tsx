@@ -10,7 +10,10 @@ import AddressFormProps from './AddressForm.props';
 import style from '../customForm.module.scss';
 
 function AddressForm({ formik, setData, loaderDataCountries }: AddressFormProps) {
-	const [dataSelect, setDataSelect] = useState<{ countries: SelectValue[], userSelectValue: SelectValue }>();
+	const [dataSelect, setDataSelect] = useState<{
+		countries: SelectValue[];
+		userSelectValue: SelectValue;
+	}>();
 
 	useEffect(() => {
 		setDataSelect(loaderDataCountries);
@@ -27,7 +30,9 @@ function AddressForm({ formik, setData, loaderDataCountries }: AddressFormProps)
 				<CustomLabel label={EFormProps.city}>Address (City, Street, Appartaments)</CustomLabel>
 				<CustomInput label={EFormProps.city} type="text" formik={formik} setData={setData} />
 				{!formik.isSubmitting && (formik.errors as FormikErrors<IDataForAddressForm>).city && (
-					<div className={style[`form-item__error`]}>{(formik.errors as FormikErrors<IDataForAddressForm>).city}</div>
+					<div className={style[`form-item__error`]}>
+						{(formik.errors as FormikErrors<IDataForAddressForm>).city}
+					</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
@@ -42,7 +47,7 @@ function AddressForm({ formik, setData, loaderDataCountries }: AddressFormProps)
 				)}
 			</div>
 		</form>
-	)
+	);
 }
 
 export default AddressForm;

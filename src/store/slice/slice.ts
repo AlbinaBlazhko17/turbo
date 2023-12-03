@@ -1,16 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { allValues } from "@components/CustomForm/initialValues";
-import { IDataForForm } from "@/interfaces/IDataForForms";
-import { PayloadAction } from '@reduxjs/toolkit';
+import { IDataForForm } from '@/interfaces/IDataForForms';
+import ISelectedItem from '@/interfaces/ISelectedItem';
+import { allValues } from '@components/CustomForm/initialValues';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface FormState {
 	formData: IDataForForm[];
-	previousFormData: IDataForForm[];
+	allFormData: IDataForForm[];
+	sortingData: IDataForForm[];
 }
 
 const initialState: FormState = {
 	formData: [allValues],
-	previousFormData: [],
+	sortingData: [],
+	allFormData: [allValues],
 };
 
 export const formSlice = createSlice({
@@ -21,14 +23,24 @@ export const formSlice = createSlice({
 			const updatedState = [...state.formData];
 			const lastObject = updatedState[updatedState.length - 1];
 			if (lastObject) {
-				updatedState[updatedState.length - 1] = { ...lastObject, ...action.payload, id: updatedState.length };
+				updatedState[updatedState.length - 1] = {
+					...lastObject,
+					...action.payload,
+					id: updatedState.length,
+					date: new Date().toLocaleString(),
+				};
 			}
 
-			return { formData: updatedState, previousFormData: updatedState };
+			return { formData: updatedState, sortingData: updatedState, allFormData: updatedState };
 		},
 		removeItemFromForm: (state) => {
-			const updatedState = [...state.formData.concat({ ...allValues, id: state.formData.length + 1 })];
-			return { formData: updatedState, previousFormData: updatedState };
+			const updatedState = [
+				...state.formData.concat({
+					...allValues,
+					id: state.formData.length + 1,
+				}),
+			];
+			return { formData: updatedState, sortingData: updatedState, allFormData: updatedState };
 		},
 		sortByProp: (state, action: PayloadAction<keyof IDataForForm>) => {
 			const updatedState = [...state.formData];
@@ -47,7 +59,11 @@ export const formSlice = createSlice({
 				});
 			}
 
-			return { formData: updatedState, previousFormData: state.previousFormData };
+			return {
+				formData: updatedState,
+				sortingData: updatedState,
+				allFormData: state.allFormData,
+			};
 		},
 		sortByPropDesc: (state, action: PayloadAction<keyof IDataForForm>) => {
 			const updatedState = [...state.formData];
@@ -66,30 +82,73 @@ export const formSlice = createSlice({
 				});
 			}
 
-			return { formData: updatedState, previousFormData: state.previousFormData };
+			return {
+				formData: updatedState,
+				sortingData: updatedState,
+				allFormData: state.allFormData,
+			};
 		},
-		filterByGender: (state, action: PayloadAction<string>) => {
-			const updatedState = [...state.previousFormData];
+		filterByProp: (state, action: PayloadAction<ISelectedItem>) => {
 			const payload = action.payload;
+			const updatedState = [...state.sortingData];
+			let filteredState = [];
 
-			const filteredState = updatedState.filter((item) => item.gender === payload)
-			return { formData: filteredState.length !== 0 ? filteredState : [allValues], previousFormData: state.previousFormData };
-		},
-		filterByInterest: (state, action: PayloadAction<string>) => {
-			const updatedState = [...state.previousFormData];
-			const payload = action.payload;
-			//@ts-ignore
-			const filteredState = updatedState.filter((item) => item.interests.includes(payload));
-			return { formData: filteredState.length !== 0 ? filteredState : [allValues], previousFormData: state.previousFormData };
+			if (
+				payload.gender === '' &&
+				payload.interests.length === 0 &&
+				payload.range[0] === 0 &&
+				payload.range[1] === 100
+			) {
+				return {
+					formData: [...state.sortingData],
+					allFormData: state.allFormData,
+					sortingData: state.sortingData,
+				};
+			}
+
+			filteredState = updatedState.filter((item) => {
+				const isGenderValid = payload.gender !== '';
+				const areInterestsValid = payload.interests.length !== 0;
+				const isRangeValid = payload.range[0] !== 0 || payload.range[1] !== 100;
+
+				if (isGenderValid || areInterestsValid || isRangeValid) {
+					const genderCondition = isGenderValid ? item.gender === payload.gender : true;
+					const interestsCondition = areInterestsValid
+						? payload.interests.every((interest) => item.interests.includes(interest))
+						: true;
+					const rangeCondition = isRangeValid
+						? item.notificationFrequency >= payload.range[0] &&
+						  item.notificationFrequency <= payload.range[1]
+						: true;
+
+					return genderCondition && interestsCondition && rangeCondition;
+				}
+
+				return true;
+			});
+
+			return {
+				formData: filteredState.length !== 0 ? filteredState : [allValues],
+				allFormData: state.allFormData,
+				sortingData: state.sortingData,
+			};
 		},
 		returnDataAfterFiltering: (state) => {
-			if (state.previousFormData.length !== 0) {
-				return { formData: [...state.previousFormData], previousFormData: state.previousFormData };
+			if (state.allFormData.length !== 0) {
+				return {
+					formData: [...state.allFormData],
+					allFormData: state.allFormData,
+					sortingData: state.allFormData,
+				};
 			} else {
-				return { formData: [...state.formData], previousFormData: [...state.formData] };
+				return {
+					formData: [...state.formData],
+					allFormData: [...state.allFormData],
+					sortingData: [...state.sortingData],
+				};
 			}
-		}
-	}
-})
+		},
+	},
+});
 
 export default formSlice.reducer;

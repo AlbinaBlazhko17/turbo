@@ -14,7 +14,7 @@
 		align-items: center;
 		margin-bottom: 16px;
 
-		&:last-child{
+		&:last-child {
 			margin-bottom: 0;
 		}
 
@@ -38,6 +38,20 @@
 			margin: 0;
 			margin-top: 8px;
 			line-height: 12px;
+		}
+	}
+}
+
+@media screen and (max-width: 820px) {
+	.services {
+		&__wrapper {
+			grid-template-columns: auto;
+		}
+
+		&-item {
+			&__text {
+				white-space: normal !important;
+			}
 		}
 	}
 }

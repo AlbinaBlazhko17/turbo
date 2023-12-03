@@ -18,8 +18,10 @@
 	}
 
 	.swiper-pagination {
+
 		&-bullet {
 			background-color: $white;
+
 			&-active {
 				background-color: $light-blue !important;
 			}
@@ -31,6 +33,7 @@
 	text-align: center;
 	grid-column: 1/4;
 	padding: 32px 20px;
+	overflow: hidden;
 
 	&__subheader {
 		color: #555C68;
@@ -42,23 +45,25 @@
 		padding-top: 75px;
 		display: flex;
 		justify-content: space-between;
-		overflow: hidden;
-		padding-bottom: 60px;
+		padding-bottom: 30px;
+		height: 78%;
+
 		&__wrapper {
 			display: flex;
 			justify-content: space-between;
-			padding: 60px !important;
+			padding: 30px;
 		}
 
 		&-slide {
 			padding: 32px 60px;
 			width: 60% !important;
+			height: 85% !important;
 			background-color: $lighter-blue;
 			border-radius: 10px;
-			height: 100%;
 			box-sizing: border-box;
 			box-shadow: none;
 			transform: scale(0.8) !important;
+			transition: all 0.3s ease-in-out;
 
 			&__img {
 				margin-bottom: 16px;
@@ -85,6 +90,7 @@
 				line-height: 30px;
 				margin-top: 20px;
 				letter-spacing: -0.22px;
+
 				&::after {
 					content: '';
 					display: inline-block;
@@ -114,25 +120,92 @@
 		}
 	}
 
-	.swiper-pagination {
-		&-bullet {
-			display: inline-block;
-			width: 16px;
-			height: 16px;
-			background-color: #D2D2D2;
-			border-radius: 50%;
-			margin-right: 10px;
-			&-active {
+	.swiper {
+		&-pagination {
+
+			&-bullet {
 				display: inline-block;
-				width: 20px;
-				height: 20px;
-				background-color: #101C26;;
+				width: 16px;
+				height: 16px;
+				background-color: #D2D2D2;
+				border-radius: 50%;
+				margin-right: 10px;
+
+				&-active {
+					display: inline-block;
+					width: 20px;
+					height: 20px;
+					background-color: #101C26;
+				}
 			}
 		}
 	}
 }
 
+
 .swiper-slide-active {
 	transform: scale(1) !important;
 	box-shadow: 0px 18px 32px 0px rgba(67, 67, 67, 0.14);
+}
+
+@media screen and (max-width: 1025px) {
+	.slider {
+		&__carousel {
+			&-slide {
+				padding: 32px 30px;
+
+				&__text {
+					font-size: 18px;
+					line-height: 20px;
+					white-space: unset;
+
+					&::after {
+						width: 20px;
+						height: 20px;
+						top: 5px;
+					}
+
+					&::before {
+						width: 20px;
+						height: 20px;
+						left: -8px;
+					}
+				}
+			}
+		}
+	}
+
+}
+
+@media screen and (max-width: 820px) {
+	.slider {
+		&__carousel {
+			&-slide {
+				width: 80% !important;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 665px) {
+	.slider {
+		&__carousel {
+			height: 75%;
+
+			&-slide {
+				padding: 10px;
+				width: 90% !important;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 590px) {
+	.slider {
+		&__carousel {
+			&-slide {
+				width: 100% !important;
+			}
+		}
+	}
 }

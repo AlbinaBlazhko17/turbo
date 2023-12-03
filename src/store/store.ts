@@ -1,13 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import {
-	persistStore,
-	FLUSH,
-	REHYDRATE,
-	PAUSE,
-	PERSIST,
-	PURGE,
-	REGISTER,
-} from 'redux-persist';
+import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { persistedReducer } from './reducer/reducer';
 
 export const store = configureStore(
@@ -21,7 +13,7 @@ export const store = configureStore(
 			}),
 	},
 	// @ts-ignore
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 export const persistor = persistStore(store);

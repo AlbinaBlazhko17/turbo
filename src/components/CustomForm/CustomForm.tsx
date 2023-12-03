@@ -5,9 +5,7 @@ import PersonalInfoForm from './PersonalInfoForm/PersonalInfoForm';
 import PreferencesForm from './PreferencesForm/PreferencesForm';
 import CustomFormProps from './customForm.props';
 
-
 function CustomForm({ formik, currentStep, setData, loaderDataCountries, loaderDataLanguages }: CustomFormProps) {
-
 	switch (+currentStep) {
 		case 1:
 			return <PersonalInfoForm formik={formik} setData={setData} />;

@@ -8,17 +8,15 @@ import ConfirmationPageProps from './ConfirmationPage.props';
 
 import style from './confirmationPage.module.scss';
 
-
 function ConfirmationPage({ formik, setData }: ConfirmationPageProps) {
 	const navigator = useNavigate();
 	const formDisatcher = useDispatch();
-
 
 	function handleGoToHomePage() {
 		navigator('/');
 		localStorage.setItem('step', '1');
 		formik.values = allValues;
-		setData(formik.values)
+		setData(formik.values);
 		formDisatcher(removeItemFromForm());
 	}
 	return (
@@ -27,14 +25,11 @@ function ConfirmationPage({ formik, setData }: ConfirmationPageProps) {
 				<img src={ConfirmIcon} alt="tick" />
 			</div>
 			<h3 className={style.confirmation__text}>All forms completed successfuly!</h3>
-			<Button
-				appearance='filled'
-				className={style.confirmation__button}
-				onClick={handleGoToHomePage}>
+			<Button appearance="filled" className={style.confirmation__button} onClick={handleGoToHomePage}>
 				Go to home page
 			</Button>
 		</div>
-	)
+	);
 }
 
 export default ConfirmationPage;

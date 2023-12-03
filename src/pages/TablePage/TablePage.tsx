@@ -1,13 +1,17 @@
-import { RootState } from "@/customTypes/store.types";
-import { useDispatch, useSelector } from "react-redux";
-import { ThemeContext } from "@/theme/theme";
-import { useContext, useEffect, useState } from "react";
-import Select from 'react-select';
+import Button from '@/components/Button/Button';
+import ModalWindow from '@/components/ModalWindow/ModalWindow';
+import { EFormProps } from '@/customTypes/form.types';
+import { RootState } from '@/customTypes/store.types';
+import { IDataForForm } from '@/interfaces/IDataForForms';
+import ISelectedItem from '@/interfaces/ISelectedItem';
+import { filterByProp, returnDataAfterFiltering, sortByProp, sortByPropDesc } from '@/store/actions/actions';
+import { ThemeContext } from '@/theme/theme';
+import FiltrationIcon from '@assets/icons/filtration.svg';
+import SortArrow from '@assets/icons/sort-arrow.svg';
 import cn from 'classnames';
-import { sortByProp, filterByInterest, filterByGender, returnDataAfterFiltering, sortByPropDesc } from "@/store/actions/actions";
-import { IDataForForm } from "@/interfaces/IDataForForms";
-import Button from "@/components/Button/Button";
-import { EFormProps, EGender, EInterests, SelectValue } from "@/customTypes/form.types";
+import { useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Filtration from '../../components/Filtration/Filtration';
 
 import style from './tablePage.module.scss';
 
@@ -16,90 +20,33 @@ function TablePage() {
 	const dataFromForms = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm[]>(dataFromForms);
 	const [sliceStep, setSliceStep] = useState<number>(10);
-
-	const filterOptions = [
-		{ value: 'none', label: 'None' },
-		{
-			label: 'Gender',
-			options: [
-				{ value: EGender.Male, label: EGender.Male },
-				{ value: EGender.Female, label: EGender.Female },
-			],
-		},
-		{
-			label: 'Interests',
-			options: [
-				{ value: EInterests.Reading, label: EInterests.Reading },
-				{ value: EInterests.Traveling, label: EInterests.Traveling },
-				{ value: EInterests.Sports, label: EInterests.Sports },
-				{ value: EInterests.Music, label: EInterests.Music },
-				{ value: EInterests.Gaming, label: EInterests.Gaming },
-			]
-		}
-	]
-
-	const sortingOptions = [
-		{ value: 'id', label: 'Id' },
-		{ value: EFormProps.firstName, label: 'First name' },
-		{ value: EFormProps.notificationFrequency, label: 'Notification frequency' },
-	]
-
-	const [selectedFilter, setSelectedFilter] = useState<SelectValue>(filterOptions[0] as SelectValue);
-	const [selectedSort, setSelectedSort] = useState<SelectValue>(sortingOptions[0]);
+	const [order, setOrder] = useState<boolean>(true);
+	const [sortedColumn, setSortedColumn] = useState<string | null>(null);
+	const selectedItemInitialState = {
+		interests: [],
+		gender: '',
+		range: [0, 100] as [number, number],
+	};
+	const [selectedItem, setSelectedItem] = useState<ISelectedItem>(selectedItemInitialState);
+	const [isModalActive, setModalActive] = useState(false);
+	const [sliderRange, setSliderRange] = useState<number[]>([0, 100]);
+	const [isSliderInteracting, setIsSliderInteracting] = useState(false);
 	const dispatcher = useDispatch();
 
-	useEffect(() => {
-		switch (selectedFilter?.value) {
-			case 'none':
-				dispatcher(returnDataAfterFiltering())
-				break;
-			case EGender.Male:
-				dispatcher(filterByGender('male'))
-				break;
-			case EGender.Female:
-				dispatcher(filterByGender('female'))
-				break;
-			case EInterests.Reading:
-				dispatcher(filterByInterest(EInterests.Reading))
-				break;
-			case EInterests.Traveling:
-				dispatcher(filterByInterest(EInterests.Traveling))
-				break;
-			case EInterests.Sports:
-				dispatcher(filterByInterest(EInterests.Sports))
-				break;
-			case EInterests.Music:
-				dispatcher(filterByInterest(EInterests.Music))
-				break;
-			case EInterests.Gaming:
-				dispatcher(filterByInterest(EInterests.Gaming))
-				break;
-		}
-	}, [selectedFilter, selectedSort])
+	const handleModalOpen = () => {
+		setModalActive(true);
+	};
+	const handleModalClose = () => {
+		setModalActive(false);
+	};
 
 	useEffect(() => {
-		switch (selectedSort?.value) {
-			case 'id':
-				dispatcher(sortByProp('id'));
-				break;
-			case EFormProps.firstName:
-				dispatcher(sortByProp(EFormProps.firstName));
-				break;
-			case EFormProps.notificationFrequency:
-				dispatcher(sortByPropDesc(EFormProps.notificationFrequency));
-				break;
-			default:
-				break;
-		}
-	}, [selectedSort, selectedFilter])
+		dispatcher(sortByProp(EFormProps.date));
+	}, []);
 
 	useEffect(() => {
-		setData(dataFromForms.filter((item) => item.terms !== false))
+		setData(dataFromForms.filter((item) => item.terms !== false));
 	}, [dataFromForms]);
-
-	useEffect(() => {
-
-	}, [selectedFilter])
 
 	function handlePrev() {
 		setSliceStep(sliceStep - 10);
@@ -110,83 +57,176 @@ function TablePage() {
 			setSliceStep(sliceStep + 10);
 		}
 	}
+
+	function handleSort(type: string) {
+		setOrder(!order);
+		setSortedColumn(type);
+
+		if (order === true) {
+			dispatcher(sortByPropDesc(type as keyof IDataForForm));
+		} else {
+			dispatcher(sortByProp(type as keyof IDataForForm));
+		}
+	}
+
+	function handleReset() {
+		dispatcher(returnDataAfterFiltering());
+		setOrder(true);
+		setSortedColumn(null);
+		setSelectedItem(selectedItemInitialState);
+		setModalActive(false);
+	}
+
+	useEffect(() => {
+		dispatcher(filterByProp(selectedItem));
+	}, [selectedItem]);
+
 	return (
 		<div className={cn(style.table, style[`${theme}`])}>
 			<h1>Table Page</h1>
 			<section className={style.table__wrapper}>
-				<h2>Table</h2>
+				<h2 className={style.table__subheader}>Users</h2>
 				<div className={style.table__filtration}>
-					<div className={style[`table__filtration-item`]}>
-						<h3>Filter by: </h3>
-						<Select
-							isSearchable={false}
-							options={filterOptions}
-							value={selectedFilter}
-							onChange={(selectedOption) => setSelectedFilter(selectedOption!)}
-						/>
+					<div className={style[`table__filtration-filter`]} onClick={handleModalOpen}>
+						<img src={FiltrationIcon} alt="filtration" />
 					</div>
-					<div className={style[`table__filtration-item`]}>
-						<h3>Sort by: </h3>
-						<Select
-							isSearchable={false}
-							options={sortingOptions}
-							value={selectedSort}
-							onChange={(selectedOption) => setSelectedSort(selectedOption!)}
+
+					<ModalWindow
+						title="Filters"
+						onClose={handleModalClose}
+						isSliderInteracting={isSliderInteracting}
+						setIsSliderInteracting={setIsSliderInteracting}
+						isModalActive={isModalActive}
+					>
+						<Filtration
+							selectedItem={selectedItem}
+							setSelectedItem={setSelectedItem}
+							handleReset={handleReset}
+							sliderRange={sliderRange}
+							setSliderRange={setSliderRange}
+							setModalActive={setModalActive}
+							setIsSliderInteracting={setIsSliderInteracting}
 						/>
-					</div>
+					</ModalWindow>
 				</div>
-				<table>
-					<tr>
-						<th className={style.table__header}>ID</th>
-						<th className={style.table__header}>First name</th>
-						<th className={style.table__header}>Last name</th>
-						<th className={style.table__header}>Email</th>
-						<th className={style.table__header}>Gender</th>
-						<th className={style.table__header}>Address</th>
-						<th className={style.table__header}>Country</th>
-						<th className={style.table__header}>Postal code</th>
-						<th className={style.table__header}>Interests</th>
-						<th className={style.table__header}>Language</th>
-						<th className={style.table__header}>Notification frequency</th>
-						<th className={style.table__header}>Comments</th>
-						<th className={style.table__header}>Image</th>
-					</tr>
-					{data.length !== 0 ? data.slice(sliceStep - 10, sliceStep).map((item, index) => (
-						<tr key={index}>
-							<td className={cn(style.table__descr, style.table__descr_center)}>{item.id}</td>
-							<td className={style.table__descr}>{item.firstName}</td>
-							<td className={style.table__descr}>{item.lastName}</td>
-							<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.email}</td>
-							<td className={cn(style.table__descr, style.table__descr_center)}>{item.gender}</td>
-							<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.city}</td>
-							<td className={style.table__descr}>{item.country.label}</td>
-							<td className={cn(style.table__descr, style.table__descr_center)}>{item.zipCode}</td>
-							<td className={style.table__descr}>{item.interests.map((interest, i) => (<li key={i}>{interest}</li>))}</td>
-							<td className={style.table__descr}>{item.language.label}</td>
-							<td className={cn(style.table__descr, style.table__descr_center)}>{item.notificationFrequency}</td>
-							<td className={style.table__descr}>{item.comments}</td>
-							<td className={style.table__descr}>{item.profilePicture}</td>
-						</tr>
-					)) : (
+				<div className={style.table__overflow}>
+					<table>
 						<tr>
-							<td className={style.table__descr} colSpan={13}>
-								<h3 style={{ textAlign: 'center' }}> No info! Please, fill the form</h3>
-							</td>
+							<th className={style.table__header}>ID</th>
+							<th
+								className={cn(style.table__header, style.table__header_sortable)}
+								onClick={() => handleSort(EFormProps.firstName)}
+							>
+								<div className={style.table__sorting}>
+									First name
+									<span
+										className={cn(style.table__sorting__arrow, {
+											[style.table__sorting__arrow_up]:
+												sortedColumn === EFormProps.firstName && order === true,
+											[style.table__sorting__arrow_down]:
+												sortedColumn === EFormProps.firstName && order === false,
+										})}
+									>
+										<img src={SortArrow} alt="sort arrow" />
+									</span>
+								</div>
+							</th>
+							<th className={style.table__header}>Last name</th>
+							<th className={style.table__header}>Email</th>
+							<th className={style.table__header}>Gender</th>
+							<th className={style.table__header}>Address</th>
+							<th className={style.table__header}>Country</th>
+							<th className={style.table__header}>Postal code</th>
+							<th className={style.table__header}>Interests</th>
+							<th className={style.table__header}>Language</th>
+							<th
+								className={cn(style.table__header, style.table__header_sortable)}
+								onClick={() => handleSort(EFormProps.notificationFrequency)}
+							>
+								<div className={style.table__sorting}>
+									Notification frequency
+									<span
+										className={cn(style.table__sorting__arrow, {
+											[style.table__sorting__arrow_up]:
+												sortedColumn === EFormProps.notificationFrequency && order === false,
+											[style.table__sorting__arrow_down]:
+												sortedColumn === EFormProps.notificationFrequency && order === true,
+										})}
+									>
+										<img src={SortArrow} alt="sort arrow" />
+									</span>
+								</div>
+							</th>
+							<th className={style.table__header}>Comments</th>
+							<th className={style.table__header}>Image</th>
+							<th
+								className={cn(style.table__header, style.table__header_sortable)}
+								onClick={() => handleSort(EFormProps.date)}
+							>
+								<div className={style.table__sorting}>
+									Date
+									<span
+										className={cn(style.table__sorting__arrow, {
+											[style.table__sorting__arrow_up]:
+												sortedColumn === EFormProps.date && order === false,
+											[style.table__sorting__arrow_down]:
+												sortedColumn === EFormProps.date && order === true,
+										})}
+									>
+										<img src={SortArrow} alt="sort arrow" />
+									</span>
+								</div>
+							</th>
 						</tr>
-					)
-					}
-				</table>
-				{
-					data.length > 10 ? (
-						<div className={style.table__pagination}>
-							<Button appearance={sliceStep === 10 ? 'outlined' : 'filled'} onClick={handlePrev}>Prev</Button>
-							<Button appearance={data.length - 1 < sliceStep ? 'outlined' : 'filled'} onClick={handleNext}>Next</Button>
-						</div>
-					) : null
-				}
+						{data.length !== 0 ? (
+							data.slice(sliceStep - 10, sliceStep).map((item, index) => (
+								<tr key={index}>
+									<td className={cn(style.table__descr, style.table__descr_center)}>{item.id}</td>
+									<td className={style.table__descr}>{item.firstName}</td>
+									<td className={style.table__descr}>{item.lastName}</td>
+									<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.email}</td>
+									<td className={cn(style.table__descr, style.table__descr_center)}>{item.gender}</td>
+									<td className={cn(style.table__descr, style.table__descr_nowrap)}>{item.city}</td>
+									<td className={style.table__descr}>{item.country.label}</td>
+									<td className={cn(style.table__descr, style.table__descr_center)}>
+										{item.zipCode}
+									</td>
+									<td className={style.table__descr}>
+										{item.interests.map((interest, i) => (
+											<div key={i}>{interest}</div>
+										))}
+									</td>
+									<td className={style.table__descr}>{item.language.label}</td>
+									<td className={cn(style.table__descr, style.table__descr_center)}>
+										{item.notificationFrequency}
+									</td>
+									<td className={style.table__descr}>{item.comments}</td>
+									<td className={style.table__descr}>{item.profilePicture}</td>
+									<td className={style.table__descr}>{item.date}</td>
+								</tr>
+							))
+						) : (
+							<tr>
+								<td className={style.table__descr} colSpan={13}>
+									<h3 style={{ textAlign: 'center' }}> No info! Please, fill the form</h3>
+								</td>
+							</tr>
+						)}
+					</table>
+				</div>
+				{data.length > 10 ? (
+					<div className={style.table__pagination}>
+						<Button appearance={sliceStep === 10 ? 'outlined' : 'filled'} onClick={handlePrev}>
+							Prev
+						</Button>
+						<Button appearance={data.length - 1 < sliceStep ? 'outlined' : 'filled'} onClick={handleNext}>
+							Next
+						</Button>
+					</div>
+				) : null}
 			</section>
 		</div>
-	)
+	);
 }
 
 export default TablePage;

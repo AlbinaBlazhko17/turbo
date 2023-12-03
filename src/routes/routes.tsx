@@ -6,29 +6,27 @@ import TablePage from '@/pages/TablePage/TablePage';
 import ErrorPage from '@/components/ErrorPage/ErrorPage';
 import { loader } from '@/utils/dataForSelect';
 
-const routesConfig = createBrowserRouter(
-	[
-		{
-			path: "/",
-			element: <Layout />,
-			errorElement: <ErrorPage />,
-			children: [
-				{
-					path: "/",
-					element: <Dashboard />,
-				},
-				{
-					path: "/form",
-					element: <FormPage />,
-					loader,
-				},
-				{
-					path: 'table',
-					element: <TablePage />
-				}
-			],
-		}
-	]
-);
+const routesConfig = createBrowserRouter([
+	{
+		path: '/',
+		element: <Layout />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				path: '/',
+				element: <Dashboard />,
+			},
+			{
+				path: '/form',
+				element: <FormPage />,
+				loader,
+			},
+			{
+				path: '/users',
+				element: <TablePage />,
+			},
+		],
+	},
+]);
 
 export default routesConfig;

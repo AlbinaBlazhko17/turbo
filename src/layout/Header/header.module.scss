@@ -13,8 +13,9 @@
 	align-items: center;
 	padding: 20px 40px;
 	box-shadow: 0px 8px 24px 0px rgba(136, 136, 136, 0.25);
-	z-index: 1;
+	z-index: 4;
 	background-color: #fff;
+
 	&__wrapper {
 		min-width: 200px;
 		display: flex;
@@ -35,9 +36,17 @@
 		box-sizing: border-box;
 		width: 45px;
 		height: 45px;
+
 		& img {
 			width: 100%;
 			height: 100%;
 		}
+	}
+}
+
+@media screen and (max-width: 580px) {
+
+	.header {
+		padding: 10px 30px;
 	}
 }

@@ -1,25 +1,26 @@
 @import '@scss/index.scss';
 
 :root {
-	.range-slider {
-		background: linear-gradient(90deg, rgba(233, 245, 254, 1) 0%, rgba(33, 150, 243, 1) 76%, rgba(12, 127, 218, 1) 100%);
-	}
 
-	.range-slider .range-slider__range {
-		background: transparent;
-	}
+	// .range-slider {
+	// 	background: linear-gradient(90deg, rgba(233, 245, 254, 1) 0%, rgba(33, 150, 243, 1) 76%, rgba(12, 127, 218, 1) 100%);
+	// }
 
-	.range-slider .range-slider__thumb[data-lower] {
-		width: 0;
-	}
+	// .range-slider .range-slider__range {
+	// 	background: transparent;
+	// }
 
-	.range-slider .range-slider__range {
-		border-radius: 6px;
-	}
+	// .range-slider .range-slider__thumb[data-lower] {
+	// 	width: 0;
+	// }
 
-	.range-slider .range-slider__thumb {
-		z-index: 1;
-	}
+	// .range-slider .range-slider__range {
+	// 	border-radius: 6px;
+	// }
+
+	// .range-slider .range-slider__thumb {
+	// 	z-index: 1;
+	// }
 }
 
 
@@ -30,11 +31,22 @@ body {
 }
 
 main {
+	width: 100%;
 	padding: 120px $main-padding 50px;
 	box-sizing: border-box;
 	transition: all 0.4s;
 }
 
+
+ul {
+	margin: 0;
+	padding: 0;
+
+	li {
+		list-style-type: none;
+	}
+
+}
 
 .light {
 	& main {
@@ -81,6 +93,13 @@ main {
 		li {
 			color: $white;
 		}
+	}
+
+	& nav,
+	& header,
+	& aside,
+	& section {
+		box-shadow: 0px 8px 24px 0px rgba(34, 34, 34, 0.25);
 	}
 
 	& .header {

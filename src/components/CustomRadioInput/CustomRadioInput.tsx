@@ -5,7 +5,6 @@ import CustomRadioInputProps from './CustomRadioInput.props';
 import style from './customRadioInput.module.scss';
 
 function customRadioInput({ formik, name, value, setData }: CustomRadioInputProps) {
-
 	useEffect(() => {
 		setData(formik.values);
 	}, [formik.values]);
@@ -21,7 +20,7 @@ function customRadioInput({ formik, name, value, setData }: CustomRadioInputProp
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
 		/>
-	)
+	);
 }
 
 export default customRadioInput;

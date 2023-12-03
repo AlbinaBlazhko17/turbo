@@ -2,7 +2,7 @@ import dataForMarquee from '@utils/dataForMarquee';
 
 import style from './marquee.module.scss';
 
-function Marquee () {
+function Marquee() {
 	const duplicatedItems: Array<string> = dataForMarquee.concat(dataForMarquee);
 
 	return (
@@ -17,7 +17,7 @@ function Marquee () {
 				</ul>
 			</div>
 		</section>
-	)
+	);
 }
 
 export default Marquee;
