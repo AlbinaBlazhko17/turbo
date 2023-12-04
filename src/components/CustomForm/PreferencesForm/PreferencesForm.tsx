@@ -12,12 +12,23 @@ import PreferencesFormProps from './PreferencesForm.props';
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
 
+interface IRangeSliderRef {
+	element: React.RefObject<HTMLDivElement>;
+	thumb: React.RefObject<HTMLDivElement>[];
+	range: React.RefObject<HTMLDivElement>;
+}
+
 function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFormProps) {
 	const [dataSelect, setDataSelect] = useState<SelectValue[]>();
-	const rangeSliderRef = useRef(null);
+	const rangeSliderRef = useRef<IRangeSliderRef>(null);
 
 	useEffect(() => {
-		if (rangeSliderRef.current) {
+		if (
+			rangeSliderRef.current &&
+			rangeSliderRef.current.element.current &&
+			rangeSliderRef.current.thumb[0].current &&
+			rangeSliderRef.current.range.current
+		) {
 			rangeSliderRef.current.element.current.style.background =
 				'linear-gradient(90deg, rgba(233, 245, 254, 1) 0%, rgba(33, 150, 243, 1) 76%, rgba(12, 127, 218, 1) 100%)';
 			rangeSliderRef.current.thumb[0].current.style.width = '0px';
@@ -25,6 +36,8 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 		}
 		setDataSelect(loaderDataLanguages);
 	}, []);
+
+	console.log(dataSelect);
 
 	const memoizedDataSelect = useMemo(() => dataSelect, [dataSelect]);
 
@@ -71,7 +84,7 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.language}>Language</CustomLabel>
-				{dataSelect && <CustomSelect data={memoizedDataSelect} formik={formik} type={EFormProps.language} />}
+				{dataSelect && <CustomSelect data={dataSelect} formik={formik} type={EFormProps.language} />}
 				{!formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>
 						{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}
