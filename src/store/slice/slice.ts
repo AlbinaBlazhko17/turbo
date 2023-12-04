@@ -9,6 +9,13 @@ interface FormState {
 	sortingData: IDataForForm[];
 }
 
+interface ISortByPropPayload {
+	payload: {
+		prop: keyof IDataForForm;
+		type: 'asc' | 'desc';
+	};
+}
+
 const initialState: FormState = {
 	formData: [allValues],
 	sortingData: [],
@@ -42,17 +49,27 @@ export const formSlice = createSlice({
 			];
 			return { formData: updatedState, sortingData: updatedState, allFormData: updatedState };
 		},
-		sortByProp: (state, action: PayloadAction<keyof IDataForForm>) => {
+		sortByProp: (state, action: ISortByPropPayload) => {
 			const updatedState = [...state.formData];
-			const payloadKey = action.payload as keyof IDataForForm;
+			const payloadKey = action.payload.prop as keyof IDataForForm;
+			const type = action.payload.type as 'asc' | 'desc';
 			if (payloadKey) {
 				updatedState.sort((a, b) => {
 					if (payloadKey in a && payloadKey in b) {
-						if (a[payloadKey]! < b[payloadKey]!) {
-							return -1;
-						}
-						if (a[payloadKey]! > b[payloadKey]!) {
-							return 1;
+						if (type === 'asc') {
+							if (a[payloadKey]! < b[payloadKey]!) {
+								return -1;
+							}
+							if (a[payloadKey]! > b[payloadKey]!) {
+								return 1;
+							}
+						} else {
+							if (a[payloadKey]! > b[payloadKey]!) {
+								return -1;
+							}
+							if (a[payloadKey]! < b[payloadKey]!) {
+								return 1;
+							}
 						}
 					}
 					return 0;
@@ -65,29 +82,29 @@ export const formSlice = createSlice({
 				allFormData: state.allFormData,
 			};
 		},
-		sortByPropDesc: (state, action: PayloadAction<keyof IDataForForm>) => {
-			const updatedState = [...state.formData];
-			const payloadKey = action.payload as keyof IDataForForm;
-			if (payloadKey) {
-				updatedState.sort((a, b) => {
-					if (payloadKey in a && payloadKey in b) {
-						if (a[payloadKey]! > b[payloadKey]!) {
-							return -1;
-						}
-						if (a[payloadKey]! < b[payloadKey]!) {
-							return 1;
-						}
-					}
-					return 0;
-				});
-			}
+		// sortByPropDesc: (state, action: ISortByPropPayload) => {
+		// 	const updatedState = [...state.formData];
+		// 	const payloadKey = action.payload.prop;
+		// 	if (payloadKey) {
+		// 		updatedState.sort((a, b) => {
+		// 			if (payloadKey in a && payloadKey in b) {
+		// 				if (a[payloadKey]! > b[payloadKey]!) {
+		// 					return -1;
+		// 				}
+		// 				if (a[payloadKey]! < b[payloadKey]!) {
+		// 					return 1;
+		// 				}
+		// 			}
+		// 			return 0;
+		// 		});
+		// 	}
 
-			return {
-				formData: updatedState,
-				sortingData: updatedState,
-				allFormData: state.allFormData,
-			};
-		},
+		// 	return {
+		// 		formData: updatedState,
+		// 		sortingData: updatedState,
+		// 		allFormData: state.allFormData,
+		// 	};
+		// },
 		filterByProp: (state, action: PayloadAction<ISelectedItem>) => {
 			const payload = action.payload;
 			const updatedState = [...state.sortingData];

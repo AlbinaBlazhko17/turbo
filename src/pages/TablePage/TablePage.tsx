@@ -3,7 +3,7 @@ import { EFormProps } from '@/customTypes/form.types';
 import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 import ISelectedItem from '@/interfaces/ISelectedItem';
-import { filterByProp, returnDataAfterFiltering, sortByProp, sortByPropDesc } from '@/store/actions/actions';
+import { filterByProp, returnDataAfterFiltering, sortByProp } from '@/store/actions/actions';
 import { ThemeContext } from '@/theme/theme';
 import FiltrationIcon from '@assets/icons/filtration.svg';
 import SortArrow from '@assets/icons/sort-arrow.svg';
@@ -41,7 +41,7 @@ function TablePage() {
 	};
 
 	useEffect(() => {
-		dispatcher(sortByProp(EFormProps.date));
+		dispatcher(sortByProp({ prop: EFormProps.date, type: 'asc' }));
 	}, []);
 
 	useEffect(() => {
@@ -63,9 +63,9 @@ function TablePage() {
 		setSortedColumn(type);
 
 		if (order === true) {
-			dispatcher(sortByPropDesc(type as keyof IDataForForm));
+			dispatcher(sortByProp({ prop: EFormProps.date, type: 'desc' }));
 		} else {
-			dispatcher(sortByProp(type as keyof IDataForForm));
+			dispatcher(sortByProp({ prop: EFormProps.date, type: 'asc' }));
 		}
 	}
 
