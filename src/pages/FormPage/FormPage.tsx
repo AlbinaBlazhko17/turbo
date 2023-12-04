@@ -152,13 +152,15 @@ function FormPage() {
 						</motion.div>
 						{+currentStep !== 5 && (
 							<div className={style.buttons}>
-								<Button
-									appearance={+currentStep === 1 ? 'outlined' : 'filled'}
-									className={style[`buttons_right`]}
-									onClick={handlePrevStep}
-								>
-									Previous step
-								</Button>
+								{+currentStep !== 1 && (
+									<Button
+										appearance={+currentStep === 1 ? 'outlined' : 'filled'}
+										className={style[`buttons_right`]}
+										onClick={handlePrevStep}
+									>
+										Previous step
+									</Button>
+								)}
 								<Button
 									appearance={buttonAppearance()}
 									onClick={() => {
@@ -166,6 +168,7 @@ function FormPage() {
 										formDispatcher(addItemToForm(formik.values));
 									}}
 									type={'submit'}
+									className={style[`buttons_left`]}
 								>
 									{+currentStep !== 4 ? 'Next step' : 'Finish'}
 								</Button>
