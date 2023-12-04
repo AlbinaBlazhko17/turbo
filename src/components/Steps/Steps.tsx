@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useContext } from 'react';
-import dataForSteps from '@utils/dataForSteps';
 import { ThemeContext } from '@/theme/theme';
+import dataForSteps from '@utils/dataForSteps';
 import cn from 'classnames';
+import { useContext } from 'react';
 import { TiTick } from 'react-icons/ti';
 
 import style from './steps.module.scss';

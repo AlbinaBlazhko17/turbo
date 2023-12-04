@@ -4,19 +4,20 @@ import {
 	validationSchemaPreferences,
 	validationSchemaSubmit,
 } from '@/components/CustomForm/validationSchemas';
+import { FormValues, IFormikInnerRef } from '@/customTypes/formik.types';
+import { RootState } from '@/customTypes/store.types';
+import { IDataForForm } from '@/interfaces/IDataForForms';
+import { addItemToForm } from '@/store/actions/actions';
 import Button from '@components/Button/Button';
 import CustomForm from '@components/CustomForm/CustomForm';
 import Steps from '@components/Steps/Steps';
+import { IFormikRef } from '@interfaces/IDataForFormik';
 import { Formik } from 'formik';
-import { Suspense, useEffect, useRef, useState } from 'react';
-import { FormValues } from '@/customTypes/formik.types';
-import { ObjectSchema } from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
-import { addItemToForm } from '@/store/actions/actions';
-import { RootState } from '@/customTypes/store.types';
-import { IDataForForm } from '@/interfaces/IDataForForms';
-import { Await, useLoaderData } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Await, useLoaderData } from 'react-router-dom';
+import { ObjectSchema } from 'yup';
 
 import style from './formPage.module.scss';
 
@@ -28,7 +29,7 @@ function FormPage() {
 	const initialValues = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
 	const [click, setClick] = useState<'next' | 'prev' | undefined>(undefined);
-	const formikRef = useRef(null);
+	const formikRef = useRef<IFormikRef>();
 	const formDispatcher = useDispatch();
 
 	const loaderData = useLoaderData();
@@ -66,24 +67,23 @@ function FormPage() {
 		formDispatcher(addItemToForm(data));
 	}, [data]);
 
-	console.log(formikRef.current);
 	function buttonAppearance() {
-		if (formikRef.current !== null) {
+		if (formikRef.current !== null && formikRef.current !== undefined) {
 			if (
 				currentStep === 1 &&
-				!formikRef.current?.dirty &&
-				Object.keys(formikRef.current?.errors).length === 0 &&
-				Object.keys(formikRef.current?.touched).length === 0
+				!formikRef.current.dirty &&
+				Object.keys(formikRef.current.errors).length === 0 &&
+				Object.keys(formikRef.current.touched).length === 0
 			) {
 				return 'outlined';
-			} else if (currentStep === 1 && Object.keys(formikRef.current?.errors).length === 0) {
+			} else if (currentStep === 1 && Object.keys(formikRef.current.errors).length === 0) {
 				return 'filled';
-			} else if (currentStep > 0 && Object.keys(formikRef.current?.errors).length === 0) {
+			} else if (currentStep > 0 && Object.keys(formikRef.current.errors).length === 0) {
 				return 'filled';
 			} else if (
 				currentStep === 4 &&
-				Object.keys(formikRef.current?.errors).length === 0 &&
-				Object.keys(formikRef.current?.touched).length > 0
+				Object.keys(formikRef.current.errors).length === 0 &&
+				Object.keys(formikRef.current.touched).length > 0
 			) {
 				return 'filled';
 			}
@@ -94,7 +94,7 @@ function FormPage() {
 	return (
 		<div className={style.wrapper}>
 			<h1>Form page</h1>
-			<Steps currentStep={currentStep} setCurrentStep={setCurrentStep} />
+			<Steps currentStep={currentStep} />
 			<Formik
 				initialValues={initialValues[initialValues.length - 1]!}
 				validationSchema={validation}
@@ -104,7 +104,7 @@ function FormPage() {
 						setClick('next');
 					}
 				}}
-				innerRef={formikRef}
+				innerRef={formikRef as IFormikInnerRef}
 			>
 				{(formik) => (
 					<section className={style.form__wrapper}>
