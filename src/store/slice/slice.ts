@@ -82,29 +82,6 @@ export const formSlice = createSlice({
 				allFormData: state.allFormData,
 			};
 		},
-		// sortByPropDesc: (state, action: ISortByPropPayload) => {
-		// 	const updatedState = [...state.formData];
-		// 	const payloadKey = action.payload.prop;
-		// 	if (payloadKey) {
-		// 		updatedState.sort((a, b) => {
-		// 			if (payloadKey in a && payloadKey in b) {
-		// 				if (a[payloadKey]! > b[payloadKey]!) {
-		// 					return -1;
-		// 				}
-		// 				if (a[payloadKey]! < b[payloadKey]!) {
-		// 					return 1;
-		// 				}
-		// 			}
-		// 			return 0;
-		// 		});
-		// 	}
-
-		// 	return {
-		// 		formData: updatedState,
-		// 		sortingData: updatedState,
-		// 		allFormData: state.allFormData,
-		// 	};
-		// },
 		filterByProp: (state, action: PayloadAction<ISelectedItem>) => {
 			const payload = action.payload;
 			const updatedState = [...state.sortingData];
@@ -131,7 +108,8 @@ export const formSlice = createSlice({
 				if (isGenderValid || areInterestsValid || isRangeValid) {
 					const genderCondition = isGenderValid ? item.gender === payload.gender : true;
 					const interestsCondition = areInterestsValid
-						? payload.interests.every((interest) => item.interests.includes(interest))
+						? //@ts-ignore
+						  payload.interests.every((interest) => item.interests.includes(interest))
 						: true;
 					const rangeCondition = isRangeValid
 						? item.notificationFrequency >= payload.range[0] &&

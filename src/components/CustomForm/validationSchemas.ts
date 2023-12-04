@@ -41,15 +41,15 @@ export const validationSchemaSubmit = Yup.object().shape({
 		.required('Profile picture is required')
 		.test('is-image', 'Invalid file format, only image files are allowed', (value) => {
 			if (!value) return true;
-
-			const extension = value.split('.').pop().toLowerCase();
+			const extension = value.split('.').pop()?.toLowerCase();
+			//@ts-ignore
 			return imageExtensions.includes(extension);
 		})
 		.test('max-file-name-length', `File name exceeds ${50} characters`, (value) => {
 			if (!value) return true;
 
 			const fileName = value.split('.').shift();
-			return fileName.length <= 50;
+			if (fileName) return fileName.length <= 50;
 		}),
 	terms: Yup.boolean()
 		.test('is-true', 'You must accept the terms and conditions', (value) => value === true)

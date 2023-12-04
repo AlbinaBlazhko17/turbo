@@ -2,7 +2,6 @@ import { createContainer } from '@/utils/createContainer';
 import { useState, useEffect, MouseEventHandler, useCallback, useRef } from 'react';
 import Portal from '../Portal/Portal';
 import { AnimatePresence, motion } from 'framer-motion';
-import CloseButton from '@assets/icons/close_button_white.svg';
 import cn from 'classnames';
 import ArrowIcon from '@assets/icons/sort-arrow.svg';
 import { IDataForPhotos } from '@/interfaces/IDataForGallery';
@@ -31,10 +30,12 @@ function ModalWindowForImage({
 	const [click, setClick] = useState<'next' | 'prev' | undefined>(undefined);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const smallGalleryRef = useRef<HTMLDivElement>(null);
+	//@ts-ignore
+	const flatArray = photos ? photos.flat() : [];
 
 	useEffect(() => {
 		if (photos) {
-			const flatArray = [].concat(...photos);
+			setFlatImages(flatArray);
 			setFlatImages(flatArray);
 		}
 	}, [photos]);
@@ -98,7 +99,7 @@ function ModalWindowForImage({
 		setCurrentImage(image || null);
 	}
 
-	function handlePreventPropagation(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+	function handlePreventPropagation(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		e.stopPropagation();
 	}
 

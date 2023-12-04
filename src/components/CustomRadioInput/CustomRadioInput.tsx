@@ -1,14 +1,9 @@
 import { FormValues } from '@customTypes/formik.types';
-import { useEffect } from 'react';
 import CustomRadioInputProps from './CustomRadioInput.props';
 
 import style from './customRadioInput.module.scss';
 
 function customRadioInput({ formik, name, value, setData }: CustomRadioInputProps) {
-	useEffect(() => {
-		setData(formik.values);
-	}, [formik.values]);
-
 	return (
 		<input
 			className={style.radio}

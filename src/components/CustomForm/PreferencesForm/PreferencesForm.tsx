@@ -35,8 +35,6 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 		setDataSelect(loaderDataLanguages);
 	}, []);
 
-	console.log(dataSelect);
-
 	const memoizedDataSelect = useMemo(() => dataSelect, [dataSelect]);
 
 	return (
@@ -82,7 +80,7 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.language}>Language</CustomLabel>
-				{dataSelect && <CustomSelect data={dataSelect} formik={formik} type={EFormProps.language} />}
+				{dataSelect && <CustomSelect data={memoizedDataSelect!} formik={formik} type={EFormProps.language} />}
 				{!formik.isSubmitting && formik.errors.language && (
 					<div className={style[`form-item__error`]}>
 						{(formik.errors as FormikErrors<IDataForPreferencesForm>).language?.value}
