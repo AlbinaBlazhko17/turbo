@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import type { MouseEventHandler } from 'react';
+import type { FC, MouseEventHandler, PropsWithChildren } from 'react';
 import Portal from '../Portal/Portal';
 import { createContainer } from '@utils/createContainer';
 import CloseButton from '@assets/icons/close_button.svg';
@@ -19,7 +19,7 @@ type Props = {
 	isModalActive: boolean;
 };
 
-function ModalWindow(props: Props) {
+const ModalWindow: FC<PropsWithChildren<Props>> = (props) => {
 	const { title, onClose, children, isSliderInteracting, setIsSliderInteracting, isModalActive } = props;
 
 	const rootRef = useRef<HTMLDivElement>(null);
@@ -100,6 +100,6 @@ function ModalWindow(props: Props) {
 			</AnimatePresence>
 		</Portal>
 	);
-}
+};
 
 export default ModalWindow;

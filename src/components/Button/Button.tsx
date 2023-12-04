@@ -1,21 +1,17 @@
 import cn from 'classnames';
+import { FC, PropsWithChildren } from 'react';
 
 import style from './button.module.scss';
 
-function Button({
-	children,
-	appearance,
-	className,
-	onClick,
-	type,
-	...props
-}: {
-	children: string;
-	appearance: 'outlined' | 'filled';
-	className?: string;
-	onClick?: () => void;
-	type?: 'button' | 'submit';
-}) {
+const Button: FC<
+	PropsWithChildren<{
+		children: string;
+		appearance: 'outlined' | 'filled';
+		className?: string;
+		onClick?: () => void;
+		type?: 'button' | 'submit';
+	}>
+> = ({ children, appearance, className, onClick, type, ...props }) => {
 	return (
 		<button
 			className={cn(style.btn, className, {
@@ -29,6 +25,6 @@ function Button({
 			{children}
 		</button>
 	);
-}
+};
 
 export default Button;

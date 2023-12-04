@@ -1,7 +1,7 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { FC, PropsWithChildren, ReactNode, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-function Portal({ id, children }: { id: string; children: ReactNode }) {
+const Portal: FC<PropsWithChildren<{ id: string; children: ReactNode }>> = ({ id, children }) => {
 	const [container, setContainer] = useState<HTMLElement | null>();
 	useEffect(() => {
 		if (id) {
@@ -16,6 +16,6 @@ function Portal({ id, children }: { id: string; children: ReactNode }) {
 		}
 	}, [id]);
 	return container ? createPortal(children, container) : null;
-}
+};
 
 export default Portal;

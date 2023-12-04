@@ -20,6 +20,7 @@ module.exports = {
 		'react/jsx-indent': [2, 'tab'],
 		'react/jsx-indent-props': [2, 'tab'],
 		'@typescript-eslint/ban-ts-comment': 'off',
+		'react/prop-types': 'off',
 	},
 	plugins: ['@typescript-eslint', 'prettier'],
 };
