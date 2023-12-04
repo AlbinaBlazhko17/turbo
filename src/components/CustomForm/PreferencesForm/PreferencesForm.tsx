@@ -65,12 +65,9 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 						</CustomLabel>
 					</div>
 				</div>
-				{EFormProps.interests in formik.touched &&
-					EFormProps.interests in formik.errors &&
-					!formik.isSubmitting &&
-					formik.errors.interests && (
-						<div className={style[`form-item__error`]}>{formik.errors.interests}</div>
-					)}
+				{!formik.isSubmitting && formik.errors.interests && (
+					<div className={style[`form-item__error`]}>{formik.errors.interests}</div>
+				)}
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.language}>Language</CustomLabel>
