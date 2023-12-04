@@ -1,6 +1,4 @@
-import CustomInput from '@/components/CustomInput/CustomInput';
-import CustomLabel from '@/components/CustomLabel/CustomLabel';
-import CustomRadioInput from '@/components/CustomRadioInput/CustomRadioInput';
+import { CustomInput, CustomLabel, CustomRadioInput } from '@/components';
 import { EFormProps } from '@/customTypes/form.types';
 import IFieldProps from '@/interfaces/IFieldProps';
 import cn from 'classnames';

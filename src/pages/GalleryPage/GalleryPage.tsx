@@ -1,5 +1,4 @@
-import Button from '@/components/Button/Button';
-import ModalWindowForImage from '@/components/ModalWindowForImage/ModalWindowForImage';
+import { Button, ModalWindowForImage } from '@/components';
 import { IDataForPhotos } from '@/interfaces/IDataForGallery';
 import { getAllPhotos } from '@/utils/dataForGallery';
 import ArrowIcon from '@assets/icons/sort-arrow.svg';

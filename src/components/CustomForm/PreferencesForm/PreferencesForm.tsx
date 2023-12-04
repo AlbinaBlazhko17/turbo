@@ -1,8 +1,6 @@
-import CustomCheckbox from '@/components/CustomCheckbox/CustomCheckbox';
-import CustomSelect from '@/components/CustomSelect/CustomSelect';
+import { CustomCheckbox, CustomSelect, CustomLabel } from '@/components';
 import { EFormProps, EInterests, SelectValue } from '@/customTypes/form.types';
 import { IDataForPreferencesForm } from '@/interfaces/IDataForForms';
-import CustomLabel from '@components/CustomLabel/CustomLabel';
 import { FormikErrors } from 'formik';
 import { useEffect, useMemo, useRef, useState } from 'react';
 //@ts-ignore

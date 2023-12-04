@@ -1,9 +1,4 @@
-import Stats from '@components/Stats/Stats';
-import Aside from '@components/Aside/Aside';
-import Experts from '@components/Experts/Experts';
-import Services from '@components/Services/Services';
-import Marquee from '@components/Marquee/Marquee';
-import Slider from '@components/Slider/Slider';
+import { Stats, Aside, Experts, Services, Marquee, Slider } from '@/components';
 import dataForNews from '@utils/dataForNews';
 import dataForLatest from '@utils/dataForLatest';
 import dataForExperts from '@utils/dataForExperts';

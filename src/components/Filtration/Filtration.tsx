@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import cn from 'classnames';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
-import Button from '@/components/Button/Button';
+import { Button } from '@/components';
 import { setStateActionType } from '@/customTypes/react.types';
 import ISelectedItem from '@/interfaces/ISelectedItem';
 

@@ -1,6 +1,4 @@
-import CustomInput from '@/components/CustomInput/CustomInput';
-import CustomLabel from '@/components/CustomLabel/CustomLabel';
-import CustomSelect from '@/components/CustomSelect/CustomSelect';
+import { CustomInput, CustomLabel, CustomSelect } from '@/components';
 import { EFormProps, SelectValue } from '@/customTypes/form.types';
 import { IDataForAddressForm } from '@/interfaces/IDataForForms';
 import { FormikErrors } from 'formik';
