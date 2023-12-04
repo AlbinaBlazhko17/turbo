@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', '.webp'];
 
 export const validationSchemaPersonalInfo = Yup.object().shape({
 	firstName: Yup.string()
@@ -45,11 +45,11 @@ export const validationSchemaSubmit = Yup.object().shape({
 			const extension = value.split('.').pop().toLowerCase();
 			return imageExtensions.includes(extension);
 		})
-		.test('max-file-name-length', `File name exceeds ${10} characters`, (value) => {
+		.test('max-file-name-length', `File name exceeds ${50} characters`, (value) => {
 			if (!value) return true;
 
 			const fileName = value.split('.').shift();
-			return fileName.length <= 10;
+			return fileName.length <= 50;
 		}),
 	terms: Yup.boolean()
 		.test('is-true', 'You must accept the terms and conditions', (value) => value === true)
