@@ -1,4 +1,4 @@
-import { Button, ModalWindow, Filtration } from '@/components';
+import { Button, Filtration, ModalWindow } from '@/components';
 import { EFormProps } from '@/customTypes/form.types';
 import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
@@ -8,16 +8,18 @@ import { ThemeContext } from '@/theme/theme';
 import FiltrationIcon from '@assets/icons/filtration.svg';
 import SortArrow from '@assets/icons/sort-arrow.svg';
 import cn from 'classnames';
-import { ReactNode, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import style from './tablePage.module.scss';
+
+const PER_PAGE = 10;
 
 function TablePage() {
 	const { theme } = useContext(ThemeContext);
 	const dataFromForms = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm[]>(dataFromForms);
-	const [sliceStep, setSliceStep] = useState<number>(10);
+	const [currentPage, setCurrentPage] = useState<number>(PER_PAGE);
 	const [order, setOrder] = useState<boolean>(true);
 	const [sortedColumn, setSortedColumn] = useState<string | null>(null);
 	const selectedItemInitialState = {
@@ -47,12 +49,12 @@ function TablePage() {
 	}, [dataFromForms]);
 
 	function handlePrev() {
-		setSliceStep(sliceStep - 10);
+		setCurrentPage(currentPage - PER_PAGE);
 	}
 
 	function handleNext() {
-		if (data.length > sliceStep) {
-			setSliceStep(sliceStep + 10);
+		if (data.length > currentPage) {
+			setCurrentPage(currentPage + PER_PAGE);
 		}
 	}
 
@@ -176,7 +178,7 @@ function TablePage() {
 							</th>
 						</tr>
 						{data.length !== 0 ? (
-							data.slice(sliceStep - 10, sliceStep).map((item, index) => (
+							data.slice(currentPage - PER_PAGE, currentPage).map((item, index) => (
 								<tr key={index}>
 									<td className={cn(style.table__descr, style.table__descr_center)}>{item.id}</td>
 									<td className={style.table__descr}>{item.firstName}</td>
@@ -211,12 +213,12 @@ function TablePage() {
 						)}
 					</table>
 				</div>
-				{data.length > 10 ? (
+				{data.length > PER_PAGE ? (
 					<div className={style.table__pagination}>
-						<Button appearance={sliceStep === 10 ? 'outlined' : 'filled'} onClick={handlePrev}>
+						<Button appearance={currentPage === PER_PAGE ? 'outlined' : 'filled'} onClick={handlePrev}>
 							Prev
 						</Button>
-						<Button appearance={data.length - 1 < sliceStep ? 'outlined' : 'filled'} onClick={handleNext}>
+						<Button appearance={data.length - 1 < currentPage ? 'outlined' : 'filled'} onClick={handleNext}>
 							Next
 						</Button>
 					</div>
