@@ -20,9 +20,9 @@ function GalleryPage() {
 
 	useEffect(() => {
 		const main = document.querySelector('main');
-		const arrow = document.querySelector(`.${style.gallery__arrow}`);
+		const arrow = document.querySelector(`.${style.gallery__arrow}`) as HTMLElement;
 		function handleArrowOpacity() {
-			if (main) {
+			if (main && arrow) {
 				if (main.scrollTop > 500) {
 					arrow.style.opacity = `${main.scrollTop / 1000}`;
 				} else {
