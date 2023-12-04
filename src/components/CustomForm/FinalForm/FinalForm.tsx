@@ -44,10 +44,12 @@ function FinalForm({ formik, setData }: IFieldProps) {
 			</div>
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.terms}>Terms & conditions</CustomLabel>
-				<CustomLabel label="terms" className={style['form-item__terms']}>
-					<CustomCheckbox formik={formik} label={EFormProps.terms} setData={setData} />I accept the terms and
-					conditions
-				</CustomLabel>
+				<div className={style['form-item__checkbox']}>
+					<CustomLabel label="terms" className={style['form-item__terms']}>
+						<CustomCheckbox formik={formik} label={EFormProps.terms} setData={setData} />I accept the terms
+						and conditions
+					</CustomLabel>
+				</div>
 				{formik.touched.terms && formik.errors.terms && (
 					<div className={style[`form-item__error`]}>
 						{(formik.errors as FormikErrors<IDataForSubmitForm>).terms}

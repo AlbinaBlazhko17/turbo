@@ -46,6 +46,12 @@
 		&__terms {
 			margin-bottom: 20px;
 		}
+
+		&__checkbox {
+			position: relative;
+			display: flex;
+			width: 100%;
+		}
 	}
 }
 
