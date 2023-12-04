@@ -34,26 +34,36 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 			<div className={style['form-item']}>
 				<CustomLabel label={EFormProps.interests}>Interests</CustomLabel>
 				<div className={style['form-item__checkbox']}>
-					<CustomLabel label={EInterests.Reading}>
-						<CustomCheckbox formik={formik} label={EInterests.Reading} setData={setData} />
-						Reading
-					</CustomLabel>
-					<CustomLabel label={EInterests.Music}>
-						<CustomCheckbox formik={formik} label={EInterests.Music} setData={setData} />
-						Music
-					</CustomLabel>
-					<CustomLabel label={EInterests.Sports}>
-						<CustomCheckbox formik={formik} label={EInterests.Sports} setData={setData} />
-						Sports
-					</CustomLabel>
-					<CustomLabel label={EInterests.Gaming}>
-						<CustomCheckbox formik={formik} label={EInterests.Gaming} setData={setData} />
-						Gaming
-					</CustomLabel>
-					<CustomLabel label={EInterests.Traveling}>
-						<CustomCheckbox formik={formik} label={EInterests.Traveling} setData={setData} />
-						Traveling
-					</CustomLabel>
+					<div className={style['form-item__checkbox__wrapper']}>
+						<CustomLabel label={EInterests.Reading}>
+							<CustomCheckbox formik={formik} label={EInterests.Reading} setData={setData} />
+							Reading
+						</CustomLabel>
+					</div>
+					<div className={style['form-item__checkbox__wrapper']}>
+						<CustomLabel label={EInterests.Music}>
+							<CustomCheckbox formik={formik} label={EInterests.Music} setData={setData} />
+							Music
+						</CustomLabel>
+					</div>
+					<div className={style['form-item__checkbox__wrapper']}>
+						<CustomLabel label={EInterests.Sports}>
+							<CustomCheckbox formik={formik} label={EInterests.Sports} setData={setData} />
+							Sports
+						</CustomLabel>
+					</div>
+					<div className={style['form-item__checkbox__wrapper']}>
+						<CustomLabel label={EInterests.Gaming}>
+							<CustomCheckbox formik={formik} label={EInterests.Gaming} setData={setData} />
+							Gaming
+						</CustomLabel>
+					</div>
+					<div className={style['form-item__checkbox__wrapper']}>
+						<CustomLabel label={EInterests.Traveling}>
+							<CustomCheckbox formik={formik} label={EInterests.Traveling} setData={setData} />
+							Traveling
+						</CustomLabel>
+					</div>
 				</div>
 				{EFormProps.interests in formik.touched &&
 					EFormProps.interests in formik.errors &&

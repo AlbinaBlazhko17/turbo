@@ -23,14 +23,39 @@
 		width: 5px;
 		height: 5px;
 		background-color: $lighter-blue;
-
-		&:checked {
-			width: 15px;
-			height: 15px;
-			background-color: $blue;
-			clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+		border: 3px solid $light-grey;
+		&:hover {
+			border: 3px solid $light-blue;
 		}
 
+		&:checked {
+			border: 3px solid $light-blue;
+		}
+
+		&:hover:checked:before {
+			background-color: #52adf7;
+		}
+	
+		&:checked:before{
+			content: "";
+			display: block;
+			position: absolute;
+			text-align: center;
+			height: 24px;
+			width: 23px;
+			left: 1%;
+			top: 24%;
+			background-color: $light-blue;
+			border-radius: 8px;
+		}
+
+		&:checked:after{
+			content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>');
+			display: block;
+			position: absolute;
+			left: 5%;
+			top: 35%;
+		}
 	}
 
 	&__error {

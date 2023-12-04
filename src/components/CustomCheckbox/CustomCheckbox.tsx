@@ -37,6 +37,7 @@ function CustomCheckbox({ formik, label, setData }: CustomCheckboxProps) {
 	};
 
 	return (
+		// <div style={{ position: 'relative' }}>
 		<input
 			id={`${label}`}
 			type="checkbox"
@@ -53,6 +54,7 @@ function CustomCheckbox({ formik, label, setData }: CustomCheckboxProps) {
 			onBlur={formik.handleBlur}
 			checked={isChecked}
 		/>
+		// </div>
 	);
 }
 
