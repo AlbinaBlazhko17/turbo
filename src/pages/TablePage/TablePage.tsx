@@ -210,8 +210,12 @@ function TablePage() {
 											{item.notificationFrequency}
 										</td>
 										<td className={style.table__descr}>{item.comments}</td>
-										<td className={style.table__descr}>{item.profilePicture}</td>
-										<td className={style.table__descr}>{item.date.toLocaleString()}</td>
+										<td className={cn(style.table__descr, style.table__descr_nowrap)}>
+											{item.profilePicture}
+										</td>
+										<td className={style.table__descr}>
+											{item.date ? new Date(item.date).toLocaleDateString() : 'No date available'}
+										</td>
 									</tr>
 								))
 							) : (

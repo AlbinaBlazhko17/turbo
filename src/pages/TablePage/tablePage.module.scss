@@ -147,14 +147,30 @@
 		}
 	}
 
-	@media screen and (max-width: 1120px) {
+	@media screen and (max-width: 1380px) {
 		table {
 			width: 150%;
 		}
+	}
+
+	@media screen and (max-width: 1120px) {
+		table {
+			width: 200%;
+		}
+	}
+
+	@media screen and (max-width: 990px) {
+		table {
+			width: 250%;
+		}
+	}
 
 		@media screen and (max-width: 800px) {
 			table {
 				width: 320%;
+			}
+			&__descr {
+				text-align: center;
 			}
 		}
 
@@ -188,7 +204,7 @@
 			}
 		}
 	}
-}
+
 
 .dark {
 
