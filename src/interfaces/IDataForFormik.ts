@@ -7,4 +7,5 @@ export interface IFormikRef {
 	errors: ObjectSchema<FormikErrors<FormikValues>>;
 	touched: ObjectSchema<FormikValues>;
 	values: FormValues;
+	handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
 }

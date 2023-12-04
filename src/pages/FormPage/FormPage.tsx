@@ -67,6 +67,13 @@ function FormPage() {
 		formDispatcher(addItemToForm(data));
 	}, [data]);
 
+	function handleClickSubmit() {
+		if (formikRef.current !== null && formikRef.current !== undefined) {
+			formikRef.current.handleSubmit();
+			formDispatcher(addItemToForm(formikRef.current.values));
+		}
+	}
+
 	function buttonAppearance() {
 		if (formikRef.current !== null && formikRef.current !== undefined) {
 			if (
@@ -157,10 +164,7 @@ function FormPage() {
 								)}
 								<Button
 									appearance={buttonAppearance()}
-									onClick={() => {
-										formik.handleSubmit();
-										formDispatcher(addItemToForm(formik.values));
-									}}
+									onClick={handleClickSubmit}
 									type={'submit'}
 									className={style[`buttons_left`]}
 								>
