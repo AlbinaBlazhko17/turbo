@@ -19,6 +19,7 @@
 	&_filled {
 		background-color: $light-blue;
 		color: $white;
+		border: 2px solid transparent;
 		&:hover {
 			background-color: $blue;
 		}

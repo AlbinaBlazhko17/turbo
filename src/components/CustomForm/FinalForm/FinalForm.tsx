@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 import style from '../customForm.module.scss';
 
 function FinalForm({ formik, setData }: IFieldProps) {
-	console.log(formik);
 	useEffect(() => {
 		formik.touched.comments = false;
 		formik.touched.profilePicture = false;
