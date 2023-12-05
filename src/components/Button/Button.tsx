@@ -5,7 +5,6 @@ import style from './button.module.scss';
 
 const Button: FC<
 	PropsWithChildren<{
-		children: string;
 		appearance: 'outlined' | 'filled';
 		className?: string;
 		onClick?: () => void;
