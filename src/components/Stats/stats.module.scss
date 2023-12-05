@@ -13,3 +13,9 @@
 		margin-top: 25px;
 	}
 }
+
+@media screen and (max-width: 450px) {
+	.stats {
+		grid-column: 1/-1 !important;
+	}
+}

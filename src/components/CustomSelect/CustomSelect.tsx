@@ -1,16 +1,15 @@
-import { FormikProps } from "formik";
-import { useContext, useEffect, useState } from "react";
-import Select, { CSSObjectWithLabel, GroupBase, StylesConfig } from "react-select";
-import { ThemeContext } from "@theme/theme";
-import { FormValues } from "../CustomForm/formik";
-import { IDataForForm } from "@/interfaces/IDataForForms";
+import { ThemeContext } from '@theme/theme';
+import { memo, useContext, useEffect, useState } from 'react';
+import Select, { CSSObjectWithLabel, GroupBase, OptionsOrGroups, StylesConfig } from 'react-select';
+import { FormValues } from '../../customTypes/formik.types';
+import CustomSelectProps from './CustomSelect.props';
 
 import style from './customSelect.module.scss';
 
-const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, type: string }) => {
-	const [dataSelect, setDataSelect] = useState();
+const CustomSelect = ({ data, formik, type }: CustomSelectProps) => {
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
+	const options = type === 'country' && 'countries' in data ? data.countries : data;
 
 	useEffect(() => {
 		if (type === 'country') {
@@ -21,65 +20,61 @@ const CustomSelect = ({ formik, type }: { formik: FormikProps<IDataForForm>, typ
 	}, [selectedData]);
 
 	useEffect(() => {
-		(async function () {
-			if (type === 'country') {
-				fetch(
-					"https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
-				)
-					.then((response) => response.json())
-					.then((data) => {
-						setDataSelect(data.countries);
-						setSelectedData(formik.values['country' as keyof FormValues] || data.userSelectValue);
-					});
-			} else {
-				fetch(
-					"https://pkgstore.datahub.io/core/language-codes/language-codes_json/data/97607046542b532c395cf83df5185246/language-codes_json.json"
-				)
-					.then((response) => response.json())
-					.then((data) => {
-						setDataSelect(data.map((item: any) => ({ label: item.English, value: item.alpha2 })));
-						setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
-					})
-					.catch((err) => console.log(err));
-			}
-		})()
+		if (type === 'country' && 'userSelectValue' in data && data.userSelectValue.value !== '') {
+			setSelectedData(formik.values.country.value !== '' ? formik.values.country : data.userSelectValue);
+		} else {
+			if (Array.isArray(data) && data.length > 0)
+				setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
+		}
 	}, []);
 
-
-	const customStyles: StylesConfig<{}, true, GroupBase<{ value: string; label: string; }>> = {
+	const customStyles: StylesConfig<NonNullable<unknown>, true, GroupBase<{ value: string; label: string }>> = {
 		option: (defaultStyles: CSSObjectWithLabel, state) => ({
 			...defaultStyles,
-			color: state.isFocused ? "#333" : state.isSelected ? '#fff' : "#333",
-			backgroundColor: state.isFocused ? "#e9f5fe" : state.isSelected ? '#2196f3' : "#ffff",
+			color: state.isFocused ? '#333' : state.isSelected ? '#fff' : '#333',
+			backgroundColor: state.isFocused ? '#e9f5fe' : state.isSelected ? '#2196f3' : '#ffff',
 			overflow: 'hidden',
 		}),
 
 		control: (defaultStyles: CSSObjectWithLabel) => ({
 			...defaultStyles,
-			backgroundColor: "transparent",
-			padding: "10px",
-			border: theme === 'dark' ? "1px solid white" : '1px solid #ccc',
-			borderRadius: "8px",
-			boxShadow: "none",
-			marginBottom: "20px",
-			width: '434px',
+			backgroundColor: 'transparent',
+			padding: '10px',
+			border: theme === 'dark' ? '1px solid white' : '1px solid #ccc',
+			borderRadius: '8px',
+			boxShadow: 'none',
+			marginBottom: '20px',
+			width: '100%',
 		}),
 
-		singleValue: (defaultStyles: CSSObjectWithLabel) => ({ ...defaultStyles, color: theme === 'dark' ? "white" : '#333' }),
+		input: (defaultStyles: CSSObjectWithLabel) => ({
+			...defaultStyles,
+			color: theme === 'dark' ? 'white' : '#333',
+		}),
+
+		singleValue: (defaultStyles: CSSObjectWithLabel) => ({
+			...defaultStyles,
+			color: theme === 'dark' ? 'white' : '#333',
+		}),
+		menu: (defaultStyles: CSSObjectWithLabel) => ({
+			...defaultStyles,
+			height: '14rem',
+			overflowY: 'auto',
+		}),
 	};
-
-
 
 	return (
 		<Select
-			isSearchable={true}
+			isSearchable
 			styles={customStyles}
 			className={style.select}
-			options={dataSelect}
+			options={options as OptionsOrGroups<NonNullable<unknown>, GroupBase<{ value: string; label: string }>>}
 			value={selectedData}
-			onChange={(selectedOption) => setSelectedData(selectedOption)}
+			onChange={(selectedOption) =>
+				setSelectedData(!selectedOption && 'userSelectValue' in data ? data.userSelectValue : selectedOption)
+			}
 		/>
 	);
 };
 
-export default CustomSelect;
+export default memo(CustomSelect);

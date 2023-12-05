@@ -1,13 +1,14 @@
-import { IDataForPersonalnfoForm, IDataForForm } from "@/interfaces/IDataForForms"
+import { IDataForPersonalnfoForm, IDataForForm } from '@/interfaces/IDataForForms';
 
 export const initialValuesPersonalInfo: IDataForPersonalnfoForm = {
 	firstName: '',
 	lastName: '',
 	email: '',
 	gender: '',
-}
+};
 
 export const allValues: IDataForForm = {
+	id: 1,
 	firstName: '',
 	lastName: '',
 	email: '',
@@ -15,16 +16,17 @@ export const allValues: IDataForForm = {
 	city: '',
 	country: {
 		value: '',
-		label: ''
+		label: '',
 	},
 	zipCode: null,
 	interests: [],
 	language: {
 		value: '',
-		label: ''
+		label: '',
 	},
 	notificationFrequency: 0,
-	comment: '',
+	comments: '',
 	profilePicture: null,
-	terms: false
-}
+	terms: false,
+	date: new Date().toLocaleString(),
+};

@@ -1,16 +1,16 @@
-import { FormikProps } from "formik";
-import { useEffect, useState } from "react";
+import { IDataForPreferencesForm, IDataForSubmitForm } from '@/interfaces/IDataForForms';
 import cn from 'classnames';
-import { IDataForForm, IDataForPreferencesForm, IDataForSubmitForm } from "@/interfaces/IDataForForms";
+import { useEffect, useState } from 'react';
+import CustomCheckboxProps from './CustomCheckbox.props';
 
 import style from '../CustomInput/customInput.module.scss';
 
-function CustomCheckbox({ formik, label, setData }: { formik: FormikProps<IDataForForm>, label: string, setData: React.Dispatch<React.SetStateAction<IDataForForm>> }) {
+function CustomCheckbox({ formik, label, setData }: CustomCheckboxProps) {
 	const [isChecked, setIsChecked] = useState(false);
 
 	useEffect(() => {
 		setData(formik.values);
-	}, [formik.values])
+	}, [formik.values]);
 
 	useEffect(() => {
 		if (label !== 'terms') {
@@ -39,10 +39,10 @@ function CustomCheckbox({ formik, label, setData }: { formik: FormikProps<IDataF
 	return (
 		<input
 			id={`${label}`}
-			type='checkbox'
-			className={cn(style.input,
-				[style[`input__checkbox`]]
-			)}
+			type="checkbox"
+			className={cn(style.input, [style[`input__checkbox`]], {
+				[style[`input__checkbox_terms`]]: label === 'terms',
+			})}
 			onChange={(e) => {
 				if (label !== 'terms') {
 					handleCheckboxChange();
@@ -55,7 +55,7 @@ function CustomCheckbox({ formik, label, setData }: { formik: FormikProps<IDataF
 			onBlur={formik.handleBlur}
 			checked={isChecked}
 		/>
-	)
+	);
 }
 
 export default CustomCheckbox;

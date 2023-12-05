@@ -1,5 +1,5 @@
-import { FormValues } from "@/components/CustomForm/formik";
-import { FormikErrors, FormikTouched } from "formik";
+import { FormValues } from '@/customTypes/formik.types';
+import { FormikErrors, FormikTouched } from 'formik';
 
 export interface IDataForPersonalnfoForm {
 	firstName: string;
@@ -27,25 +27,32 @@ export interface IDataForPreferencesForm {
 }
 
 export interface IDataForSubmitForm {
-	comment: string | null | undefined;
+	comments: string | null | undefined;
 	profilePicture: string | null;
 	terms: boolean;
 }
 
-export interface IDataForForm extends IDataForPersonalnfoForm, IDataForAddressForm, IDataForPreferencesForm, IDataForSubmitForm { }
+export interface IDataForForm
+	extends IDataForPersonalnfoForm,
+		IDataForAddressForm,
+		IDataForPreferencesForm,
+		IDataForSubmitForm {
+	id: number;
+	date: string;
+}
 
 export interface InputProps {
-	label: string
-	name: string
-	values: IDataForForm
-	validationSchema: FormValues,
-	placeholder?: string
+	label: string;
+	name: string;
+	values: IDataForForm;
+	validationSchema: FormValues;
+	placeholder?: string;
 	errors?: FormikErrors<{
-		[field: string]: any
-	}>
+		[field: string]: any;
+	}>;
 	touched?: FormikTouched<{
-		[field: string]: any
-	}>
-	autofocus?: boolean
-	disabled?: boolean
+		[field: string]: any;
+	}>;
+	autofocus?: boolean;
+	disabled?: boolean;
 }

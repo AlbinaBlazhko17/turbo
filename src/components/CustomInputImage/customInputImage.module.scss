@@ -4,11 +4,10 @@
 	padding: 1em;
 	border: 1px solid #ccc;
 	border-radius: 8px;
-	width: 105%;
+	width: 100%;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	box-sizing: border-box;
 	margin-bottom: 20px;
 
 	&__file {
@@ -29,5 +28,6 @@
 	&__label {
 		margin: 0;
 		align-self: center;
+		word-wrap: break-word;
 	}
 }

@@ -4,13 +4,12 @@
 
 .form {
 	display: block;
-	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-
+	height: max-content;
 	&-item {
-		padding: 0 2%;
+		padding: 0 3%;
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -35,6 +34,9 @@
 			justify-content: start;
 			align-items: flex-start;
 			margin-bottom: 15px;
+			&__wrapper {
+				position: relative;
+			}
 		}
 
 		&__language {
@@ -44,10 +46,17 @@
 		&__terms {
 			margin-bottom: 20px;
 		}
+
+		&__checkbox {
+			position: relative;
+			display: flex;
+			width: 100%;
+		}
 	}
 }
 
 .rangeSlider {
+
 	&__footer {
 		width: 100%;
 		display: flex;

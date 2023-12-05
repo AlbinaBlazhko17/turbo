@@ -1,33 +1,27 @@
 import { useRef, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 
-import style from './stats.module.scss'
+import style from './stats.module.scss';
 
-function Stats () {
+function Stats() {
 	const chartRef = useRef(null);
 	const chartInstance = useRef(null);
 
-	const data =  {
+	const data = {
 		labels: ['June', 'July', 'August', 'September', 'October'],
 		datasets: [
 			{
 				data: [5, 8, 9, 6, 12],
-				backgroundColor: [
-					'#5FB3F6',
-					'#5FB3F6',
-					'#C7D0D8',
-					'#5FB3F6',
-					'#5FB3F6',
-				],
+				backgroundColor: ['#5FB3F6', '#5FB3F6', '#C7D0D8', '#5FB3F6', '#5FB3F6'],
 			},
-		]
+		],
 	};
 
 	const options = {
 		plugins: {
 			legend: {
 				display: false,
-			}
+			},
 		},
 		scales: {
 			x: {
@@ -42,9 +36,9 @@ function Stats () {
 				grid: {
 					display: false,
 				},
-			}
-		}
-	}
+			},
+		},
+	};
 
 	useEffect(() => {
 		if (data && chartRef.current) {
@@ -75,7 +69,7 @@ function Stats () {
 				<canvas ref={chartRef} />
 			</div>
 		</section>
-	)
+	);
 }
 
 export default Stats;
