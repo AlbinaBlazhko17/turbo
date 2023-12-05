@@ -83,12 +83,13 @@ function FormPage() {
 				return 'outlined';
 			} else if (currentStep === 1 && Object.keys(formikRef.current.errors).length === 0) {
 				return 'filled';
-			} else if (currentStep > 0 && Object.keys(formikRef.current.errors).length === 0) {
+			} else if (currentStep > 0 && currentStep !== 4 && Object.keys(formikRef.current.errors).length === 0) {
 				return 'filled';
 			} else if (
 				currentStep === 4 &&
 				Object.keys(formikRef.current.errors).length === 0 &&
-				Object.keys(formikRef.current.touched).length > 0
+				formikRef.current.values.terms === true &&
+				formikRef.current.values.profilePicture !== null
 			) {
 				return 'filled';
 			}

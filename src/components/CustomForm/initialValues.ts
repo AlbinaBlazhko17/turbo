@@ -1,7 +1,6 @@
 import { IDataForPersonalnfoForm, IDataForForm } from '@/interfaces/IDataForForms';
 
 export const initialValuesPersonalInfo: IDataForPersonalnfoForm = {
-	id: 1,
 	firstName: '',
 	lastName: '',
 	email: '',
@@ -29,4 +28,5 @@ export const allValues: IDataForForm = {
 	comments: '',
 	profilePicture: null,
 	terms: false,
+	date: new Date(),
 };

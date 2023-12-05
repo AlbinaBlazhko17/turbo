@@ -13,6 +13,7 @@ function CustomInputImage({ formik, label, setData }: CustomInputImageProps) {
 
 	function handleFileInputClick() {
 		fileInputRef.current !== null && fileInputRef.current.click();
+		formik.touched.profilePicture = true;
 	}
 
 	const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

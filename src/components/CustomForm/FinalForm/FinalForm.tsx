@@ -8,21 +8,19 @@ import { useEffect } from 'react';
 import style from '../customForm.module.scss';
 
 function FinalForm({ formik, setData }: IFieldProps) {
+	console.log(formik);
+	useEffect(() => {
+		formik.touched.comments = false;
+		formik.touched.profilePicture = false;
+		formik.touched.terms = false;
+		formik.setErrors({});
+	}, []);
+
 	useEffect(() => {
 		if (formik.values.comments !== '') {
-			formik.touched.comments = true;
-			formik.touched.profilePicture = false;
-			formik.touched.terms = false;
-		} else if (formik.values.profilePicture !== null) {
-			formik.touched.comments = false;
-			formik.touched.profilePicture = true;
-			formik.touched.terms = false;
-		} else if (formik.values.terms) {
-			formik.touched.comments = false;
-			formik.touched.profilePicture = false;
-			formik.touched.terms = true;
-		} else {
-			formik.setTouched({});
+			formik.initialTouched.comments = true;
+			formik.initialTouched.profilePicture = false;
+			formik.initialTouched.terms = false;
 		}
 	}, [formik.values]);
 
