@@ -81,7 +81,13 @@ function FormPage() {
 				Object.keys(formikRef.current.touched).length === 0
 			) {
 				return 'outlined';
-			} else if (currentStep === 1 && Object.keys(formikRef.current.errors).length === 0) {
+			} else if (
+				currentStep === 1 &&
+				formikRef.current.values.firstName !== '' &&
+				formikRef.current.values.lastName !== '' &&
+				formikRef.current.values.email !== '' &&
+				formikRef.current.values.gender !== ''
+			) {
 				return 'filled';
 			} else if (currentStep > 0 && currentStep !== 4 && Object.keys(formikRef.current.errors).length === 0) {
 				return 'filled';

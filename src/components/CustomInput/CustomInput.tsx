@@ -24,7 +24,7 @@ function CustomInput({ formik, label, type, setData }: CustomInputProps) {
 			})}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
-			value={formik.values[label as keyof FormValues]}
+			value={formik.values[label as keyof FormValues] || ''}
 		/>
 	);
 }

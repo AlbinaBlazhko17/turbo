@@ -28,5 +28,5 @@ export const allValues: IDataForForm = {
 	comments: '',
 	profilePicture: null,
 	terms: false,
-	date: new Date(),
+	date: new Date().toLocaleString(),
 };

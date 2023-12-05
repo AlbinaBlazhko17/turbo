@@ -38,7 +38,7 @@ export interface IDataForForm
 		IDataForPreferencesForm,
 		IDataForSubmitForm {
 	id: number;
-	date: Date;
+	date: string;
 }
 
 export interface InputProps {
