@@ -8,7 +8,6 @@ import style from './steps.module.scss';
 
 function Steps({ currentStep }: { currentStep: number }) {
 	const { theme } = useContext(ThemeContext);
-	const complete = false;
 
 	return (
 		<section className={cn(style.steps, style[`${theme}`])}>
@@ -16,12 +15,10 @@ function Steps({ currentStep }: { currentStep: number }) {
 				<div
 					key={i}
 					className={`${style['steps-item']} ${currentStep === i + 1 && style.active} ${
-						(i + 1 < currentStep || complete) && style.complete
+						i + 1 < currentStep && style.complete
 					}`}
 				>
-					<h2 className={style['steps-item__step']}>
-						{i + 1 < currentStep || complete ? <TiTick size={24} /> : i + 1}
-					</h2>
+					<h2 className={style['steps-item__step']}>{i + 1 < currentStep ? <TiTick size={24} /> : i + 1}</h2>
 					<h3 className={style['steps-item__type']}>{step}</h3>
 				</div>
 			))}
