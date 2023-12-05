@@ -140,16 +140,13 @@
 	}
 
 	@media screen and (max-width: 1441px) {
+		table {
+			width: 150%;
+		}
 		.table {
 			&__wrapper {
 				height: 100%;
 			}
-		}
-	}
-
-	@media screen and (max-width: 1380px) {
-		table {
-			width: 150%;
 		}
 	}
 
