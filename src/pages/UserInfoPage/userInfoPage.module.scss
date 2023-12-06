@@ -1,7 +1,10 @@
+@import '@scss/index.scss';
+
 .button {
 	display: flex;
 	align-items: center;
 	margin-bottom: 30px;
+	color: $light-blue;
 	&__arrow {
 		display: block;
 		margin-right: 15px;

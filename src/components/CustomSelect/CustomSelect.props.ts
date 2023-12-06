@@ -9,4 +9,5 @@ export default interface CustomSelectProps extends Omit<IFieldProps, 'setData'> 
 		  }
 		| SelectValue[];
 	type: string;
+	disabled?: boolean;
 }

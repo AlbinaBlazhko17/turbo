@@ -6,7 +6,7 @@ import CustomSelectProps from './CustomSelect.props';
 
 import style from './customSelect.module.scss';
 
-const CustomSelect = ({ data, formik, type }: CustomSelectProps) => {
+const CustomSelect = ({ data, formik, type, disabled = false }: CustomSelectProps) => {
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
 	const options = type === 'country' && 'countries' in data ? data.countries : data;
@@ -73,6 +73,7 @@ const CustomSelect = ({ data, formik, type }: CustomSelectProps) => {
 			onChange={(selectedOption) =>
 				setSelectedData(!selectedOption && 'userSelectValue' in data ? data.userSelectValue : selectedOption)
 			}
+			isDisabled={disabled}
 		/>
 	);
 };

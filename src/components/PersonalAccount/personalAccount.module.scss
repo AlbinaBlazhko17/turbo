@@ -2,19 +2,25 @@
 
 .personal-account {
 	display: grid;
-	grid-template-columns: 50% 40%;
-	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 30% 40%;
+	grid-template-rows: 50vh 60vh;
 	grid-gap: 10%;
+	justify-content: center;
+	&__subheader {
+		color: $light-blue !important;
+	}
 
 	&__img {
 		width: 100%;
+		height: auto;
 		grid-row: 1 / 2;
 		height: 100%;
 		object-fit: cover;
 		img {
-			width: 100%;
+			width: 70%;
 			height: 100%;
 			border-radius: 8px;
+			object-fit: cover;
 		}
 	}
 
@@ -23,25 +29,59 @@
 	}
 
 	&__info {
-		grid-row: 1/-1;
+		grid-row: 1/2;
+		align-self: center;
 		width: 100%;
+	}
+
+
+	&__contact {
+		grid-row: 2/-1;
+		grid-column: 1/2;
 	}
 
 	&__form {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		align-items: center;
+		align-items: flex-start;
 		&-item {
 			width: 100%;
 			box-sizing: border-box;
 			display: flex;
 			justify-content: start;
 			flex-direction: column;
+			&__title {
+				color: $lighter-grey !important;
+				font-size: 18px;
+				margin-left: 15px;
+				margin-bottom: 10px;
+				&_center {
+					text-align: center;
+				}
+			}
+			&__value {
+				margin-left: 25px;
+				font-size: 18px;
+			}
 			&__input {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+			}
+			&__select {
+				width: 79%;
+			}
+			&__checkbox {
+				margin-left: 25px;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+				margin-bottom: 20px;
+				&__wrapper {
+					position: relative;
+				}
 			}
 			&__edit {
 				cursor: pointer;
