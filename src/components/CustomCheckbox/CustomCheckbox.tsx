@@ -37,24 +37,26 @@ function CustomCheckbox({ formik, label, setData }: CustomCheckboxProps) {
 	};
 
 	return (
-		<input
-			id={`${label}`}
-			type="checkbox"
-			className={cn(style.input, [style[`input__checkbox`]], {
-				[style[`input__checkbox_terms`]]: label === 'terms',
-			})}
-			onChange={(e) => {
-				if (label !== 'terms') {
-					handleCheckboxChange();
-					formik.handleChange(e);
-				} else {
-					setIsChecked(!isChecked);
-					formik.setFieldValue('terms', !(formik.values as IDataForSubmitForm).terms);
-				}
-			}}
-			onBlur={formik.handleBlur}
-			checked={isChecked}
-		/>
+		<div className={style['input__checkbox__wrapper']}>
+			<input
+				id={`${label}`}
+				type="checkbox"
+				className={cn(style.input, [style[`input__checkbox`]], {
+					[style[`input__checkbox_terms`]]: label === 'terms',
+				})}
+				onChange={(e) => {
+					if (label !== 'terms') {
+						handleCheckboxChange();
+						formik.handleChange(e);
+					} else {
+						setIsChecked(!isChecked);
+						formik.setFieldValue('terms', !(formik.values as IDataForSubmitForm).terms);
+					}
+				}}
+				onBlur={formik.handleBlur}
+				checked={isChecked}
+			/>
+		</div>
 	);
 }
 

@@ -306,46 +306,38 @@ function PersinalAccount() {
 										</CustomLabel>
 
 										<CustomLabel label={EInterests.Music}>
-											<div className={style['personal-account__form-item__checkbox__wrapper']}>
-												<CustomCheckbox
-													formik={formik}
-													label={EInterests.Music}
-													setData={setChangedData}
-												/>
-											</div>
+											<CustomCheckbox
+												formik={formik}
+												label={EInterests.Music}
+												setData={setChangedData}
+											/>
 											Music
 										</CustomLabel>
 
 										<CustomLabel label={EInterests.Sports}>
-											<div className={style['personal-account__form-item__checkbox__wrapper']}>
-												<CustomCheckbox
-													formik={formik}
-													label={EInterests.Sports}
-													setData={setChangedData}
-												/>
-											</div>
+											<CustomCheckbox
+												formik={formik}
+												label={EInterests.Sports}
+												setData={setChangedData}
+											/>
 											Sports
 										</CustomLabel>
 
 										<CustomLabel label={EInterests.Gaming}>
-											<div className={style['personal-account__form-item__checkbox__wrapper']}>
-												<CustomCheckbox
-													formik={formik}
-													label={EInterests.Gaming}
-													setData={setChangedData}
-												/>
-											</div>
+											<CustomCheckbox
+												formik={formik}
+												label={EInterests.Gaming}
+												setData={setChangedData}
+											/>
 											Gaming
 										</CustomLabel>
 
 										<CustomLabel label={EInterests.Traveling}>
-											<div className={style['personal-account__form-item__checkbox__wrapper']}>
-												<CustomCheckbox
-													formik={formik}
-													label={EInterests.Traveling}
-													setData={setChangedData}
-												/>
-											</div>
+											<CustomCheckbox
+												formik={formik}
+												label={EInterests.Traveling}
+												setData={setChangedData}
+											/>
 											Traveling
 										</CustomLabel>
 									</div>
