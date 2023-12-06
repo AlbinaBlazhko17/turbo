@@ -6,7 +6,7 @@ import CustomInputProps from './customInput.props';
 
 import style from './customInput.module.scss';
 
-function CustomInput({ formik, label, type, setData }: CustomInputProps) {
+function CustomInput({ formik, label, type, setData, ...props }: CustomInputProps) {
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
@@ -21,10 +21,12 @@ function CustomInput({ formik, label, type, setData }: CustomInputProps) {
 				[style[`input__error`]]:
 					(formik.touched as { [key: string]: boolean })[label] &&
 					(formik.errors as { [key: string]: boolean })[label],
+				[style[`input__disabled`]]: props.disabled,
 			})}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
 			value={formik.values[label as keyof FormValues] || ''}
+			{...props}
 		/>
 	);
 }

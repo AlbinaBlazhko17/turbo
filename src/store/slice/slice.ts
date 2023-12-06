@@ -143,6 +143,19 @@ export const formSlice = createSlice({
 				};
 			}
 		},
+		changeDataById: (state, action: PayloadAction<IDataForForm>) => {
+			const updatedState = [...state.formData];
+			const item = updatedState.find((item) => item.id === action.payload.id);
+			if (item) {
+				updatedState[updatedState.indexOf(item)] = action.payload;
+			}
+
+			return {
+				formData: updatedState,
+				allFormData: updatedState,
+				sortingData: updatedState,
+			};
+		},
 	},
 });
 

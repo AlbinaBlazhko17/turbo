@@ -24,3 +24,4 @@ export { default as Slider } from './Slider/Slider';
 export { default as SliderCard } from './SliderCard/SliderCard';
 export { default as Stats } from './Stats/Stats';
 export { default as Steps } from './Steps/Steps';
+export { default as PersonalAccount } from './PersonalAccount/PersonalAccount';
