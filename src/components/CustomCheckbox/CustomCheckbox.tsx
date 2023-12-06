@@ -41,9 +41,7 @@ function CustomCheckbox({ formik, label, setData }: CustomCheckboxProps) {
 			<input
 				id={`${label}`}
 				type="checkbox"
-				className={cn(style.input, [style[`input__checkbox`]], {
-					[style[`input__checkbox_terms`]]: label === 'terms',
-				})}
+				className={cn(style.input, [style[`input__checkbox`]])}
 				onChange={(e) => {
 					if (label !== 'terms') {
 						handleCheckboxChange();

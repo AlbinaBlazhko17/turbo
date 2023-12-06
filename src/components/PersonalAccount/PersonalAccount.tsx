@@ -68,8 +68,6 @@ function PersinalAccount() {
 
 	const rangeSliderRef = useRef<IRangeSliderRef>(null);
 
-	console.log(formikRef.current);
-
 	useEffect(() => {
 		(async () => {
 			if (id) {

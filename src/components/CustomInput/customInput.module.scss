@@ -28,15 +28,6 @@
 		&__wrapper {
 			position: relative;
 		}
-		// &_terms {
-		// 	&:checked::before {
-		// 		left: 0.5% !important;
-		// 	}
-		// 	&:checked::after {
-		// 		top: 35.5% !important;
-		// 		left: 1.5% !important;
-		// 	}
-		// }
 		&:hover {
 			border: 3px solid $light-blue;
 		}

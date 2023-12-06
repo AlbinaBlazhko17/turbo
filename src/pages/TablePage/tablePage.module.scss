@@ -9,6 +9,18 @@
 		word-wrap: break-word;
 	}
 
+	&__row {
+		cursor: pointer;
+		transition: background-color 0.3s ease-in-out;
+	}
+
+	&__row:hover {
+		background-color: $lighter-blue;
+		td {
+			color: black;
+		}
+	}
+
 	&__wrapper {
 		display: flex;
 		flex-direction: column;

@@ -10,6 +10,7 @@ import SortArrow from '@assets/icons/sort-arrow.svg';
 import cn from 'classnames';
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 import style from './tablePage.module.scss';
 
@@ -32,6 +33,7 @@ function TablePage() {
 	const [sliderRange, setSliderRange] = useState<number[]>([0, 100]);
 	const [isSliderInteracting, setIsSliderInteracting] = useState(false);
 	const dispatcher = useDispatch();
+	const navigate = useNavigate();
 
 	const handleModalOpen = () => {
 		setModalActive(true);
@@ -75,6 +77,10 @@ function TablePage() {
 		setSortedColumn(null);
 		setSelectedItem(selectedItemInitialState);
 		setModalActive(false);
+	}
+
+	function handleClickOnRow(id: number) {
+		navigate(`/user/${id}`);
 	}
 
 	useEffect(() => {
@@ -183,7 +189,11 @@ function TablePage() {
 						<tbody>
 							{data.length !== 0 ? (
 								data.slice(currentPage - PER_PAGE, currentPage).map((item, index) => (
-									<tr key={index}>
+									<tr
+										key={index}
+										className={style.table__row}
+										onClick={() => handleClickOnRow(item.id)}
+									>
 										<td className={cn(style.table__descr, style.table__descr_center)}>{item.id}</td>
 										<td className={style.table__descr}>{item.firstName}</td>
 										<td className={style.table__descr}>{item.lastName}</td>
