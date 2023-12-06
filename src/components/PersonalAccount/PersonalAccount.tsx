@@ -20,6 +20,7 @@ import { changeDataById } from '@/store/actions/actions';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import { IFormikRef } from '@/interfaces/IDataForFormik';
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox';
+import TrashIcon from '@assets/icons/trash.svg';
 
 import style from './personalAccount.module.scss';
 import 'react-range-slider-input/dist/style.css';
@@ -109,6 +110,8 @@ function PersinalAccount() {
 		dispatcher(changeDataById(changedData));
 	}
 
+	function handleClickOnTrash() {}
+
 	useEffect(() => {
 		if (formikRef.current) {
 			dispatcher(changeDataById(formikRef.current.values));
@@ -152,6 +155,9 @@ function PersinalAccount() {
 								<p className={style['personal-account__form-item__value']}>{user.gender}</p>
 							</div>
 						</div>
+					</div>
+					<div className={style['personal-account__trash']} onClick={handleClickOnTrash}>
+						<img src={TrashIcon} alt="delete" />
 					</div>
 				</div>
 			) : (
