@@ -58,7 +58,7 @@ const CustomSelect = ({ data, formik, type, disabled = false }: CustomSelectProp
 		}),
 		menu: (defaultStyles: CSSObjectWithLabel) => ({
 			...defaultStyles,
-			height: '14rem',
+			height: '250%',
 			overflowY: 'auto',
 		}),
 	};
