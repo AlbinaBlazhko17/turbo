@@ -31,7 +31,7 @@ function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFo
 			rangeSliderRef.current.element.current.style.background =
 				'linear-gradient(90deg, rgba(233, 245, 254, 1) 0%, rgba(33, 150, 243, 1) 76%, rgba(12, 127, 218, 1) 100%)';
 			rangeSliderRef.current.thumb[0].current.style.width = '0px';
-			rangeSliderRef.current.thumb[1].current.style.zIndex = '-1';
+			rangeSliderRef.current.thumb[1].current.style.zIndex = '1';
 			rangeSliderRef.current.range.current.style.background = 'transparent';
 		}
 		setDataSelect(loaderDataLanguages);
