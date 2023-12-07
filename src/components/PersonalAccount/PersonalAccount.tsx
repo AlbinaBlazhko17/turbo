@@ -212,6 +212,7 @@ function PersinalAccount() {
 													appearance="filled"
 													type="submit"
 													onClick={() => handleSaveData(EFormProps.email)}
+													className={style['personal-account__form-item__button']}
 												>
 													Save
 												</Button>
@@ -240,6 +241,7 @@ function PersinalAccount() {
 													appearance="filled"
 													type="submit"
 													onClick={() => handleSaveData(EFormProps.city)}
+													className={style['personal-account__form-item__button']}
 												>
 													Save
 												</Button>
@@ -268,6 +270,7 @@ function PersinalAccount() {
 													appearance="filled"
 													type="submit"
 													onClick={() => handleSaveData(EFormProps.zipCode)}
+													className={style['personal-account__form-item__button']}
 												>
 													Save
 												</Button>
