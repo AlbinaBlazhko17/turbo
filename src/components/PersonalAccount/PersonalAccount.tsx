@@ -144,6 +144,9 @@ function PersinalAccount() {
 			</div>
 			{user ? (
 				<div className={style['personal-account__info']}>
+					<div className={style['personal-account__trash']} onClick={handleClickOnTrash}>
+						<img src={TrashIcon} alt="delete" />
+					</div>
 					<h2 className={style['personal-account__subheader']}>Personal Information</h2>
 					<div className={style['personal-account__form']}>
 						<div className={style['personal-account__form-item']}>
@@ -170,9 +173,6 @@ function PersinalAccount() {
 								<p className={style['personal-account__form-item__value']}>{user.gender}</p>
 							</div>
 						</div>
-					</div>
-					<div className={style['personal-account__trash']} onClick={handleClickOnTrash}>
-						<img src={TrashIcon} alt="delete" />
 					</div>
 				</div>
 			) : (
