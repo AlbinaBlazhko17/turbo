@@ -1,4 +1,5 @@
 import ErrorPage from '@/components/ErrorPage/ErrorPage';
+import TableContent from '@/components/TableContent/TableContent';
 import Layout from '@/layout/Layout/Layout';
 import GalleryPage from '@/pages/GalleryPage/GalleryPage';
 import TablePage from '@/pages/TablePage/TablePage';
@@ -26,16 +27,27 @@ const routesConfig = createBrowserRouter([
 			{
 				path: '/users',
 				element: <TablePage />,
+				children: [
+					{
+						path: '',
+						element: <TableContent />,
+					},
+					{
+						path: ':id',
+						element: <UserInfoPage />,
+						loader,
+					},
+				],
 			},
 			{
 				path: '/gallery',
 				element: <GalleryPage />,
 			},
-			{
-				path: '/user/:id',
-				element: <UserInfoPage />,
-				loader,
-			},
+			// {
+			// 	path: '/user/:id',
+			// 	element: <UserInfoPage />,
+			// 	loader,
+			// },
 		],
 	},
 ]);
