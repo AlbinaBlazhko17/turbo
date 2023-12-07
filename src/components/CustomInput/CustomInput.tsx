@@ -21,7 +21,6 @@ function CustomInput({ formik, label, type, setData, ...props }: CustomInputProp
 				[style[`input__error`]]:
 					(formik.touched as { [key: string]: boolean })[label] &&
 					(formik.errors as { [key: string]: boolean })[label],
-				[style[`input__disabled`]]: props.disabled,
 			})}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}

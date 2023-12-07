@@ -40,7 +40,7 @@ const CustomSelect = ({ data, formik, type, disabled = false }: CustomSelectProp
 			...defaultStyles,
 			backgroundColor: 'transparent',
 			padding: '10px',
-			border: theme === 'dark' ? '1px solid white' : '1px solid #ccc',
+			border: theme === 'dark' ? '2px solid white' : '2px solid #ccc',
 			borderRadius: '8px',
 			boxShadow: 'none',
 			marginBottom: '20px',
@@ -60,6 +60,7 @@ const CustomSelect = ({ data, formik, type, disabled = false }: CustomSelectProp
 			...defaultStyles,
 			height: '250%',
 			overflowY: 'auto',
+			zIndex: 2,
 		}),
 	};
 

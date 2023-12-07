@@ -122,7 +122,6 @@ function PersinalAccount() {
 	}
 
 	function handleDeleteUser() {
-		console.log('click');
 		setIsModalActive(false);
 		navigate('/users');
 		dispatcher(deleteUserById(+id!));
