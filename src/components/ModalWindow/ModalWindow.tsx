@@ -14,8 +14,8 @@ type Props = {
 	title: string;
 	onClose?: () => void;
 	children: React.ReactNode | React.ReactNode[];
-	isSliderInteracting: boolean;
-	setIsSliderInteracting: setStateActionType<boolean>;
+	isSliderInteracting?: boolean;
+	setIsSliderInteracting?: setStateActionType<boolean>;
 	isModalActive: boolean;
 };
 
@@ -33,7 +33,9 @@ const ModalWindow: FC<PropsWithChildren<Props>> = (props) => {
 	useEffect(() => {
 		const handleWrapperClick = (event: MouseEvent) => {
 			const { target } = event;
-			setIsSliderInteracting(false);
+			if (setIsSliderInteracting) {
+				setIsSliderInteracting?.(false);
+			}
 			if (target instanceof Node && rootRef.current === target && !isSliderInteracting) {
 				onClose?.();
 			}

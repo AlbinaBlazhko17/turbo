@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef, useState } from 'react';
-import { Await, useLoaderData, useParams } from 'react-router';
+import { Await, redirect, useLoaderData, useNavigate, useParams } from 'react-router';
 import { getPhotoByUserId } from '@/utils/dataForGallery';
 import NotFoundImg from '@assets/img/icon-image-not-found-free-vector.jpg';
 import SpinnerIcon from '@assets/icons/spinner.svg';
@@ -16,11 +16,12 @@ import cn from 'classnames';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
 import Button from '../Button/Button';
-import { changeDataById } from '@/store/actions/actions';
+import { changeDataById, deleteUserById } from '@/store/actions/actions';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import { IFormikRef } from '@/interfaces/IDataForFormik';
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox';
 import TrashIcon from '@assets/icons/trash.svg';
+import ModalWindow from '../ModalWindow/ModalWindow';
 
 import style from './personalAccount.module.scss';
 import 'react-range-slider-input/dist/style.css';
@@ -64,8 +65,10 @@ function PersinalAccount() {
 		[EFormProps.date]: true,
 		[EFormProps.language]: true,
 	});
+	const [isModalActive, setIsModalActive] = useState(false);
 	const { id } = useParams();
 	const dispatcher = useDispatch();
+	const navigate = useNavigate();
 
 	const rangeSliderRef = useRef<IRangeSliderRef>(null);
 
@@ -110,7 +113,20 @@ function PersinalAccount() {
 		dispatcher(changeDataById(changedData));
 	}
 
-	function handleClickOnTrash() {}
+	function onClose() {
+		setIsModalActive(false);
+	}
+
+	function handleClickOnTrash() {
+		setIsModalActive(true);
+	}
+
+	function handleDeleteUser() {
+		console.log('click');
+		setIsModalActive(false);
+		navigate('/users');
+		dispatcher(deleteUserById(+id!));
+	}
 
 	useEffect(() => {
 		if (formikRef.current) {
@@ -382,6 +398,20 @@ function PersinalAccount() {
 					)}
 				</Formik>
 			)}
+			<ModalWindow title="Delete User?" onClose={onClose} isModalActive={isModalActive}>
+				<div className={style['personal-account__modal']}>
+					<Button appearance="filled" onClick={onClose}>
+						No
+					</Button>
+					<Button
+						appearance="outlined"
+						onClick={handleDeleteUser}
+						className={style['personal-account__modal__button']}
+					>
+						Yes
+					</Button>
+				</div>
+			</ModalWindow>
 		</div>
 	);
 }

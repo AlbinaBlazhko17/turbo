@@ -6,6 +6,18 @@
 	grid-template-rows: 50vh 65vh;
 	grid-gap: 10%;
 	justify-content: center;
+
+	&__modal {
+		width: 20rem;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		&__button {
+			font-weight: 600;
+			color: #ea5d5d;
+		}
+	}
+
 	&__subheader {
 		color: $light-blue !important;
 	}

@@ -52,9 +52,10 @@ export const formSlice = createSlice({
 		sortByProp: (state, action: ISortByPropPayload) => {
 			const updatedState = [...state.formData];
 			const payloadKey = action.payload.prop as keyof IDataForForm;
+			const updatedStateWithoutAllValues = updatedState.filter((item) => item.terms !== false);
 			const type = action.payload.type as 'asc' | 'desc';
 			if (payloadKey) {
-				updatedState.sort((a, b) => {
+				updatedStateWithoutAllValues.sort((a, b) => {
 					if (payloadKey in a && payloadKey in b) {
 						if (type === 'asc') {
 							if (a[payloadKey]! < b[payloadKey]!) {
@@ -77,8 +78,8 @@ export const formSlice = createSlice({
 			}
 
 			return {
-				formData: updatedState,
-				sortingData: updatedState,
+				formData: [...updatedStateWithoutAllValues, allValues],
+				sortingData: [...updatedStateWithoutAllValues, allValues],
 				allFormData: state.allFormData,
 			};
 		},
@@ -148,6 +149,23 @@ export const formSlice = createSlice({
 			const item = updatedState.find((item) => item.id === action.payload.id);
 			if (item) {
 				updatedState[updatedState.indexOf(item)] = action.payload;
+			}
+
+			return {
+				formData: updatedState,
+				allFormData: updatedState,
+				sortingData: updatedState,
+			};
+		},
+		deleteUserById: (state, action: PayloadAction<number>) => {
+			const updatedState = [...state.formData];
+			const item = updatedState.find((item) => item.id === action.payload);
+			if (updatedState.length === 1) {
+				updatedState[0] = allValues;
+				updatedState.pop();
+			}
+			if (item) {
+				updatedState.splice(updatedState.indexOf(item), 1);
 			}
 
 			return {
