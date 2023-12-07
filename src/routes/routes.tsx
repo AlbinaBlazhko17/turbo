@@ -43,11 +43,6 @@ const routesConfig = createBrowserRouter([
 				path: '/gallery',
 				element: <GalleryPage />,
 			},
-			// {
-			// 	path: '/user/:id',
-			// 	element: <UserInfoPage />,
-			// 	loader,
-			// },
 		],
 	},
 ]);
