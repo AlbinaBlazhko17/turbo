@@ -20,9 +20,8 @@ import { ObjectSchema } from 'yup';
 import style from './formPage.module.scss';
 
 function FormPage() {
-	const storedStep = localStorage.getItem('step');
-	const step = storedStep !== null ? +storedStep : undefined;
-	const [currentStep, setCurrentStep] = useState(step || 1);
+	const storredStep = localStorage.getItem('step');
+	const [currentStep, setCurrentStep] = useState<number>(storredStep ? +storredStep : 1);
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
 	const initialValues = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
