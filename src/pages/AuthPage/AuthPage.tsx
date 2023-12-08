@@ -9,18 +9,20 @@ import ArrowIcon from '@/assets/icons/sort-arrow.svg';
 import { motion } from 'framer-motion';
 
 import style from './AuthPage.module.scss';
+import { validationSchemaAuth } from './validationSchema';
 
 function AuthPage() {
+	const formikRef = useRef<IFormikRef>(null);
+	const location = useLocation();
+	const currentPath = location.pathname.slice(1);
 	const [data, setData] = useState<IDataForAuth>({
 		username: '',
 		email: '',
 		password: '',
 		checkPassword: '',
 		terms: false,
+		showFields: currentPath === 'signup',
 	});
-	const formikRef = useRef<IFormikRef>(null);
-	const location = useLocation();
-	const currentPath = location.pathname.slice(1);
 
 	useEffect(() => {
 		if (formikRef.current) {
@@ -39,7 +41,7 @@ function AuthPage() {
 							<Link to="/login">Back to login</Link>
 						</div>
 					)}
-					<Formik initialValues={data} innerRef={formikRef}>
+					<Formik initialValues={data} innerRef={formikRef} validationSchema={validationSchemaAuth}>
 						{(formik) => (
 							<div className={style.auth__form}>
 								{currentPath === 'signup' && (
@@ -54,6 +56,11 @@ function AuthPage() {
 											setData={setData}
 											className={style['auth__form-item__input']}
 										/>
+										{formik.touched.username && formik.errors.username && (
+											<div className={style[`auth__form-item__error`]}>
+												{formik.errors.username}
+											</div>
+										)}
 									</div>
 								)}
 								<div className={style['auth__form-item']}>
@@ -61,12 +68,18 @@ function AuthPage() {
 										Email
 									</CustomLabel>
 									<CustomInput formik={formik} label="email" type="email" setData={setData} />
+									{formik.touched.email && formik.errors.email && (
+										<div className={style[`auth__form-item__error`]}>{formik.errors.email}</div>
+									)}
 								</div>
 								<div className={style['auth__form-item']}>
 									<CustomLabel label="password" className={style['auth__form-item__label']}>
 										Password
 									</CustomLabel>
 									<CustomInput formik={formik} label="password" type="password" setData={setData} />
+									{formik.touched.password && formik.errors.password && (
+										<div className={style[`auth__form-item__error`]}>{formik.errors.password}</div>
+									)}
 								</div>
 								{currentPath === 'signup' && (
 									<>
@@ -83,6 +96,11 @@ function AuthPage() {
 												type="password"
 												setData={setData}
 											/>
+											{formik.touched.checkPassword && formik.errors.checkPassword && (
+												<div className={style[`style['auth__form-item__error`]}>
+													{formik.errors.checkPassword}
+												</div>
+											)}
 										</div>
 										<div className={style['auth__form-item']}>
 											<CustomLabel label="terms" className={style['auth__form-item__label']}>

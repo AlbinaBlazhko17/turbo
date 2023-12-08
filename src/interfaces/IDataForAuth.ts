@@ -4,4 +4,5 @@ export interface IDataForAuth {
 	password: string;
 	checkPassword: string;
 	terms: boolean;
+	showFields: boolean;
 }
