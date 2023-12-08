@@ -1,20 +1,22 @@
 import { IDataForAuth } from '@/interfaces/IDataForAuth';
 import { Formik } from 'formik';
-import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import { IFormikRef } from '@/interfaces/IDataForFormik';
 import { Button, CustomCheckbox, CustomInput, CustomLabel } from '@/components';
 import { Link } from 'react-router-dom';
 import ArrowIcon from '@/assets/icons/sort-arrow.svg';
 import { motion } from 'framer-motion';
+import { validationSchemaAuth } from './validationSchema';
+import { AuthContext } from '@/auth/auth';
 
 import style from './AuthPage.module.scss';
-import { validationSchemaAuth } from './validationSchema';
 
 function AuthPage() {
 	const formikRef = useRef<IFormikRef>(null);
 	const location = useLocation();
 	const currentPath = location.pathname.slice(1);
+	const { toggleAuth } = useContext(AuthContext);
 	const [data, setData] = useState<IDataForAuth>({
 		username: '',
 		email: '',
@@ -23,6 +25,7 @@ function AuthPage() {
 		terms: false,
 		showFields: currentPath === 'signup',
 	});
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (formikRef.current) {
@@ -41,7 +44,15 @@ function AuthPage() {
 							<Link to="/login">Back to login</Link>
 						</div>
 					)}
-					<Formik initialValues={data} innerRef={formikRef} validationSchema={validationSchemaAuth}>
+					<Formik
+						initialValues={data}
+						innerRef={formikRef}
+						validationSchema={validationSchemaAuth}
+						onSubmit={() => {
+							toggleAuth();
+							navigate('/');
+						}}
+					>
 						{(formik) => (
 							<div className={style.auth__form}>
 								{currentPath === 'signup' && (
@@ -113,7 +124,12 @@ function AuthPage() {
 										</div>
 									</>
 								)}
-								<Button appearance="filled" type="submit" className={style['auth__form-item__button']}>
+								<Button
+									appearance="filled"
+									type="submit"
+									className={style['auth__form-item__button']}
+									onClick={formik.handleSubmit}
+								>
 									{currentPath === 'login' ? 'Login' : 'Register'}
 								</Button>
 								{currentPath === 'login' && (
