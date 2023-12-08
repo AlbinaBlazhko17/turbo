@@ -9,9 +9,8 @@ import Dashboard from '@pages/Dashboard/Dashboard';
 import FormPage from '@pages/FormPage/FormPage';
 import { createBrowserRouter } from 'react-router-dom';
 import PrivateRoutes from './PrivateRoutes/PrivateRoutes';
-import LoginPage from '@/pages/LoginPage/LoginPage';
+import AuthPage from '@/pages/AuthPage/AuthPage';
 import AuthLayout from '@/layout/AuthLayout/AuthLayout';
-import Signup from '@/pages/SignupPage/SignupPage';
 
 const routesConfig = createBrowserRouter([
 	{
@@ -61,11 +60,11 @@ const routesConfig = createBrowserRouter([
 		children: [
 			{
 				path: '/login',
-				element: <LoginPage />,
+				element: <AuthPage />,
 			},
 			{
 				path: '/signup',
-				element: <Signup />,
+				element: <AuthPage />,
 			},
 		],
 	},

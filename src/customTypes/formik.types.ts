@@ -1,3 +1,4 @@
+import { IDataForAuth } from '@/interfaces/IDataForAuth';
 import { IFormikRef } from '@/interfaces/IDataForFormik';
 import {
 	IDataForAddressForm,
@@ -11,6 +12,7 @@ import { Ref } from 'react';
 
 export type FormValues = IDataForPersonalnfoForm | IDataForAddressForm | IDataForPreferencesForm | IDataForSubmitForm;
 
-export type formikProps = FormikProps<IDataForForm>;
+export type formikProps = FormikProps<IDataForForm | IDataForAuth>;
 
 export type IFormikInnerRef = (Ref<FormikProps<IDataForForm>> | undefined) & { current: IFormikRef };
+export type IFormikInnreRefAuth = (Ref<FormikProps<IDataForAuth>> | undefined) & { current: IFormikRef };

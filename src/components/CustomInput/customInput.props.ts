@@ -4,4 +4,5 @@ export default interface CustomInputProps extends IFieldProps {
 	label: string;
 	type: string;
 	disabled?: boolean;
+	className?: string;
 }

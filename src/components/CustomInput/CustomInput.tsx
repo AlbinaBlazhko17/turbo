@@ -6,7 +6,7 @@ import CustomInputProps from './customInput.props';
 
 import style from './customInput.module.scss';
 
-function CustomInput({ formik, label, type, setData, ...props }: CustomInputProps) {
+function CustomInput({ formik, label, type, setData, className, ...props }: CustomInputProps) {
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
@@ -17,7 +17,7 @@ function CustomInput({ formik, label, type, setData, ...props }: CustomInputProp
 		<input
 			id={label}
 			type={type}
-			className={cn(style.input, style[`input__${theme}`], {
+			className={cn(style.input, style[`input__${theme}`], className, {
 				[style[`input__error`]]:
 					(formik.touched as { [key: string]: boolean })[label] &&
 					(formik.errors as { [key: string]: boolean })[label],
