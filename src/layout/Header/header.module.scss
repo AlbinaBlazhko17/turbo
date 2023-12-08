@@ -39,9 +39,11 @@
 		box-sizing: border-box;
 		width: 45px;
 		height: 45px;
-
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		& img {
-			width: 100%;
+			width: 90%;
 			height: 100%;
 		}
 	}

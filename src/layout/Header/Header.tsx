@@ -7,10 +7,11 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ReactSwitch from 'react-switch';
 import { ThemeContext } from '../../theme/theme';
+import TeamIcon from '@assets/icons/team.svg';
 
 import style from './header.module.scss';
 
-function Header() {
+function Header({ isAuthenticated }: { isAuthenticated: boolean }) {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 
 	return (
@@ -55,7 +56,7 @@ function Header() {
 					<img src={ChatBlue} alt="chat" />
 				</Link>
 				<Link to="/" className={style.header__img}>
-					<img src={PersonPhoto} alt="user" />
+					<img src={isAuthenticated ? PersonPhoto : TeamIcon} alt="user" />
 				</Link>
 			</div>
 		</header>
