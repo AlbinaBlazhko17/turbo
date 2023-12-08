@@ -22,29 +22,11 @@ import { IFormikRef } from '@/interfaces/IDataForFormik';
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox';
 import TrashIcon from '@assets/icons/trash.svg';
 import ModalWindow from '../ModalWindow/ModalWindow';
+import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
+import { IDataForPersonalAccount } from '@/customTypes/personalAccount';
 
 import style from './personalAccount.module.scss';
 import 'react-range-slider-input/dist/style.css';
-
-type IDataForPersonalAccount = {
-	[EFormProps.firstName]: boolean;
-	[EFormProps.lastName]: boolean;
-	[EFormProps.email]: boolean;
-	[EFormProps.city]: boolean;
-	[EFormProps.city]: boolean;
-	[EFormProps.country]: boolean;
-	[EFormProps.zipCode]: boolean;
-	[EFormProps.interests]: boolean;
-	[EFormProps.notificationFrequency]: boolean;
-	[EFormProps.date]: boolean;
-	[EFormProps.language]: boolean;
-};
-
-interface IRangeSliderRef {
-	element: React.RefObject<HTMLDivElement>;
-	thumb: React.RefObject<HTMLDivElement>[];
-	range: React.RefObject<HTMLDivElement>;
-}
 
 function PersinalAccount() {
 	const [profilePicture, setProfilePicture] = useState<string>('');

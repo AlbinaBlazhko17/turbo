@@ -6,15 +6,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
 import PreferencesFormProps from './PreferencesForm.props';
+import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
 
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
-
-interface IRangeSliderRef {
-	element: React.RefObject<HTMLDivElement>;
-	thumb: React.RefObject<HTMLDivElement>[];
-	range: React.RefObject<HTMLDivElement>;
-}
 
 function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFormProps) {
 	const [dataSelect, setDataSelect] = useState<SelectValue[]>();

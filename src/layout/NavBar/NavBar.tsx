@@ -3,7 +3,7 @@ import Logout from '@assets/icons/logout.svg';
 import Arrow from '@assets/icons/menu.svg';
 import { ThemeContext } from '@theme/theme';
 import cn from 'classnames';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AuthContext } from '@/auth/auth';
 
