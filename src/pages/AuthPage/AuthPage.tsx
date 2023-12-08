@@ -3,12 +3,12 @@ import { Formik } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 import { IFormikRef } from '@/interfaces/IDataForFormik';
-import { Button, CustomInput, CustomLabel } from '@/components';
+import { Button, CustomCheckbox, CustomInput, CustomLabel } from '@/components';
 import { Link } from 'react-router-dom';
 import ArrowIcon from '@/assets/icons/sort-arrow.svg';
+import { motion } from 'framer-motion';
 
 import style from './AuthPage.module.scss';
-import { motion } from 'framer-motion';
 
 function AuthPage() {
 	const [data, setData] = useState<IDataForAuth>({
@@ -69,17 +69,31 @@ function AuthPage() {
 									<CustomInput formik={formik} label="password" type="password" setData={setData} />
 								</div>
 								{currentPath === 'signup' && (
-									<div className={style['auth__form-item']}>
-										<CustomLabel label="checkPassword" className={style['auth__form-item__label']}>
-											Repeat password
-										</CustomLabel>
-										<CustomInput
-											formik={formik}
-											label="checkPassword"
-											type="password"
-											setData={setData}
-										/>
-									</div>
+									<>
+										<div className={style['auth__form-item']}>
+											<CustomLabel
+												label="checkPassword"
+												className={style['auth__form-item__label']}
+											>
+												Repeat password
+											</CustomLabel>
+											<CustomInput
+												formik={formik}
+												label="checkPassword"
+												type="password"
+												setData={setData}
+											/>
+										</div>
+										<div className={style['auth__form-item']}>
+											<CustomLabel label="terms" className={style['auth__form-item__label']}>
+												<CustomCheckbox formik={formik} label="terms" setData={setData} />I
+												accept the terms and conditions
+											</CustomLabel>
+											{formik.touched.terms && formik.errors.terms && (
+												<div className={style[`form-item__error`]}>{formik.errors.terms}</div>
+											)}
+										</div>
+									</>
 								)}
 								<Button appearance="filled" type="submit" className={style['auth__form-item__button']}>
 									{currentPath === 'login' ? 'Login' : 'Register'}
