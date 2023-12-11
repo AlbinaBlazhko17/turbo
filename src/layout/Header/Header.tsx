@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom';
 import ReactSwitch from 'react-switch';
 import { ThemeContext } from '../../theme/theme';
 import TeamIcon from '@assets/icons/team.svg';
+import { AuthContext } from '@/auth/auth';
 
 import style from './header.module.scss';
 
-function Header({ isAuthenticated }: { isAuthenticated: boolean }) {
+function Header() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
-
+	const { isAuthenticated } = useContext(AuthContext);
 	return (
 		<header className={cn(style.header, style[`${theme}`])}>
 			<div className={style.header__wrapper}>

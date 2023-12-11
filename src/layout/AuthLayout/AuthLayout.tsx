@@ -1,15 +1,12 @@
-import { AuthContext } from '@/auth/auth';
-import { useContext } from 'react';
 import { Outlet } from 'react-router';
 import Header from '../Header/Header';
 
 import style from './authLayout.module.scss';
 
 function AuthLayout() {
-	const { isAuthenticated } = useContext(AuthContext);
 	return (
 		<div>
-			<Header isAuthenticated={isAuthenticated} />
+			<Header />
 			<main className={style.wrapper}>
 				<Outlet />
 			</main>
