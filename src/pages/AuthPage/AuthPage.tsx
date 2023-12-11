@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { IDataForAuth } from '@/interfaces/IDataForAuth';
 import { Formik } from 'formik';
 import { useContext, useEffect, useRef, useState } from 'react';
@@ -9,6 +10,7 @@ import ArrowIcon from '@/assets/icons/sort-arrow.svg';
 import { AnimatePresence, motion } from 'framer-motion';
 import { validationSchemaAuth } from './validationSchema';
 import { AuthContext } from '@/auth/auth';
+import EllipseIcon from '@assets/icons/ellipse.svg';
 
 import style from './AuthPage.module.scss';
 
@@ -35,6 +37,26 @@ function AuthPage() {
 
 	return (
 		<div className={style.auth}>
+			<div className={style.auth__ellipse}>
+				<div className={style.auth__ellipse__wrapper}>
+					<img src={EllipseIcon} alt="ellipse" />
+
+					<div className={style.auth__ellipse__text}>
+						<h2>Hey there! </h2>
+						<p>To access the dashboard
+							you need to authorize</p>
+					</div>
+				</div>
+			</div>
+			<div className={style['auth__ellipse-top']}>
+				<img src={EllipseIcon} alt="ellipse" />
+			</div>
+			<div className={style['auth__ellipse-right']}>
+				<img src={EllipseIcon} alt="ellipse" />
+			</div>
+			<div className={style['auth__ellipse-bottom']}>
+				<img src={EllipseIcon} alt="ellipse" />
+			</div>
 			<h1 className={style.auth__title}>{currentPath === 'login' ? 'Login' : 'Register'}</h1>
 			<AnimatePresence>
 				<section className={style.auth__wrapper}>
