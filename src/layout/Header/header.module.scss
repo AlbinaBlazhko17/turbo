@@ -42,9 +42,11 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		overflow: hidden;
 		& img {
 			width: 90%;
 			height: 100%;
+			object-fit: cover;
 		}
 	}
 }
