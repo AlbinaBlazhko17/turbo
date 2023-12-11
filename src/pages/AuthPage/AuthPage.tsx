@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { IDataForAuth, IUser } from '@/interfaces/IDataForAuth';
 import { Formik } from 'formik';
 import { useContext, useEffect, useRef, useState } from 'react';
@@ -52,8 +51,7 @@ function AuthPage() {
 
 					<div className={style.auth__ellipse__text}>
 						<h2>Hey there! </h2>
-						<p>To access the dashboard
-							you need to authorize</p>
+						<p>To access the dashboard you need to authorize</p>
 					</div>
 				</div>
 			</div>
@@ -90,34 +88,29 @@ function AuthPage() {
 						innerRef={formikRef}
 						validationSchema={validationSchemaAuth}
 						onSubmit={(values) => {
-							if(currentPath === 'signup') {
-								if(values.email === user.email){
+							if (currentPath === 'signup') {
+								if (values.email === user.email) {
 									formikRef.current?.setErrors({
-										email: 'This email is already registered'
+										email: 'This email is already registered',
 									});
-								}
-								else if(values.username === user.username){
+								} else if (values.username === user.username) {
 									formikRef.current?.setErrors({
-										username: 'This username is already registered'
-									})
+										username: 'This username is already registered',
+									});
 								} else {
 									toggleAuth();
 									navigate('/');
 									dispatcher(addUser(values));
 								}
-
 							} else {
-								if(values.email !== user.email){
+								if (values.email !== user.email) {
 									formikRef.current?.setErrors({
-									
 										email: 'This email is not registered',
-									})
-								}
-								else if(values.password !== user.password){
+									});
+								} else if (values.password !== user.password) {
 									formikRef.current?.setErrors({
-										
 										password: 'Wrong password',
-									})
+									});
 								} else {
 									toggleAuth();
 									navigate('/');
@@ -218,7 +211,9 @@ function AuthPage() {
 												accept the terms and conditions
 											</CustomLabel>
 											{formik.touched.terms && formik.errors.terms && (
-												<div className={style['auth__form-item__error']}>{formik.errors.terms}</div>
+												<div className={style['auth__form-item__error']}>
+													{formik.errors.terms}
+												</div>
 											)}
 										</motion.div>
 									</>
