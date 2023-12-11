@@ -9,7 +9,8 @@ import { AuthContext } from '@/auth/auth';
 function App() {
 	const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 	const auth = localStorage.getItem('isAuthenticated');
-	const [isAuthenticated, setIsAuthenticated] = useState(auth ? !!auth : false);
+
+	const [isAuthenticated, setIsAuthenticated] = useState(auth ? auth === 'true' : false);
 
 	const toggleTheme = () => {
 		localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
