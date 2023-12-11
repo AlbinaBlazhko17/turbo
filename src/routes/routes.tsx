@@ -11,6 +11,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import PrivateRoutes from './PrivateRoutes/PrivateRoutes';
 import AuthPage from '@/pages/AuthPage/AuthPage';
 import AuthLayout from '@/layout/AuthLayout/AuthLayout';
+import UserProfile from '@/pages/UserProfile/UserProfile';
 
 const routesConfig = createBrowserRouter([
 	{
@@ -49,6 +50,10 @@ const routesConfig = createBrowserRouter([
 					{
 						path: '/gallery',
 						element: <GalleryPage />,
+					},
+					{
+						path: '/profile',
+						element: <UserProfile />,
 					},
 				],
 			},
