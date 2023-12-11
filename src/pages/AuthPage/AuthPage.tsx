@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IDataForAuth } from '@/interfaces/IDataForAuth';
+import { IDataForAuth, IUser } from '@/interfaces/IDataForAuth';
 import { Formik } from 'formik';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
@@ -11,6 +11,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { validationSchemaAuth } from './validationSchema';
 import { AuthContext } from '@/auth/auth';
 import EllipseIcon from '@assets/icons/ellipse.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/customTypes/store.types';
+import { addUser } from '@/store/actions/actions';
 
 import style from './AuthPage.module.scss';
 
@@ -19,6 +22,7 @@ function AuthPage() {
 	const location = useLocation();
 	const currentPath = location.pathname.slice(1);
 	const { toggleAuth } = useContext(AuthContext);
+	const user: IUser = useSelector((state: RootState) => state.user);
 	const [data, setData] = useState<IDataForAuth>({
 		username: '',
 		email: '',
@@ -28,12 +32,17 @@ function AuthPage() {
 		showFields: currentPath === 'signup',
 	});
 	const navigate = useNavigate();
+	const dispatcher = useDispatch();
 
 	useEffect(() => {
 		if (formikRef.current) {
 			setData(formikRef.current.values as IDataForAuth);
 		}
 	}, [formikRef.current?.values]);
+
+	useEffect(() => {
+		formikRef.current?.setFieldValue('showFields', currentPath === 'signup');
+	}, [currentPath]);
 
 	return (
 		<div className={style.auth}>
@@ -80,9 +89,40 @@ function AuthPage() {
 						initialValues={data}
 						innerRef={formikRef}
 						validationSchema={validationSchemaAuth}
-						onSubmit={() => {
-							toggleAuth();
-							navigate('/');
+						onSubmit={(values) => {
+							if(currentPath === 'signup') {
+								if(values.email === user.email){
+									formikRef.current?.setErrors({
+										email: 'This email is already registered'
+									});
+								}
+								else if(values.username === user.username){
+									formikRef.current?.setErrors({
+										username: 'This username is already registered'
+									})
+								} else {
+									toggleAuth();
+									navigate('/');
+									dispatcher(addUser(values));
+								}
+
+							} else {
+								if(values.email !== user.email){
+									formikRef.current?.setErrors({
+									
+										email: 'This email is not registered',
+									})
+								}
+								else if(values.password !== user.password){
+									formikRef.current?.setErrors({
+										
+										password: 'Wrong password',
+									})
+								} else {
+									toggleAuth();
+									navigate('/');
+								}
+							}
 						}}
 					>
 						{(formik) => (
@@ -158,7 +198,7 @@ function AuthPage() {
 												setData={setData}
 											/>
 											{formik.touched.checkPassword && formik.errors.checkPassword && (
-												<div className={style[`style['auth__form-item__error`]}>
+												<div className={style['auth__form-item__error']}>
 													{formik.errors.checkPassword}
 												</div>
 											)}
@@ -178,7 +218,7 @@ function AuthPage() {
 												accept the terms and conditions
 											</CustomLabel>
 											{formik.touched.terms && formik.errors.terms && (
-												<div className={style[`form-item__error`]}>{formik.errors.terms}</div>
+												<div className={style['auth__form-item__error']}>{formik.errors.terms}</div>
 											)}
 										</motion.div>
 									</>

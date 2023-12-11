@@ -1,20 +1,21 @@
+import { AuthContext } from '@/auth/auth';
 import ChatBlue from '@assets/icons/chat_blue.svg';
 import Moon from '@assets/icons/moon.svg';
 import Sun from '@assets/icons/sun.svg';
+import TeamIcon from '@assets/icons/team.svg';
 import PersonPhoto from '@assets/img/person.png';
 import cn from 'classnames';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ReactSwitch from 'react-switch';
 import { ThemeContext } from '../../theme/theme';
-import TeamIcon from '@assets/icons/team.svg';
-import { AuthContext } from '@/auth/auth';
 
 import style from './header.module.scss';
 
 function Header() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 	const { isAuthenticated } = useContext(AuthContext);
+
 	return (
 		<header className={cn(style.header, style[`${theme}`])}>
 			<div className={style.header__wrapper}>
@@ -56,7 +57,7 @@ function Header() {
 				<Link to="/" className={style.header__img}>
 					<img src={ChatBlue} alt="chat" />
 				</Link>
-				<Link to="/" className={style.header__img}>
+				<Link to="/profile" className={style.header__img}>
 					<img src={isAuthenticated ? PersonPhoto : TeamIcon} alt="user" />
 				</Link>
 			</div>

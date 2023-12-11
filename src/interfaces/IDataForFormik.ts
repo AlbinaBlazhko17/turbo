@@ -9,4 +9,6 @@ export interface IFormikRef {
 	touched: ObjectSchema<FormikValues>;
 	values: IDataForForm | IDataForAuth;
 	handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
+	setErrors: (errors: FormikErrors<FormikValues>) => void;
+	setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
 }
