@@ -22,8 +22,8 @@
 	&__img {
 		position: relative;
 		margin-left: 50px;
-		width: 200px;
-		height: 200px;
+		width: 10rem;
+		height: 10rem;
 		background-color: $lighter-blue;
 		border-radius: 50%;
 		overflow: hidden;
@@ -39,7 +39,7 @@
 	&__form {
 		margin: 0 auto;
 		margin-top: 50px;
-		width: 30vw;
+		width: 40%;
 		label {
 			justify-content: start;
 			margin-left: 10px;
@@ -68,10 +68,44 @@
 		
 		&__wrapper {
 			margin-top: 30px;
-			margin-left: 50px;
+			margin-left: 5%;
 		}
 		&-item {
 			margin-bottom: 30px;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		&__form {
+			width: 60%;
+		}
+	}
+	@media screen and (max-width: 600px) {
+		&__img {
+			margin-left: 0;
+			margin-top: -50px;
+			width: 8rem;
+			height: 8rem;
+		}
+		&__form {
+			width: 70%;
+		}
+	}
+	@media screen and (max-width: 600px) {
+		&__info {
+			&__wrapper {
+				width: 60%;
+				margin-top: 10px;
+				word-break: break-all;
+			}
+		}
+		&__img {
+			width: 6rem;
+			height: 6rem;
+		}
+		&__form {
+			width: 100%;
+			box-sizing: border-box;
 		}
 	}
 }
