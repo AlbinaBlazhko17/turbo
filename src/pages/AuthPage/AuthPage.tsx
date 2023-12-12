@@ -21,7 +21,7 @@ function AuthPage() {
 	const location = useLocation();
 	const currentPath = location.pathname.slice(1);
 	const { toggleAuth } = useContext(AuthContext);
-	const user: IUser = useSelector((state: RootState) => state.user);
+	const user: Omit<IUser, 'checkPassword'> = useSelector((state: RootState) => state.user);
 	const [data, setData] = useState<IDataForAuth>({
 		username: '',
 		email: '',
@@ -50,7 +50,7 @@ function AuthPage() {
 					<img src={EllipseIcon} alt="ellipse" />
 
 					<div className={style.auth__ellipse__text}>
-						<h2>Hey there! </h2>
+						<h2>Welcome! </h2>
 						<p>To access the dashboard you need to authorize</p>
 					</div>
 				</div>
