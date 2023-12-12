@@ -1,33 +1,31 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
-import { Await, useLoaderData, useNavigate, useParams } from 'react-router';
-import { getPhotoByUserId } from '@/utils/dataForGallery';
-import NotFoundImg from '@assets/img/icon-image-not-found-free-vector.jpg';
-import SpinnerIcon from '@assets/icons/spinner.svg';
-import { Formik } from 'formik';
-import { IDataForForm } from '@/interfaces/IDataForForms';
+import { EFormProps, EInterests } from '@/customTypes/form.types';
 import { RootState } from '@/customTypes/store.types';
+import { IDataForForm } from '@/interfaces/IDataForForms';
+import { getPhotoByUserId } from '@/utils/dataForGallery';
+import EditIcon from '@assets/icons/edit.svg';
+import SpinnerIcon from '@assets/icons/spinner.svg';
+import NotFoundImg from '@assets/img/icon-image-not-found-free-vector.jpg';
+import cn from 'classnames';
+import { Formik, FormikProps } from 'formik';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Await, useLoaderData, useNavigate, useParams } from 'react-router';
 import { validationSchemaForPersonalAccount } from '../CustomForm/validationSchemas';
 import CustomInput from '../CustomInput/CustomInput';
-import { EFormProps, EInterests } from '@/customTypes/form.types';
 import CustomLabel from '../CustomLabel/CustomLabel';
-import EditIcon from '@assets/icons/edit.svg';
-import cn from 'classnames';
+import { IDataForPersonalAccount } from '@/customTypes/personalAccount';
+import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
+import { changeDataById, deleteUserById } from '@/store/actions/actions';
+import TrashIcon from '@assets/icons/trash.svg';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
 import Button from '../Button/Button';
-import { changeDataById, deleteUserById } from '@/store/actions/actions';
-import CustomSelect from '../CustomSelect/CustomSelect';
-import { IFormikRef } from '@/interfaces/IDataForFormik';
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox';
-import TrashIcon from '@assets/icons/trash.svg';
+import CustomSelect from '../CustomSelect/CustomSelect';
 import ModalWindow from '../ModalWindow/ModalWindow';
-import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
-import { IDataForPersonalAccount } from '@/customTypes/personalAccount';
 
-import style from './personalAccount.module.scss';
 import 'react-range-slider-input/dist/style.css';
-import { IFormikInnerRef } from '@/customTypes/formik.types';
+import style from './personalAccount.module.scss';
 
 function PersinalAccount() {
 	const [profilePicture, setProfilePicture] = useState<string>('');
@@ -35,7 +33,7 @@ function PersinalAccount() {
 	const [user, setUser] = useState<IDataForForm>();
 	const [changedData, setChangedData] = useState<IDataForForm>(user!);
 	const dataForSelect = useLoaderData();
-	const formikRef = useRef<IFormikRef>(null);
+	const formikRef = useRef<FormikProps<IDataForForm> | null>(null);
 	const [disabled, setDisabled] = useState<IDataForPersonalAccount>({
 		[EFormProps.firstName]: true,
 		[EFormProps.lastName]: true,
@@ -168,7 +166,7 @@ function PersinalAccount() {
 					onSubmit={(values) => {
 						console.log(values);
 					}}
-					innerRef={formikRef as IFormikInnerRef}
+					innerRef={formikRef}
 				>
 					{(formik) => (
 						<>

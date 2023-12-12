@@ -1,17 +1,15 @@
 import { Button, CustomInput, CustomLabel } from '@/components';
 import { RootState } from '@/customTypes/store.types';
-import { IFormikRef } from '@/interfaces/IDataForFormik';
 import { IPassword } from '@/interfaces/IDataForPassword';
 import { changePassword } from '@/store/actions/actions';
 import bg from '@assets/img/BG.png';
 import ProfileIcon from '@assets/img/person.png';
-import { Formik } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { validationSchemaPassword } from './validationSchemaPassword';
 
 import style from './UserProfile.module.scss';
-import { IFormikInnreRefPassword } from '@/customTypes/formik.types';
 
 function UserProfile() {
 	const initialValues: IPassword = {
@@ -21,7 +19,7 @@ function UserProfile() {
 	};
 	const [data, setData] = useState<IPassword>(initialValues);
 	const user = useSelector((state: RootState) => state.user);
-	const formikRef = useRef<IFormikRef>(null);
+	const formikRef = useRef<FormikProps<IPassword>>(null);
 
 	const dispatcher = useDispatch();
 
@@ -62,7 +60,7 @@ function UserProfile() {
 					initialValues={initialValues}
 					validationSchema={validationSchemaPassword}
 					onSubmit={handleChangePassword}
-					innerRef={formikRef as unknown as IFormikInnreRefPassword}
+					innerRef={formikRef}
 				>
 					{(formik) => (
 						<div>

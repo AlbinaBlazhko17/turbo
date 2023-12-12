@@ -7,6 +7,7 @@ import RangeSlider from 'react-range-slider-input';
 import { Button } from '@/components';
 import { setStateActionType } from '@/customTypes/react.types';
 import ISelectedItem from '@/interfaces/ISelectedItem';
+import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
 
 import 'react-range-slider-input/dist/style.css';
 import style from './filtration.module.scss';
@@ -28,8 +29,8 @@ function Filtration({
 	setModalActive: setStateActionType<boolean>;
 	setIsSliderInteracting: setStateActionType<boolean>;
 }) {
-	const sliderNumbersRef = useRef(null);
-	const sliderRef = useRef(null);
+	const sliderNumbersRef = useRef<HTMLElement>(null);
+	const sliderRef = useRef<IRangeSliderRef>(null);
 	const itemsGender = [
 		{
 			label: 'Gender',
@@ -45,12 +46,18 @@ function Filtration({
 	];
 
 	useEffect(() => {
-		const sliderThumbLeft = sliderRef.current?.thumb[0].current.style.left;
-		const sliderThumbRight = sliderRef.current?.thumb[1].current.style.left;
+		const sliderThumbLeft = sliderRef.current?.thumb && sliderRef.current?.thumb[0].current?.style.left;
+		const sliderThumbRight = sliderRef.current?.thumb[1].current?.style.left;
 		const rangeSliderChilds = sliderNumbersRef.current?.childNodes;
 
-		rangeSliderChilds[0].style.left = `calc(${sliderThumbLeft.slice(4, -1)} + -5px)`;
-		rangeSliderChilds[1].style.left = `calc(${sliderThumbRight.slice(4, -1)} + -10px)`;
+		if (rangeSliderChilds) {
+			(rangeSliderChilds[0] as HTMLElement).style.left = `calc(${
+				sliderThumbLeft && sliderThumbLeft.slice(4, -1)
+			} + -5px)`;
+			(rangeSliderChilds[1] as HTMLElement).style.left = `calc(${
+				sliderThumbRight && sliderThumbRight.slice(4, -1)
+			} + -10px)`;
+		}
 	}, [sliderRange]);
 
 	function handleToggleFilterInterests(item: string) {
@@ -84,6 +91,7 @@ function Filtration({
 						return { ...prevSelectedItem, gender: EGender.Male.toLowerCase() };
 					}
 				}
+				return prevSelectedItem;
 			});
 		}
 	}
@@ -163,7 +171,10 @@ function Filtration({
 					}}
 					className={style.filtration__slider}
 				/>
-				<div className={style.filtration__rangeNumbers} ref={sliderNumbersRef}>
+				<div
+					className={style.filtration__rangeNumbers}
+					ref={sliderNumbersRef as React.RefObject<HTMLDivElement>}
+				>
 					<p className={style.filtration__rangeNumbers_left}>{sliderRange[0]}</p>
 					<p className={style.filtration__rangeNumbers_right}>{sliderRange[1]}</p>
 				</div>

@@ -11,7 +11,7 @@ import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';
 
-function PreferencesForm({ formik, setData, loaderDataLanguages }: PreferencesFormProps) {
+function PreferencesForm<T>({ formik, setData, loaderDataLanguages }: PreferencesFormProps<T>) {
 	const [dataSelect, setDataSelect] = useState<SelectValue[]>();
 	const rangeSliderRef = useRef<IRangeSliderRef>(null);
 

@@ -1,24 +1,22 @@
-import { IDataForAuth, IUser } from '@/interfaces/IDataForAuth';
-import { Formik } from 'formik';
-import { useContext, useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
-import { IFormikRef } from '@/interfaces/IDataForFormik';
-import { Button, CustomCheckbox, CustomInput, CustomLabel } from '@/components';
-import { Link } from 'react-router-dom';
 import ArrowIcon from '@/assets/icons/sort-arrow.svg';
-import { AnimatePresence, motion } from 'framer-motion';
-import { validationSchemaAuth } from './validationSchema';
 import { AuthContext } from '@/auth/auth';
-import EllipseIcon from '@assets/icons/ellipse.svg';
-import { useDispatch, useSelector } from 'react-redux';
+import { Button, CustomCheckbox, CustomInput, CustomLabel } from '@/components';
 import { RootState } from '@/customTypes/store.types';
+import { IDataForAuth, IUser } from '@/interfaces/IDataForAuth';
 import { addUser } from '@/store/actions/actions';
-import { IFormikInnreRefAuth } from '@/customTypes/formik.types';
+import EllipseIcon from '@assets/icons/ellipse.svg';
+import { Formik, FormikProps } from 'formik';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import { validationSchemaAuth } from './validationSchema';
 
 import style from './AuthPage.module.scss';
 
 function AuthPage() {
-	const formikRef = useRef<IFormikRef>(null);
+	const formikRef = useRef<FormikProps<IDataForAuth>>(null);
 	const location = useLocation();
 	const currentPath = location.pathname.slice(1);
 	const { toggleAuth } = useContext(AuthContext);
@@ -86,7 +84,7 @@ function AuthPage() {
 
 					<Formik
 						initialValues={data}
-						innerRef={formikRef as IFormikInnreRefAuth}
+						innerRef={formikRef}
 						validationSchema={validationSchemaAuth}
 						onSubmit={(values) => {
 							if (currentPath === 'signup') {
