@@ -58,6 +58,9 @@ function UserProfile() {
 						</div>
 					</div>
 				</div>
+			</section>
+
+			<section className={style.profile__form}>
 				<Formik
 					initialValues={initialValues}
 					validationSchema={validationSchemaPassword}
@@ -65,7 +68,7 @@ function UserProfile() {
 					innerRef={IFormikRef}
 				>
 					{(formik) => (
-						<div className={style.profile__form}>
+						<div>
 							<div className={style['profile__form-item']}>
 								<CustomLabel>Current password</CustomLabel>
 								<CustomInput
