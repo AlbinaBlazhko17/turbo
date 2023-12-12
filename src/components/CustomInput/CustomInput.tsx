@@ -1,12 +1,21 @@
 import { ThemeContext } from '@theme/theme';
 import { useContext, useEffect } from 'react';
 import cn from 'classnames';
-import { FormValues } from '../../customTypes/formik.types';
 import CustomInputProps from './customInput.props';
+import { IDataForForm } from '@/interfaces/IDataForForms';
+import { IDataForAuth } from '@/interfaces/IDataForAuth';
+import { FormikValues } from 'formik';
 
 import style from './customInput.module.scss';
 
-function CustomInput({ formik, label, type, setData, className, ...props }: CustomInputProps) {
+function CustomInput<T extends FormikValues>({
+	formik,
+	label,
+	type,
+	setData,
+	className,
+	...props
+}: CustomInputProps<T>) {
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {
@@ -15,16 +24,14 @@ function CustomInput({ formik, label, type, setData, className, ...props }: Cust
 
 	return (
 		<input
-			id={label}
+			id={label.toString()}
 			type={type}
 			className={cn(style.input, style[`input__${theme}`], className, {
-				[style[`input__error`]]:
-					(formik.touched as { [key: string]: boolean })[label] &&
-					(formik.errors as { [key: string]: boolean })[label],
+				[style[`input__error`]]: formik.touched[label] && formik.errors[label],
 			})}
 			onChange={formik.handleChange}
 			onBlur={formik.handleBlur}
-			value={formik.values[label as keyof FormValues] || ''}
+			value={formik.values[label] || ''}
 			{...props}
 		/>
 	);

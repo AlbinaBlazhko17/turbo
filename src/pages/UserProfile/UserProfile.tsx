@@ -1,5 +1,8 @@
 import { Button, CustomInput, CustomLabel } from '@/components';
 import { RootState } from '@/customTypes/store.types';
+import { IFormikRef } from '@/interfaces/IDataForFormik';
+import { IPassword } from '@/interfaces/IDataForPassword';
+import { changePassword } from '@/store/actions/actions';
 import bg from '@assets/img/BG.png';
 import ProfileIcon from '@assets/img/person.png';
 import { Formik } from 'formik';
@@ -8,13 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { validationSchemaPassword } from './validationSchemaPassword';
 
 import style from './UserProfile.module.scss';
-import { changePassword } from '@/store/actions/actions';
-
-interface IPassword {
-	currentPassword: string;
-	newPassword: string;
-	confirmPassword: string;
-}
+import { IFormikInnreRefPassword } from '@/customTypes/formik.types';
 
 function UserProfile() {
 	const initialValues: IPassword = {
@@ -24,7 +21,7 @@ function UserProfile() {
 	};
 	const [data, setData] = useState<IPassword>(initialValues);
 	const user = useSelector((state: RootState) => state.user);
-	const IFormikRef = useRef(null);
+	const formikRef = useRef<IFormikRef>(null);
 
 	const dispatcher = useDispatch();
 
@@ -32,11 +29,11 @@ function UserProfile() {
 		if (user.password === data.currentPassword) {
 			dispatcher(changePassword({ newPassword: data.newPassword }));
 		} else {
-			IFormikRef.current?.setErrors({ currentPassword: 'Wrong password' });
+			formikRef.current?.setErrors({ currentPassword: 'Wrong password' });
 		}
 	}
 
-	console.log(IFormikRef.current);
+	console.log(formikRef.current);
 
 	return (
 		<div className={style.profile}>
@@ -65,7 +62,7 @@ function UserProfile() {
 					initialValues={initialValues}
 					validationSchema={validationSchemaPassword}
 					onSubmit={handleChangePassword}
-					innerRef={IFormikRef}
+					innerRef={formikRef as unknown as IFormikInnreRefPassword}
 				>
 					{(formik) => (
 						<div>

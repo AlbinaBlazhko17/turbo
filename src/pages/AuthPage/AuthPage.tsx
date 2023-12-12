@@ -13,6 +13,7 @@ import EllipseIcon from '@assets/icons/ellipse.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/customTypes/store.types';
 import { addUser } from '@/store/actions/actions';
+import { IFormikInnreRefAuth } from '@/customTypes/formik.types';
 
 import style from './AuthPage.module.scss';
 
@@ -85,7 +86,7 @@ function AuthPage() {
 
 					<Formik
 						initialValues={data}
-						innerRef={formikRef}
+						innerRef={formikRef as IFormikInnreRefAuth}
 						validationSchema={validationSchemaAuth}
 						onSubmit={(values) => {
 							if (currentPath === 'signup') {
@@ -237,7 +238,7 @@ function AuthPage() {
 										exit={{ opacity: 0 }}
 										className={style.auth__register}
 									>
-										<p>Don't have an account?</p>
+										<p>Don&apos;t have an account?</p>
 										<Link to="/signup">Create new account</Link>
 									</motion.div>
 								)}

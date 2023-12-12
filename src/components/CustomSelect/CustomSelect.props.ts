@@ -1,13 +1,13 @@
-import { SelectValue } from '@/customTypes/form.types';
+import { EFormProps, SelectValue } from '@/customTypes/form.types';
 import IFieldProps from '@/interfaces/IFieldProps';
 
-export default interface CustomSelectProps extends Omit<IFieldProps, 'setData'> {
+export default interface CustomSelectProps<T> extends Omit<IFieldProps<T>, 'setData'> {
 	data:
 		| {
 				countries: SelectValue[];
 				userSelectValue: SelectValue;
 		  }
 		| SelectValue[];
-	type: string;
+	type: EFormProps.country | EFormProps.language;
 	disabled?: boolean;
 }

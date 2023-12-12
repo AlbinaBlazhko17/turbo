@@ -1,7 +1,7 @@
-import { formikProps } from '@/customTypes/formik.types';
 import { setDataType } from '@/customTypes/react.types';
+import { FormikValues } from 'formik';
 
-export default interface IFieldProps {
-	formik: formikProps;
-	setData: setDataType;
+export default interface IFieldProps<T> {
+	formik: FormikValues;
+	setData: setDataType<T>;
 }

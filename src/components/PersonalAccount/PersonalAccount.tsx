@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef, useState } from 'react';
-import { Await, redirect, useLoaderData, useNavigate, useParams } from 'react-router';
+import { Await, useLoaderData, useNavigate, useParams } from 'react-router';
 import { getPhotoByUserId } from '@/utils/dataForGallery';
 import NotFoundImg from '@assets/img/icon-image-not-found-free-vector.jpg';
 import SpinnerIcon from '@assets/icons/spinner.svg';
@@ -27,6 +27,7 @@ import { IDataForPersonalAccount } from '@/customTypes/personalAccount';
 
 import style from './personalAccount.module.scss';
 import 'react-range-slider-input/dist/style.css';
+import { IFormikInnerRef } from '@/customTypes/formik.types';
 
 function PersinalAccount() {
 	const [profilePicture, setProfilePicture] = useState<string>('');
@@ -111,7 +112,7 @@ function PersinalAccount() {
 
 	useEffect(() => {
 		if (formikRef.current) {
-			dispatcher(changeDataById(formikRef.current.values));
+			dispatcher(changeDataById(formikRef.current.values as IDataForForm));
 		}
 	}, [formikRef.current?.values]);
 
@@ -167,7 +168,7 @@ function PersinalAccount() {
 					onSubmit={(values) => {
 						console.log(values);
 					}}
-					innerRef={formikRef}
+					innerRef={formikRef as IFormikInnerRef}
 				>
 					{(formik) => (
 						<>
@@ -269,7 +270,7 @@ function PersinalAccount() {
 													<CustomSelect
 														data={loaderData.countries}
 														formik={formik}
-														type="country"
+														type={EFormProps.country}
 													/>
 												)}
 											</Await>
@@ -285,7 +286,7 @@ function PersinalAccount() {
 													<CustomSelect
 														data={loaderData.languages}
 														formik={formik}
-														type="language"
+														type={EFormProps.language}
 													/>
 												)}
 											</Await>

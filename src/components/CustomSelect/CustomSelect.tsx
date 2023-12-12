@@ -6,22 +6,31 @@ import CustomSelectProps from './CustomSelect.props';
 
 import style from './customSelect.module.scss';
 
-const CustomSelect = ({ data, formik, type, disabled = false }: CustomSelectProps) => {
+function CustomSelect<T extends { country?: { value: string; label: string } | string }>({
+	data,
+	formik,
+	type,
+	disabled = false,
+}: CustomSelectProps<T>) {
 	const [selectedData, setSelectedData] = useState({});
 	const { theme } = useContext(ThemeContext);
 	const options = type === 'country' && 'countries' in data ? data.countries : data;
 
 	useEffect(() => {
 		if (type === 'country') {
-			formik.setFieldValue('country', selectedData);
+			formik.setFieldValue(type, selectedData);
 		} else {
-			formik.setFieldValue('language', selectedData);
+			formik.setFieldValue(type, selectedData);
 		}
 	}, [selectedData]);
 
 	useEffect(() => {
 		if (type === 'country' && 'userSelectValue' in data && data.userSelectValue.value !== '') {
-			setSelectedData(formik.values.country.value !== '' ? formik.values.country : data.userSelectValue);
+			setSelectedData(
+				typeof formik.values.country === 'object' && 'value' in formik.values.country
+					? formik.values.country.value
+					: data.userSelectValue,
+			);
 		} else {
 			if (Array.isArray(data) && data.length > 0)
 				setSelectedData(formik.values['language' as keyof FormValues] || data[0]);
@@ -77,6 +86,6 @@ const CustomSelect = ({ data, formik, type, disabled = false }: CustomSelectProp
 			isDisabled={disabled}
 		/>
 	);
-};
+}
 
 export default memo(CustomSelect);
