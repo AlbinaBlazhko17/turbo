@@ -11,4 +11,4 @@ export const {
 	deleteUserById,
 } = formSlice.actions;
 
-export const { addUser } = userSlice.actions;
+export const { addUser, changePassword } = userSlice.actions;

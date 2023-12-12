@@ -36,10 +36,37 @@
 		}
 	}
 
+	&__form {
+		margin-top: 50px;
+		width: 30vw;
+		label {
+			justify-content: start;
+			margin-left: 10px;
+		}
+		&__button {
+			margin-top: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		&-item {
+			position: relative;
+			&__error {
+				position: absolute;
+				bottom: -5px;
+				left: 5px;
+				font-weight: 600;
+				font-size: 16px;
+				color: #EB5757;
+			}
+		}
+	}
+
 	&__info{
 		display: flex;
+		
 		&__wrapper {
-			margin-top: 50px;
+			margin-top: 30px;
 			margin-left: 50px;
 		}
 		&-item {

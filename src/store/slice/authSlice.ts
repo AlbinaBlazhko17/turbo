@@ -1,11 +1,10 @@
 import { IUser } from '@/interfaces/IDataForAuth';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-const initialState: IUser = {
+const initialState: Omit<IUser, 'checkPassword'> = {
 	username: '',
 	email: '',
 	password: '',
-	checkPassword: '',
 };
 
 export const userSlice = createSlice({
@@ -16,7 +15,9 @@ export const userSlice = createSlice({
 			state.username = action.payload.username;
 			state.email = action.payload.email;
 			state.password = action.payload.password;
-			state.checkPassword = action.payload.checkPassword;
+		},
+		changePassword: (state, action: PayloadAction<{ newPassword: string }>) => {
+			state.password = action.payload.newPassword;
 		},
 	},
 });
