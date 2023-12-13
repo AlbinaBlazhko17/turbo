@@ -42,8 +42,6 @@ function UserProfile() {
 		}
 	}
 
-	console.log(formikRef.current);
-
 	return (
 		<div className={style.profile}>
 			<h1 className={style.profile__header}>User Profile</h1>
