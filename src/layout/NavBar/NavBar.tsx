@@ -80,8 +80,8 @@ function NavBar() {
 					<span>Media </span>
 				</NavLink>
 				<NavLink
-					to={'/users'}
-					className={`${style['nav__list-item']} ${location.pathname === '/users' ? style.active : ''}`}
+					to={'/customers'}
+					className={`${style['nav__list-item']} ${location.pathname === '/customers' ? style.active : ''}`}
 				>
 					<svg width="23" height="25" viewBox="0 0 23 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Document">
