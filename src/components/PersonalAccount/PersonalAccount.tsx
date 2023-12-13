@@ -63,7 +63,7 @@ function PersinalAccount() {
 			}
 		})();
 		if (id) {
-			const userById = users.find((user) => user.id === +id);
+			const userById = users.find((user: IDataForForm) => user.id === +id);
 			setUser(userById);
 		}
 	}, []);

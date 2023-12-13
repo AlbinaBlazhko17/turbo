@@ -1,4 +1,4 @@
-import { Button, CustomInput, CustomLabel } from '@/components';
+import { Button, CustomInput, CustomLabel, ModalWindow } from '@/components';
 import { RootState } from '@/customTypes/store.types';
 import { IPassword } from '@/interfaces/IDataForPassword';
 import { changePassword } from '@/store/actions/actions';
@@ -20,12 +20,23 @@ function UserProfile() {
 	const [data, setData] = useState<IPassword>(initialValues);
 	const user = useSelector((state: RootState) => state.user);
 	const formikRef = useRef<FormikProps<IPassword>>(null);
+	const [isModalActive, setIsModalActive] = useState<boolean>(false);
+
+	function onClose() {
+		setIsModalActive(false);
+	}
 
 	const dispatcher = useDispatch();
 
 	function handleChangePassword() {
-		if (user.password === data.currentPassword) {
+		if (data.currentPassword === data.newPassword) {
+			formikRef.current?.setErrors({
+				newPassword: 'Ensure the new password does not match the previous one.',
+			});
+		} else if (user.password === data.currentPassword) {
 			dispatcher(changePassword({ newPassword: data.newPassword }));
+			formikRef.current?.resetForm();
+			setIsModalActive(true);
 		} else {
 			formikRef.current?.setErrors({ currentPassword: 'Wrong password' });
 		}
@@ -110,6 +121,9 @@ function UserProfile() {
 					)}
 				</Formik>
 			</section>
+			<ModalWindow title="" onClose={onClose} isModalActive={isModalActive} id="password">
+				<h2 className={style.profile__modal}> Password successfuly changed</h2>
+			</ModalWindow>
 		</div>
 	);
 }
