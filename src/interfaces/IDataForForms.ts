@@ -1,3 +1,4 @@
+import { SelectValue } from '@/customTypes/form.types';
 import { FormValues } from '@/customTypes/formik.types';
 import { FormikErrors, FormikTouched } from 'formik';
 
@@ -30,7 +31,7 @@ export interface IDataForSubmitForm {
 	comments: string | null | undefined;
 	profilePicture: string | null;
 	terms: boolean;
-	products: (string | undefined)[];
+	products: SelectValue[];
 }
 
 export interface IDataForForm

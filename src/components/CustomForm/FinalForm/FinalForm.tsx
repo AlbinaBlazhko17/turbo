@@ -43,9 +43,7 @@ function FinalForm<T>({ formik, setData }: IFieldProps<T>) {
 				<CustomLabel label={EFormProps.profilePicture}>Type of buying products</CustomLabel>
 				<CustomMultiSelect formik={formik} name={EFormProps.products} />
 				{formik.touched.products && formik.errors.products && (
-					<div className={style[`form-item__error`]}>
-						{(formik.errors as FormikErrors<IDataForSubmitForm>).products}
-					</div>
+					<div className={style[`form-item__error`]}>{formik.errors.products}</div>
 				)}
 			</div>
 			<div className={style['form-item']}>
