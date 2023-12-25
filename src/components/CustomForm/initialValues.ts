@@ -28,5 +28,6 @@ export const allValues: IDataForForm = {
 	comments: '',
 	profilePicture: null,
 	terms: false,
+	products: [],
 	date: new Date().toLocaleString(),
 };

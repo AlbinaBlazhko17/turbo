@@ -165,6 +165,7 @@ function TableContent() {
 								</th>
 								<th className={style.table__header}>Comments</th>
 								<th className={style.table__header}>Image</th>
+								<th className={style.table__header}>Products</th>
 								<th
 									className={cn(style.table__header, style.table__header_sortable)}
 									onClick={() => handleSort(EFormProps.date)}
@@ -222,9 +223,12 @@ function TableContent() {
 										<td className={cn(style.table__descr, style.table__descr_nowrap)}>
 											{item.profilePicture}
 										</td>
-										<td className={style.table__descr}>
-											{item.date ? new Date(item.date).toLocaleDateString() : 'No date available'}
+										<td className={cn(style.table__descr, style.table__descr_nowrap)}>
+											{item.products
+												? item.products.map((product, i) => <div key={i}>{product.value}</div>)
+												: null}
 										</td>
+										<td className={style.table__descr}>{item.date}</td>
 									</tr>
 								))
 							) : (

@@ -1,11 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import CustomLabel from '../CustomLabel/CustomLabel';
 import CustomInputImageProps from './CustomInputImage.props';
+import { ThemeContext } from '@/theme/theme';
+import cn from 'classnames';
 
 import style from './customInputImage.module.scss';
 
 function CustomInputImage<T>({ formik, label, setData }: CustomInputImageProps<T>) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const { theme } = useContext(ThemeContext);
+
 	const PROFILE_PICTURE = 'profilePicture' as keyof T;
 	useEffect(() => {
 		setData(formik.values);
@@ -25,7 +29,11 @@ function CustomInputImage<T>({ formik, label, setData }: CustomInputImageProps<T
 
 	return (
 		<>
-			<div className={style.inputImage}>
+			<div
+				className={cn(style.inputImage, {
+					[style.inputImage__dark]: theme === 'dark',
+				})}
+			>
 				<input
 					type="file"
 					id={label}

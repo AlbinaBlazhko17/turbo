@@ -30,6 +30,7 @@ export interface IDataForSubmitForm {
 	comments: string | null | undefined;
 	profilePicture: string | null;
 	terms: boolean;
+	products: (string | undefined)[];
 }
 
 export interface IDataForForm
