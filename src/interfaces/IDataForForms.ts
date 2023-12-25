@@ -24,7 +24,7 @@ export interface IDataForPreferencesForm {
 		value: string;
 		label: string;
 	};
-	notificationFrequency: number;
+	buyingFrequency: number;
 }
 
 export interface IDataForSubmitForm {

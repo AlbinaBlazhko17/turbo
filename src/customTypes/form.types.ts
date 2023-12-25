@@ -14,7 +14,7 @@ export const enum EGender {
 export const enum ESort {
 	Id = 'id',
 	FirstName = 'firstName',
-	NotificationRange = 'NotificationRange',
+	buyingFrequency = 'buyingFrequency',
 }
 
 export const enum EFormProps {
@@ -27,7 +27,7 @@ export const enum EFormProps {
 	zipCode = 'zipCode',
 	interests = 'interests',
 	language = 'language',
-	notificationFrequency = 'notificationFrequency',
+	buyingFrequency = 'buyingFrequency',
 	comments = 'comments',
 	profilePicture = 'profilePicture',
 	terms = 'terms',

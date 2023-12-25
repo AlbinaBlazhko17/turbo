@@ -32,7 +32,7 @@ export const validationSchemaPreferences = Yup.object().shape({
 		value: Yup.string().required('Select preferred language'),
 		label: Yup.string().required(),
 	}).required('Select preferred language'),
-	notificationFrequency: Yup.number().required('Select preferred notification range'),
+	buyingFrequency: Yup.number().required('Select buying frequency'),
 });
 
 export const validationSchemaSubmit = Yup.object().shape({

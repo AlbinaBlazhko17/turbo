@@ -26,6 +26,7 @@ import ModalWindow from '../ModalWindow/ModalWindow';
 
 import 'react-range-slider-input/dist/style.css';
 import style from './personalAccount.module.scss';
+import CustomMultiSelect from '../CustomMultiSelect/CustomMultiSelect';
 
 function PersinalAccount() {
 	const [profilePicture, setProfilePicture] = useState<string>('');
@@ -42,7 +43,7 @@ function PersinalAccount() {
 		[EFormProps.country]: true,
 		[EFormProps.zipCode]: true,
 		[EFormProps.interests]: true,
-		[EFormProps.notificationFrequency]: true,
+		[EFormProps.buyingFrequency]: true,
 		[EFormProps.date]: true,
 		[EFormProps.language]: true,
 	});
@@ -352,14 +353,19 @@ function PersinalAccount() {
 											)}
 										>
 											{' '}
-											Notification frequency:
+											Buying frequency:
 										</h3>
-										<div className={style['personal-account__form-item__input']}>
+										<div
+											className={cn(
+												style['personal-account__form-item__input'],
+												style['personal-account__form-item__range'],
+											)}
+										>
 											<RangeSlider
 												defaultValue={[
 													0,
-													(EFormProps.notificationFrequency in formik.values &&
-														+formik.values.notificationFrequency) ||
+													(EFormProps.buyingFrequency in formik.values &&
+														+formik.values.buyingFrequency) ||
 														100,
 												]}
 												ref={rangeSliderRef}
@@ -369,10 +375,17 @@ function PersinalAccount() {
 												thumbsDisabled={[true, false]}
 												rangeSlideDisabled={true}
 												onInput={(e: Array<number>) => {
-													formik.setFieldValue(EFormProps.notificationFrequency, e[1]);
+													formik.setFieldValue(EFormProps.buyingFrequency, e[1]);
 													setChangedData(formik.values);
 												}}
-											></RangeSlider>
+											/>
+										</div>
+
+										<div className={style['personal-account__form-item']}>
+											<h3 className={style['personal-account__form-item__title']}>Products:</h3>
+											<div className={style['personal-account__form-item__input']}>
+												<CustomMultiSelect formik={formik} name={EFormProps.products} />
+											</div>
 										</div>
 									</div>
 								</div>

@@ -113,8 +113,7 @@ export const formSlice = createSlice({
 						  payload.interests.every((interest) => item.interests.includes(interest))
 						: true;
 					const rangeCondition = isRangeValid
-						? item.notificationFrequency >= payload.range[0] &&
-						  item.notificationFrequency <= payload.range[1]
+						? item.buyingFrequency >= payload.range[0] && item.buyingFrequency <= payload.range[1]
 						: true;
 
 					return genderCondition && interestsCondition && rangeCondition;

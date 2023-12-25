@@ -146,17 +146,16 @@ function TableContent() {
 								<th className={style.table__header}>Language</th>
 								<th
 									className={cn(style.table__header, style.table__header_sortable)}
-									onClick={() => handleSort(EFormProps.notificationFrequency)}
+									onClick={() => handleSort(EFormProps.buyingFrequency)}
 								>
 									<div className={style.table__sorting}>
-										Notification frequency
+										Buying frequency
 										<span
 											className={cn(style.table__sorting__arrow, {
 												[style.table__sorting__arrow_up]:
-													sortedColumn === EFormProps.notificationFrequency &&
-													order === false,
+													sortedColumn === EFormProps.buyingFrequency && order === false,
 												[style.table__sorting__arrow_down]:
-													sortedColumn === EFormProps.notificationFrequency && order === true,
+													sortedColumn === EFormProps.buyingFrequency && order === true,
 											})}
 										>
 											<img src={SortArrow} alt="sort arrow" />
@@ -217,7 +216,7 @@ function TableContent() {
 										</td>
 										<td className={style.table__descr}>{item.language.label}</td>
 										<td className={cn(style.table__descr, style.table__descr_center)}>
-											{item.notificationFrequency}
+											{item.buyingFrequency}
 										</td>
 										<td className={style.table__descr}>{item.comments}</td>
 										<td className={cn(style.table__descr, style.table__descr_nowrap)}>
