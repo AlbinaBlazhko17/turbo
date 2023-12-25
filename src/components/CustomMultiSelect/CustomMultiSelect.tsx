@@ -1,4 +1,4 @@
-import Select, { CSSObjectWithLabel, GroupBase, StylesConfig } from 'react-select';
+import Select, { ActionMeta, CSSObjectWithLabel, GroupBase, MultiValue, StylesConfig } from 'react-select';
 import { ICustomMultiSelectProps } from './CustomMultiSelect.props';
 import { dataForProducts } from '@utils/dataForProducts';
 import { ThemeContext } from '@/theme/theme';
@@ -14,8 +14,6 @@ function CustomMultiSelect<T>({ formik, name, ...rest }: ICustomMultiSelectProps
 	useEffect(() => {
 		formik.setFieldValue(name, selectedData);
 	}, [selectedData]);
-
-	console.log(selectedData);
 
 	const customStyles: StylesConfig<NonNullable<unknown>, true, GroupBase<{ value: string; label: string }>> = {
 		option: (defaultStyles: CSSObjectWithLabel, state) => ({
@@ -63,7 +61,7 @@ function CustomMultiSelect<T>({ formik, name, ...rest }: ICustomMultiSelectProps
 				name={name}
 				options={dataForProducts}
 				value={selectedData}
-				onChange={(selectedOption) => setSelectedData(selectedOption ? selectedOption : [])}
+				onChange={(selectedOption) => setSelectedData(selectedOption ? (selectedOption as SelectValue[]) : [])}
 				{...rest}
 			/>
 		</div>
