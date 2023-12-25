@@ -95,7 +95,7 @@ function PreferencesForm<T>({ formik, setData, loaderDataLanguages }: Preference
 					rangeSlideDisabled={true}
 					onInput={(e: Array<number>) => {
 						formik.setFieldValue(EFormProps.notificationFrequency, e[1]);
-						setData(formik.values);
+						setData(formik.values.notificationFrequency);
 					}}
 				/>
 				<div className={style.rangeSlider__footer}>
