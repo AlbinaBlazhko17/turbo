@@ -24,7 +24,7 @@ function Dashboard() {
 			<Stats />
 			<Aside title="Top news" data={topNews} />
 			<div className={style.subgrid}>
-				<Aside className={styles['aside-latest']} title="Latest users" data={recentNews} />
+				<Aside className={styles['aside-latest']} title="Latest news" data={recentNews} />
 				<Experts data={dataForExperts} />
 				<Services data={dataForServices} />
 			</div>
