@@ -1,12 +1,12 @@
-import { IDataForFetchGallery, IDataForGallery, IDataForPhotos } from '@/interfaces/IDataForGallery';
+import { IDataForFetchGallery, IDataForPhotos } from '@/interfaces/IDataForGallery';
 import { IDataForUserPhoto } from '@/interfaces/IDataForPersonalAccount';
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+// const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 const apiKey = 'XmTW7y7FCFocZ4NEKpkreD9FkkTJRltrtYzxwQLEpzYkO8JzAhGmSXhq';
 
 export async function getAllPhotos(perPage: number, page: number) {
 	try {
 		const response = await fetch(
-			`${proxyUrl}https://api.pexels.com/v1/search?query=products&per_page=${perPage}&page=${page}`,
+			`https://api.pexels.com/v1/search?query=products&per_page=${perPage}&page=${page}`,
 			{
 				headers: {
 					Authorization: apiKey,

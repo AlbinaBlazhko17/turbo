@@ -37,6 +37,7 @@ function Stats() {
 			});
 		});
 		setData({
+			//@ts-ignore
 			labels: dataForChart.map((el) => el.label),
 			datasets: [
 				{
@@ -46,6 +47,7 @@ function Stats() {
 			],
 		});
 		setOptions({
+			//@ts-ignore
 			plugins: {
 				legend: {
 					display: false,
