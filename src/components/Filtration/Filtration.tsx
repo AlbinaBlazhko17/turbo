@@ -153,7 +153,7 @@ function Filtration({
 				))}
 			</ul>
 			<div className={style.filtration__slider}>
-				<strong className={style['filtration__label']}>Notification frequency</strong>
+				<strong className={style['filtration__label']}>Buying frequency</strong>
 				<hr className={style.filtration__divider} />
 				<RangeSlider
 					ref={sliderRef}

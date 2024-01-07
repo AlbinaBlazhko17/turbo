@@ -32,7 +32,7 @@ export const validationSchemaPreferences = Yup.object().shape({
 		value: Yup.string().required('Select preferred language'),
 		label: Yup.string().required(),
 	}).required('Select preferred language'),
-	notificationFrequency: Yup.number().required('Select preferred notification range'),
+	buyingFrequency: Yup.number().required('Select buying frequency'),
 });
 
 export const validationSchemaSubmit = Yup.object().shape({
@@ -51,6 +51,7 @@ export const validationSchemaSubmit = Yup.object().shape({
 			const fileName = value.split('.').shift();
 			if (fileName) return fileName.length <= 50;
 		}),
+	products: Yup.array().required('Select at least one product'),
 	terms: Yup.boolean()
 		.test('is-true', 'You must accept the terms and conditions', (value) => value === true)
 		.required('Terms and conditions is required'),

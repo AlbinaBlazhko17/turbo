@@ -54,9 +54,6 @@ function Header() {
 					height={32}
 					handleDiameter={30}
 				/>
-				<Link to="/" className={style.header__img}>
-					<img src={ChatBlue} alt="chat" />
-				</Link>
 				<Link to="/profile" className={style.header__img}>
 					<img src={isAuthenticated ? PersonPhoto : TeamIcon} alt="user" />
 				</Link>

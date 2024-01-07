@@ -1,5 +1,5 @@
 import { Button, ModalWindowForImage } from '@/components';
-import { IDataForPhotos } from '@/interfaces/IDataForGallery';
+import { IDataForGallery } from '@/interfaces/IDataForGallery';
 import { getAllPhotos } from '@/utils/dataForGallery';
 import ArrowIcon from '@assets/icons/sort-arrow.svg';
 import SpinnerIcon from '@assets/icons/spinner.svg';
@@ -10,8 +10,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import style from './galleryPage.module.scss';
 
 function GalleryPage() {
-	const [photos, setPhotos] = useState<IDataForPhotos[][] | null>([]);
-	const [limit, setLimit] = useState<number>(20);
+	const [photos, setPhotos] = useState<IDataForGallery[][] | null>([]);
+	const [limit, setLimit] = useState<number>(1);
 	const [modalActive, setModalActive] = useState<boolean>(false);
 	const [counter, setCounter] = useState<number>(0);
 	const [loading, setLoading] = useState<boolean>(true);
@@ -44,7 +44,7 @@ function GalleryPage() {
 	useEffect(() => {
 		(async () => {
 			try {
-				const data = await getAllPhotos(0, limit);
+				const data = await getAllPhotos(15, limit);
 				const dataAfterTransform = [];
 				if (data) {
 					for (let i = 0; i < data.length; i += 5) {
@@ -58,6 +58,16 @@ function GalleryPage() {
 			}
 		})();
 	}, [limit]);
+
+	function handleClickNext() {
+		setLimit((prevState) => prevState + 1);
+		goToTop();
+	}
+
+	function handleClickPrevious() {
+		setLimit((prevState) => prevState - 1);
+		goToTop();
+	}
 
 	const getImageClasses = (index: number) => {
 		switch (index % 5) {
@@ -117,15 +127,18 @@ function GalleryPage() {
 										className={cn(style.gallery__img, getImageClasses(i))}
 										onClick={() => handleClickOnImage(photo.counter)}
 									>
-										<LazyLoadImage src={photo.url} alt={photo.title} />
+										<LazyLoadImage src={photo.url} alt={photo.alt} />
 									</div>
 								))}
 							</div>
 						))}
 				</div>
 				<div className={style.gallery__button}>
-					<Button appearance="filled" onClick={() => setLimit(limit + 20)}>
-						Load more
+					<Button appearance={limit === 1 ? 'outlined' : 'filled'} onClick={handleClickPrevious}>
+						Previous
+					</Button>
+					<Button appearance="filled" onClick={handleClickNext}>
+						Next
 					</Button>
 				</div>
 			</section>

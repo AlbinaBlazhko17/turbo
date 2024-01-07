@@ -4,7 +4,7 @@ import Portal from '../Portal/Portal';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'classnames';
 import ArrowIcon from '@assets/icons/sort-arrow.svg';
-import { IDataForPhotos } from '@/interfaces/IDataForGallery';
+import { IDataForGallery, IDataForPhotos } from '@/interfaces/IDataForGallery';
 import { setStateActionType } from '@/customTypes/react.types';
 
 import style from './modalWindowForImage.module.scss';
@@ -20,7 +20,7 @@ function ModalWindowForImage({
 }: {
 	onClose?: () => void;
 	isModalActive: boolean;
-	photos: IDataForPhotos[][] | null;
+	photos: IDataForGallery[][] | null;
 	counter: number;
 	setCounter: setStateActionType<number>;
 }) {
@@ -147,7 +147,7 @@ function ModalWindowForImage({
 							<div className={style['gallery-modal__img']} onClick={handlePreventPropagation}>
 								<motion.img
 									src={currentImage?.url}
-									alt={currentImage?.title}
+									alt={currentImage?.alt}
 									key={counter}
 									initial="initialState"
 									animate="animateState"
@@ -194,7 +194,7 @@ function ModalWindowForImage({
 										)}
 										onClick={() => handleImageClick(item.counter)}
 									>
-										<img src={item.url} alt={item.title} />
+										<img src={item.url} alt={item.alt} />
 									</div>
 								))}
 							</div>
