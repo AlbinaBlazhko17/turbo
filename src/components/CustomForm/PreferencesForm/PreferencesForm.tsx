@@ -80,13 +80,12 @@ function PreferencesForm<T>({ formik, setData, loaderDataLanguages }: Preference
 				)}
 			</div>
 			<div className={style['form-item']}>
-				<CustomLabel label={EFormProps.notificationFrequency}>Notification frequency</CustomLabel>
+				<CustomLabel label={EFormProps.buyingFrequency}>Buying frequency</CustomLabel>
 				<RangeSlider
 					ref={rangeSliderRef}
 					defaultValue={[
 						0,
-						(EFormProps.notificationFrequency in formik.values && +formik.values.notificationFrequency) ||
-							100,
+						(EFormProps.buyingFrequency in formik.values && +formik.values.buyingFrequency) || 100,
 					]}
 					min={0}
 					max={100}
@@ -94,16 +93,16 @@ function PreferencesForm<T>({ formik, setData, loaderDataLanguages }: Preference
 					thumbsDisabled={[true, false]}
 					rangeSlideDisabled={true}
 					onInput={(e: Array<number>) => {
-						formik.setFieldValue(EFormProps.notificationFrequency, e[1]);
-						setData(formik.values);
+						formik.setFieldValue(EFormProps.buyingFrequency, e[1]);
+						setData(formik.values.buyingFrequency);
 					}}
 				/>
 				<div className={style.rangeSlider__footer}>
 					<p>Rarely</p>
 					<p>Often</p>
 				</div>
-				{!formik.isSubmitting && formik.errors.notificationFrequency && (
-					<div className={style[`form-item__error`]}>{formik.errors.notificationFrequency}</div>
+				{!formik.isSubmitting && formik.errors.buyingFrequency && (
+					<div className={style[`form-item__error`]}>{formik.errors.buyingFrequency}</div>
 				)}
 			</div>
 		</form>

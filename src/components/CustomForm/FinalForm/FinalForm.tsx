@@ -1,4 +1,4 @@
-import { CustomCheckbox, CustomInputImage, CustomLabel, CustomTextarea } from '@/components';
+import { CustomCheckbox, CustomInputImage, CustomLabel, CustomTextarea, CustomMultiSelect } from '@/components';
 import { EFormProps } from '@/customTypes/form.types';
 import { IDataForSubmitForm } from '@/interfaces/IDataForForms';
 import IFieldProps from '@/interfaces/IFieldProps';
@@ -37,6 +37,13 @@ function FinalForm<T>({ formik, setData }: IFieldProps<T>) {
 					<div className={style[`form-item__error`]}>
 						{(formik.errors as FormikErrors<IDataForSubmitForm>).profilePicture}
 					</div>
+				)}
+			</div>
+			<div className={style['form-item']}>
+				<CustomLabel label={EFormProps.profilePicture}>Type of buying products</CustomLabel>
+				<CustomMultiSelect formik={formik} name={EFormProps.products} />
+				{formik.touched.products && formik.errors.products && (
+					<div className={style[`form-item__error`]}>{formik.errors.products}</div>
 				)}
 			</div>
 			<div className={style['form-item']}>

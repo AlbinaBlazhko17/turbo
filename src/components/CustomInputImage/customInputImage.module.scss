@@ -2,13 +2,17 @@
 
 .inputImage {
 	padding: 1em;
-	border: 1px solid #ccc;
+	border: 2px solid #CCC;
 	border-radius: 8px;
 	width: 100%;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	margin-bottom: 20px;
+	box-sizing: border-box;
+	&__dark {
+		border: 2px solid white;
+	}
 
 	&__file {
 		display: none;

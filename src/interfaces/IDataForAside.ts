@@ -1,6 +1,15 @@
-export default interface IDataForAside {
-	id: number;
-	img: string;
-	header: string;
-	text: string;
+export interface IDataForAside {
+	source: Source;
+	author: string;
+	title: string;
+	description: string;
+	url: string;
+	urlToImage: string;
+	publishedAt: string;
+	content: string;
+}
+
+export interface Source {
+	id: string;
+	name: string;
 }

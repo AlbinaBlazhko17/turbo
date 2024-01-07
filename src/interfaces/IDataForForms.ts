@@ -1,3 +1,4 @@
+import { SelectValue } from '@/customTypes/form.types';
 import { FormValues } from '@/customTypes/formik.types';
 import { FormikErrors, FormikTouched } from 'formik';
 
@@ -23,13 +24,14 @@ export interface IDataForPreferencesForm {
 		value: string;
 		label: string;
 	};
-	notificationFrequency: number;
+	buyingFrequency: number;
 }
 
 export interface IDataForSubmitForm {
 	comments: string | null | undefined;
 	profilePicture: string | null;
 	terms: boolean;
+	products: SelectValue[];
 }
 
 export interface IDataForForm

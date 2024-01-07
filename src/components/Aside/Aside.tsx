@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import IDataForAside from '@interfaces/IDataForAside';
+import { IDataForAside } from '@interfaces/IDataForAside';
 
 import style from './aside.module.scss';
 
@@ -10,16 +10,18 @@ function Aside({ title, data, className }: { title: string; data: IDataForAside[
 			<h2>{title}</h2>
 			<div className={style.aside__wrapper}>
 				{data.length !== 0 &&
-					data.map((el) => (
-						<article key={el.id} className={style['aside-item']}>
-							<div>
-								<img src={el.img} alt="aside_image" />
-							</div>
-							<div>
-								<h3 className={style['aside-item__header']}>{el.header}</h3>
-								<p className={style['aside-item__text']}>{el.text}</p>
-							</div>
-						</article>
+					data.map((el, index) => (
+						<a key={index} href={el.url} target="_blank" rel="noreferrer">
+							<article className={style['aside-item']}>
+								<div>
+									<img src={el.urlToImage} alt="aside_image" />
+								</div>
+								<div>
+									<h3 className={style['aside-item__header']}>{el.title}</h3>
+									<p className={style['aside-item__text']}>{el.description}</p>
+								</div>
+							</article>
+						</a>
 					))}
 			</div>
 		</aside>

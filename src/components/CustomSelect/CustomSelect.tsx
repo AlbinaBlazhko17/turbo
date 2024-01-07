@@ -12,23 +12,20 @@ function CustomSelect<T extends { country?: { value: string; label: string } | s
 	type,
 	disabled = false,
 }: CustomSelectProps<T>) {
-	const [selectedData, setSelectedData] = useState({});
+	const isSelected = 'userSelectValue' in data && data.userSelectValue;
+	const [selectedData, setSelectedData] = useState(isSelected ? data.userSelectValue : {});
 	const { theme } = useContext(ThemeContext);
 	const options = type === 'country' && 'countries' in data ? data.countries : data;
 
 	useEffect(() => {
-		if (type === 'country') {
-			formik.setFieldValue(type, selectedData);
-		} else {
-			formik.setFieldValue(type, selectedData);
-		}
+		formik.setFieldValue(type, selectedData);
 	}, [selectedData]);
 
 	useEffect(() => {
 		if (type === 'country' && 'userSelectValue' in data && data.userSelectValue.value !== '') {
 			setSelectedData(
 				typeof formik.values.country === 'object' && 'value' in formik.values.country
-					? formik.values.country.value
+					? formik.values.country
 					: data.userSelectValue,
 			);
 		} else {
@@ -80,9 +77,7 @@ function CustomSelect<T extends { country?: { value: string; label: string } | s
 			className={style.select}
 			options={options as OptionsOrGroups<NonNullable<unknown>, GroupBase<{ value: string; label: string }>>}
 			value={selectedData}
-			onChange={(selectedOption) =>
-				setSelectedData(!selectedOption && 'userSelectValue' in data ? data.userSelectValue : selectedOption)
-			}
+			onChange={(selectedOption) => setSelectedData(selectedOption && selectedOption)}
 			isDisabled={disabled}
 		/>
 	);

@@ -24,9 +24,10 @@ export const allValues: IDataForForm = {
 		value: '',
 		label: '',
 	},
-	notificationFrequency: 0,
+	buyingFrequency: 100,
 	comments: '',
 	profilePicture: null,
 	terms: false,
+	products: [],
 	date: new Date().toLocaleString(),
 };
