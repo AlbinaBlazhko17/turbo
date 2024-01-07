@@ -1,0 +1,116 @@
+@import '@scss/index.scss';
+
+.profile {
+	&__header {
+		margin-bottom: 20px;
+	}
+	&__wrapper {
+		overflow: hidden;
+	}
+	&__bg {
+		margin-top: -24px;
+		margin-left: -20px;
+		width: calc(100% + 40px);
+		height: 10em;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__modal {
+		color: $light-blue;
+		padding: 20px 30px 0 30px;
+	}
+
+	&__img {
+		position: relative;
+		margin-left: 50px;
+		width: 10rem;
+		height: 10rem;
+		background-color: $lighter-blue;
+		border-radius: 50%;
+		overflow: hidden;
+		margin-top: -80px;
+		z-index: 2;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__form {
+		margin: 0 auto;
+		margin-top: 50px;
+		width: 40%;
+		label {
+			justify-content: start;
+			margin-left: 10px;
+		}
+		&__button {
+			margin-top: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		&-item {
+			position: relative;
+			&__error {
+				position: absolute;
+				bottom: -5px;
+				left: 5px;
+				font-weight: 600;
+				font-size: 16px;
+				color: #EB5757;
+			}
+		}
+	}
+
+	&__info{
+		display: flex;
+		
+		&__wrapper {
+			margin-top: 30px;
+			margin-left: 5%;
+		}
+		&-item {
+			margin-bottom: 30px;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		&__form {
+			width: 60%;
+		}
+	}
+	@media screen and (max-width: 600px) {
+		&__img {
+			margin-left: 0;
+			margin-top: -50px;
+			width: 8rem;
+			height: 8rem;
+		}
+		&__form {
+			width: 70%;
+		}
+	}
+	@media screen and (max-width: 600px) {
+		&__info {
+			&__wrapper {
+				width: 60%;
+				margin-top: 10px;
+				word-break: break-all;
+			}
+		}
+		&__img {
+			width: 6rem;
+			height: 6rem;
+		}
+		&__form {
+			width: 100%;
+			box-sizing: border-box;
+		}
+	}
+}

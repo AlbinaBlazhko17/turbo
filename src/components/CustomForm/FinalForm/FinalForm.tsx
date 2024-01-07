@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 import style from '../customForm.module.scss';
 
-function FinalForm({ formik, setData }: IFieldProps) {
+function FinalForm<T>({ formik, setData }: IFieldProps<T>) {
 	useEffect(() => {
 		formik.touched.comments = false;
 		formik.touched.profilePicture = false;

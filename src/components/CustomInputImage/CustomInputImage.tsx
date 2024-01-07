@@ -4,21 +4,22 @@ import CustomInputImageProps from './CustomInputImage.props';
 
 import style from './customInputImage.module.scss';
 
-function CustomInputImage({ formik, label, setData }: CustomInputImageProps) {
+function CustomInputImage<T>({ formik, label, setData }: CustomInputImageProps<T>) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
-
+	const PROFILE_PICTURE = 'profilePicture' as keyof T;
 	useEffect(() => {
 		setData(formik.values);
 	}, [formik.values]);
 
 	function handleFileInputClick() {
 		fileInputRef.current !== null && fileInputRef.current.click();
-		formik.touched.profilePicture = true;
+		if ('profilePicture' in formik.touched) {
+			formik.touched.profilePicture = true;
+		}
 	}
-
 	const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (event.target.files) {
-			formik.setFieldValue('profilePicture', event.target.files[0].name);
+		if (event.target.files && 'profilePicture' in formik.touched) {
+			formik.setFieldValue(PROFILE_PICTURE, event.target.files[0].name);
 		}
 	};
 
@@ -39,7 +40,7 @@ function CustomInputImage({ formik, label, setData }: CustomInputImageProps) {
 					onClick={handleFileInputClick}
 				/>
 				<CustomLabel label="file" className={style.inputImage__label}>
-					{!formik.values['profilePicture'] ? 'No file chosen' : formik.values['profilePicture']}
+					{!formik.values[PROFILE_PICTURE] ? 'No file chosen' : String(formik.values[PROFILE_PICTURE])}
 				</CustomLabel>
 			</div>
 		</>

@@ -3,8 +3,9 @@ import Logout from '@assets/icons/logout.svg';
 import Arrow from '@assets/icons/menu.svg';
 import { ThemeContext } from '@theme/theme';
 import cn from 'classnames';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { AuthContext } from '@/auth/auth';
 
 import style from './NavBar.module.scss';
 
@@ -12,7 +13,7 @@ function NavBar() {
 	const { theme } = useContext(ThemeContext);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const location = useLocation();
-
+	const { toggleAuth } = useContext(AuthContext);
 	return (
 		<nav
 			className={cn(style.nav, style[`${theme}`], {
@@ -79,8 +80,8 @@ function NavBar() {
 					<span>Media </span>
 				</NavLink>
 				<NavLink
-					to={'/users'}
-					className={`${style['nav__list-item']} ${location.pathname === '/users' ? style.active : ''}`}
+					to={'/customers'}
+					className={`${style['nav__list-item']} ${location.pathname === '/customers' ? style.active : ''}`}
 				>
 					<svg width="23" height="25" viewBox="0 0 23 25" xmlns="http://www.w3.org/2000/svg">
 						<g id="Iconly/Bold/Document">
@@ -111,7 +112,7 @@ function NavBar() {
 					<span>Users </span>
 				</NavLink>
 			</ul>
-			<Link to={'/'} className={style.nav__logout}>
+			<Link to={'/'} className={style.nav__logout} onClick={toggleAuth}>
 				<img src={Logout} alt="logout" />
 				<p>Logout</p>
 			</Link>

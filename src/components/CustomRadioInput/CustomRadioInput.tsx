@@ -3,7 +3,7 @@ import CustomRadioInputProps from './CustomRadioInput.props';
 
 import style from './customRadioInput.module.scss';
 
-function customRadioInput({ formik, name, value, setData }: CustomRadioInputProps) {
+function customRadioInput<T>({ formik, name, value, setData }: CustomRadioInputProps<T>) {
 	return (
 		<input
 			className={style.radio}

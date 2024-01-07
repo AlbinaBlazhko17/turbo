@@ -4,8 +4,8 @@ import Chart from 'chart.js/auto';
 import style from './stats.module.scss';
 
 function Stats() {
-	const chartRef = useRef(null);
-	const chartInstance = useRef(null);
+	const chartRef = useRef<HTMLCanvasElement>(null);
+	const chartInstance = useRef<Chart | null>(null);
 
 	const data = {
 		labels: ['June', 'July', 'August', 'September', 'October'],
@@ -45,14 +45,16 @@ function Stats() {
 			const ctx = chartRef.current.getContext('2d');
 
 			if (chartInstance.current) {
-				chartInstance.current.destroy();
+				chartInstance.current?.destroy();
 			}
 
-			chartInstance.current = new Chart(ctx, {
-				type: 'bar',
-				data,
-				options,
-			});
+			if (ctx) {
+				chartInstance.current = new Chart(ctx, {
+					type: 'bar',
+					data,
+					options,
+				});
+			}
 		}
 
 		return () => {

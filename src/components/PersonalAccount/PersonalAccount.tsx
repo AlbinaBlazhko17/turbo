@@ -1,50 +1,31 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
-import { Await, redirect, useLoaderData, useNavigate, useParams } from 'react-router';
-import { getPhotoByUserId } from '@/utils/dataForGallery';
-import NotFoundImg from '@assets/img/icon-image-not-found-free-vector.jpg';
-import SpinnerIcon from '@assets/icons/spinner.svg';
-import { Formik } from 'formik';
-import { IDataForForm } from '@/interfaces/IDataForForms';
+import { EFormProps, EInterests } from '@/customTypes/form.types';
 import { RootState } from '@/customTypes/store.types';
+import { IDataForForm } from '@/interfaces/IDataForForms';
+import { getPhotoByUserId } from '@/utils/dataForGallery';
+import EditIcon from '@assets/icons/edit.svg';
+import SpinnerIcon from '@assets/icons/spinner.svg';
+import NotFoundImg from '@assets/img/icon-image-not-found-free-vector.jpg';
+import cn from 'classnames';
+import { Formik, FormikProps } from 'formik';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Await, useLoaderData, useNavigate, useParams } from 'react-router';
 import { validationSchemaForPersonalAccount } from '../CustomForm/validationSchemas';
 import CustomInput from '../CustomInput/CustomInput';
-import { EFormProps, EInterests } from '@/customTypes/form.types';
 import CustomLabel from '../CustomLabel/CustomLabel';
-import EditIcon from '@assets/icons/edit.svg';
-import cn from 'classnames';
+import { IDataForPersonalAccount } from '@/customTypes/personalAccount';
+import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
+import { changeDataById, deleteUserById } from '@/store/actions/actions';
+import TrashIcon from '@assets/icons/trash.svg';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
 import Button from '../Button/Button';
-import { changeDataById, deleteUserById } from '@/store/actions/actions';
-import CustomSelect from '../CustomSelect/CustomSelect';
-import { IFormikRef } from '@/interfaces/IDataForFormik';
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox';
-import TrashIcon from '@assets/icons/trash.svg';
+import CustomSelect from '../CustomSelect/CustomSelect';
 import ModalWindow from '../ModalWindow/ModalWindow';
 
-import style from './personalAccount.module.scss';
 import 'react-range-slider-input/dist/style.css';
-
-type IDataForPersonalAccount = {
-	[EFormProps.firstName]: boolean;
-	[EFormProps.lastName]: boolean;
-	[EFormProps.email]: boolean;
-	[EFormProps.city]: boolean;
-	[EFormProps.city]: boolean;
-	[EFormProps.country]: boolean;
-	[EFormProps.zipCode]: boolean;
-	[EFormProps.interests]: boolean;
-	[EFormProps.notificationFrequency]: boolean;
-	[EFormProps.date]: boolean;
-	[EFormProps.language]: boolean;
-};
-
-interface IRangeSliderRef {
-	element: React.RefObject<HTMLDivElement>;
-	thumb: React.RefObject<HTMLDivElement>[];
-	range: React.RefObject<HTMLDivElement>;
-}
+import style from './personalAccount.module.scss';
 
 function PersinalAccount() {
 	const [profilePicture, setProfilePicture] = useState<string>('');
@@ -52,7 +33,7 @@ function PersinalAccount() {
 	const [user, setUser] = useState<IDataForForm>();
 	const [changedData, setChangedData] = useState<IDataForForm>(user!);
 	const dataForSelect = useLoaderData();
-	const formikRef = useRef<IFormikRef>(null);
+	const formikRef = useRef<FormikProps<IDataForForm> | null>(null);
 	const [disabled, setDisabled] = useState<IDataForPersonalAccount>({
 		[EFormProps.firstName]: true,
 		[EFormProps.lastName]: true,
@@ -82,7 +63,7 @@ function PersinalAccount() {
 			}
 		})();
 		if (id) {
-			const userById = users.find((user) => user.id === +id);
+			const userById = users.find((user: IDataForForm) => user.id === +id);
 			setUser(userById);
 		}
 	}, []);
@@ -123,13 +104,13 @@ function PersinalAccount() {
 
 	function handleDeleteUser() {
 		setIsModalActive(false);
-		navigate('/users');
+		navigate('/customers');
 		dispatcher(deleteUserById(+id!));
 	}
 
 	useEffect(() => {
 		if (formikRef.current) {
-			dispatcher(changeDataById(formikRef.current.values));
+			dispatcher(changeDataById(formikRef.current.values as IDataForForm));
 		}
 	}, [formikRef.current?.values]);
 
@@ -287,7 +268,7 @@ function PersinalAccount() {
 													<CustomSelect
 														data={loaderData.countries}
 														formik={formik}
-														type="country"
+														type={EFormProps.country}
 													/>
 												)}
 											</Await>
@@ -303,7 +284,7 @@ function PersinalAccount() {
 													<CustomSelect
 														data={loaderData.languages}
 														formik={formik}
-														type="language"
+														type={EFormProps.language}
 													/>
 												)}
 											</Await>

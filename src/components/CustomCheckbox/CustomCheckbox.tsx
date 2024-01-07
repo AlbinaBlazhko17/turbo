@@ -5,7 +5,7 @@ import CustomCheckboxProps from './CustomCheckbox.props';
 
 import style from '../CustomInput/customInput.module.scss';
 
-function CustomCheckbox({ formik, label, setData }: CustomCheckboxProps) {
+function CustomCheckbox<T>({ formik, label, setData }: CustomCheckboxProps<T>) {
 	const [isChecked, setIsChecked] = useState(false);
 
 	useEffect(() => {
@@ -29,10 +29,10 @@ function CustomCheckbox({ formik, label, setData }: CustomCheckboxProps) {
 
 		if (isChecked) {
 			const updatedInterests = currentInterests.filter((interest: string | undefined) => interest !== label);
-			formik.setFieldValue('interests', updatedInterests);
+			formik.setFieldValue('interests' as keyof T, updatedInterests);
 		} else {
 			const updatedInterests = [...currentInterests, label];
-			formik.setFieldValue('interests', updatedInterests);
+			formik.setFieldValue('interests' as keyof T, updatedInterests);
 		}
 	};
 
@@ -48,7 +48,7 @@ function CustomCheckbox({ formik, label, setData }: CustomCheckboxProps) {
 						formik.handleChange(e);
 					} else {
 						setIsChecked(!isChecked);
-						formik.setFieldValue('terms', !(formik.values as IDataForSubmitForm).terms);
+						formik.setFieldValue('terms' as keyof T, !(formik.values as IDataForSubmitForm).terms);
 					}
 				}}
 				onBlur={formik.handleBlur}

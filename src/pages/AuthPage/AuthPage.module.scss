@@ -1,0 +1,295 @@
+@import '@scss/index.scss';
+
+.auth {
+	margin-top: -5%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100vh;
+	position: relative;
+	&__ellipse {
+		position: absolute;
+		transform: scale(1.5);
+		top: 10%;
+		left: -15%;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		&__wrapper {
+			position: relative;
+		}
+		&__text {
+			position: absolute;
+			top: 44%;
+			left: 28%;
+			width: 220px;
+			line-height: 1.7em;
+			h2 {
+				text-align: center;
+				font-size: 2.5rem;
+			}
+			p {
+				font-size: 1.4rem;
+				text-align: center;
+				white-space: pre-line;
+			}
+		}
+		&-top {
+			position: absolute;
+			top: 30%;
+			right: 29%;
+			width: 80px;
+			height: 80px;
+			img {
+				width: 100%;
+			}
+		}
+		&-right {
+			position: absolute;
+			top: 44%;
+			right: 15%;
+			width: 80px;
+			height: 80px;
+			img {
+				width: 100%;
+			}
+		}
+		&-bottom {
+			position: absolute;
+			bottom: 12%;
+			right: 28%;
+			width: 80px;
+			height: 80px;
+			img {
+				width: 100%;
+			}
+		
+		}
+	}
+	&__title {
+		z-index: 2;
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+	&__back {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-self: flex-start;
+		margin-bottom: 20px;
+		img {
+			width: 30px;
+			height: 30px;
+			margin-right: 10px;
+			transform: rotate(-90deg);
+		}
+		a {
+			color: $light-blue;
+		}
+	}
+	&__wrapper {
+		background-color: #fff;
+		z-index: 2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 35vw;
+	}
+	&__form {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 100%;
+		&-item {
+			width: 100%;
+			padding: 5px 30px;
+			box-sizing: border-box;
+			position: relative;
+			&__label {
+				font-size: 20px;
+				font-weight: 600;
+				float: left;
+
+			}
+			&__input {
+				
+				&:focus {
+					outline: none;
+				}
+			}
+			&__button {
+				margin-top: 20px;
+				width: 90%;
+			}
+			&__error {
+				position: absolute;
+				bottom: -5px;
+				left: 30px;
+				font-weight: 600;
+				font-size: 16px;
+				color: #EB5757;
+			}
+		}
+	}
+	&__register {
+		margin-top: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: 300;
+		a {
+			font-weight: 400;
+			margin-left: 10px;
+			font-size: 16px;
+			color: $light-blue;
+		}
+	}
+
+	@media screen and (max-width: 2560px) and (min-width: 2200px) {
+		&__ellipse {
+			transform: scale(2);
+			top: 40%;
+			left: 15%;
+			&__text {
+				top: 40%;
+				left: 22%;
+			}
+		}
+	}
+
+	@media screen and (max-width: 2100px) {
+		&__ellipse {
+			left: -10%;
+			&__text {
+				left: 33%;
+			}
+		}
+	}
+
+	@media screen and (max-width: 1650px) {
+		&__ellipse {
+			left: -25%;
+			&__text {
+				left: 38%;
+			}
+		}
+	}
+
+	@media screen and (max-width: 1440px) {
+		&__ellipse {
+			transform: scale(1.5);
+			top: 5%;
+			left: -37%;
+			&__text {
+				top: 40%;
+				left: 43%;
+			}
+			&-top {
+				top: 25%;
+				right: 33%;
+			}
+		}
+	}
+
+	@media screen and (max-width: 1024px) {
+		&__form {
+			&-item {
+				padding: 5px 10px;
+			}
+		}
+		&__ellipse {
+			left: -70%;
+			&__text {
+				top: 38%;
+				left: 65%;
+				width: 150px;
+				h2 {
+					font-size: 1.5rem;
+				}
+				p {
+					font-size: 1rem;
+				}
+			}
+			&-top {
+				right: 25%;
+			}
+			&-right {
+				right: 5%;
+			}
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		&__ellipse {
+			top: 5%;
+			left: -120%;
+			&__text {
+				top: 35%;
+				left: 95%;
+				width: 120px;
+				h2 {
+					font-size: 1.5rem;
+				}
+				p {
+					font-size: 1rem;
+				}
+			}
+			&-top {
+				right: 25%;
+			}
+			&-right {
+				right: 5%;
+			}
+		}
+		&__wrapper {
+			width: 45vw;
+		}
+	}
+	@media screen and (max-width: 425px) {
+		&__ellipse {
+			top: 5%;
+			left: -280%;
+			&__text {
+				display: none;
+			}
+			&-top {
+				right: 10%;
+			}
+			&-right {
+				right: -5%;
+			}
+		}
+		&__wrapper {
+			width: 60vw;
+		}
+	}
+	@media screen and (max-width: 375px) {
+		&__ellipse {
+			top: 5%;
+			left: -320%;
+			&-top {
+				right: 5%;
+			}
+			&-right {
+				right: -15%;
+			}
+			&-bottom {
+				right: 10%;
+			}
+		}
+	}
+	@media screen and (max-width: 320px) {
+		&__form {
+			&-item {
+				padding: 5px 5px;
+			}
+		}
+		&__ellipse {
+			top: 5%;
+			left: -385%;
+		}
+	}
+}

@@ -1,3 +1,4 @@
+import { userSlice } from '../slice/authSlice';
 import { formSlice } from '../slice/slice';
 
 export const {
@@ -9,3 +10,5 @@ export const {
 	changeDataById,
 	deleteUserById,
 } = formSlice.actions;
+
+export const { addUser, changePassword } = userSlice.actions;

@@ -1,16 +1,15 @@
+import { Button, CustomForm, Steps } from '@/components';
 import {
 	validationSchemaAddress,
 	validationSchemaPersonalInfo,
 	validationSchemaPreferences,
 	validationSchemaSubmit,
 } from '@/components/CustomForm/validationSchemas';
-import { FormValues, IFormikInnerRef } from '@/customTypes/formik.types';
+import { FormValues } from '@/customTypes/formik.types';
 import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 import { addItemToForm } from '@/store/actions/actions';
-import { Button, CustomForm, Steps } from '@/components';
-import { IFormikRef } from '@interfaces/IDataForFormik';
-import { Formik } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import { motion } from 'framer-motion';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,14 +19,13 @@ import { ObjectSchema } from 'yup';
 import style from './formPage.module.scss';
 
 function FormPage() {
-	const storedStep = localStorage.getItem('step');
-	const step = storedStep !== null ? +storedStep : undefined;
-	const [currentStep, setCurrentStep] = useState(step || 1);
+	const storredStep = localStorage.getItem('step');
+	const [currentStep, setCurrentStep] = useState<number>(storredStep ? +storredStep : 1);
 	const [validation, setValidation] = useState<ObjectSchema<FormValues>>(validationSchemaPersonalInfo);
 	const initialValues = useSelector((state: RootState) => state.form.formData);
 	const [data, setData] = useState<IDataForForm>(initialValues[initialValues.length - 1]!);
 	const [click, setClick] = useState<'next' | 'prev' | undefined>(undefined);
-	const formikRef = useRef<IFormikRef>();
+	const formikRef = useRef<FormikProps<IDataForForm>>(null);
 	const formDispatcher = useDispatch();
 
 	const loaderData = useLoaderData();
@@ -116,7 +114,7 @@ function FormPage() {
 						setClick('next');
 					}
 				}}
-				innerRef={formikRef as IFormikInnerRef}
+				innerRef={formikRef}
 			>
 				{(formik) => (
 					<section className={style.form__wrapper}>

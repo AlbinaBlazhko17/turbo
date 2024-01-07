@@ -17,16 +17,17 @@ type Props = {
 	isSliderInteracting?: boolean;
 	setIsSliderInteracting?: setStateActionType<boolean>;
 	isModalActive: boolean;
+	id?: string;
 };
 
 const ModalWindow: FC<PropsWithChildren<Props>> = (props) => {
-	const { title, onClose, children, isSliderInteracting, setIsSliderInteracting, isModalActive } = props;
+	const { title, onClose, children, isSliderInteracting, setIsSliderInteracting, isModalActive, id } = props;
 
 	const rootRef = useRef<HTMLDivElement>(null);
 	const [isMounted, setMounted] = useState(false);
 
 	useEffect(() => {
-		createContainer({ id: MODAL_CONTAINER_ID });
+		createContainer({ id: id || MODAL_CONTAINER_ID });
 		setMounted(true);
 	}, []);
 
@@ -59,7 +60,7 @@ const ModalWindow: FC<PropsWithChildren<Props>> = (props) => {
 	}, [onClose]);
 
 	return (
-		<Portal id={`modal-container-id`}>
+		<Portal id={id || `modal-container-id`}>
 			<AnimatePresence>
 				{isModalActive && isMounted && (
 					<motion.div

@@ -8,40 +8,68 @@ import { loader } from '@/utils/dataForSelect';
 import Dashboard from '@pages/Dashboard/Dashboard';
 import FormPage from '@pages/FormPage/FormPage';
 import { createBrowserRouter } from 'react-router-dom';
+import PrivateRoutes from './PrivateRoutes/PrivateRoutes';
+import AuthPage from '@/pages/AuthPage/AuthPage';
+import AuthLayout from '@/layout/AuthLayout/AuthLayout';
+import UserProfile from '@/pages/UserProfile/UserProfile';
 
 const routesConfig = createBrowserRouter([
 	{
 		path: '/',
-		element: <Layout />,
-		errorElement: <ErrorPage />,
+		element: <PrivateRoutes />,
 		children: [
 			{
 				path: '/',
-				element: <Dashboard />,
-			},
-			{
-				path: '/form',
-				element: <FormPage />,
-				loader,
-			},
-			{
-				path: '/users',
-				element: <TablePage />,
+				element: <Layout />,
+				errorElement: <ErrorPage />,
 				children: [
 					{
-						path: '',
-						element: <TableContent />,
+						path: '/',
+						element: <Dashboard />,
 					},
 					{
-						path: ':id',
-						element: <UserInfoPage />,
+						path: '/form',
+						element: <FormPage />,
 						loader,
+					},
+					{
+						path: '/customers',
+						element: <TablePage />,
+						children: [
+							{
+								path: '',
+								element: <TableContent />,
+							},
+							{
+								path: ':id',
+								element: <UserInfoPage />,
+								loader,
+							},
+						],
+					},
+					{
+						path: '/gallery',
+						element: <GalleryPage />,
+					},
+					{
+						path: '/profile',
+						element: <UserProfile />,
 					},
 				],
 			},
+		],
+	},
+	{
+		path: '/',
+		element: <AuthLayout />,
+		children: [
 			{
-				path: '/gallery',
-				element: <GalleryPage />,
+				path: '/login',
+				element: <AuthPage />,
+			},
+			{
+				path: '/signup',
+				element: <AuthPage />,
 			},
 		],
 	},

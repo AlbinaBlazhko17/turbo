@@ -1,3 +1,4 @@
+import { IDataForForm } from '@/interfaces/IDataForForms';
 import ConfirmationPage from '../ConfirmationPage/ConfirmationPage';
 import AddressForm from './AddressForm/AddressForm';
 import FinalForm from './FinalForm/FinalForm';
@@ -5,7 +6,13 @@ import PersonalInfoForm from './PersonalInfoForm/PersonalInfoForm';
 import PreferencesForm from './PreferencesForm/PreferencesForm';
 import CustomFormProps from './customForm.props';
 
-function CustomForm({ formik, currentStep, setData, loaderDataCountries, loaderDataLanguages }: CustomFormProps) {
+function CustomForm({
+	formik,
+	currentStep,
+	setData,
+	loaderDataCountries,
+	loaderDataLanguages,
+}: CustomFormProps<IDataForForm>) {
 	switch (+currentStep) {
 		case 1:
 			return <PersonalInfoForm formik={formik} setData={setData} />;

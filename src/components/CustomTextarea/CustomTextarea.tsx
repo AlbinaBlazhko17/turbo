@@ -6,7 +6,7 @@ import CustomTextareaProps from './CustomTextarea.props';
 
 import style from './customTextarea.module.scss';
 
-function CustomTextarea({ formik, label, setData }: CustomTextareaProps) {
+function CustomTextarea<T>({ formik, label, setData }: CustomTextareaProps<T>) {
 	const { theme } = useContext(ThemeContext);
 
 	useEffect(() => {

@@ -80,7 +80,7 @@ function TableContent() {
 	}
 
 	function handleClickOnRow(id: number) {
-		navigate(`/users/${id}`);
+		navigate(`/customers/${id}`);
 	}
 
 	useEffect(() => {

@@ -16,7 +16,7 @@ function UserInfoPage() {
 		<>
 			<h1 className={style.header}>User Info Page</h1>
 			<section className={style.contentWrapper}>
-				<Link to="/users" onClick={handleClickGoBack} className={style.button}>
+				<Link to="/customers" onClick={handleClickGoBack} className={style.button}>
 					<span className={style.button__arrow}>
 						<img src={ArrowIcon} alt="Go back" />
 					</span>
