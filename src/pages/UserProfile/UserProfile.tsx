@@ -11,6 +11,7 @@ import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { validationSchemaInfo } from './validationSchemaInfo';
 import { validationSchemaPassword } from './validationSchemaPassword';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import style from './UserProfile.module.scss';
 
