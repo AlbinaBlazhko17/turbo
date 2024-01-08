@@ -63,138 +63,185 @@ function AuthPage() {
 			<div className={style['auth__ellipse-bottom']}>
 				<img src={EllipseIcon} alt="ellipse" />
 			</div>
-			<h1 className={style.auth__title}>{currentPath === 'login' ? 'Login' : 'Register'}</h1>
-			<AnimatePresence>
-				<section className={style.auth__wrapper}>
-					{currentPath === 'signup' && (
-						<motion.div
-							className={style.auth__back}
-							transition={{
-								type: 'spring',
-								duration: 0.5,
-							}}
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
-						>
-							<img src={ArrowIcon} alt="back" />
-							<Link to="/login">Back to login</Link>
-						</motion.div>
-					)}
+			<div className={style.auth__content}>
+				<h1 className={style.auth__title}>{currentPath === 'login' ? 'Login' : 'Register'}</h1>
+				<AnimatePresence>
+					<section className={style.auth__wrapper}>
+						{currentPath === 'signup' && (
+							<motion.div
+								className={style.auth__back}
+								transition={{
+									type: 'spring',
+									duration: 0.5,
+								}}
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}
+							>
+								<img src={ArrowIcon} alt="back" />
+								<Link to="/login">Back to login</Link>
+							</motion.div>
+						)}
 
-					<Formik
-						initialValues={data}
-						innerRef={formikRef}
-						validationSchema={validationSchemaAuth}
-						onSubmit={(values) => {
-							if (currentPath === 'signup') {
-								if (values.email === user.email) {
-									formikRef.current?.setErrors({
-										email: 'This email is already registered',
-									});
-								} else if (values.username === user.username) {
-									formikRef.current?.setErrors({
-										username: 'This username is already registered',
-									});
+						<Formik
+							initialValues={data}
+							innerRef={formikRef}
+							validationSchema={validationSchemaAuth}
+							onSubmit={(values) => {
+								if (currentPath === 'signup') {
+									if (values.email === user.email) {
+										formikRef.current?.setErrors({
+											email: 'This email is already registered',
+										});
+									} else if (values.username === user.username) {
+										formikRef.current?.setErrors({
+											username: 'This username is already registered',
+										});
+									} else {
+										toggleAuth();
+										navigate('/');
+										dispatcher(addUser(values));
+									}
 								} else {
-									toggleAuth();
-									navigate('/');
-									dispatcher(addUser(values));
+									if (values.email !== user.email) {
+										formikRef.current?.setErrors({
+											email: 'This email is not registered',
+										});
+									} else if (values.password !== user.password) {
+										formikRef.current?.setErrors({
+											password: 'Wrong password',
+										});
+									} else {
+										toggleAuth();
+										navigate('/');
+									}
 								}
-							} else {
-								if (values.email !== user.email) {
-									formikRef.current?.setErrors({
-										email: 'This email is not registered',
-									});
-								} else if (values.password !== user.password) {
-									formikRef.current?.setErrors({
-										password: 'Wrong password',
-									});
-								} else {
-									toggleAuth();
-									navigate('/');
-								}
-							}
-						}}
-					>
-						{(formik) => (
-							<div className={style.auth__form}>
-								{currentPath === 'signup' && (
-									<motion.div
-										transition={{
-											type: 'spring',
-											duration: 0.4,
-										}}
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
-										className={style['auth__form-item']}
-									>
-										<CustomLabel label="username" className={style['auth__form-item__label']}>
-											Username
-										</CustomLabel>
-										<CustomInput
-											formik={formik}
-											label="username"
-											type="text"
-											setData={setData}
-											className={style['auth__form-item__input']}
-										/>
-										{formik.touched.username && formik.errors.username && (
-											<div className={style[`auth__form-item__error`]}>
-												{formik.errors.username}
-											</div>
-										)}
-									</motion.div>
-								)}
-								<div className={style['auth__form-item']}>
-									<CustomLabel label="email" className={style['auth__form-item__label']}>
-										Email
-									</CustomLabel>
-									<CustomInput formik={formik} label="email" type="email" setData={setData} />
-									{formik.touched.email && formik.errors.email && (
-										<div className={style[`auth__form-item__error`]}>{formik.errors.email}</div>
-									)}
-								</div>
-								<div className={style['auth__form-item']}>
-									<CustomLabel label="password" className={style['auth__form-item__label']}>
-										Password
-									</CustomLabel>
-									<CustomInput formik={formik} label="password" type="password" setData={setData} />
-									{formik.touched.password && formik.errors.password && (
-										<div className={style[`auth__form-item__error`]}>{formik.errors.password}</div>
-									)}
-								</div>
-								{currentPath === 'signup' && (
-									<>
+							}}
+						>
+							{(formik) => (
+								<div className={style.auth__form}>
+									{currentPath === 'signup' && (
 										<motion.div
 											transition={{
 												type: 'spring',
-												duration: 0.5,
+												duration: 0.4,
 											}}
 											initial={{ opacity: 0 }}
 											animate={{ opacity: 1 }}
 											exit={{ opacity: 0 }}
 											className={style['auth__form-item']}
 										>
-											<CustomLabel
-												label="checkPassword"
-												className={style['auth__form-item__label']}
-											>
-												Repeat password
+											<CustomLabel label="username" className={style['auth__form-item__label']}>
+												Username
 											</CustomLabel>
 											<CustomInput
 												formik={formik}
-												label="checkPassword"
-												type="password"
+												label="username"
+												type="text"
 												setData={setData}
+												className={style['auth__form-item__input']}
 											/>
-											{formik.touched.checkPassword && formik.errors.checkPassword && (
-												<div className={style['auth__form-item__error']}>
-													{formik.errors.checkPassword}
+											{formik.touched.username && formik.errors.username && (
+												<div className={style[`auth__form-item__error`]}>
+													{formik.errors.username}
 												</div>
 											)}
 										</motion.div>
+									)}
+									<div className={style['auth__form-item']}>
+										<CustomLabel label="email" className={style['auth__form-item__label']}>
+											Email
+										</CustomLabel>
+										<CustomInput
+											formik={formik}
+											label="email"
+											type="email"
+											setData={setData}
+											className={style['auth__form-item__input']}
+										/>
+										{formik.touched.email && formik.errors.email && (
+											<div className={style[`auth__form-item__error`]}>{formik.errors.email}</div>
+										)}
+									</div>
+									<div className={style['auth__form-item']}>
+										<CustomLabel label="password" className={style['auth__form-item__label']}>
+											Password
+										</CustomLabel>
+										<CustomInput
+											formik={formik}
+											label="password"
+											type="password"
+											setData={setData}
+											className={style['auth__form-item__input']}
+										/>
+										{formik.touched.password && formik.errors.password && (
+											<div className={style[`auth__form-item__error`]}>
+												{formik.errors.password}
+											</div>
+										)}
+									</div>
+									{currentPath === 'signup' && (
+										<>
+											<motion.div
+												transition={{
+													type: 'spring',
+													duration: 0.5,
+												}}
+												initial={{ opacity: 0 }}
+												animate={{ opacity: 1 }}
+												exit={{ opacity: 0 }}
+												className={style['auth__form-item']}
+											>
+												<CustomLabel
+													label="checkPassword"
+													className={style['auth__form-item__label']}
+												>
+													Repeat password
+												</CustomLabel>
+												<CustomInput
+													formik={formik}
+													label="checkPassword"
+													type="password"
+													setData={setData}
+													className={style['auth__form-item__input']}
+												/>
+												{formik.touched.checkPassword && formik.errors.checkPassword && (
+													<div className={style['auth__form-item__error']}>
+														{formik.errors.checkPassword}
+													</div>
+												)}
+											</motion.div>
+											<motion.div
+												transition={{
+													type: 'spring',
+													duration: 0.5,
+												}}
+												initial={{ opacity: 0 }}
+												animate={{ opacity: 1 }}
+												exit={{ opacity: 0 }}
+												className={style['auth__form-item']}
+											>
+												<CustomLabel label="terms" className={style['auth__form-item__label']}>
+													<CustomCheckbox formik={formik} label="terms" setData={setData} />I
+													accept the terms and conditions
+												</CustomLabel>
+												{formik.touched.terms && formik.errors.terms && (
+													<div className={style['auth__form-item__error']}>
+														{formik.errors.terms}
+													</div>
+												)}
+											</motion.div>
+										</>
+									)}
+									<Button
+										appearance="filled"
+										type="submit"
+										className={style['auth__form-item__button']}
+										onClick={formik.handleSubmit}
+									>
+										{currentPath === 'login' ? 'Login' : 'Register'}
+									</Button>
+									{currentPath === 'login' && (
 										<motion.div
 											transition={{
 												type: 'spring',
@@ -203,48 +250,18 @@ function AuthPage() {
 											initial={{ opacity: 0 }}
 											animate={{ opacity: 1 }}
 											exit={{ opacity: 0 }}
-											className={style['auth__form-item']}
+											className={style.auth__register}
 										>
-											<CustomLabel label="terms" className={style['auth__form-item__label']}>
-												<CustomCheckbox formik={formik} label="terms" setData={setData} />I
-												accept the terms and conditions
-											</CustomLabel>
-											{formik.touched.terms && formik.errors.terms && (
-												<div className={style['auth__form-item__error']}>
-													{formik.errors.terms}
-												</div>
-											)}
+											<p>Don&apos;t have an account?</p>
+											<Link to="/signup">Create new account</Link>
 										</motion.div>
-									</>
-								)}
-								<Button
-									appearance="filled"
-									type="submit"
-									className={style['auth__form-item__button']}
-									onClick={formik.handleSubmit}
-								>
-									{currentPath === 'login' ? 'Login' : 'Register'}
-								</Button>
-								{currentPath === 'login' && (
-									<motion.div
-										transition={{
-											type: 'spring',
-											duration: 0.5,
-										}}
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
-										className={style.auth__register}
-									>
-										<p>Don&apos;t have an account?</p>
-										<Link to="/signup">Create new account</Link>
-									</motion.div>
-								)}
-							</div>
-						)}
-					</Formik>
-				</section>
-			</AnimatePresence>
+									)}
+								</div>
+							)}
+						</Formik>
+					</section>
+				</AnimatePresence>
+			</div>
 		</div>
 	);
 }

@@ -5,7 +5,7 @@ import { Navigate, Outlet } from 'react-router';
 function PrivateRoutes() {
 	const { isAuthenticated } = useContext(AuthContext);
 
-	return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+	return isAuthenticated ? <Outlet /> : <Navigate to="/login" state={{ prevLocation: '/login' }} />;
 }
 
 export default PrivateRoutes;

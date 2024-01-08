@@ -1,13 +1,13 @@
 @import '@scss/index.scss';
 
 .auth {
-	margin-top: -5%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	height: 100vh;
+	height: 100%;
 	position: relative;
+	top: 0;
 	&__ellipse {
 		position: absolute;
 		transform: scale(1.5);
@@ -67,7 +67,15 @@
 		
 		}
 	}
+
+	&__content {
+		z-index: 3;
+	}
+
 	&__title {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		z-index: 2;
 		font-size: 2rem;
 		margin-bottom: 1rem;
@@ -77,18 +85,20 @@
 		justify-content: center;
 		align-items: center;
 		align-self: flex-start;
-		margin-bottom: 20px;
+		margin-bottom: 2%;
 		img {
-			width: 30px;
-			height: 30px;
+			width: 20px;
+			height: 20px;
 			margin-right: 10px;
 			transform: rotate(-90deg);
+			margin-top: -4px;
 		}
 		a {
 			color: $light-blue;
 		}
 	}
 	&__wrapper {
+		margin-top: auto;
 		background-color: #fff;
 		z-index: 2;
 		display: flex;
@@ -115,7 +125,8 @@
 
 			}
 			&__input {
-				
+				padding: 2vh !important;
+				margin-bottom: 1vh !important;
 				&:focus {
 					outline: none;
 				}
@@ -154,7 +165,7 @@
 			top: 40%;
 			left: 15%;
 			&__text {
-				top: 40%;
+				top: 25%;
 				left: 22%;
 			}
 		}
@@ -164,7 +175,8 @@
 		&__ellipse {
 			left: -10%;
 			&__text {
-				left: 33%;
+				top: 30%;
+				left: 27%;
 			}
 		}
 	}
@@ -184,7 +196,7 @@
 			top: 5%;
 			left: -37%;
 			&__text {
-				top: 40%;
+				top: 30%;
 				left: 43%;
 			}
 			&-top {
@@ -203,7 +215,7 @@
 		&__ellipse {
 			left: -70%;
 			&__text {
-				top: 38%;
+				top: 27%;
 				left: 65%;
 				width: 150px;
 				h2 {
@@ -227,7 +239,7 @@
 			top: 5%;
 			left: -120%;
 			&__text {
-				top: 35%;
+				top: 25%;
 				left: 95%;
 				width: 120px;
 				h2 {

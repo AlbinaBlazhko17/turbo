@@ -19,12 +19,16 @@
 	z-index: 4;
 	background-color: #fff;
 
+	&__auth {
+		position: absolute;
+	}
+
 	&__wrapper {
 		min-width: 150px;
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-end;
 		align-items: center;
-
+		
 		& a:nth-child(2) {
 			padding: 3.75px;
 		}
@@ -45,6 +49,11 @@
 		overflow: hidden;
 		background-color: $lighter-blue;
 		border-radius: 50%;
+
+		&_ml20px {
+			margin-left: 30px;
+		}
+	
 		& img {
 			margin-top: 5px;
 			width: 100%;
