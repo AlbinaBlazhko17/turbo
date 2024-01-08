@@ -19,6 +19,12 @@ export const userSlice = createSlice({
 		changePassword: (state, action: PayloadAction<{ newPassword: string }>) => {
 			state.password = action.payload.newPassword;
 		},
+		changeUsername: (state, action: PayloadAction<{ newUsername: string }>) => {
+			state.username = action.payload.newUsername;
+		},
+		changeEmail: (state, action: PayloadAction<{ newEmail: string }>) => {
+			state.email = action.payload.newEmail;
+		},
 	},
 });
 

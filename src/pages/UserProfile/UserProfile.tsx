@@ -1,26 +1,39 @@
 import { Button, CustomInput, CustomLabel, ModalWindow } from '@/components';
 import { RootState } from '@/customTypes/store.types';
 import { IPassword } from '@/interfaces/IDataForPassword';
-import { changePassword } from '@/store/actions/actions';
+import { changePassword, changeUsername, changeEmail } from '@/store/actions/actions';
 import bg from '@assets/img/BG.png';
 import ProfileIcon from '@assets/img/person.png';
 import { Formik, FormikProps } from 'formik';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { validationSchemaPassword } from './validationSchemaPassword';
+import EditIcon from '@assets/icons/edit.svg';
+import { validationSchemaInfo } from './validationSchemaInfo';
+import { IDataForInfo } from '@/interfaces/IDataForInfo';
 
 import style from './UserProfile.module.scss';
 
 function UserProfile() {
-	const initialValues: IPassword = {
+	const initialValuesPassword: IPassword = {
 		currentPassword: '',
 		newPassword: '',
 		confirmPassword: '',
 	};
-	const [data, setData] = useState<IPassword>(initialValues);
+	const [dataPassword, setDataPassword] = useState<IPassword>(initialValuesPassword);
 	const user = useSelector((state: RootState) => state.user);
-	const formikRef = useRef<FormikProps<IPassword>>(null);
+	const initialValuesInfo: IDataForInfo = {
+		username: user.username,
+		email: user.email,
+	};
+	const [dataInfo, setDataInfo] = useState<IDataForInfo>(initialValuesInfo);
+	const formikPasswordRef = useRef<FormikProps<IPassword>>(null);
+	const formikInfoRef = useRef<FormikProps<IDataForInfo>>(null);
 	const [isModalActive, setIsModalActive] = useState<boolean>(false);
+	const [isEditing, setIsEditing] = useState<{ username: boolean; email: boolean }>({
+		username: false,
+		email: false,
+	});
 
 	function onClose() {
 		setIsModalActive(false);
@@ -28,17 +41,35 @@ function UserProfile() {
 
 	const dispatcher = useDispatch();
 
+	function toggleEditing(field: keyof typeof isEditing) {
+		setIsEditing((prevState) => ({
+			...prevState,
+			[field]: !prevState[field],
+		}));
+	}
+
+	function handleChangeInfo() {
+		if (isEditing.username && !isEditing.email) {
+			dispatcher(changeUsername({ newUsername: dataInfo.username }));
+		} else if (isEditing.email && !isEditing.username) {
+			dispatcher(changeEmail({ newEmail: dataInfo.email }));
+		} else if (isEditing.username && isEditing.email) {
+			dispatcher(changeUsername({ newUsername: dataInfo.username }));
+			dispatcher(changeEmail({ newEmail: dataInfo.email }));
+		}
+	}
+
 	function handleChangePassword() {
-		if (data.currentPassword === data.newPassword) {
-			formikRef.current?.setErrors({
+		if (dataPassword.currentPassword === dataPassword.newPassword) {
+			formikPasswordRef.current?.setErrors({
 				newPassword: 'Ensure the new password does not match the previous one.',
 			});
-		} else if (user.password === data.currentPassword) {
-			dispatcher(changePassword({ newPassword: data.newPassword }));
-			formikRef.current?.resetForm();
+		} else if (user.password === dataPassword.currentPassword) {
+			dispatcher(changePassword({ newPassword: dataPassword.newPassword }));
+			formikPasswordRef.current?.resetForm();
 			setIsModalActive(true);
 		} else {
-			formikRef.current?.setErrors({ currentPassword: 'Wrong password' });
+			formikPasswordRef.current?.setErrors({ currentPassword: 'Wrong password' });
 		}
 	}
 
@@ -53,30 +84,89 @@ function UserProfile() {
 					<div className={style.profile__img}>
 						<img src={ProfileIcon} alt="profile" />
 					</div>
-					<div className={style.profile__info__wrapper}>
-						<div className={style['profile__info-item']}>
-							<h2 className={style.profile__name}>{user.username}</h2>
-						</div>
-						<div className={style['profile__info-item']}>
-							<p className={style.profile__email}>{user.email}</p>
-						</div>
-					</div>
+					<Formik
+						initialValues={initialValuesInfo}
+						validationSchema={validationSchemaInfo}
+						onSubmit={(values) => console.log(values)}
+						innerRef={formikInfoRef}
+					>
+						{(formik) => (
+							<div className={style.profile__info__wrapper}>
+								<div className={style['profile__info-item']}>
+									{isEditing.username ? (
+										<CustomInput
+											setData={setDataInfo}
+											formik={formik}
+											label="username"
+											type="text"
+										/>
+									) : (
+										<h2 className={style.profile__name}>{user.username}</h2>
+									)}
+									{!isEditing.username ? (
+										<div className={style.profile__edit} onClick={() => toggleEditing('username')}>
+											<img src={EditIcon} alt="edit" />
+										</div>
+									) : (
+										<Button
+											appearance="filled"
+											onClick={() => {
+												toggleEditing('username');
+												handleChangeInfo();
+											}}
+											className={style.profile__editBtn}
+										>
+											Save
+										</Button>
+									)}
+								</div>
+								<div className={style['profile__info-item']}>
+									{isEditing.email ? (
+										<CustomInput setData={setDataInfo} formik={formik} label="email" type="text" />
+									) : (
+										<p className={style.profile__email}>{user.email}</p>
+									)}
+									{!isEditing.email ? (
+										<div
+											className={style.profile__edit}
+											onClick={() => {
+												toggleEditing('email');
+											}}
+										>
+											<img src={EditIcon} alt="edit" />
+										</div>
+									) : (
+										<Button
+											appearance="filled"
+											onClick={() => {
+												toggleEditing('email');
+												handleChangeInfo();
+											}}
+											className={style.profile__editBtn}
+										>
+											Save
+										</Button>
+									)}
+								</div>
+							</div>
+						)}
+					</Formik>
 				</div>
 			</section>
 
 			<section className={style.profile__form}>
 				<Formik
-					initialValues={initialValues}
+					initialValues={initialValuesPassword}
 					validationSchema={validationSchemaPassword}
 					onSubmit={handleChangePassword}
-					innerRef={formikRef}
+					innerRef={formikPasswordRef}
 				>
 					{(formik) => (
 						<div>
 							<div className={style['profile__form-item']}>
 								<CustomLabel>Current password</CustomLabel>
 								<CustomInput
-									setData={setData}
+									setData={setDataPassword}
 									formik={formik}
 									label="currentPassword"
 									type="password"
@@ -89,7 +179,12 @@ function UserProfile() {
 							</div>
 							<div className={style['profile__form-item']}>
 								<CustomLabel>New password</CustomLabel>
-								<CustomInput setData={setData} formik={formik} label="newPassword" type="password" />
+								<CustomInput
+									setData={setDataPassword}
+									formik={formik}
+									label="newPassword"
+									type="password"
+								/>
 								{formik.touched.newPassword && formik.errors.newPassword && (
 									<div className={style[`profile__form-item__error`]}>
 										{formik.errors.newPassword}
@@ -99,7 +194,7 @@ function UserProfile() {
 							<div className={style['profile__form-item']}>
 								<CustomLabel>Confirm password</CustomLabel>
 								<CustomInput
-									setData={setData}
+									setData={setDataPassword}
 									formik={formik}
 									label="confirmPassword"
 									type="password"
