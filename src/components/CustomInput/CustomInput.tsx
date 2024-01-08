@@ -1,10 +1,8 @@
 import { ThemeContext } from '@theme/theme';
-import { useContext, useEffect } from 'react';
 import cn from 'classnames';
-import CustomInputProps from './customInput.props';
-import { IDataForForm } from '@/interfaces/IDataForForms';
-import { IDataForAuth } from '@/interfaces/IDataForAuth';
 import { FormikValues } from 'formik';
+import { useContext, useEffect } from 'react';
+import CustomInputProps from './customInput.props';
 
 import style from './customInput.module.scss';
 

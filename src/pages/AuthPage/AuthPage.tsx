@@ -119,7 +119,7 @@ function AuthPage() {
 							}}
 						>
 							{(formik) => (
-								<div className={style.auth__form}>
+								<div className={style.form}>
 									{currentPath === 'signup' && (
 										<motion.div
 											transition={{
@@ -129,9 +129,9 @@ function AuthPage() {
 											initial={{ opacity: 0 }}
 											animate={{ opacity: 1 }}
 											exit={{ opacity: 0 }}
-											className={style['auth__form-item']}
+											className={style['form-item']}
 										>
-											<CustomLabel label="username" className={style['auth__form-item__label']}>
+											<CustomLabel label="username" className={style['form-item__label']}>
 												Username
 											</CustomLabel>
 											<CustomInput
@@ -139,17 +139,17 @@ function AuthPage() {
 												label="username"
 												type="text"
 												setData={setData}
-												className={style['auth__form-item__input']}
+												className={style['form-item__input']}
 											/>
 											{formik.touched.username && formik.errors.username && (
-												<div className={style[`auth__form-item__error`]}>
+												<div className={style[`form-item__error`]}>
 													{formik.errors.username}
 												</div>
 											)}
 										</motion.div>
 									)}
-									<div className={style['auth__form-item']}>
-										<CustomLabel label="email" className={style['auth__form-item__label']}>
+									<div className={style['form-item']}>
+										<CustomLabel label="email" className={style['form-item__label']}>
 											Email
 										</CustomLabel>
 										<CustomInput
@@ -157,14 +157,14 @@ function AuthPage() {
 											label="email"
 											type="email"
 											setData={setData}
-											className={style['auth__form-item__input']}
+											className={style['form-item__input']}
 										/>
 										{formik.touched.email && formik.errors.email && (
-											<div className={style[`auth__form-item__error`]}>{formik.errors.email}</div>
+											<div className={style[`form-item__error`]}>{formik.errors.email}</div>
 										)}
 									</div>
-									<div className={style['auth__form-item']}>
-										<CustomLabel label="password" className={style['auth__form-item__label']}>
+									<div className={style['form-item']}>
+										<CustomLabel label="password" className={style['form-item__label']}>
 											Password
 										</CustomLabel>
 										<CustomInput
@@ -172,12 +172,10 @@ function AuthPage() {
 											label="password"
 											type="password"
 											setData={setData}
-											className={style['auth__form-item__input']}
+											className={style['form-item__input']}
 										/>
 										{formik.touched.password && formik.errors.password && (
-											<div className={style[`auth__form-item__error`]}>
-												{formik.errors.password}
-											</div>
+											<div className={style[`form-item__error`]}>{formik.errors.password}</div>
 										)}
 									</div>
 									{currentPath === 'signup' && (
@@ -190,11 +188,11 @@ function AuthPage() {
 												initial={{ opacity: 0 }}
 												animate={{ opacity: 1 }}
 												exit={{ opacity: 0 }}
-												className={style['auth__form-item']}
+												className={style['form-item']}
 											>
 												<CustomLabel
 													label="checkPassword"
-													className={style['auth__form-item__label']}
+													className={style['form-item__label']}
 												>
 													Repeat password
 												</CustomLabel>
@@ -203,10 +201,10 @@ function AuthPage() {
 													label="checkPassword"
 													type="password"
 													setData={setData}
-													className={style['auth__form-item__input']}
+													className={style['form-item__input']}
 												/>
 												{formik.touched.checkPassword && formik.errors.checkPassword && (
-													<div className={style['auth__form-item__error']}>
+													<div className={style['form-item__error']}>
 														{formik.errors.checkPassword}
 													</div>
 												)}
@@ -219,14 +217,14 @@ function AuthPage() {
 												initial={{ opacity: 0 }}
 												animate={{ opacity: 1 }}
 												exit={{ opacity: 0 }}
-												className={style['auth__form-item']}
+												className={style['form-item']}
 											>
-												<CustomLabel label="terms" className={style['auth__form-item__label']}>
+												<CustomLabel label="terms" className={style['form-item__label']}>
 													<CustomCheckbox formik={formik} label="terms" setData={setData} />I
 													accept the terms and conditions
 												</CustomLabel>
 												{formik.touched.terms && formik.errors.terms && (
-													<div className={style['auth__form-item__error']}>
+													<div className={style['form-item__error']}>
 														{formik.errors.terms}
 													</div>
 												)}
@@ -236,7 +234,7 @@ function AuthPage() {
 									<Button
 										appearance="filled"
 										type="submit"
-										className={style['auth__form-item__button']}
+										className={style['form-item__button']}
 										onClick={formik.handleSubmit}
 									>
 										{currentPath === 'login' ? 'Login' : 'Register'}
