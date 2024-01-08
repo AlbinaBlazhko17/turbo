@@ -59,7 +59,7 @@ const routesConfig = createBrowserRouter([
 			},
 			{
 				path: '*',
-				element: <ErrorPage />,
+				element: <ErrorPage mssg="Page not found!" />,
 			},
 		],
 	},
