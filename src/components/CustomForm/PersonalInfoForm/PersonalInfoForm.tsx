@@ -1,8 +1,8 @@
 import { CustomInput, CustomLabel, CustomRadioInput } from '@/components';
 import { EFormProps } from '@/customTypes/form.types';
+import { IDataForForm } from '@/interfaces/IDataForForms';
 import IFieldProps from '@/interfaces/IFieldProps';
 import cn from 'classnames';
-import { IDataForForm } from '@/interfaces/IDataForForms';
 
 import style from '../customForm.module.scss';
 

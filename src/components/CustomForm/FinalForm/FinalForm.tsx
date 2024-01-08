@@ -1,4 +1,4 @@
-import { CustomCheckbox, CustomInputImage, CustomLabel, CustomTextarea, CustomMultiSelect } from '@/components';
+import { CustomCheckbox, CustomInputImage, CustomLabel, CustomMultiSelect, CustomTextarea } from '@/components';
 import { EFormProps } from '@/customTypes/form.types';
 import { IDataForSubmitForm } from '@/interfaces/IDataForForms';
 import IFieldProps from '@/interfaces/IFieldProps';

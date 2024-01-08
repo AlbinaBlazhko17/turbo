@@ -1,12 +1,12 @@
-import { CustomCheckbox, CustomSelect, CustomLabel } from '@/components';
+import { CustomCheckbox, CustomLabel, CustomSelect } from '@/components';
 import { EFormProps, EInterests, SelectValue } from '@/customTypes/form.types';
 import { IDataForPreferencesForm } from '@/interfaces/IDataForForms';
 import { FormikErrors } from 'formik';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
 import PreferencesFormProps from './PreferencesForm.props';
-import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
 
 import 'react-range-slider-input/dist/style.css';
 import style from '../customForm.module.scss';

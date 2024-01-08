@@ -1,5 +1,5 @@
-import cn from 'classnames';
 import { ThemeContext } from '@theme/theme';
+import cn from 'classnames';
 import { useContext } from 'react';
 import { CustomLabelType } from './CustomLabel.props';
 

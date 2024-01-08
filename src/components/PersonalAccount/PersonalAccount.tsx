@@ -1,9 +1,13 @@
 import { EFormProps, EInterests } from '@/customTypes/form.types';
+import { IDataForPersonalAccount } from '@/customTypes/personalAccount';
 import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
+import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
+import { changeDataById, deleteUserById } from '@/store/actions/actions';
 import { getPhotoByUserId } from '@/utils/dataForGallery';
 import EditIcon from '@assets/icons/edit.svg';
 import SpinnerIcon from '@assets/icons/spinner.svg';
+import TrashIcon from '@assets/icons/trash.svg';
 import NotFoundImg from '@assets/img/icon-image-not-found-free-vector.jpg';
 import cn from 'classnames';
 import { Formik, FormikProps } from 'formik';
@@ -13,20 +17,16 @@ import { Await, useLoaderData, useNavigate, useParams } from 'react-router';
 import { validationSchemaForPersonalAccount } from '../CustomForm/validationSchemas';
 import CustomInput from '../CustomInput/CustomInput';
 import CustomLabel from '../CustomLabel/CustomLabel';
-import { IDataForPersonalAccount } from '@/customTypes/personalAccount';
-import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
-import { changeDataById, deleteUserById } from '@/store/actions/actions';
-import TrashIcon from '@assets/icons/trash.svg';
 //@ts-ignore
 import RangeSlider from 'react-range-slider-input';
 import Button from '../Button/Button';
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import ModalWindow from '../ModalWindow/ModalWindow';
+import CustomMultiSelect from '../CustomMultiSelect/CustomMultiSelect';
 
 import 'react-range-slider-input/dist/style.css';
 import style from './personalAccount.module.scss';
-import CustomMultiSelect from '../CustomMultiSelect/CustomMultiSelect';
 
 function PersinalAccount() {
 	const [profilePicture, setProfilePicture] = useState<string>('');

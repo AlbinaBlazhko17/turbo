@@ -1,8 +1,8 @@
-import { useRef, useEffect, useState } from 'react';
-import Chart from 'chart.js/auto';
-import { useSelector } from 'react-redux';
 import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
+import Chart from 'chart.js/auto';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import style from './stats.module.scss';
 

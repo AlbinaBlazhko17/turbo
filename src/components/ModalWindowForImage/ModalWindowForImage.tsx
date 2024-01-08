@@ -1,11 +1,11 @@
-import { createContainer } from '@/utils/createContainer';
-import { useState, useEffect, MouseEventHandler, useCallback, useRef } from 'react';
-import Portal from '../Portal/Portal';
-import { AnimatePresence, motion } from 'framer-motion';
-import cn from 'classnames';
-import ArrowIcon from '@assets/icons/sort-arrow.svg';
-import { IDataForGallery, IDataForPhotos } from '@/interfaces/IDataForGallery';
 import { setStateActionType } from '@/customTypes/react.types';
+import { IDataForGallery, IDataForPhotos } from '@/interfaces/IDataForGallery';
+import { createContainer } from '@/utils/createContainer';
+import ArrowIcon from '@assets/icons/sort-arrow.svg';
+import cn from 'classnames';
+import { AnimatePresence, motion } from 'framer-motion';
+import { MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
+import Portal from '../Portal/Portal';
 
 import style from './modalWindowForImage.module.scss';
 

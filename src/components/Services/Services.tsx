@@ -1,5 +1,5 @@
-import ServiceCard from '../ServiceCard/ServiceCard';
 import IDataForServices from '@interfaces/IDataForServices';
+import ServiceCard from '../ServiceCard/ServiceCard';
 
 import style from './services.module.scss';
 

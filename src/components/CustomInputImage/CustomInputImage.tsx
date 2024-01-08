@@ -1,8 +1,8 @@
+import { ThemeContext } from '@/theme/theme';
+import cn from 'classnames';
 import { useContext, useEffect, useRef } from 'react';
 import CustomLabel from '../CustomLabel/CustomLabel';
 import CustomInputImageProps from './CustomInputImage.props';
-import { ThemeContext } from '@/theme/theme';
-import cn from 'classnames';
 
 import style from './customInputImage.module.scss';
 

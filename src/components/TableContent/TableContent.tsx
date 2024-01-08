@@ -4,13 +4,13 @@ import { RootState } from '@/customTypes/store.types';
 import { IDataForForm } from '@/interfaces/IDataForForms';
 import ISelectedItem from '@/interfaces/ISelectedItem';
 import { filterByProp, returnDataAfterFiltering, sortByProp } from '@/store/actions/actions';
+import { ThemeContext } from '@/theme/theme';
 import FiltrationIcon from '@assets/icons/filtration.svg';
 import SortArrow from '@assets/icons/sort-arrow.svg';
 import cn from 'classnames';
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { ThemeContext } from '@/theme/theme';
 
 import style from '../../pages/TablePage/tablePage.module.scss';
 

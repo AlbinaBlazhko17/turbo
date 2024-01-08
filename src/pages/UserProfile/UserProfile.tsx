@@ -1,16 +1,16 @@
 import { Button, CustomInput, CustomLabel, ModalWindow } from '@/components';
 import { RootState } from '@/customTypes/store.types';
+import { IDataForInfo } from '@/interfaces/IDataForInfo';
 import { IPassword } from '@/interfaces/IDataForPassword';
-import { changePassword, changeUsername, changeEmail } from '@/store/actions/actions';
+import { changeEmail, changePassword, changeUsername } from '@/store/actions/actions';
+import EditIcon from '@assets/icons/edit.svg';
 import bg from '@assets/img/BG.png';
 import ProfileIcon from '@assets/img/person.png';
 import { Formik, FormikProps } from 'formik';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { validationSchemaPassword } from './validationSchemaPassword';
-import EditIcon from '@assets/icons/edit.svg';
 import { validationSchemaInfo } from './validationSchemaInfo';
-import { IDataForInfo } from '@/interfaces/IDataForInfo';
+import { validationSchemaPassword } from './validationSchemaPassword';
 
 import style from './UserProfile.module.scss';
 

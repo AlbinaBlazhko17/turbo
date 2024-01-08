@@ -1,13 +1,13 @@
 import { EGender, EInterests } from '@/customTypes/form.types';
 import TickIcon from '@assets/icons/tick.svg';
-import { useEffect, useRef } from 'react';
 import cn from 'classnames';
-//@ts-ignore
-import RangeSlider from 'react-range-slider-input';
+import { useEffect, useRef } from 'react';
 import { Button } from '@/components';
 import { setStateActionType } from '@/customTypes/react.types';
-import ISelectedItem from '@/interfaces/ISelectedItem';
 import { IRangeSliderRef } from '@/interfaces/IDataForPersonaAccount';
+import ISelectedItem from '@/interfaces/ISelectedItem';
+//@ts-ignore
+import RangeSlider from 'react-range-slider-input';
 
 import 'react-range-slider-input/dist/style.css';
 import style from './filtration.module.scss';

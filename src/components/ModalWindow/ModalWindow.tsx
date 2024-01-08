@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import type { FC, MouseEventHandler, PropsWithChildren } from 'react';
-import Portal from '../Portal/Portal';
-import { createContainer } from '@utils/createContainer';
-import CloseButton from '@assets/icons/close_button.svg';
 import { setStateActionType } from '@/customTypes/react.types';
+import CloseButton from '@assets/icons/close_button.svg';
+import { createContainer } from '@utils/createContainer';
 import { AnimatePresence, motion } from 'framer-motion';
+import type { FC, MouseEventHandler, PropsWithChildren } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import Portal from '../Portal/Portal';
 
 import styles from './modalWindow.module.scss';
 
